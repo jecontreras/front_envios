@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-center row" infiniteScroll [infiniteScrollDistance]="3" [infiniteScrollThrottle]="50"
+    (scrolled)="onScroll()">
+    <div class="col-8" *ngFor="let item of listRow">
+        <div class="marge-card mb-3">
+            <app-card blockclass="p-0" cardclass="mb-0" class="ng-tns-c14-23">
+                <div class="card-header row">
+                    <picture>
+                        <img *ngIf="item.user" class="rounded-circle perfil-img rounded fotoPerfil"
+                            src="{{ item.user.foto }}" alt="Perfil user" />
+                    </picture>
+                    <div class="col">
+                        <p>
+                            <span *ngIf="item.user && item.user.username !== 'origin'">
+                                {{item.user.username  || 'PublicidadPorInternet'}}
+                            </span>
+                            <span *ngIf="item.user && item.user.username === 'origin' && item.autocreo">
+                                {{'Empresa '+item.title}}
+                            </span>
+                            <br>
+                            <span>
+                                {{ item.createdAt }}
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="card mb-0 ng-trigger ng-trigger-cardRemove" animates="" animatesinitmode="show"
+                    style="visibility: visible; opacity: 1;">
+                    <div class="card-body ng-tns-c14-23 p-0 ng-star-inserted mouse" (click)="openPublic( item )">
+                        <img *ngIf="item.type == 'img'" alt="Card image cap" class="card-img-top"
+                            [src]="item.content || 'https://s3.amazonaws.com/publihazclick/default/fondoTareas.jpg'">
+                        <img *ngIf="item.type == 'url'" alt="Card image cap" class="card-img-top"
+                            [src]="item.imgdefault || 'https://s3.amazonaws.com/publihazclick/default/fondoTareas.jpg'">
+                    </div>
+                    <div class="card-body ng-tns-c14-24 m-t-15 ng-star-inserted">
+                        <h5 class="card-title">{{ item.titulo }}</h5>
+                        <p class="card-text" [innerHtml]="item.descripcion | slice: 0: item.oculto || 200"></p>
+                        <label class="text-primary">
+                            <span (click)="item.oculto = 5000" *ngIf="item.oculto !== 5000">Leer más!</span>
+                            <span (click)="item.oculto = 150" *ngIf="item.oculto == 5000">Ver Menos!</span>
+                        </label>
+                        <p class="card-text"><small class="text-muted">{{ item.createdAt }}</small></p>
+                    </div>
+                </div>
+            </app-card>
+        </div>
+    </div>
+
+</div>

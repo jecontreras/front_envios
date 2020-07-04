@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  url: "https://backpublihazclick.herokuapp.com",
+  //url: "https://backpublihazclick.herokuapp.com",
+  url: 'http://localhost:1337',
   urlFront: "http://localhost:4200"
 };
 

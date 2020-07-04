@@ -4,19 +4,19 @@ import { Store } from '@ngrx/store';
 import { STORAGES } from 'src/app/interfaces/sotarage';
 
 @Component({
-  selector: 'app-tareas',
-  templateUrl: './tareas.component.html',
-  styleUrls: ['./tareas.component.scss']
+  selector: 'app-tarea-mini',
+  templateUrl: './tarea-mini.component.html',
+  styleUrls: ['./tarea-mini.component.scss']
 })
-export class TareasComponent implements OnInit {
+export class TareaMiniComponent implements OnInit {
 
   public query:any = { 
     where:{ 
-     prioridad: "tarea-diaria",
+     prioridad: "tarea-referidos",
      user: {}
     }, 
     sort: "createdAt DESC",
-    limit: 5,
+    limit: 1000,
     page: 0
    };
    dataUser:any = {};

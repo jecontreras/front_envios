@@ -29,6 +29,8 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { appReducer } from './redux/app';
 import { environment } from 'src/environments/environment';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 //import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
@@ -57,6 +59,8 @@ import { environment } from 'src/environments/environment';
     NgbTooltipModule,
     NgbButtonsModule,
     NgbTabsetModule,
+    HttpClientModule,
+    ReactiveFormsModule,
     //BrowserModule.withServerTransition({ appId: 'serverApp' }),
     StoreModule.forRoot({ name: appReducer }),
     StoreDevtoolsModule.instrument({

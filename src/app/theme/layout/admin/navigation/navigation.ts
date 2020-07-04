@@ -47,13 +47,6 @@ const NavigationItems = [
         icon: 'feather icon-home'
       },
       {
-        id: 'tareas',
-        title: 'Tareas',
-        type: 'item',
-        url: '/dashboard/tareas',
-        icon: 'feather icon-home'
-      },
-      {
         id: 'referidos',
         title: 'Referidos',
         type: 'item',
@@ -72,6 +65,35 @@ const NavigationItems = [
         title: 'Mis Publicaciones',
         type: 'item',
         url: '/dashboard/mispublicacion',
+        icon: 'feather icon-home'
+      },
+    ]
+  },
+  {
+    id: 'retiros',
+    title: 'TAREAS & GANA DINERO',
+    type: 'group',
+    icon: 'feather icon-layers',
+    children: [
+      {
+        id: 'tareasDiarias',
+        title: 'Tareas Diarias Anuncios',
+        type: 'item',
+        url: '/dashboard/tareasdiarias',
+        icon: 'feather icon-home'
+      },
+      {
+        id: 'tareasMini',
+        title: 'Tareas Mini Anuncios',
+        type: 'item',
+        url: '/dashboard/tareasmini',
+        icon: 'feather icon-home'
+      },
+      {
+        id: 'tareasMega',
+        title: 'Tareas Mega Anuncios',
+        type: 'item',
+        url: '/dashboard/tareasmega',
         icon: 'feather icon-home'
       },
     ]

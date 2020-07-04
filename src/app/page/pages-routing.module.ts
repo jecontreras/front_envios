@@ -12,6 +12,8 @@ import { PaqueteComponent } from './component/paquete/paquete.component';
 import { PerfilComponent } from './component/perfil/perfil.component';
 import { CategoriaComponent } from './component/categoria/categoria.component';
 import { ServicioClienteComponent } from './component/servicio-cliente/servicio-cliente.component';
+import { TareaMegaComponent } from './component/tarea-mega/tarea-mega.component';
+import { TareaMiniComponent } from './component/tarea-mini/tarea-mini.component';
 
 const routes: Routes = [
   {
@@ -23,8 +25,16 @@ const routes: Routes = [
     component: TableroComponent
   },
   {
-    path: "tareas",
+    path: "tareasdiarias",
     component: TareasComponent
+  },
+  {
+    path: "tareasmini",
+    component: TareaMiniComponent
+  },
+  {
+    path: "tareasmega",
+    component: TareaMegaComponent
   },
   {
     path: "referidos",

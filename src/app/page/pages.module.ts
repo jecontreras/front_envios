@@ -15,15 +15,20 @@ import { PerfilComponent } from './component/perfil/perfil.component';
 import { CategoriaComponent } from './component/categoria/categoria.component';
 import { ServicioClienteComponent } from './component/servicio-cliente/servicio-cliente.component';
 import { SharedModule } from '../theme/shared/shared.module';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { TareaMiniComponent } from './component/tarea-mini/tarea-mini.component';
+import { TareaMegaComponent } from './component/tarea-mega/tarea-mega.component';
+import { ToolsPublicacionComponent } from './tools/tools-publicacion/tools-publicacion.component';
 
 
 
 @NgModule({
-  declarations: [ PagesComponent, HomeComponent, TableroComponent, TareasComponent, ReferidosComponent, LiderComponent, MisPublicacionComponent, RetirosComponent, BancosComponent, PaqueteComponent, PerfilComponent, CategoriaComponent, ServicioClienteComponent ],
+  declarations: [ PagesComponent, HomeComponent, TableroComponent, TareasComponent, ReferidosComponent, LiderComponent, MisPublicacionComponent, RetirosComponent, BancosComponent, PaqueteComponent, PerfilComponent, CategoriaComponent, ServicioClienteComponent, TareaMiniComponent, TareaMegaComponent, ToolsPublicacionComponent ],
   imports: [
     CommonModule,
     PagesRoutingModule,
-    SharedModule
+    SharedModule,
+    InfiniteScrollModule
   ],
   bootstrap: [ PagesComponent ]
 })
