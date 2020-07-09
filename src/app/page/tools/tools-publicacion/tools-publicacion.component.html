@@ -1,20 +1,36 @@
+<div class="d-flex justify-content-center" *ngIf="config.vista == 'tareas'">
+    <div class="row">
+        <div class="p-3 mb-2 col-5 bg-success text-white rounded textInf">
+            ({{ tarea.completado }}) Actividades Cumplidas
+        </div>
+        <div class="col-2">
+
+        </div>
+        <div class="p-3 mb-2 col-5 bg-danger text-white rounded textInf">
+            ({{ tarea.restante }}) Actividades Restantes
+        </div>
+    </div>
+</div>
+
 <div class="d-flex justify-content-center row" infiniteScroll [infiniteScrollDistance]="3" [infiniteScrollThrottle]="50"
     (scrolled)="onScroll()">
-    <div class="col-8" *ngFor="let item of listRow">
+    <div class="col-12 col-sm-7 col-xs-8" *ngFor="let item of listRow" [ngClass]="{
+        'disable':item.estado !== 'activo'
+     }">
         <div class="marge-card mb-3">
             <app-card blockclass="p-0" cardclass="mb-0" class="ng-tns-c14-23">
                 <div class="card-header row">
                     <picture>
                         <img *ngIf="item.user" class="rounded-circle perfil-img rounded fotoPerfil"
-                            src="{{ item.user.foto }}" alt="Perfil user" />
+                            [src]="item.fotoUser" alt="Perfil user" />
                     </picture>
                     <div class="col">
                         <p>
-                            <span *ngIf="item.user && item.user.username !== 'origin'">
-                                {{item.user.username  || 'PublicidadPorInternet'}}
+                            <span *ngIf="item.userName !== 'origin'">
+                                {{item.userName  || 'PublicidadPorInternet'}}
                             </span>
-                            <span *ngIf="item.user && item.user.username === 'origin' && item.autocreo">
-                                {{'Empresa '+item.title}}
+                            <span *ngIf="item.userName === 'origin' && item.autocreo">
+                                {{'Empresa '+item.userName }}
                             </span>
                             <br>
                             <span>
@@ -23,7 +39,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="card mb-0 ng-trigger ng-trigger-cardRemove" animates="" animatesinitmode="show"
+                <div class="card mb-0 ng-trigger ng-trigger-cardRemove" animatesinitmode="show"
                     style="visibility: visible; opacity: 1;">
                     <div class="card-body ng-tns-c14-23 p-0 ng-star-inserted mouse" (click)="openPublic( item )">
                         <img *ngIf="item.type == 'img'" alt="Card image cap" class="card-img-top"
@@ -45,4 +61,23 @@
         </div>
     </div>
 
+</div>
+
+<div class="col-12" *ngIf="progreses">
+    <div class="d-flex justify-content-center row">
+        <div class="spinner-grow text-primary" role="status"><span class="sr-only">Loading...</span></div>
+        <div class="spinner-grow text-secondary" role="status"><span class="sr-only">Loading...</span></div>
+        <div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div>
+        <div class="spinner-grow text-danger" role="status"><span class="sr-only">Loading...</span></div>
+        <div class="spinner-grow text-warning" role="status"><span class="sr-only">Loading...</span></div>
+        <div class="spinner-grow text-info" role="status"><span class="sr-only">Loading...</span></div>
+        <div class="spinner-grow text-light" role="status"><span class="sr-only">Loading...</span></div>
+        <div class="spinner-grow text-dark" role="status"><span class="sr-only">Loading...</span></div>
+    </div>
+</div>
+
+<div class="col-12" *ngIf="!progreses && listRow.length == 0">
+    <div class="d-flex justify-content-center row">
+        <div role="alert" class="alert alert-primary">No Hay Datos Para Mostrar</div>
+    </div>
 </div>

@@ -12,14 +12,18 @@ export class TareaMegaComponent implements OnInit {
   
   public query:any = { 
    where:{ 
-    prioridad: "tarea-extra",
-    user: {}
+    prioridad: "tarea-referidos",
+    user: {},
+    create: true
    }, 
    sort: "createdAt DESC",
    limit: 1000,
    page: 0
   };
   dataUser:any = {};
+  config:any = {
+    vista: "tareas"
+  };
 
   constructor(
     public _actividad: ActividadService,

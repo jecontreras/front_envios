@@ -20,6 +20,9 @@ export class HomeComponent implements OnInit {
    limit: 30,
    page: 0
   };
+  config:any = {
+    vista: "publicacion"
+  };
   
   constructor(
     public apexEvent: ApexChartService,

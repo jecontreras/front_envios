@@ -19,11 +19,12 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { TareaMiniComponent } from './component/tarea-mini/tarea-mini.component';
 import { TareaMegaComponent } from './component/tarea-mega/tarea-mega.component';
 import { ToolsPublicacionComponent } from './tools/tools-publicacion/tools-publicacion.component';
+import { ViewPerfilComponent } from './component/view-perfil/view-perfil.component';
 
 
 
 @NgModule({
-  declarations: [ PagesComponent, HomeComponent, TableroComponent, TareasComponent, ReferidosComponent, LiderComponent, MisPublicacionComponent, RetirosComponent, BancosComponent, PaqueteComponent, PerfilComponent, CategoriaComponent, ServicioClienteComponent, TareaMiniComponent, TareaMegaComponent, ToolsPublicacionComponent ],
+  declarations: [ PagesComponent, HomeComponent, TableroComponent, TareasComponent, ReferidosComponent, LiderComponent, MisPublicacionComponent, RetirosComponent, BancosComponent, PaqueteComponent, PerfilComponent, CategoriaComponent, ServicioClienteComponent, TareaMiniComponent, TareaMegaComponent, ToolsPublicacionComponent, ViewPerfilComponent ],
   imports: [
     CommonModule,
     PagesRoutingModule,

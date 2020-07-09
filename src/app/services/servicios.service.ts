@@ -6,6 +6,8 @@ import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { UserAction } from '../redux/app.actions';
 import { ToolsService } from './tools.service';
+import { catchError } from 'rxjs/operators';
+import * as _ from 'lodash';
 
 declare var io: any;
 const headers = new HttpHeaders({
@@ -22,6 +24,7 @@ export class ServiciosService {
   public disable_reconect: boolean = false;
   public interval:any;
   public dataUser:any = {};
+  private handleError: any;
 
   constructor(
     private http: HttpClient,
@@ -29,8 +32,8 @@ export class ServiciosService {
     private Router: Router,
     private _tools: ToolsService
   ) { 
-    //this.conectionSocket();
-    //this.createsocket("emitir", {mensaje:"inicial"}); 
+    this.conectionSocket();
+    this.createsocket("emitir", {mensaje:"inicial"}); 
     this.privateDataUser();
   }
   privateDataUser(){
@@ -40,7 +43,7 @@ export class ServiciosService {
       this.dataUser = store.user || {};
     });
     if(Object.keys(this.dataUser).length >0 ){
-      this.querys('tblusuario/querys',{
+      this.querys('user/query',{
         where:{
           id: this.dataUser.id
         }
@@ -67,6 +70,7 @@ export class ServiciosService {
     data.skip = datas.page ? datas.page : 0;
     data.limit = datas.limit ? datas.limit : 10;
     query = URL+`/${query}`;
+    delete data.where.app;
     return this.ejecutarQuery(query, data, METODO);
   }
 
@@ -103,7 +107,7 @@ export class ServiciosService {
     try {
       if (io) {
         io.sails.autoConnect = false;
-        this.sock = io.sails.connect('http://localhost:1337');
+        this.sock = io.sails.connect(URL);
         this.scoket_global();
       }
     } catch (error) {
@@ -122,5 +126,30 @@ export class ServiciosService {
       this.disable_reconect = true;
       this.init_process_socket()
     });
+  }
+  query(modelo: string, query: any) {
+    if (!query) {
+      query = {};
+    }
+    if (!query.where) {
+      query = {
+        where: query
+      }
+        ;
+    }
+    const ruta = _.split(modelo, '/', 2);
+    if (ruta[1]) {
+      modelo = modelo;
+    } else {
+      modelo = modelo + '/query';
+    }
+
+    query.app = this.adsSecuryty();
+    return this.http.post(URL + modelo, query).pipe(
+      catchError(this.handleError)
+    );
+  }
+  private adsSecuryty() {
+    return 'publihazclickrootadmin';
   }
 }

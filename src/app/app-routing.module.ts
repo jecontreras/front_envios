@@ -36,7 +36,17 @@ const routes: Routes = [
         loadChildren: () => import('./demo/pages/maintenance/maintenance.module').then(module => module.MaintenanceModule)
       }
     ]
-  }
+  },
+  {
+    path: '',
+    component: AuthComponent,
+    children: [
+      {
+        path: 'publicacionviews/:id',
+        loadChildren: () => import('./publico/publico.module').then(module => module.PublicoModule)
+      }
+    ]
+  },
 ];
 
 @NgModule({

@@ -22,4 +22,7 @@ export class ActividadService {
   delete(query:any){
     return this._model.querys('actividad/'+query.id, query, 'delete');
   }
+  generarActividad(query:any){
+    return this._model.querys('actividad/generador', query, 'post');
+  }
 }

@@ -14,6 +14,7 @@ import { CategoriaComponent } from './component/categoria/categoria.component';
 import { ServicioClienteComponent } from './component/servicio-cliente/servicio-cliente.component';
 import { TareaMegaComponent } from './component/tarea-mega/tarea-mega.component';
 import { TareaMiniComponent } from './component/tarea-mini/tarea-mini.component';
+import { ViewPerfilComponent } from './component/view-perfil/view-perfil.component';
 
 const routes: Routes = [
   {
@@ -71,6 +72,10 @@ const routes: Routes = [
   {
     path: "servicioCliente",
     component: ServicioClienteComponent
+  },
+  {
+    path: "view_perfil/:id",
+    component: ViewPerfilComponent
   }
 ];
 

@@ -32,6 +32,10 @@ export class AuthSigninComponent implements OnInit {
   ngOnInit() {
   }
 
+  Pruebas(){
+    this._user.get( { where:{ username: "jose" } } ).subscribe(( res:any )=> this.ProcesoStorages( { data: res.data[0]} ));
+  }
+
   iniciar(){
     this.btnDisabled = true;
     let validando = this.validador();

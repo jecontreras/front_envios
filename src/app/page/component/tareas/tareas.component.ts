@@ -13,13 +13,17 @@ export class TareasComponent implements OnInit {
   public query:any = { 
     where:{ 
      prioridad: "tarea-diaria",
-     user: {}
+     user: {},
+     create: true
     }, 
     sort: "createdAt DESC",
     limit: 5,
     page: 0
    };
    dataUser:any = {};
+   config:any = {
+    vista: "tareas"
+  };
  
    constructor(
      public _actividad: ActividadService,
