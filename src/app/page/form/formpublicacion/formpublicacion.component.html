@@ -1,0 +1,111 @@
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex flex-row-reverse bd-highlight">
+            <button type="button" class="btn btn-primary" (click)="submit()">
+                <span *ngIf="data.id">Actualizar</span>
+                <span *ngIf="!data.id">Crear</span>
+            </button>
+            <button type="button" class="btn btn-success" (click)="crearDefecto()">
+                Crear Publicacion Por Defecto
+            </button>
+        </div>
+        <br><br>
+    </div>
+    <div class="col-12 col-sm-6 col-xs-6 content">
+        <div class="row">
+            <div class="col-12">
+                <div class="p-3 mb-2 bg-primary text-white rounded">
+                    Formulario de {{ titulo }}
+                </div>
+                <br>
+            </div>
+            <div class="form-group col-xs-12 col-sm-12 col-12">
+                <label for="exampleInputEmail1">Titulo para tu publicacion</label>
+                <input type="text" class="form-control" [(ngModel)]="data.title">
+            </div>
+            <div class="form-group col-xs-12 col-sm-12 col-12">
+                <label for="exampleFormControlSelect1">Tipo de Publicacion</label>
+                <select class="form-control" [(ngModel)]="data.type">
+                    <option value="img">Imagen</option>
+                    <option value="url">Web</option>
+                </select>
+            </div>
+            <div class="form-group col-xs-12 col-sm-12 col-12">
+                <div class="form-group ">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="d-flex justify-content-center">
+                                <label for="exampleInputEmail1">Seleccionar una imagen para su publicacion</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="d-flex justify-content-center">
+                                <img class="fotoPulib" [src]="data.imgdefault"><br>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="d-flex justify-content-center">
+                                <input type="file" placeholder="Imagenes" (blur)="datafiles($event)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-xs-12 col-sm-12 col-12" *ngIf="data.type == 'url'">
+                <label for="exampleFormControlSelect1">Tipo de Link</label>
+                <select class="form-control" [(ngModel)]="data.tipolink" (blur)="ProbarUrl()">
+                    <option value="youtube">Youtube</option>
+                    <option value="otro">Otro</option>
+                </select>
+            </div>
+            <div class="form-group col-xs-12 col-sm-12 col-12" *ngIf="data.type == 'url'">
+                <label for="exampleInputEmail1">Direccion URL</label>
+                <input [disabled]="id" type="text" class="form-control" (change)="ProbarUrl()" (blur)="ProbarUrl()"
+                    [(ngModel)]="data.content">
+                <button type="button" class="btn btn-primary" (click)="probarLink()">
+                    Probar Link
+                </button>
+            </div>
+            <div class="form-group col-xs-12 col-sm-12 col-12">
+                <label for="exampleInputEmail1">Descripcion</label>
+                <angular-editor id="editor1" [(ngModel)]="data.descripcion" [config]="editorConfig"
+                    (ngModelChange)="eventoDescripcion()"></angular-editor>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-sm-6 col-xs-6 content">
+        <div class="row">
+            <div class="col-12">
+                <div class="p-3 mb-2 bg-primary text-white rounded">
+                    Previsualización
+                </div>
+                <br>
+            </div>
+            <div class="col-12" *ngIf="data.title">
+                <div class="p-3 mb-2 bg-primary text-white">
+                    <h4 class="text-light">{{ data.title }}</h4>
+                </div>
+                <br>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-12" *ngIf="data.viewlive && data.type == 'url'">
+                <iframe style="width: 100%; height: 357px;" [src]="data.viewlive" frameborder="0" width="1499"
+                    height="561" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe><br>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-12" *ngIf="data.viewlive && data.type == 'img'">
+                <div class="d-flex justify-content-center">
+                    <img [src]="data.imgdefault"><br>
+                </div>
+            </div>
+            <div class="col-12" *ngIf="data.descripcion">
+                <div class="p-3 mb-2 bg-primary text-white rounded">
+                    <label>
+                        <h4 class="text-light">Descripcion: </h4>
+                    </label>
+                </div>
+                <p [innerHtml]="data.descripcion"></p>
+            </div>
+        </div>
+    </div>
+</div>

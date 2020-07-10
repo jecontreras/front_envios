@@ -22,17 +22,40 @@ import { ToolsPublicacionComponent } from './tools/tools-publicacion/tools-publi
 import { ViewPerfilComponent } from './component/view-perfil/view-perfil.component';
 import { BannerComponent } from './component/banner/banner.component';
 import { ToolAdminPublicComponent } from './tools/tool-admin-public/tool-admin-public.component';
-import { PublicacionComponent } from './form/publicacion/publicacion.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import { FormpublicacionComponent } from './form/formpublicacion/formpublicacion.component';
 
 
 
 @NgModule({
-  declarations: [ PagesComponent, HomeComponent, TableroComponent, TareasComponent, ReferidosComponent, LiderComponent, MisPublicacionComponent, RetirosComponent, BancosComponent, PaqueteComponent, PerfilComponent, CategoriaComponent, ServicioClienteComponent, TareaMiniComponent, TareaMegaComponent, ToolsPublicacionComponent, ViewPerfilComponent, BannerComponent, ToolAdminPublicComponent, PublicacionComponent ],
+  declarations: [ 
+    PagesComponent, 
+    HomeComponent, 
+    TableroComponent, 
+    TareasComponent, 
+    ReferidosComponent, 
+    LiderComponent, 
+    MisPublicacionComponent, 
+    RetirosComponent, 
+    BancosComponent, 
+    PaqueteComponent, 
+    PerfilComponent, 
+    CategoriaComponent, 
+    ServicioClienteComponent, 
+    TareaMiniComponent, 
+    TareaMegaComponent, 
+    ToolsPublicacionComponent, 
+    ViewPerfilComponent, 
+    BannerComponent, 
+    ToolAdminPublicComponent, 
+    FormpublicacionComponent
+  ],
   imports: [
     CommonModule,
     PagesRoutingModule,
     SharedModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    AngularEditorModule
   ],
   bootstrap: [ PagesComponent ]
 })

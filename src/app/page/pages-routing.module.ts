@@ -16,7 +16,7 @@ import { TareaMegaComponent } from './component/tarea-mega/tarea-mega.component'
 import { TareaMiniComponent } from './component/tarea-mini/tarea-mini.component';
 import { ViewPerfilComponent } from './component/view-perfil/view-perfil.component';
 import { BannerComponent } from './component/banner/banner.component';
-import { PublicacionComponent } from './form/publicacion/publicacion.component';
+import { FormpublicacionComponent } from './form/formpublicacion/formpublicacion.component';
 
 const routes: Routes = [
   {
@@ -81,11 +81,11 @@ const routes: Routes = [
   },
   {
     path: "formpublicacion",
-    component: PublicacionComponent
+    component: FormpublicacionComponent
   },
   {
     path: "formpublicacion/:id",
-    component: PublicacionComponent
+    component: FormpublicacionComponent
   },
   {
     path: "banner",
