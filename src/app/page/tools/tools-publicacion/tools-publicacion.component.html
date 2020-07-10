@@ -48,7 +48,7 @@
                             [src]="item.imgdefault || 'https://s3.amazonaws.com/publihazclick/default/fondoTareas.jpg'">
                     </div>
                     <div class="card-body ng-tns-c14-24 m-t-15 ng-star-inserted">
-                        <h5 class="card-title">{{ item.titulo }}</h5>
+                        <h5 class="card-title mouse" (click)="openPublic( item )">{{ item.title }}</h5>
                         <p class="card-text" [innerHtml]="item.descripcion | slice: 0: item.oculto || 200"></p>
                         <label class="text-primary">
                             <span (click)="item.oculto = 5000" *ngIf="item.oculto !== 5000">Leer más!</span>

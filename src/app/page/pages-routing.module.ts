@@ -15,6 +15,8 @@ import { ServicioClienteComponent } from './component/servicio-cliente/servicio-
 import { TareaMegaComponent } from './component/tarea-mega/tarea-mega.component';
 import { TareaMiniComponent } from './component/tarea-mini/tarea-mini.component';
 import { ViewPerfilComponent } from './component/view-perfil/view-perfil.component';
+import { BannerComponent } from './component/banner/banner.component';
+import { PublicacionComponent } from './form/publicacion/publicacion.component';
 
 const routes: Routes = [
   {
@@ -76,7 +78,19 @@ const routes: Routes = [
   {
     path: "view_perfil/:id",
     component: ViewPerfilComponent
-  }
+  },
+  {
+    path: "formpublicacion",
+    component: PublicacionComponent
+  },
+  {
+    path: "formpublicacion/:id",
+    component: PublicacionComponent
+  },
+  {
+    path: "banner",
+    component: BannerComponent
+  },
 ];
 
 @NgModule({

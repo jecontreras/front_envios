@@ -20,11 +20,14 @@ import { TareaMiniComponent } from './component/tarea-mini/tarea-mini.component'
 import { TareaMegaComponent } from './component/tarea-mega/tarea-mega.component';
 import { ToolsPublicacionComponent } from './tools/tools-publicacion/tools-publicacion.component';
 import { ViewPerfilComponent } from './component/view-perfil/view-perfil.component';
+import { BannerComponent } from './component/banner/banner.component';
+import { ToolAdminPublicComponent } from './tools/tool-admin-public/tool-admin-public.component';
+import { PublicacionComponent } from './form/publicacion/publicacion.component';
 
 
 
 @NgModule({
-  declarations: [ PagesComponent, HomeComponent, TableroComponent, TareasComponent, ReferidosComponent, LiderComponent, MisPublicacionComponent, RetirosComponent, BancosComponent, PaqueteComponent, PerfilComponent, CategoriaComponent, ServicioClienteComponent, TareaMiniComponent, TareaMegaComponent, ToolsPublicacionComponent, ViewPerfilComponent ],
+  declarations: [ PagesComponent, HomeComponent, TableroComponent, TareasComponent, ReferidosComponent, LiderComponent, MisPublicacionComponent, RetirosComponent, BancosComponent, PaqueteComponent, PerfilComponent, CategoriaComponent, ServicioClienteComponent, TareaMiniComponent, TareaMegaComponent, ToolsPublicacionComponent, ViewPerfilComponent, BannerComponent, ToolAdminPublicComponent, PublicacionComponent ],
   imports: [
     CommonModule,
     PagesRoutingModule,

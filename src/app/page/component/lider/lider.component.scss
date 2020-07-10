@@ -1,0 +1,88 @@
+.p {
+    padding: 50px;
+  }
+  .padding {
+    padding: 10px;
+  }
+  .m {
+    margin: 10px;
+  }
+  .text {
+    font-weight: bold;
+  }
+  .canvasgraf {
+    min-width: 80%;
+    min-height: 70%;
+    max-width: 80%;
+    max-height: 80%;
+    padding: 15px;
+  }
+  .marginTop {
+    margin-top: 10px;
+  }
+  .colorsub {
+    background: #3f51b5;
+    color: white;
+    padding-left: 5px;
+  }
+  
+  /* Extra small devices (phones, 600px and down) */
+  @media only screen and (max-width: 320px) {
+    .mat-toolbar, .mat-toolbar h1, .mat-toolbar h2, .mat-toolbar h3, .mat-toolbar h4, .mat-toolbar h5, .mat-toolbar h6 {
+      font: 300 18px/22px Roboto,"Helvetica Neue",sans-serif;
+      margin-top: 10px;
+    }
+    .divisor {
+      margin-top: 10px;
+    }
+  }
+  /* Extra small devices (phones, 600px and down) */
+  @media only screen and (max-width: 600px) {
+    .ancho {
+      width: 85%;
+    }
+    .textInf {
+      font-size: 11px;
+    }
+  }
+  
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: 600px) {
+    .ancho {
+      width: 65%;
+    }
+    .textInf {
+      font-size: 12px;
+    }
+  }
+  
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 768px) {
+    .ancho {
+      width: 45%;
+    }
+    .textInf {
+      font-size: 14px;
+    }
+  }
+  
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media only screen and (min-width: 992px) {
+    .ancho {
+      width: 60%;
+    }
+    .textInf {
+      font-size: 15px;
+    }
+  }
+  
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
+  @media only screen and (min-width: 1200px) {
+    .ancho {
+      width: 60%;
+    }
+    .textInf {
+      font-size: 16px;
+    }
+  }
+  

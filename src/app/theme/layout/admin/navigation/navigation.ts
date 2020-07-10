@@ -59,18 +59,11 @@ const NavigationItems = [
         type: 'item',
         url: '/dashboard/lider',
         icon: 'feather icon-home'
-      },
-      {
-        id: 'mis_publicaciones',
-        title: 'Mis Publicaciones',
-        type: 'item',
-        url: '/dashboard/mispublicacion',
-        icon: 'feather icon-home'
-      },
+      }
     ]
   },
   {
-    id: 'retiros',
+    id: 'tareas',
     title: 'TAREAS & GANA DINERO',
     type: 'group',
     icon: 'feather icon-layers',
@@ -96,6 +89,28 @@ const NavigationItems = [
         url: '/dashboard/tareasmega',
         icon: 'feather icon-home'
       },
+    ]
+  },
+  {
+    id: 'publicaciones',
+    title: 'ADMINISTRACION PUBLICACIONES',
+    type: 'group',
+    icon: 'feather icon-layers',
+    children: [
+      {
+        id: 'publicacion',
+        title: 'Mis Publicaciones',
+        type: 'item',
+        url: '/dashboard/mispublicacion',
+        icon: 'feather icon-home'
+      },
+      {
+        id: 'banner',
+        title: 'Banner',
+        type: 'item',
+        url: '/dashboard/banner',
+        icon: 'feather icon-home'
+      }
     ]
   },
   {
