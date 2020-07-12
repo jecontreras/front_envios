@@ -15,7 +15,7 @@
 <div class="d-flex justify-content-center row" infiniteScroll [infiniteScrollDistance]="3" [infiniteScrollThrottle]="50"
     (scrolled)="onScroll()">
     <div class="col-12 col-sm-7 col-xs-8" *ngFor="let item of listRow" [ngClass]="{
-        'disable':item.estado !== 'activo'
+        'disable':item.estado !== 'activo' && config.vista == 'tareas'
      }">
         <div class="marge-card mb-3">
             <app-card blockclass="p-0" cardclass="mb-0" class="ng-tns-c14-23">

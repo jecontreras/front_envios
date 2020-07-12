@@ -42,7 +42,6 @@ export class ToolsPublicacionComponent implements OnInit {
   }
   
   openPublic( item ){
-    console.log( item );
     let url:string = item.content;
     if( this.config.vista == "tareas" ) { item.estado = "realizado"; url = URL+`/publicacionviews/${ item.id }`;}
     //console.log( url );
@@ -58,7 +57,6 @@ export class ToolsPublicacionComponent implements OnInit {
    }
 
   procesoGet( res:any ){
-    console.log( res );
     this.progreses = false;
     res.data = _.map( res.data, row =>{
       if(row.estado == "activo") this.tarea.restante++;

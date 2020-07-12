@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { ArchivosService } from 'src/app/servicesComponents/archivos.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { PublicacionService } from 'src/app/servicesComponents/publicacion.service';
@@ -9,14 +8,14 @@ import { Store } from '@ngrx/store';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as _ from 'lodash';
 
-@Component({
-  selector: 'app-formpublicacion',
-  templateUrl: './formpublicacion.component.html',
-  styleUrls: ['./formpublicacion.component.scss']
-})
-export class FormpublicacionComponent implements OnInit {
 
-  editorConfig: any;
+@Component({
+  selector: 'app-formbanner',
+  templateUrl: './formbanner.component.html',
+  styleUrls: ['./formbanner.component.scss']
+})
+export class FormbannerComponent implements OnInit {
+
   data: any = {};
   file: any = {
     foto1: []
@@ -45,11 +44,10 @@ export class FormpublicacionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.editor();
     this.data.user = this.dataUser.id;
     this.id = (this.activate.snapshot.paramMap.get('id'));
-    //console.log(this.id);
     if (this.id) { this.titulo = "Editar"; this.getPublicacion() }
+    console.log( this.id )
   }
 
   getPublicacion() {
@@ -71,24 +69,20 @@ export class FormpublicacionComponent implements OnInit {
     try {
       this.file.foto1 = ev.target.files;
       if (this.file.foto1[0]) {
-        if (this.data.type == "url") this.data.imgdefault = await this._archivo.getBase64(this.file.foto1[0]);
-        else {
-          this.data.imgdefault = await this._archivo.getBase64(this.file.foto1[0]);
-          this.data.content = await this._archivo.getBase64(this.file.foto1[0]);
-        }
+        this.data.imgdefault = await this._archivo.getBase64(this.file.foto1[0]);
       }
     } catch (error) { }
   }
 
   async submitFile() {
+    console.log( "HP");
     if( !this.file.foto1[0] ) return false;
     this.disableFile = true;
-    if (this.data.type == "url") await this.procesoSubidaImagen(this.file.foto1[0], 'imgdefault');
-    else await this.procesoSubidaImagen( this.file.foto1[0], 'content');
+    await this.procesoSubidaImagen( this.file.foto1[0] );
     this.disableFile = false;
   }
 
-  procesoSubidaImagen(file: any, opt: string) {
+  procesoSubidaImagen(file: any ) {
     return new Promise(resolve => {
       let form: any = new FormData();
       form.append('file', file);
@@ -96,9 +90,8 @@ export class FormpublicacionComponent implements OnInit {
       this._archivo.create(form).subscribe((res: any) => {
         //console.log(form);
         this._tools.tooast({ title: "subido exitoso" });
-        if (opt == 'imgdefault') this.data.imgdefault = res.files;
-        if (opt == 'content') { this.data.content = res.files; this.data.imgdefault = res.files; }
-        if (this.id) this.editar();
+        this.data.imgdefault = res.files;
+        if( this.id ) this.editar();
         this.file.foto1= [];
         resolve( true );
       }, error => { this._tools.tooast({ title: "Subido Error", icon: "error" }); resolve( false ) })
@@ -106,6 +99,7 @@ export class FormpublicacionComponent implements OnInit {
   }
 
   async submit() {
+    this.data.type = "banner";
     let validando = this.validador();
     if( !validando ) return false;
     this.btnDisabled = true;
@@ -115,9 +109,7 @@ export class FormpublicacionComponent implements OnInit {
 
   validador(){
     if( !this.data.content ) { this._tools.tooast( { title: "Error falta Url o Imagen ", icon: "error"}); return false; }
-    if( !this.data.descripcion ) { this._tools.tooast( { title: "Es Necesario que defina una descripcion", icon: "error"}); return false; }
     if( !this.data.imgdefault ) { this._tools.tooast( { title: "Error falta Imagen ", icon: "error"}); return false; }
-    if( this.data.type == 'url' )if( !this.data.tipolink ) { this._tools.tooast( { title: "Error falta tipolink ", icon: "error"}); return false; }
     if( !this.data.title ) { this._tools.tooast( { title: "Error falta el titulo ", icon: "error"}); return false; }
     if( !this.data.type ) { this._tools.tooast( { title: "Error falta el type de publicacion ", icon: "error"}); return false; }
     return true;
@@ -127,7 +119,7 @@ export class FormpublicacionComponent implements OnInit {
     this._publicacion.create(this.data).subscribe((res: any) => {
       this._tools.tooast({ title: "Publicacion Creada" });
       this.btnDisabled = false;
-      this.Router.navigate( [ 'dashboard/mispublicacion' ]);
+      this.Router.navigate( [ 'dashboard/banner' ]);
     }, (error: any) => { this._tools.tooast({ title: "Error de servidor", icon: 'error' }); this.btnDisabled = false; })
   }
 
@@ -144,64 +136,10 @@ export class FormpublicacionComponent implements OnInit {
 
   }
 
-  eventoDescripcion() {
-
-  }
-
   async ProbarUrl() {
     if (this.data.tipolink == 'youtube') this.data.content = await this._publicacion.urlprueba(this.data.content);
   }
   async probarLink() {
     this.data.viewlive = this.sanitizer.bypassSecurityTrustResourceUrl(this.data.content);
   }
-
-  editor() {
-    let config: AngularEditorConfig = {
-      editable: true,
-      spellcheck: true,
-      height: '300px',
-      minHeight: '0',
-      maxHeight: 'auto',
-      width: 'auto',
-      minWidth: '0',
-      translate: 'yes',
-      enableToolbar: true,
-      showToolbar: true,
-      placeholder: 'Enter text here...',
-      defaultParagraphSeparator: '',
-      defaultFontName: '',
-      defaultFontSize: '',
-      fonts: [
-        { class: 'arial', name: 'Arial' },
-        { class: 'times-new-roman', name: 'Times New Roman' },
-        { class: 'calibri', name: 'Calibri' },
-        { class: 'comic-sans-ms', name: 'Comic Sans MS' }
-      ],
-      customClasses: [
-        {
-          name: 'quote',
-          class: 'quote',
-        },
-        {
-          name: 'redText',
-          class: 'redText'
-        },
-        {
-          name: 'titleText',
-          class: 'titleText',
-          tag: 'h1',
-        },
-      ],
-      uploadUrl: 'v1/image',
-      uploadWithCredentials: false,
-      sanitize: true,
-      toolbarPosition: 'top',
-      toolbarHiddenButtons: [
-        ['bold', 'italic'],
-        ['fontSize']
-      ]
-    };
-    this.editorConfig = config;
-  }
-
 }

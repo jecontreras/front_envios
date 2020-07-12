@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-12">
         <div class="d-flex flex-row-reverse bd-highlight">
-            <button type="button" class="btn btn-warning m-l-0" [routerLink]="['/dashboard/mispublicacion']" >
+            <button type="button" class="btn btn-warning m-l-0" [routerLink]="['/dashboard/banner']" >
                 ATRAS
             </button>
             <button type="button" class="btn btn-primary m-l-0" (click)="submit()">
@@ -23,15 +23,8 @@
                 <br>
             </div>
             <div class="form-group col-xs-12 col-sm-12 col-12">
-                <label for="exampleInputEmail1">Titulo para tu publicacion</label>
+                <label for="exampleInputEmail1">Titulo del banner</label>
                 <input type="text" class="form-control" [(ngModel)]="data.title">
-            </div>
-            <div class="form-group col-xs-12 col-sm-12 col-12">
-                <label for="exampleFormControlSelect1">Tipo de Publicacion</label>
-                <select class="form-control" [(ngModel)]="data.type">
-                    <option value="img">Imagen</option>
-                    <option value="url">Web</option>
-                </select>
             </div>
             <div class="form-group col-xs-12 col-sm-12 col-12">
                 <div class="form-group ">
@@ -49,32 +42,17 @@
                         <div class="col-12">
                             <div class="d-flex justify-content-center column">
                                 <div><input type="file" placeholder="Imagenes" (ngModelChange)="datafiles($event)" (blur)="datafiles($event)"></div>
-                                <button type="button" class="btn btn-success" *ngIf="!file.foto1[0]">Probar Foto</button>
+                                <button type="button" class="btn btn-success" *ngIf="!file.foto1[0]" (click)="submitFile()">Probar Foto</button>
                                 <button type="button" class="btn btn-success" *ngIf="file.foto1[0]" [disabled]="disableFile" (click)="submitFile()">Subir Foto</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="form-group col-xs-12 col-sm-12 col-12" *ngIf="data.type == 'url'">
-                <label for="exampleFormControlSelect1">Tipo de Link</label>
-                <select class="form-control" [(ngModel)]="data.tipolink" (blur)="ProbarUrl()">
-                    <option value="youtube">Youtube</option>
-                    <option value="otro">Otro</option>
-                </select>
-            </div>
-            <div class="form-group col-xs-12 col-sm-12 col-12" *ngIf="data.type == 'url'">
+            <div class="form-group col-xs-12 col-sm-12 col-12">
                 <label for="exampleInputEmail1">Direccion URL</label>
                 <input type="text" class="form-control" (change)="ProbarUrl()" (blur)="ProbarUrl()"
                     [(ngModel)]="data.content">
-                <button type="button" class="btn btn-primary" (click)="probarLink()">
-                    Probar Link
-                </button>
-            </div>
-            <div class="form-group col-xs-12 col-sm-12 col-12">
-                <label for="exampleInputEmail1">Descripcion</label>
-                <angular-editor id="editor1" [(ngModel)]="data.descripcion" [config]="editorConfig"
-                    (ngModelChange)="eventoDescripcion()"></angular-editor>
             </div>
         </div>
     </div>
@@ -92,24 +70,10 @@
                 </div>
                 <br>
             </div>
-            <div class="col-xs-12 col-sm-12 col-12" *ngIf="data.viewlive && data.type == 'url'">
-                <iframe style="width: 100%; height: 357px;" [src]="data.viewlive" frameborder="0" width="1499"
-                    height="561" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen>
-                </iframe><br>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-12" *ngIf="data.viewlive && data.type == 'img'">
+            <div class="col-xs-12 col-sm-12 col-12" *ngIf="data.imgdefault">
                 <div class="d-flex justify-content-center">
                     <img [src]="data.imgdefault" class="anchosFoto"><br>
                 </div>
-            </div>
-            <div class="col-12" *ngIf="data.descripcion">
-                <div class="p-3 mb-2 bg-primary text-white rounded">
-                    <label>
-                        <h4 class="text-light">Descripcion: </h4>
-                    </label>
-                </div>
-                <p [innerHtml]="data.descripcion"></p>
             </div>
         </div>
     </div>

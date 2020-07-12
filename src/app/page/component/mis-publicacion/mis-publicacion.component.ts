@@ -12,14 +12,15 @@ export class MisPublicacionComponent implements OnInit {
   query:any = {
     where: {
       autocreo: false,
+      type: [" img", "url" ],
       estado: "activo"
     },
-    sort: "createdAt DESC",
+    sort: "createdAt ASC",
     page: 0,
     limit: 10
   };
   config:any = {
-    vista: "tareas"
+    vista: "publicacion"
   };
   dataUser:any = {};
 
@@ -31,7 +32,7 @@ export class MisPublicacionComponent implements OnInit {
       store = store.name;
       if(!store) return false;
       this.dataUser = store.user || {};
-      //this.query.where.user = this.dataUser.id;
+      this.query.where.user = this.dataUser.id;
     });
 
   }

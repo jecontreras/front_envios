@@ -17,6 +17,7 @@ import { TareaMiniComponent } from './component/tarea-mini/tarea-mini.component'
 import { ViewPerfilComponent } from './component/view-perfil/view-perfil.component';
 import { BannerComponent } from './component/banner/banner.component';
 import { FormpublicacionComponent } from './form/formpublicacion/formpublicacion.component';
+import { FormbannerComponent } from './form/formbanner/formbanner.component';
 
 const routes: Routes = [
   {
@@ -86,6 +87,14 @@ const routes: Routes = [
   {
     path: "formpublicacion/:id",
     component: FormpublicacionComponent
+  },
+  {
+    path: "formbanner",
+    component: FormbannerComponent
+  },
+  {
+    path: "formbanner/:id",
+    component: FormbannerComponent
   },
   {
     path: "banner",

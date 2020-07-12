@@ -24,6 +24,7 @@ import { BannerComponent } from './component/banner/banner.component';
 import { ToolAdminPublicComponent } from './tools/tool-admin-public/tool-admin-public.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { FormpublicacionComponent } from './form/formpublicacion/formpublicacion.component';
+import { FormbannerComponent } from './form/formbanner/formbanner.component';
 
 
 
@@ -48,7 +49,7 @@ import { FormpublicacionComponent } from './form/formpublicacion/formpublicacion
     ViewPerfilComponent, 
     BannerComponent, 
     ToolAdminPublicComponent, 
-    FormpublicacionComponent
+    FormpublicacionComponent, FormbannerComponent
   ],
   imports: [
     CommonModule,

@@ -41,8 +41,14 @@ export class ToolAdminPublicComponent implements OnInit {
   
   openPublic( item:any ){
     console.log( item );
-    if( item ) this.Router.navigate( [ "dashboard/formpublicacion", item.id ] );
-    else this.Router.navigate( [ "dashboard/formpublicacion" ] );
+    if( this.config.vista == "publicacion"){
+      if( item ) this.Router.navigate( [ "dashboard/formpublicacion", item.id ] );
+      else this.Router.navigate( [ "dashboard/formpublicacion" ] );
+    }
+    if( this.config.vista == "banner"){
+      if( item ) this.Router.navigate( [ "dashboard/formbanner", item.id ] );
+      else this.Router.navigate( [ "dashboard/formbanner" ] );
+    }
   }
 
   onScroll(){
