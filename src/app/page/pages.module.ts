@@ -25,7 +25,9 @@ import { ToolAdminPublicComponent } from './tools/tool-admin-public/tool-admin-p
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { FormpublicacionComponent } from './form/formpublicacion/formpublicacion.component';
 import { FormbannerComponent } from './form/formbanner/formbanner.component';
-
+import { FormretirosComponent } from './form/formretiros/formretiros.component';
+import { FormbancosComponent } from './form/formbancos/formbancos.component';
+import { NgxCurrencyModule } from "ngx-currency";
 
 
 @NgModule({
@@ -49,14 +51,15 @@ import { FormbannerComponent } from './form/formbanner/formbanner.component';
     ViewPerfilComponent, 
     BannerComponent, 
     ToolAdminPublicComponent, 
-    FormpublicacionComponent, FormbannerComponent
+    FormpublicacionComponent, FormbannerComponent, FormretirosComponent, FormbancosComponent
   ],
   imports: [
     CommonModule,
     PagesRoutingModule,
     SharedModule,
     InfiniteScrollModule,
-    AngularEditorModule
+    AngularEditorModule,
+    NgxCurrencyModule
   ],
   bootstrap: [ PagesComponent ]
 })

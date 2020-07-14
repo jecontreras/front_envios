@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RetirosComponent } from './retiros.component';
+import { FormbancosComponent } from './formbancos.component';
 
-describe('RetirosComponent', () => {
-  let component: RetirosComponent;
-  let fixture: ComponentFixture<RetirosComponent>;
+describe('FormbancosComponent', () => {
+  let component: FormbancosComponent;
+  let fixture: ComponentFixture<FormbancosComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RetirosComponent ]
+      declarations: [ FormbancosComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RetirosComponent);
+    fixture = TestBed.createComponent(FormbancosComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

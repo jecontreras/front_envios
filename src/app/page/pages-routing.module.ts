@@ -18,6 +18,8 @@ import { ViewPerfilComponent } from './component/view-perfil/view-perfil.compone
 import { BannerComponent } from './component/banner/banner.component';
 import { FormpublicacionComponent } from './form/formpublicacion/formpublicacion.component';
 import { FormbannerComponent } from './form/formbanner/formbanner.component';
+import { FormretirosComponent } from './form/formretiros/formretiros.component';
+import { FormbancosComponent } from './form/formbancos/formbancos.component';
 
 const routes: Routes = [
   {
@@ -100,6 +102,22 @@ const routes: Routes = [
     path: "banner",
     component: BannerComponent
   },
+  {
+    path: "formretiros",
+    component: FormretirosComponent
+  },
+  {
+    path: "formretiros/:id",
+    component: FormretirosComponent
+  },
+  {
+    path: "formbancos/",
+    component: FormbancosComponent
+  },
+  {
+    path: "formbancos/:id",
+    component: FormbancosComponent
+  }
 ];
 
 @NgModule({

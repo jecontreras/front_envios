@@ -46,7 +46,6 @@ export class FormpublicacionComponent implements OnInit {
 
   ngOnInit() {
     this.editor();
-    this.data.user = this.dataUser.id;
     this.id = (this.activate.snapshot.paramMap.get('id'));
     //console.log(this.id);
     if (this.id) { this.titulo = "Editar"; this.getPublicacion() }
@@ -108,7 +107,7 @@ export class FormpublicacionComponent implements OnInit {
   async submit() {
     let validando = this.validador();
     if( !validando ) return false;
-    this.btnDisabled = true;
+    this.disableFile = true;
     if (this.data.id) this.editar();
     else this.guardar();
   }
@@ -124,11 +123,13 @@ export class FormpublicacionComponent implements OnInit {
   }
 
   guardar() {
+    this.data.user = this.dataUser.id;
+    this.data.autocreo = false;
     this._publicacion.create(this.data).subscribe((res: any) => {
       this._tools.tooast({ title: "Publicacion Creada" });
-      this.btnDisabled = false;
+      this.disableFile = false;
       this.Router.navigate( [ 'dashboard/mispublicacion' ]);
-    }, (error: any) => { this._tools.tooast({ title: "Error de servidor", icon: 'error' }); this.btnDisabled = false; })
+    }, (error: any) => { this._tools.tooast({ title: "Error de servidor", icon: 'error' }); this.disableFile = false; })
   }
 
   editar() {
@@ -136,12 +137,22 @@ export class FormpublicacionComponent implements OnInit {
     data = _.omit(this.data, [ 'user', 'viewlive', 'where' ])
     this._publicacion.update( data ).subscribe((res: any) => {
       this._tools.tooast({ title: "Publicacion Actualizada" });
-      this.btnDisabled = false;
-    }, (error: any) => { this._tools.tooast({ title: "Error de servidor", icon: 'error' }); this.btnDisabled = false; })
+      this.disableFile = false;
+    }, (error: any) => { this._tools.tooast({ title: "Error de servidor", icon: 'error' }); this.disableFile = false; })
   }
 
   crearDefecto() {
-
+    this.disableFile = true;
+    this._publicacion.get( { where: { estado: "activo", autocreo: false, state:0 }, sort: [{ clicks: "ASC" },{ createdAt: "ASC" }], limit: 1 } ).subscribe( ( res:any )=>{
+      //console.log( res );
+      res = res.data[0];
+      this.disableFile = false;
+      if( !res ) return false;
+      delete res.id; delete res.clicks; delete res.updatedAt; delete res.user; delete res.createdAt; delete res.autocreo;
+      this.data = res;
+      this.ProbarUrl();
+      this.probarLink();
+    }, error => { this._tools.tooast( { title: "Error de servidor", icon:"error" } ); this.disableFile = false; } );
   }
 
   eventoDescripcion() {

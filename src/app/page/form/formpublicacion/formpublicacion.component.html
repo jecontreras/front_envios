@@ -4,11 +4,11 @@
             <button type="button" class="btn btn-warning m-l-0" [routerLink]="['/dashboard/mispublicacion']" >
                 ATRAS
             </button>
-            <button type="button" class="btn btn-primary m-l-0" (click)="submit()">
+            <button type="button" class="btn btn-primary m-l-0" [disabled]="disableFile" (click)="submit()">
                 <span *ngIf="data.id">ACTUALIZAR</span>
                 <span *ngIf="!data.id">CREAR</span>
             </button>
-            <button *ngIf="!id" type="button" class="btn btn-success m-l-0" (click)="crearDefecto()">
+            <button *ngIf="!id" type="button" class="btn btn-success m-l-0" [disabled]="disableFile" (click)="crearDefecto()">
                 CREAR POR DEFECTO
             </button>
         </div>

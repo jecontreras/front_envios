@@ -48,7 +48,7 @@ export class AuthSigninComponent implements OnInit {
         this.ProcesoStorages( res );
       }else{
         this.data.password = "";
-        this._tools.tooast({ title:"Error de Password",icon: "error" });
+        this._tools.tooast({ title:"Error de "+ res.message ,icon: "error" });
       }
     },(error)=>{
       this._tools.tooast( { title: "Error de servidor", icon: "error" } );
