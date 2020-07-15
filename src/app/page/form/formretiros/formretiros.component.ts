@@ -49,7 +49,7 @@ export class FormretirosComponent implements OnInit {
   }
 
   getPuntosUser(){
-    this._puntosResumen.get( { where: { user: this.dataUser.id, estado: "activo" }, limit: 1 } ).subscribe(( res:any )=>{
+    this._puntosResumen.get( { where: { user: this.dataUser.id, state: "valido" }, limit: 1 } ).subscribe(( res:any )=>{
       res = res.data[0];
       if( res ) this.data.cantidad = res.valorTotal;
       else this.data.cantidad = 0;
