@@ -1,51 +1,63 @@
-<div class="card ng-trigger ng-trigger-cardRemove" animatesinitmode="show" style="visibility: visible; opacity: 1;">
+<div>
+    <div class="col-12">
+        <div class="d-flex flex-row-reverse bd-highlight">
+            <button type="button" class="btn btn-primary" (click)="verView( false )">Crear Retiro</button>
+            <br><br>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="card ng-trigger ng-trigger-cardRemove" animatesinitmode="show"
+            style="visibility: visible; opacity: 1;">
 
-    <!---->
-    <div class="ng-tns-c14-92 ng-trigger ng-trigger-collapsedCard ng-star-inserted" style="overflow: hidden;"
-        infiniteScroll [infiniteScrollDistance]="3" [infiniteScrollThrottle]="50"
-        (scrolled)="onScroll()" >
-        <!---->
-        <div class="card-body ng-tns-c14-92 table-border-style ng-star-inserted">
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th *ngFor="let item of tablet.dataHeader">{{ item }}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let item of tablet.dataRow">
-                            <td>
-                                <button (click)="verView( item )" class="btn btn-icon btn-primary" type="button"><i
-                                        class="fa fa-eye" aria-hidden="true"></i></button>
-                            </td>
-                            <td>{{ item.titulo }}</td>
-                            <td>{{ ( item.nCuenta ) }}</td>
-                            <td>{{ item.tipoCuenta }}</td>
-                            <td>{{ item.createdAt | date:'medium' }}</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <!---->
+            <div class="ng-tns-c14-92 ng-trigger ng-trigger-collapsedCard ng-star-inserted" style="overflow: hidden;"
+                infiniteScroll [infiniteScrollDistance]="3" [infiniteScrollThrottle]="50" (scrolled)="onScroll()">
+                <!---->
+                <div class="card-body ng-tns-c14-92 table-border-style ng-star-inserted">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th *ngFor="let item of tablet.dataHeader">{{ item }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of tablet.dataRow">
+                                    <td>
+                                        <button (click)="verView( item )" class="btn btn-icon btn-primary"
+                                            type="button"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                                        <button (click)="borrar( item )" class="btn btn-icon btn-danger"
+                                            type="button"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                    </td>
+                                    <td>{{ item.titulo }}</td>
+                                    <td>{{ ( item.nCuenta ) }}</td>
+                                    <td>{{ item.tipoCuenta }}</td>
+                                    <td>{{ item.createdAt | date:'medium' }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
 
-    <div class="col-12" *ngIf="progreses">
-        <div class="d-flex justify-content-center row">
-            <div class="spinner-grow text-primary" role="status"><span class="sr-only">Loading...</span></div>
-            <div class="spinner-grow text-secondary" role="status"><span class="sr-only">Loading...</span></div>
-            <div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div>
-            <div class="spinner-grow text-danger" role="status"><span class="sr-only">Loading...</span></div>
-            <div class="spinner-grow text-warning" role="status"><span class="sr-only">Loading...</span></div>
-            <div class="spinner-grow text-info" role="status"><span class="sr-only">Loading...</span></div>
-            <div class="spinner-grow text-light" role="status"><span class="sr-only">Loading...</span></div>
-            <div class="spinner-grow text-dark" role="status"><span class="sr-only">Loading...</span></div>
-        </div>
-    </div>
-    
-    <div class="col-12" *ngIf="!progreses && tablet.dataRow.length == 0">
-        <div class="d-flex justify-content-center row">
-            <div role="alert" class="alert alert-primary">No Hay Datos Para Mostrar</div>
+            <div class="col-12" *ngIf="progreses">
+                <div class="d-flex justify-content-center row">
+                    <div class="spinner-grow text-primary" role="status"><span class="sr-only">Loading...</span></div>
+                    <div class="spinner-grow text-secondary" role="status"><span class="sr-only">Loading...</span></div>
+                    <div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div>
+                    <div class="spinner-grow text-danger" role="status"><span class="sr-only">Loading...</span></div>
+                    <div class="spinner-grow text-warning" role="status"><span class="sr-only">Loading...</span></div>
+                    <div class="spinner-grow text-info" role="status"><span class="sr-only">Loading...</span></div>
+                    <div class="spinner-grow text-light" role="status"><span class="sr-only">Loading...</span></div>
+                    <div class="spinner-grow text-dark" role="status"><span class="sr-only">Loading...</span></div>
+                </div>
+            </div>
+
+            <div class="col-12" *ngIf="!progreses && tablet.dataRow.length == 0">
+                <div class="d-flex justify-content-center row">
+                    <div role="alert" class="alert alert-primary">No Hay Datos Para Mostrar</div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

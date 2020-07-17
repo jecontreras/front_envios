@@ -1,1 +1,23 @@
-<p>paquete works!</p>
+<div class="card-deck">
+    <div class="card" *ngFor="let item of listPaquetes">
+        <img alt="Card image cap" class="card-img-top" src="assets/images/slider/img-slide-4.jpg">
+        <div class="card-body">
+            <h5 class="card-title">{{ item.title }}</h5>
+            <p class="card-text">{{ item.description | slice: 0: item.oculto || 100 }}</p>
+            <label class="text-primary">
+                <span (click)="item.oculto = 5000" *ngIf="item.oculto !== 5000">Leer más!</span>
+                <span (click)="item.oculto = 150" *ngIf="item.oculto == 5000">Ver Menos!</span>
+            </label>
+        </div>
+        <div class="card-footer">
+            <h4>Precio <input currencyMask class="form-control form-control-sm" [disabled]="true" [(ngModel)]="item.valor" [options]="formatoMoneda" /></h4>
+            <h4>Precio de transaccion <input currencyMask class="form-control form-control-sm" [disabled]="true" [(ngModel)]="item.valorTransaccion" [options]="formatoMoneda" /></h4>
+            <h4>Precio de Total <input currencyMask class="form-control form-control-sm" [disabled]="true" [(ngModel)]="item.valorextra" [options]="formatoMoneda" /></h4>
+            <div class="d-flex justify-content-center">
+                <h4>
+                    <button type="button" class="btn btn-success" (click)="openPaquete( item )">Comprar Paquete</button>
+                </h4>
+            </div>
+        </div>
+    </div>
+</div>

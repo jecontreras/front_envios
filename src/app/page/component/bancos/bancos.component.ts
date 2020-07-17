@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ToolsService } from 'src/app/services/tools.service';
 import { BancosService } from 'src/app/servicesComponents/bancos.service';
 import * as _ from 'lodash';
+import { Router } from '@angular/router';
+import { STORAGES } from 'src/app/interfaces/sotarage';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-bancos',
@@ -16,7 +19,9 @@ export class BancosComponent implements OnInit {
     count: 0
   };
   query:any = {
-    where:{ },
+    where:{
+      estado: "activo"
+    },
     sort: "createdAt DESC",
     page: 0
   };
@@ -26,11 +31,22 @@ export class BancosComponent implements OnInit {
   
   notscrolly:boolean=true;
   notEmptyPost:boolean = true;
+  dataUser:any = {};
 
   constructor(
     private _tools: ToolsService,
-    private _bancos: BancosService
-  ) { }
+    private _bancos: BancosService,
+    private Router: Router,
+    private _store: Store<STORAGES>
+  ) {
+    this._store.subscribe((store: any) => {
+      //console.log(store);
+      store = store.name;
+      if(!store) return false;
+      this.dataUser = store.user || {};
+      this.query.where.user = this.dataUser.id;
+    });
+   }
 
   ngOnInit() {
     this.getRow();
@@ -56,7 +72,22 @@ export class BancosComponent implements OnInit {
   }
 
   verView( item:any ){
-    
+    if( item ) this.Router.navigate( [ "dashboard/formbancos", item.id ] );
+    else this.Router.navigate( [ "dashboard/formbancos" ] );
+  }
+
+  async borrar( item:any ){
+    let data:any = {
+      id: item.id,
+      estado: "inactivo"
+    };
+    let alert:any = await this._tools.confirm( { title:"Deseas eliminar", detalle:"confirmar si estas de acuerdo",confir:"Confirmar" } );
+    alert = alert.value;
+    if( !alert ) return false;
+    this._bancos.update( data ).subscribe(( row:any )=>{
+      this.tablet.dataRow = this.tablet.dataRow.filter( ( row:any ) => row.id !== item.id );
+      this._tools.tooast( { title: "Borrado exitos"} );
+    },( error ) => { this._tools.tooast( { title: "Error de servidor", icon: "error"} ) });
   }
 
 

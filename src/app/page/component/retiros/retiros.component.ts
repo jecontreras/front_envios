@@ -6,6 +6,8 @@ import { RetirosService } from 'src/app/servicesComponents/retiros.service';
 import { Router } from '@angular/router';
 import { PuntosService } from 'src/app/servicesComponents/puntos.service';
 import { PuntosResumenService } from 'src/app/servicesComponents/puntos-resumen.service';
+import { STORAGES } from 'src/app/interfaces/sotarage';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-retiros',
@@ -20,7 +22,9 @@ export class RetirosComponent implements OnInit {
     count: 0
   };
   query:any = {
-    where:{ },
+    where:{ 
+      estado: "pendiente"
+    },
     sort: "createdAt DESC",
     page: 0
   };
@@ -30,6 +34,7 @@ export class RetirosComponent implements OnInit {
   
   notscrolly:boolean=true;
   notEmptyPost:boolean = true;
+  dataUser:any = {};
 
   constructor(
     private _tools: ToolsService,
@@ -37,12 +42,23 @@ export class RetirosComponent implements OnInit {
     private Router: Router,
     private _user: UsuariosService,
     private _puntos: PuntosService,
-    private _puntosResumen: PuntosResumenService
-  ) { }
+    private _puntosResumen: PuntosResumenService,
+    private _store: Store<STORAGES>
+  ) {
+
+    this._store.subscribe((store: any) => {
+      //console.log(store);
+      store = store.name;
+      if(!store) return false;
+      this.dataUser = store.user || {};
+      this.query.where.user = this.dataUser.id;
+    });
+
+  }
 
   ngOnInit() {
     this.getRow();
-    this.procesos();
+    //this.procesos();
   }
 
   procesos(){
@@ -145,6 +161,7 @@ export class RetirosComponent implements OnInit {
    
   getRow(){
     this.progreses = true;
+    console.log( this.query );
     this._retiros.get( this.query ).subscribe( async ( res:any ) =>{
       
       this.tablet.dataRow = _.unionBy( this.tablet.dataRow || [], res.data, 'id');

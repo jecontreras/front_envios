@@ -4,7 +4,7 @@
             <button type="button" class="btn btn-warning m-l-0" [routerLink]="['/dashboard/retiros']" >
                 ATRAS
             </button>
-            <button type="button" class="btn btn-primary m-l-0" (click)="submit()">
+            <button type="button" class="btn btn-primary m-l-0" (click)="submit()" *ngIf="!data.id">
                 <span *ngIf="data.id">ACTUALIZAR</span>
                 <span *ngIf="!data.id">CREAR</span>
             </button>
@@ -12,7 +12,7 @@
         <br><br>
     </div>
     <div class="col-12 content">
-        <div class="row">
+        <div class="row mat-elevation-z5 p-2">
             <div class="form-group col-xs-6 col-sm-6 col-12">
                 <label for="exampleInputEmail1">Codigo</label>
                 <input type="text" class="form-control" [(ngModel)]="data.codigo" disabled>
@@ -27,17 +27,17 @@
             </div>
             <div class="form-group col-xs-4 col-sm-4 col-6">
                 <label for="exampleInputEmail1">Tipo de Banco</label>
-                <select class="form-control" [(ngModel)]="data.tipo">
+                <select class="form-control" [(ngModel)]="data.tipo" [disabled]="data.id">
                     <option [value]="item.id" *ngFor="let item of listBancos">{{ item.titulo }}</option>
                 </select>
             </div>
             <div class="form-group col-xs-4 col-sm-4 col-6">
                 <label for="exampleInputEmail1">Cantidad a Retirar</label>
-                <input currencyMask class="form-control form-control-sm" [(ngModel)]="data.cantidad" [options]="formatoMoneda" />
+                <input currencyMask class="form-control form-control-sm" [disabled]="data.id" [(ngModel)]="data.cantidad" [options]="formatoMoneda" />
             </div>
             <div class="form-group col-12">
                 <label for="exampleInputEmail1">Descripcion</label>
-                <textarea class="form-control" [(ngModel)]="data.descripcion" rows="3"></textarea>
+                <textarea class="form-control" [(ngModel)]="data.descripcion" [disabled]="data.id" rows="3"></textarea>
             </div>
         </div>
     </div>

@@ -111,7 +111,7 @@ const routes: Routes = [
     component: FormretirosComponent
   },
   {
-    path: "formbancos/",
+    path: "formbancos",
     component: FormbancosComponent
   },
   {

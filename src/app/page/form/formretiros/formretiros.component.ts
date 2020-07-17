@@ -41,11 +41,20 @@ export class FormretirosComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.formatoMoneda = this._tools.formatoMoneda
+    this.formatoMoneda = this._tools.formatoMoneda;
     this.id = (this.activate.snapshot.paramMap.get('id'));
-    if( this.id ) console.log( this.id );
+    if( this.id ) this.getRetiros();
     else { this.data.titulo = moment().format("DD-MM-YYYY HH:MM:SS"); this.data.estado = "pendiente"; this.data.codigo = this.codigo(); this.getPuntosUser();}
     this.getBancos();
+  }
+
+  getRetiros(){
+    this._retiros.get( { where: { id: this.id },limit: 1 }).subscribe(( res:any )=>{
+      res = res.data[0];
+      if( !res )  return this.Router.navigate( ["dashboard/retiros"] );
+      if( res.tipoBanco ) if( res.tipoBanco.id ) res.tipo = res.tipoBanco.id;
+      this.data = res;
+    },error => this.Router.navigate( ["dashboard/retiros"] ) );
   }
 
   getPuntosUser(){
@@ -68,12 +77,9 @@ export class FormretirosComponent implements OnInit {
   }
 
   submit(){
-    if( this.id ) this.update();
+    this.disableFile = true;
+    if( this.id ) this.editar();
     else this.guardar();
-  }
-
-  update(){
-
   }
 
   guardar() {
