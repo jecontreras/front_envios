@@ -1,6 +1,6 @@
 <div class="card-deck">
     <div class="card" *ngFor="let item of listPaquetes">
-        <img alt="Card image cap" class="card-img-top" src="assets/images/slider/img-slide-4.jpg">
+        <img alt="Card image cap" class="card-img-top" src="https://consultoriaparacolegios.com/publicidadescuelas/wp-content/uploads/2014/04/marketing-digital-1.fw_.png">
         <div class="card-body">
             <h5 class="card-title">{{ item.title }}</h5>
             <p class="card-text">{{ item.description | slice: 0: item.oculto || 100 }}</p>
@@ -15,9 +15,31 @@
             <h4>Precio de Total <input currencyMask class="form-control form-control-sm" [disabled]="true" [(ngModel)]="item.valorextra" [options]="formatoMoneda" /></h4>
             <div class="d-flex justify-content-center">
                 <h4>
-                    <button type="button" class="btn btn-success" (click)="openPaquete( item )">Comprar Paquete</button>
+                    <button type="button" class="btn btn-light" (click)="openPaquete( item )">
+                        <img src="https://369969691f476073508a-60bf0867add971908d4f26a64519c2aa.ssl.cf5.rackcdn.com/btns/btn1.png" alt="none" width="215px">
+                    </button>
                 </h4>
             </div>
+        </div>
+    </div>
+</div>
+<div class="card-deck">
+    <div class="card">
+        <img src="https://publihazclick.s3.amazonaws.com/paquetes/19fd8728-c89b-44c7-951b-79dcbbace3ff.jpg" alt="none" height="250px">
+        <div class="card-body">
+            <h5 class="card-title">Otros Medios</h5>
+        </div>
+        <div class="card-footer">
+            <h4>Pagos Manual Sin Costo de Transaccion Acreditados en 1-2 Dias</h4>
+        </div>
+    </div>
+    <div class="card">
+        <img src="https://publihazclick.s3.amazonaws.com/paquetes/d45408da-6261-4846-b7ad-d3019ef5063d.jpg" alt="none" height="250px">
+        <div class="card-body">
+            <h5 class="card-title">Otros Medios</h5>
+        </div>
+        <div class="card-footer">
+            <h4>Pagos Manual Con Costo de Transaccion Acreditados en 1-2 Dias</h4>
         </div>
     </div>
 </div>
