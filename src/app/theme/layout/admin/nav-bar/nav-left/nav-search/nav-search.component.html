@@ -1,8 +1,16 @@
-<div id="main-search" class="main-search open">
+<!-- <div id="main-search" class="main-search open">
   <div class="input-group">
     <input type="text" id="m-search" class="form-control" placeholder="Search . . ." [style.width]="'130px'">
     <span class="input-group-append search-btn btn btn-primary">
       <i class="feather icon-search input-group-text"></i>
     </span>
+  </div>
+</div> -->
+<div id="main-search" class="main-search open" *ngIf="dataUser.cantidadPuntos">
+  <div class="input-group">
+    <input currencyMask class="form-control form-control-sm" disabled [(ngModel)]="dataUser.cantidadPuntos.valorTotal" [options]="formatoMoneda" />
+      <span class="input-group-append search-btn btn btn-primary">
+        <i class="fa fa-money feather icon-search input-group-text" aria-hidden="true"></i>
+      </span>
   </div>
 </div>

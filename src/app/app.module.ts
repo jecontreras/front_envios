@@ -31,6 +31,7 @@ import { appReducer } from './redux/app';
 import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgxCurrencyModule } from 'ngx-currency';
 
 
 @NgModule({
@@ -60,6 +61,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     NgbButtonsModule,
     NgbTabsetModule,
     HttpClientModule,
+    NgxCurrencyModule,
     ReactiveFormsModule,
     //BrowserModule.withServerTransition({ appId: 'serverApp' }),
     StoreModule.forRoot({ name: appReducer }),

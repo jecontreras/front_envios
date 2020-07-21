@@ -1,0 +1,38 @@
+.foto {
+    height: 10pc!important;
+    max-width: 100%;
+    min-width: 95%;
+    max-height: 10pc;
+    min-height: 9pc;
+}
+
+#user-profile .profile-img {
+    border-radius: 50%;
+    background-clip: padding-box;
+    margin-bottom: 15px;
+}
+#user-profile .profile-stars {
+    color: #FABA03;
+    padding: 7px 0;
+    text-align: center;
+}
+
+#user-profile .profile-label {
+    text-align: center;
+    padding: 5px 0;
+}
+
+.label-danger, .fc-event.label-danger {
+    background-color: #f4786e;
+    padding: 5px;
+    color: white;
+}
+
+.main-box {
+    background: #FFFFFF;
+    box-shadow: 0px 1px 1px rgba(0,0,0,0.1);
+    margin-bottom: 16px;
+    border-radius: 3px;
+    background-clip: padding-box;
+    padding: 15px;
+}
