@@ -16,6 +16,10 @@ export class ToolsService {
     //this.snackBar.open(mensaje, type, {duration: 5000});
   }
 
+  codigo(){
+    return (Date.now().toString(20).substr(2, 3) + Math.random().toString(20).substr(2, 3)).toUpperCase();
+  }
+
   openSnack(message: string, type: string, config: any) {
     if (config) {
       //this.snackBar.open(message, type, config);

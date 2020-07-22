@@ -1,3 +1,13 @@
+<div class="d-flex justify-content-center" *ngIf="ocultar">
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-success" role="alert">
+                COMPRAR PAQUETE CON TU ACOMULADO DAR CLICK AQUI <a class="mouse" (click)="comprarPaqueteAcomulado()"> Activarse </a>
+              </div>
+        </div>
+    </div>
+</div>
+
 <div class="card-deck">
     <div class="card" *ngFor="let item of listPaquetes">
         <img alt="Card image cap" class="card-img-top" src="https://consultoriaparacolegios.com/publicidadescuelas/wp-content/uploads/2014/04/marketing-digital-1.fw_.png">
@@ -14,11 +24,20 @@
             <h4>Precio de transaccion <input currencyMask class="form-control form-control-sm" [disabled]="true" [(ngModel)]="item.valorTransaccion" [options]="formatoMoneda" /></h4>
             <h4>Precio de Total <input currencyMask class="form-control form-control-sm" [disabled]="true" [(ngModel)]="item.valorextra" [options]="formatoMoneda" /></h4>
             <div class="d-flex justify-content-center">
-                <h4>
-                    <button type="button" class="btn btn-light" (click)="openPaquete( item )">
-                        <img src="https://369969691f476073508a-60bf0867add971908d4f26a64519c2aa.ssl.cf5.rackcdn.com/btns/btn1.png" alt="none" width="215px">
-                    </button>
-                </h4>
+                <div>
+                    <h4>
+                        <div class="d-flex justify-content-center">
+                            <button type="button" class="btn btn-light" (click)="openPaquete( item )">
+                                <img src="https://369969691f476073508a-60bf0867add971908d4f26a64519c2aa.ssl.cf5.rackcdn.com/btns/btn1.png" alt="none" width="215px">
+                            </button>
+                        </div>
+                    </h4>
+                    <h1 *ngIf="paquete">
+                        <button type="button" class="btn btn-success rounded" (click)="openPaquete( item )">
+                            TIENES UN PAQUETE ACTIVO POR FAVOR ESPERA A QUE SE TERMINA TE FALTA {{ paquete.diasFaltantes }} DIAS
+                        </button>
+                    </h1>
+                </div>
             </div>
         </div>
     </div>

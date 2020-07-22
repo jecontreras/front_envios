@@ -22,4 +22,7 @@ export class PaquetesService {
   delete(query:any){
     return this._model.querys('paquete/'+query.id, query, 'delete');
   }
+  comprandoPaquete( query:any ){
+    return this._model.querys('paquete/comprado', query, 'post');
+  }
 }

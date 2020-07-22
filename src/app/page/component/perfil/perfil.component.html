@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <div class="profile-label">
-                    <span class="label label-danger">{{ data.nivel || 'Gratuito' }}</span>
+                    <span class="label label-danger" *ngIf="data.miNivel">{{ data.miNivel.nivel.title || 'Gratuito' }}</span>
                 </div>
                 <div class="profile-stars">
                     <i class="fa fa-star"></i>
@@ -34,14 +34,14 @@
                 <div class="profile-since">
                     Registrado: {{ data.createdAt | date: 'medium' }}
                 </div>
-                <div class="profile-details">
+                <!-- <div class="profile-details">
                     <ul class="fa-ul">
                         <li><i class="fa-li fa fa-truck"></i>Orders: <span>456</span></li>
                         <li><i class="fa-li fa fa-comment"></i>Posts: <span>828</span></li>
                         <li><i class="fa-li fa fa-tasks"></i>Tasks done: <span>1024</span>
                         </li>
                     </ul>
-                </div>
+                </div> -->
                 <div class="profile-message-btn center-block text-center">
                     <!-- <a href="#" class="btn btn-success">
                         <i class="fa fa-envelope"></i>

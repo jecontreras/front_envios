@@ -25,4 +25,7 @@ export class PuntosService {
   generarPuntos( query:any ){
     return this._model.querys('puntos/generatepuntos',query, 'post');
   }
+  restarPunto( query:any ){
+    return this._model.querys('puntos/puntoRestante',query, 'post');
+  }
 }
