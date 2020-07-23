@@ -1,8 +1,22 @@
 <div class="row">
     <div class="col-12">
+        <div class="d-flex justify-content-center" *ngIf="bloquear == 0">
+            <div class="row">
+                <div class="col-12">
+                    <div class="alert alert-success" role="alert">
+                        YA TE HAS CONSUMIDO TUS PUBLICACIONES POR FAVOR COMPRAR OTRO PAQUETE PARA PODER PUBLICAR <a class="mouse"
+                            [routerLink]="['/dashboard/paquetes']" > Abrir Paquetes </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-12">
         <div class="d-flex flex-row-reverse bd-highlight">
             <div>
-                <button type="button" class="btn btn-primary" (click)="openPublic( false )">Crear</button>
+                <button type="button" class="btn btn-primary" (click)="openPublic( false )"
+                    [disabled]="bloquear == 0">Crear</button>
                 <br><br>
             </div>
         </div>

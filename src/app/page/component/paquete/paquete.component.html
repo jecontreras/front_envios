@@ -10,7 +10,7 @@
 
 <div class="card-deck">
     <div class="card" *ngFor="let item of listPaquetes">
-        <img alt="Card image cap" class="card-img-top" src="https://consultoriaparacolegios.com/publicidadescuelas/wp-content/uploads/2014/04/marketing-digital-1.fw_.png">
+        <img alt="Card image cap" class="card-img-top" src="./assets/imagenes/paquetes.png">
         <div class="card-body">
             <h5 class="card-title">{{ item.title }}</h5>
             <p class="card-text">{{ item.description | slice: 0: item.oculto || 100 }}</p>
@@ -34,8 +34,9 @@
                     </h4>
                     <h1 *ngIf="paquete">
                         <button type="button" class="btn btn-success rounded" (click)="openPaquete( item )">
-                            TIENES UN PAQUETE ACTIVO POR FAVOR ESPERA A QUE SE TERMINA TE FALTA {{ paquete.diasFaltantes }} DIAS
+                            TIENES UN PAQUETE ACTIVO TE FALTA {{ paquete.diasFaltantes }} DIAS
                         </button>
+                        <br>
                     </h1>
                 </div>
             </div>

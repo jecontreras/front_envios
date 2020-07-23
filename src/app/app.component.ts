@@ -27,7 +27,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log( Object.keys( this.dataUser ).length );
     if( Object.keys( this.dataUser ).length > 0) this._Actividad.generarActividad({ user: this.dataUser.id }).subscribe((res:any)=> console.log(res));
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
