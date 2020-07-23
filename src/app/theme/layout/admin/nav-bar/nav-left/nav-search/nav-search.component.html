@@ -9,7 +9,7 @@
 <div id="main-search" class="main-search open" *ngIf="dataUser.cantidadPuntos">
   <div class="input-group">
     <input currencyMask class="form-control form-control-sm" disabled [(ngModel)]="dataUser.cantidadPuntos.valorTotal" [options]="formatoMoneda" />
-      <span class="input-group-append search-btn btn btn-primary">
+      <span class="input-group-append search-btn btn btn-primary" (click)="getMisPuntos()">
         Mis Ganancias
         <!-- <i class="fa fa-usd" aria-hidden="true"></i> -->
       </span>

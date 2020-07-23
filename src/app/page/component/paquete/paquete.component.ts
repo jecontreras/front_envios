@@ -3,7 +3,7 @@ import { PaquetesService } from 'src/app/servicesComponents/paquetes.service';
 import { ToolsService } from 'src/app/services/tools.service';
 import { STORAGES } from 'src/app/interfaces/sotarage';
 import { Store } from '@ngrx/store';
-import { PuntoResumenService } from 'src/app/servicesComponents/punto-resumen.service';
+import { PuntosResumenService } from 'src/app/servicesComponents/puntos-resumen.service';
 import * as moment from 'moment';
 import { PuntosService } from 'src/app/servicesComponents/puntos.service';
 
@@ -32,7 +32,7 @@ export class PaqueteComponent implements OnInit {
     private _paquetes: PaquetesService,
     private _tools: ToolsService,
     private _store: Store<STORAGES>,
-    private _puntoResumen: PuntoResumenService,
+    private _puntoResumen: PuntosResumenService,
     private _punto: PuntosService
   ) { 
     this._store.subscribe((store: any) => {
