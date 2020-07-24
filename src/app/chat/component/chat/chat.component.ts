@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChatAdapter } from 'ng-chat';
+import { DemoAdapter } from '../demo-adapter';
+
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
@@ -8,13 +10,16 @@ import { ChatAdapter } from 'ng-chat';
 export class ChatComponent implements OnInit {
   
   title = 'app';
-  userId = 999;
-  public adapter: ChatAdapter;
 
-  constructor() { }
+  public adapter: ChatAdapter = new DemoAdapter();
 
-  ngOnInit() {
+  //public adapter: ChatAdapter = new DemoAdapterPagedHistory();
+  ngOnInit(){
+
   }
-
-
+  
+  public messageSeen(event: any)
+  {
+    console.log(event);
+  }
 }

@@ -1,13 +1,16 @@
 import { ChatAdapter, User, Message, ParticipantResponse } from 'ng-chat';
 import { Observable, of } from "rxjs";
 import { map, catchError } from 'rxjs/operators';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Socket } from 'ng-socket-io';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
+
+const URL:any = environment.urlSocket;
 
 export class SocketIOAdapter extends ChatAdapter
 {
     private socket: Socket;
-    private http: HttpHeaders;
+    private http: HttpClient;
     private userId: string;
 
     constructor(userId: string, socket: Socket, http: HttpClient) {
@@ -22,12 +25,14 @@ export class SocketIOAdapter extends ChatAdapter
     listFriends(): Observable<ParticipantResponse[]> {
         // List connected users to show in the friends list
         // Sending the userId from the request body as this is just a demo 
-        return this.http
-            .post("http://localhost:3000/listFriends", { userId: this.userId })
-            .pipe(
-                map((res:Response) => res.json()),
-                catchError((error:any) => Observable.throw(error.json().error || 'Server error'))
-            );
+        return of([]);
+
+        // return this.http
+        //     .post(URL+"/listFriends", { userId: this.userId })
+        //     .pipe(
+        //         map((res:Response) => res.json()),
+        //         catchError((error:any) => Observable.throw(error.json().error || 'Server error'))
+        //     );
     }
 
     getMessageHistory(userId: any): Observable<Message[]> {

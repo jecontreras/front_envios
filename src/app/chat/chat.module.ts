@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChatComponent } from './component/chat/chat.component';
 import { NgChatModule } from 'ng-chat';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -11,6 +12,7 @@ import { NgChatModule } from 'ng-chat';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     NgChatModule
   ],
   exports: [

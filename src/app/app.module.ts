@@ -33,6 +33,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxCurrencyModule } from 'ngx-currency';
 import { PublicoComponent } from './theme/layout/publico/publico.component';
+import { SocketIoModule } from 'ng-socket-io';
+import { ChatModule } from './chat/chat.module';
 
 
 @NgModule({
@@ -64,7 +66,9 @@ import { PublicoComponent } from './theme/layout/publico/publico.component';
     NgbTabsetModule,
     HttpClientModule,
     NgxCurrencyModule,
+    ChatModule,
     ReactiveFormsModule,
+    SocketIoModule.forRoot( environment.socketConfig ),
     //BrowserModule.withServerTransition({ appId: 'serverApp' }),
     StoreModule.forRoot({ name: appReducer }),
     StoreDevtoolsModule.instrument({

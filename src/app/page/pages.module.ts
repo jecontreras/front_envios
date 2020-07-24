@@ -29,7 +29,6 @@ import { FormretirosComponent } from './form/formretiros/formretiros.component';
 import { FormbancosComponent } from './form/formbancos/formbancos.component';
 import { NgxCurrencyModule } from "ngx-currency";
 import { AdminMarketplaceComponent } from './component/admin-marketplace/admin-marketplace.component';
-import { ChatModule } from '../chat/chat.module';
 
 
 @NgModule({
@@ -61,8 +60,7 @@ import { ChatModule } from '../chat/chat.module';
     SharedModule,
     InfiniteScrollModule,
     AngularEditorModule,
-    NgxCurrencyModule,
-    ChatModule
+    NgxCurrencyModule
   ],
   bootstrap: [ PagesComponent ]
 })
