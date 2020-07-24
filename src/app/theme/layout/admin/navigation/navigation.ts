@@ -63,6 +63,28 @@ const NavigationItems = [
     ]
   },
   {
+    id: 'merkaplace',
+    title: 'Marketplace',
+    type: 'group',
+    icon: 'feather icon-monitor',
+    children: [
+      {
+        id: 'adminMarkeplace',
+        title: 'Publicaciones',
+        type: 'item',
+        url: '/publico/markeplace',
+        icon: 'feather icon-home'
+      },
+      {
+        id: 'tablero',
+        title: 'Tus Publicaciones',
+        type: 'item',
+        url: '/dashboard/TusPublicaciones',
+        icon: 'feather icon-home'
+      }
+    ]
+  },
+  {
     id: 'tareas',
     title: 'TAREAS & GANA DINERO',
     type: 'group',

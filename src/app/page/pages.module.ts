@@ -28,6 +28,8 @@ import { FormbannerComponent } from './form/formbanner/formbanner.component';
 import { FormretirosComponent } from './form/formretiros/formretiros.component';
 import { FormbancosComponent } from './form/formbancos/formbancos.component';
 import { NgxCurrencyModule } from "ngx-currency";
+import { AdminMarketplaceComponent } from './component/admin-marketplace/admin-marketplace.component';
+import { ChatModule } from '../chat/chat.module';
 
 
 @NgModule({
@@ -51,7 +53,7 @@ import { NgxCurrencyModule } from "ngx-currency";
     ViewPerfilComponent, 
     BannerComponent, 
     ToolAdminPublicComponent, 
-    FormpublicacionComponent, FormbannerComponent, FormretirosComponent, FormbancosComponent
+    FormpublicacionComponent, FormbannerComponent, FormretirosComponent, FormbancosComponent, AdminMarketplaceComponent
   ],
   imports: [
     CommonModule,
@@ -59,7 +61,8 @@ import { NgxCurrencyModule } from "ngx-currency";
     SharedModule,
     InfiniteScrollModule,
     AngularEditorModule,
-    NgxCurrencyModule
+    NgxCurrencyModule,
+    ChatModule
   ],
   bootstrap: [ PagesComponent ]
 })

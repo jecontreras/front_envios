@@ -20,6 +20,7 @@ import { FormpublicacionComponent } from './form/formpublicacion/formpublicacion
 import { FormbannerComponent } from './form/formbanner/formbanner.component';
 import { FormretirosComponent } from './form/formretiros/formretiros.component';
 import { FormbancosComponent } from './form/formbancos/formbancos.component';
+import { AdminMarketplaceComponent } from 'src/app/page/component/admin-marketplace/admin-marketplace.component';
 
 const routes: Routes = [
   {
@@ -117,6 +118,10 @@ const routes: Routes = [
   {
     path: "formbancos/:id",
     component: FormbancosComponent
+  },
+  {
+    path: "TusPublicaciones",
+    component: AdminMarketplaceComponent
   }
 ];
 

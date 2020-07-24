@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PublicacionviewsComponent } from './component/publicacionviews/publicacionviews.component';
+import { MarkeplaceComponent } from './component/markeplace/markeplace.component';
 
 const routes: Routes = [
   {
@@ -9,6 +10,10 @@ const routes: Routes = [
       {
         path: "",
         component: PublicacionviewsComponent
+      },
+      {
+        path: "markeplace",
+        component: MarkeplaceComponent
       }
     ]
   }

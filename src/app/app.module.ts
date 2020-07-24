@@ -32,6 +32,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxCurrencyModule } from 'ngx-currency';
+import { PublicoComponent } from './theme/layout/publico/publico.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { NgxCurrencyModule } from 'ngx-currency';
     AppComponent,
     AdminComponent,
     AuthComponent,
+    PublicoComponent,
     NavigationComponent,
     NavContentComponent,
     NavGroupComponent,

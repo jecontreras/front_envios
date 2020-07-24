@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './theme/layout/admin/admin.component';
 import { AuthComponent } from './theme/layout/auth/auth.component';
 import { AuthService } from './services/auth.service';
+import { PublicoComponent } from './theme/layout/publico/publico.component';
 
 const routes: Routes = [
   {
@@ -41,10 +42,14 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: AuthComponent,
+    component: PublicoComponent,
     children: [
       {
         path: 'publicacionviews/:id',
+        loadChildren: () => import('./publico/publico.module').then(module => module.PublicoModule)
+      },
+      {
+        path: "publico",
         loadChildren: () => import('./publico/publico.module').then(module => module.PublicoModule)
       }
     ]
