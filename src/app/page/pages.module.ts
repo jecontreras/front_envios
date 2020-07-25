@@ -29,6 +29,7 @@ import { FormretirosComponent } from './form/formretiros/formretiros.component';
 import { FormbancosComponent } from './form/formbancos/formbancos.component';
 import { NgxCurrencyModule } from "ngx-currency";
 import { AdminMarketplaceComponent } from './component/admin-marketplace/admin-marketplace.component';
+import { FormadminMarketplaceComponent } from './form/formadmin-marketplace/formadmin-marketplace.component';
 
 
 @NgModule({
@@ -52,7 +53,7 @@ import { AdminMarketplaceComponent } from './component/admin-marketplace/admin-m
     ViewPerfilComponent, 
     BannerComponent, 
     ToolAdminPublicComponent, 
-    FormpublicacionComponent, FormbannerComponent, FormretirosComponent, FormbancosComponent, AdminMarketplaceComponent
+    FormpublicacionComponent, FormbannerComponent, FormretirosComponent, FormbancosComponent, AdminMarketplaceComponent, FormadminMarketplaceComponent
   ],
   imports: [
     CommonModule,

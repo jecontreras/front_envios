@@ -1,0 +1,120 @@
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex flex-row-reverse bd-highlight">
+            <button type="button" class="btn btn-warning m-l-0" [routerLink]="['/dashboard/TusPublicaciones']" >
+                ATRAS
+            </button>
+            <button type="button" class="btn btn-primary m-l-0" [disabled]="disableFile" (click)="submit()">
+                <span *ngIf="data.id">ACTUALIZAR</span>
+                <span *ngIf="!data.id">CREAR</span>
+            </button>
+        </div>
+        <br><br>
+    </div>
+    <div class="col-12 col-sm-6 col-xs-6 content">
+        <div class="row">
+            <div class="col-12">
+                <div class="p-3 mb-2 bg-primary text-white rounded">
+                    Formulario de {{ titulo }}
+                </div>
+                <br>
+            </div>
+            <div class="form-group col-xs-12 col-sm-12 col-12">
+                <label for="exampleInputEmail1">Titulo para tu publicacion</label>
+                <input type="text" class="form-control" [(ngModel)]="data.titulo">
+            </div>
+            <div class="form-group col-xs-12 col-sm-12 col-12">
+                <div class="form-group ">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="d-flex justify-content-center">
+                                <label for="exampleInputEmail1">Seleccionar una imagen para su publicacion</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="d-flex justify-content-center">
+                                <img class="fotoPulib" [src]="data.foto"><br>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="d-flex justify-content-center column">
+                                <div><input type="file" placeholder="Imagenes" (ngModelChange)="datafiles($event)" (blur)="datafiles($event)"></div>
+                                <button type="button" class="btn btn-success" *ngIf="!file.foto1[0]">Probar Foto</button>
+                                <button type="button" class="btn btn-success" *ngIf="file.foto1[0]" [disabled]="disableFile" (click)="submitFile()">Subir Foto</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-xs-12 col-sm-12 col-12">
+                <label for="exampleFormControlSelect1">Precio del Producto</label>
+                <input currencyMask class="form-control form-control-sm" [(ngModel)]="data.precio" [options]="formatoMoneda" />
+            </div>
+            <div class="form-group col-xs-12 col-sm-12 col-12">
+                <label for="exampleInputEmail1">Direccion URL Personalizada ( opcional )</label>
+                <input type="text" class="form-control" (change)="ProbarUrl()" (blur)="ProbarUrl()"
+                    [(ngModel)]="data.urlPersonalizada">
+            </div>
+            <div class="form-group col-xs-12 col-sm-12 col-12">
+                <label>Departamento</label>
+                <select class="custom-select" [(ngModel)]="data.departamento"
+                    (ngModelChange)="blurdepartamento()">
+                    <option [value]="item.departamento" *ngFor="let item of listdepartamento">
+                        {{ item.departamento }}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group col-xs-12 col-sm-12 col-12">
+                <label for="Form-email5">Ciudad Donde Vives</label>
+                <select class="custom-select" [(ngModel)]="data.ciudad"
+                    [disabled]="!data.departamento">
+                    <option [value]="item" *ngFor="let item of listciudades">
+                        {{ item }}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group col-xs-12 col-sm-12 col-12">
+                <label for="exampleInputEmail1">Descripcion</label>
+                <angular-editor id="editor1" [(ngModel)]="data.descripcion" [config]="editorConfig"
+                    (ngModelChange)="eventoDescripcion()"></angular-editor>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-sm-6 col-xs-6 content">
+        <div class="row">
+            <div class="col-12">
+                <div class="p-3 mb-2 bg-primary text-white rounded">
+                    Previsualización
+                </div>
+                <br>
+            </div>
+            <div class="col-12" *ngIf="data.titulo">
+                <div class="p-3 mb-2 bg-primary text-white">
+                    <h4 class="text-light">{{ data.titulo }}</h4>
+                </div>
+                <br>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-12" *ngIf="data.foto">
+                <div class="d-flex justify-content-center">
+                    <img [src]="data.foto" class="anchosFoto"><br>
+                </div>
+            </div>
+            <div class="col-12" *ngIf="data.precio">
+                <div class="p-3 mb-2 bg-primary text-white">
+                    <h4 class="text-light">
+                        <input currencyMask class="form-control form-control-sm" disabled [(ngModel)]="data.precio" [options]="formatoMoneda" />
+                    </h4>
+                </div>
+                <br>
+            </div>
+            <div class="col-12" *ngIf="data.descripcion">
+                <div class="p-3 mb-2 bg-primary text-white rounded">
+                    <label>
+                        <h4 class="text-light">Descripcion: </h4>
+                    </label>
+                </div>
+                <p [innerHtml]="data.descripcion"></p>
+            </div>
+        </div>
+    </div>
+</div>

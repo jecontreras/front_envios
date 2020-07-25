@@ -57,7 +57,7 @@ export class ToolAdminPublicComponent implements OnInit {
   
   openPublic( item:any ){
     console.log( item );
-    if( this.bloquear == 0 ) return false;
+    if( !item ) if( this.bloquear == 0 ) return false;
     if( this.config.vista == "publicacion"){
       if( item ) this.Router.navigate( [ "dashboard/formpublicacion", item.id ] );
       else this.Router.navigate( [ "dashboard/formpublicacion" ] );
