@@ -6,7 +6,7 @@ const routes: Routes = [
     path: '',
     children: [
       {
-        path: 'registrate',
+        path: 'registrate/:username',
         loadChildren: () => import('./component/auth-signup/auth-signup.module').then(module => module.AuthSignupModule)
       },
       {

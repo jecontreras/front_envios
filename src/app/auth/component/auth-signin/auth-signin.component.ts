@@ -58,7 +58,7 @@ export class AuthSigninComponent implements OnInit {
 
   validador(){
     if( !this.data.username ) { this._tools.tooast({ title:"Ingresar su username",icon: "warning" }); return false; }
-    if( !this.data.password ) { this._tools.tooast({ title:"Ingresar su Contresela",icon: "warning" }); return false; }
+    if( !this.data.password ) { this._tools.tooast({ title:"Ingresar su Contreseña",icon: "warning" }); return false; }
     return true;
   }
 

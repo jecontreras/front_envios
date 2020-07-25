@@ -5,34 +5,50 @@
         <div class="col-md-12">
           <div class="card-body">
             <img src="assets/images/logo-dark.png" alt="" class="img-fluid mb-4">
-            <h4 class="mb-3 f-w-400">Regístrate Te invito {{ dataUser.name || 'root' }}</h4>
+            <h4 class="mb-3 f-w-400">Regístrate Te invito {{ liderInfo.username || 'root' }}</h4>
             <div class="input-group mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="feather icon-user"></i></span>
               </div>
-              <input type="text" class="form-control" placeholder="Username / avatar">
+              <input type="text" class="form-control" [(ngModel)]="data.username" placeholder="Username / avatar">
             </div>
             <div class="input-group mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="feather icon-mail"></i></span>
               </div>
-              <input type="email" class="form-control" placeholder="Email">
+              <input type="email" [(ngModel)]="data.email" class="form-control" placeholder="Email">
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-map" aria-hidden="true"></i></span>
+              </div>
+              <select class="custom-select" placeholder="Indicativo de tu pais" [(ngModel)]="data.indicativo">
+                <option [value]="item.phone_code" *ngFor="let item of listIndicativo">
+                  {{ item.nombre }}
+                </option>
+              </select>
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-mobile" aria-hidden="true"></i></span>
+              </div>
+              <input type="number" [(ngModel)]="data.celular" class="form-control" placeholder="Numero de whatsapp">
             </div>
             <div class="input-group mb-4">
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="feather icon-lock"></i></span>
               </div>
-              <input type="password" class="form-control" placeholder="Contraseña">
+              <input type="password" [(ngModel)]="data.password" class="form-control" placeholder="Contraseña">
             </div>
             <div class="input-group mb-4">
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="feather icon-lock"></i></span>
               </div>
-              <input type="password" class="form-control" placeholder="Confirmar Contraseña">
+              <input type="password" [(ngModel)]="data.confirpassword" class="form-control" placeholder="Confirmar Contraseña">
             </div>
             <div class="form-group text-left mt-2">
             </div>
-            <button class="btn btn-primary btn-block mb-4">Regístrate</button>
+            <button class="btn btn-primary btn-block mb-4" [disabled]="disabled" (click)="submit()">Regístrate</button>
             <p class="mb-2">Ya tienes una cuenta? <a [routerLink]="['/auth/login']" class="f-w-400">Iniciar</a></p>
           </div>
         </div>

@@ -4,6 +4,7 @@ import { AdminComponent } from './theme/layout/admin/admin.component';
 import { AuthComponent } from './theme/layout/auth/auth.component';
 import { AuthService } from './services/auth.service';
 import { PublicoComponent } from './theme/layout/publico/publico.component';
+import { PortadaComponent } from './theme/layout/portada/portada.component';
 
 const routes: Routes = [
   {
@@ -54,6 +55,21 @@ const routes: Routes = [
       }
     ]
   },
+  {
+    path: "",
+    component: PortadaComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'portada/index',
+        pathMatch: 'full'
+      },
+      {
+        path: "portada",
+        loadChildren: () => import('./portada/portada.module').then( module => module.PortadaModule )
+      }
+    ]
+  }
 ];
 
 @NgModule({

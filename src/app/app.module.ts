@@ -35,6 +35,7 @@ import { NgxCurrencyModule } from 'ngx-currency';
 import { PublicoComponent } from './theme/layout/publico/publico.component';
 import { SocketIoModule } from 'ng-socket-io';
 import { ChatModule } from './chat/chat.module';
+import { PortadaComponent } from './theme/layout/portada/portada.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { ChatModule } from './chat/chat.module';
     NavSearchComponent,
     NavRightComponent,
     ConfigurationComponent,
-    ToggleFullScreenDirective
+    ToggleFullScreenDirective,
+    PortadaComponent
   ],
   imports: [
     BrowserModule,
