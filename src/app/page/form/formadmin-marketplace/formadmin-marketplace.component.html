@@ -56,6 +56,23 @@
                     [(ngModel)]="data.urlPersonalizada">
             </div>
             <div class="form-group col-xs-12 col-sm-12 col-12">
+                <label>Categorias</label>
+                <select class="custom-select" [(ngModel)]="data.categoria"
+                    (ngModelChange)="blurCategorias()">
+                    <option [value]="item.titulo" *ngFor="let item of listCategorias">
+                        {{ item.titulo }}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group col-xs-12 col-sm-12 col-12">
+                <label>Marca</label>
+                <select class="custom-select" [(ngModel)]="data.marca">
+                    <option [value]="item.titulo" *ngFor="let item of listMarca">
+                        {{ item.titulo }}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group col-xs-12 col-sm-12 col-12">
                 <label>Departamento</label>
                 <select class="custom-select" [(ngModel)]="data.departamento"
                     (ngModelChange)="blurdepartamento()">

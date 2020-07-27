@@ -10,6 +10,7 @@ import { Store } from '@ngrx/store';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as _ from 'lodash';
 import { MerkaplaceService } from 'src/app/servicesComponents/merkaplace.service';
+import { CATEGORIAS } from 'src/app/JSON/categoria';
 
 @Component({
   selector: 'app-formadmin-marketplace',
@@ -31,6 +32,8 @@ export class FormadminMarketplaceComponent implements OnInit {
   formatoMoneda:any = {};
   listdepartamento:any = DEPARTAMENTO;
   listciudades:any = [];
+  listCategorias:any = CATEGORIAS;
+  listMarca:any = [];
 
   constructor(
     private _archivo: ArchivosService,
@@ -57,34 +60,36 @@ export class FormadminMarketplaceComponent implements OnInit {
     if (this.id) { this.titulo = "Editar"; this.getPublicacion() }
   }
 
-  getRow(){
-    this._markaplace.get( { where: { id: this.id }, limit: 1 } ).subscribe( ( res:any )=>{
-      res = res.data[0];
-      if( !res ) { return this._tools.tooast({ title: "Error id no encontrado", icon:"error"}) }
-      this.data = res;
-      this.blurdepartamento();
-    },( error:any )=>{
-      this._tools.tooast( {title: "Error de servidor", icon:"error" } );
-    } );
+
+  blurCategorias(){
+    let filtro:any = this.listCategorias.find( ( row:any )=> row.titulo == this.data.categoria );
+    if( !filtro ) return false;
+    this.listMarca = filtro.marcas;
   }
 
   blurdepartamento(){
     let filtro:any = this.listdepartamento.find( ( row:any )=> row.departamento == this.data.departamento );
+    console.log( filtro );
     if( !filtro ) return false;
     this.listciudades = filtro.ciudades;
   }
 
   getPublicacion() {
-    this._markaplace.get({ where: { id: this.id } }).subscribe((res: any) => {
+    this._markaplace.get( { where: { id: this.id }, limit: 1 } ).subscribe( ( res:any )=>{
       res = res.data[0];
-      this.procesoEdit(res);
-    }, error => { this._tools.tooast({ title: "Error de servidor", icon: "error" }); })
+      if( !res ) { return this._tools.tooast({ title: "Error id no encontrado", icon:"error"}) }
+      this.procesoEdit( res );
+    },( error:any )=>{
+      this._tools.tooast( {title: "Error de servidor", icon:"error" } );
+    } );
   }
 
   procesoEdit(res: any) {
     //console.log(res);
     this.data = res;
     this.ProbarUrl();
+    this.blurdepartamento();
+    this.blurCategorias();
   }
 
   async datafiles(ev: any) {

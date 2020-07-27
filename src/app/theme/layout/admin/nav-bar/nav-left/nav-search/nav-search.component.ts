@@ -16,6 +16,7 @@ export class NavSearchComponent implements OnInit {
   
   formatoMoneda:any = {};
   dataUser:any = {};
+  diasFaltantes:number = 0;
 
   constructor(
     private _store: Store<STORAGES>,
@@ -26,6 +27,10 @@ export class NavSearchComponent implements OnInit {
       console.log(store);
       store = store.name;
       this.dataUser = ( _.clone( store.user ) ) || {};
+      if( this.dataUser.miPaquete ) {
+        if( this.dataUser.miPaquete.diasFaltantes ) this.diasFaltantes = this.dataUser.miPaquete.diasFaltantes;
+        else  this.diasFaltantes = 0;
+      }else  this.diasFaltantes = 0;
     });
   }
 

@@ -19,9 +19,9 @@
                         <label class="text textInf">Nombre: </label>
                         <span class="textInf">{{ data.cabeza.name }}</span>
                     </div>
-                    <div class="col">
+                    <div class="col" *ngIf="data.cabeza.miNivel">
                         <label class="text textInf">Nivel: </label>
-                        <span class="textInf">{{ data.cabeza.nivel }}</span>
+                        <span class="textInf">{{ data.cabeza.miNivel.nivel.title }}</span>
                     </div>
                     <div class="col">
                         <label class="text textInf">Email: </label>
