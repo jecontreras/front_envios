@@ -34,6 +34,8 @@ export class FormadminMarketplaceComponent implements OnInit {
   listciudades:any = [];
   listCategorias:any = CATEGORIAS;
   listMarca:any = [];
+  files: File[] = [];
+  view:string = "oculto";
 
   constructor(
     private _archivo: ArchivosService,
@@ -84,6 +86,11 @@ export class FormadminMarketplaceComponent implements OnInit {
     } );
   }
 
+  estadoVista( opt:string ){
+    this.view = opt;
+    console.log( this.view );
+  }
+
   procesoEdit(res: any) {
     //console.log(res);
     this.data = res;
@@ -105,12 +112,33 @@ export class FormadminMarketplaceComponent implements OnInit {
   async submitFile() {
     if( !this.file.foto1[0] ) return false;
     this.disableFile = true;
-    await this.procesoSubidaImagen(this.file.foto1[0]);
+    await this.procesoSubidaImagen(this.file.foto1[0], "foto");
     this.disableFile = false;
     return true;
   }
 
-  async procesoSubidaImagen(file: any) {
+  onSelects(event: any) {
+    //console.log(event, this.files);
+    this.files.push(...event.addedFiles)
+  }
+
+  onRemoves(event) {
+    //console.log(event);
+    this.files.splice(this.files.indexOf(event), 1);
+  }
+
+  async subirFiles() {
+    this.btnDisabled = true;
+    for (let row of this.files) {
+      await this.procesoSubidaImagen( row , "galeria");
+    }
+    this.files = [];
+    this.btnDisabled = false;
+    this._tools.tooast( { title:"Exitoso" } );
+
+  }
+
+  async procesoSubidaImagen( file: any, opt:string = "foto" ) {
     return new Promise(resolve => {
       let form: any = new FormData();
       form.append('file', file);
@@ -118,13 +146,24 @@ export class FormadminMarketplaceComponent implements OnInit {
       this._archivo.create( form ).subscribe((res: any) => {
         //console.log(form);
         this._tools.tooast({ title: "subido exitoso" });
-        this.data.foto = res.files;
+        if( opt == 'foto') this.data.foto = res.files;
+        if( opt == 'galeria') {
+          if( !this.data.galeria ) this.data.galeria = [];
+          this.data.galeria.push( { foto: res.files } );
+        }
         this.data.optSubio = true;
         if ( this.id ) this.editar();
         this.file.foto1= [];
         resolve( true );
       }, error => { this._tools.tooast({ title: "Subido Error", icon: "error" }); resolve( false ) })
     });
+  }
+
+  eleminarFoto( index: any ){
+    let filtro:any = this.data.galeria[index];
+    if( !filtro ) return false;
+    this.data.galeria.splice( index );
+    this.submit();
   }
 
   async submit() {

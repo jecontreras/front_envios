@@ -23,7 +23,7 @@ export class ProductosViewComponent implements OnInit {
   listProductos:any = [];
   query:any = {
     where:{
-      pro_activo: 0
+      estado: "activo"
     },
     page: 0,
     limit: 10
@@ -36,24 +36,15 @@ export class ProductosViewComponent implements OnInit {
 
   imageObject:any = [
     {
-      image: "./assets/imagenes/1920x700.png",
-      thumbImage: "./assets/imagenes/1920x700.png",
+      image: "./assets/publico/imagenes/1920x700.png",
+      thumbImage: "./assets/publico/imagenes/1920x700.png",
       alt: '',
       check: true,
       id: 1,
       title: ""
     }
   ];
-  listGaleria:any = [
-    {
-      image: "./assets/imagenes/1920x700.png",
-      thumbImage: "./assets/imagenes/1920x700.png",
-      alt: '',
-      check: true,
-      id: 1,
-      title: ""
-    }
-  ];
+  listGaleria:any = [];
 
   @ViewChild('nav', {static: true}) ds: NgImageSliderComponent;
   sliderWidth: Number = 1119;
@@ -68,7 +59,8 @@ export class ProductosViewComponent implements OnInit {
   
   userId:any = {};
   dataUser:any = {};
-  urlwhat:string
+  urlwhat:string;
+  monedaChange:any;
 
   constructor(
     private _store: Store<CART>,
@@ -89,6 +81,7 @@ export class ProductosViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.monedaChange = this._tools.monedaChange;
     if((this.activate.snapshot.paramMap.get('id'))){
       this.id = this.activate.snapshot.paramMap.get('id');
       this.getProducto();
@@ -96,8 +89,23 @@ export class ProductosViewComponent implements OnInit {
     }
   }
 
+  getGaleria(){
+    console.log( this.data )
+    for( let row of this.data.galeria ){
+      this.listGaleria.push(
+        {
+          image: row.foto,
+          thumbImage: row.foto,
+          alt: this.data.urlPersonalizada,
+          check: true,
+        }
+      );
+    }
+    console.log( this.listGaleria );
+  }
+
   getProducto(){
-    this._merkaplace.get({ where: { id: this.id}}).subscribe((res:any)=>{ this.data = res.data[0] || {}; }, error=> { console.error(error); this._tools.presentToast('Error de servidor'); });
+    this._merkaplace.get({ where: { id: this.id}}).subscribe((res:any)=>{ this.data = res.data[0] || {}; this.getGaleria(); }, error=> { console.error(error); this._tools.presentToast('Error de servidor'); });
   }
 
   getProductos(){

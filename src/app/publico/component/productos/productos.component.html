@@ -29,6 +29,8 @@
   <!-- Google Font -->
   <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
@@ -93,18 +95,17 @@
                     <a class="aa-product-img" href="#" [routerLink]="[ '/publico/productosView', item.id ]"><img
                         class="anchosProductos" [src]="item.foto" alt="polo shirt img"></a>
                     <a class="aa-add-card-btn pointer" (click)="AgregarCart(item)"><span
-                        class="fa fa-shopping-cart"></span>Agregar al Carro</a>
+                        class="fa fa-shopping-cart"></span>Chatear con Usuario</a>
                     <figcaption>
-                      <h4 class="aa-product-title"><a href="#">{{ item.pro_nombre }}</a></h4>
-                      <span class="aa-product-price">{{ monedaChange( 3, 2, item.pro_uni_venta ) }}</span><span
-                        class="aa-product-price"><del>{{ monedaChange( 3, 2, item.pro_uni_venta*2 ) }}</del></span>
+                      <h4 class="aa-product-title"><a href="#">{{ item.titulo }}</a></h4>
+                      <span class="aa-product-price">{{ monedaChange( 3, 2, item.precio ) }}</span>
                     </figcaption>
                   </figure>
                   <div class="aa-product-hvr-content">
                     <a href="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&u=https://www.locomproaqui.com/productos/15?u=https://www.locomproaqui.com/productos/{{ item.id }}"
                       target="_blank" data-toggle="tooltip" data-placement="top" title="Compartir"><span
                         class="fa fa-exchange"></span></a>
-                    <a class="pointer" (click)="viewProducto( item )" title="Ver Producto"><span
+                    <a class="pointer" [routerLink]="[ '/publico/productosView', item.id ]" title="Ver Producto"><span
                         class="fa fa-search"></span></a>
                   </div>
                   <!-- product badge -->
@@ -124,9 +125,10 @@
             <!-- single sidebar -->
             <div class="aa-sidebar-widget">
               <h3>Categorias</h3>
-              <ul class="aa-catg-nav">
-                <li *ngFor="let item of listCategorias"><a class="pointer" (click)="SeleccionCategoria(item)">
-                    {{ item.cat_nombre }}</a></li>
+              <ul class="aa-catg-nav row">
+                <li *ngFor="let item of listCategorias" class=" col-12">
+                  <a class="pointer" (click)="SeleccionCategoria(item)">{{ item.titulo }}</a>
+                </li>
               </ul>
             </div>
             <!-- single sidebar -->
@@ -152,7 +154,7 @@
 
             </div>
             <!-- single sidebar -->
-            <div class="aa-sidebar-widget">
+            <!-- <div class="aa-sidebar-widget">
               <h3>Compra po Color</h3>
               <div class="aa-color-tag">
                 <a class="aa-color-green pointer" (click)="searchColor('green')"></a>
@@ -168,7 +170,7 @@
                 <a class="aa-color-olive pointer" (click)="searchColor('olive')"></a>
                 <a class="aa-color-orchid pointer" (click)="searchColor('orchid')"></a>
               </div>
-            </div>
+            </div> -->
             <!-- single sidebar -->
             <div class="aa-sidebar-widget">
               <h3>Vistas recientes</h3>
@@ -178,8 +180,8 @@
                     <a href="#" [routerLink]="[ '/publico/productosView', item.id ]" class="aa-cartbox-img"><img
                         alt="img" [src]="item.foto"></a>
                     <div class="aa-cartbox-info">
-                      <h4><a class="pointer">{{ item.pro_nombre }}</a></h4>
-                      <p>{{ monedaChange( 3, 2, item.pro_uni_venta ) }}</p>
+                      <h4><a class="pointer">{{ item.titulo }}</a></h4>
+                      <p>{{ monedaChange( 3, 2, item.precio ) }}</p>
                     </div>
                   </li>
                 </ul>
@@ -194,8 +196,8 @@
                     <a href="#" [routerLink]="[ '/publico/productosView', item.id ]" class="aa-cartbox-img"><img
                         alt="img" [src]="item.foto"></a>
                     <div class="aa-cartbox-info">
-                      <h4><a class="pointer">{{ item.pro_nombre }}</a></h4>
-                      <p>{{ monedaChange( 3, 2, item.pro_uni_venta ) }}</p>
+                      <h4><a class="pointer">{{ item.titulo }}</a></h4>
+                      <p>{{ monedaChange( 3, 2, item.precio ) }}</p>
                     </div>
                   </li>
                 </ul>

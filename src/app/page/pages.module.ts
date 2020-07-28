@@ -30,7 +30,7 @@ import { FormbancosComponent } from './form/formbancos/formbancos.component';
 import { NgxCurrencyModule } from "ngx-currency";
 import { AdminMarketplaceComponent } from './component/admin-marketplace/admin-marketplace.component';
 import { FormadminMarketplaceComponent } from './form/formadmin-marketplace/formadmin-marketplace.component';
-
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 @NgModule({
   declarations: [ 
@@ -61,7 +61,8 @@ import { FormadminMarketplaceComponent } from './form/formadmin-marketplace/form
     SharedModule,
     InfiniteScrollModule,
     AngularEditorModule,
-    NgxCurrencyModule
+    NgxCurrencyModule,
+    NgxDropzoneModule
   ],
   bootstrap: [ PagesComponent ]
 })

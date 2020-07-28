@@ -56,13 +56,12 @@ export class ProductosComponent implements OnInit {
     this.getProductosRecomendado();
   }
 
-
   SeleccionCategoria( obj:any ){
     this.query = { where:{ estado: "activo" }, page: 0, limit: 10 };
-    if( obj.id ) this.query.where.pro_categoria = obj.id;
+    if( obj.id ) this.query.where.categoria = obj.titulo;
     this.listProductos = [];
     this.getProductos();
-    this.dataSeleccionda = obj.cat_nombre;
+    this.dataSeleccionda = obj.titulo;
   }
 
   searchColor( color:string ){
@@ -142,17 +141,22 @@ export class ProductosComponent implements OnInit {
     if (this.seartxt) {
       this.query.where.or = [
         {
-          pro_nombre: {
+          marca: {
             contains: this.seartxt|| ''
           }
         },
         {
-          pro_descripcion: {
+          categoria: {
             contains: this.seartxt|| ''
           }
         },
         {
-          pro_codigo: {
+          slug: {
+            contains: _.kebabCase( this.seartxt || '' )
+          }
+        },
+        {
+          descripcion: {
             contains: this.seartxt|| ''
           }
         }
@@ -169,11 +173,11 @@ export class ProductosComponent implements OnInit {
       }
       if(this.busqueda.ordenar == 2){
         this.dataSeleccionda = "Ordenar nombre";
-        this.query.sort = 'pro_nombre DESC';
+        this.query.sort = 'titulo DESC';
       }
       if(this.busqueda.ordenar == 3){
         this.dataSeleccionda = "Ordenar Precio";
-        this.query.sort = 'pro_uni_venta DESC';
+        this.query.sort = 'precio DESC';
       }
       if(this.busqueda.ordenar == 3){
         this.dataSeleccionda = "Ordenar Fecha";

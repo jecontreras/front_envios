@@ -29,6 +29,7 @@
   <!-- Google Font -->
   <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
@@ -40,7 +41,7 @@
     <div class="aa-catg-head-banner-area">
       <div class="container">
         <div class="aa-catg-head-banner-content">
-          <h2>{{ data.pro_nombre }}</h2>
+          <h2>{{ data.titulo }}</h2>
         </div>
       </div>
     </div>
@@ -60,7 +61,7 @@
                   <div class="aa-product-view-slider">
                     <div id="demo-1" class="simpleLens-gallery-container">
                       <div class="simpleLens-container">
-                        <ng-image-slider [images]="listGaleria" [infinite]="sliderInfinite"
+                        <ng-image-slider [images]="listGaleria" [infinite]="sliderInfinite" *ngIf="listGaleria.length"
                           [imagePopup]="sliderImagePopup" [showArrow]="sliderArrowShow"
                           [imageSize]="{width: sliderImageWidth, height: sliderImageHeight}"
                           [autoSlide]="sliderAutoSlide ? 1 : 0" [slideImage]="sliderSlideImage"
@@ -74,18 +75,18 @@
                 <!-- Modal view content -->
                 <div class="col-md-7 col-sm-7 col-xs-12">
                   <div class="aa-product-view-content p-3">
-                    <h3>{{ data.pro_nombre }}</h3>
+                    <h3>{{ data.titulo }}</h3>
                     <div class="aa-price-block">
                       <span
-                        class="aa-product-view-price">{{ _formato.monedaChange( 3, 2, data.pro_uni_venta || 0 ) }}</span>
+                        class="aa-product-view-price">{{ monedaChange( 3, 2, data.precio || 0 ) }}</span>
                       <p class="aa-product-avilability">Disponibilidad: <span>En stock</span></p>
                     </div>
-                    <p [innerHtml]="data.pro_descripcion | slice: 0: rango"></p>
-                    <h4>Talla</h4>
+                    <p [innerHtml]="data.descripcion | slice: 0: rango"></p>
+                    <!-- <h4>Talla</h4>
                     <div class="aa-prod-view-size">
                       <a class="pointer" *ngFor="let item of data.listTallas" [ngClass]="{selecciono: item.check}"
-                        (click)="this.pedido.talla = item.tal_descripcion; item.check = !item.check">{{ item.tal_descripcion }}</a>
-                    </div>
+                        (click)="this.pedido.talla = item.tal_descripcion; item.check = !item.check">{{ item.descripcion }}</a>
+                    </div> -->
                     <!-- <h4>Color</h4>
                      <div class="aa-color-tag">
                        <a href="#" class="aa-color-green"></a>
@@ -104,19 +105,17 @@
                         <option value="5">5</option>
                         <option value="6">6</option>
                       </select>
-                      <p class="aa-prod-category">
+                      <!-- <p class="aa-prod-category">
                         Categoria: <a class="pointer"
                           (click)="categoriasVer()">{{ data['pro_categoria']?.cat_nombre }}</a>
-                      </p>
+                      </p> -->
                     </div>
                     <div class="aa-prod-view-bottom">
                       <a (click)="AgregarCart()" class="aa-add-to-cart-btn pointer"><span
-                          class="fa fa-shopping-cart"></span>Agregar al Carrito</a>
+                          class="fa fa-shopping-cart"></span>Chatear con Usuario</a>
                       <a class="aa-add-to-cart-btn"
                         href="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&u=https://www.locomproaqui.com/productos/15?u=https://www.locomproaqui.com/productos/{{ this.data.id }}"
                         target="_blank">Compartir</a>
-                      <a (click)="masInfo( data )" class="aa-add-to-cart-btn pointer"><span
-                          class="fa fab fa-whatsapp"></span>Pedir Informacion</a>
                     </div>
                   </div>
                 </div>
