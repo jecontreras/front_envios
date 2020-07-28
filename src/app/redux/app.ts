@@ -120,6 +120,61 @@ export function appReducer(state: STORAGES = APP, action: _action.actions) {
         break;
       }
     }
+    case _action.PRODUCTOHISTORIAL:{
+      switch (action.opt){
+        case 'post': {
+          // console.log(action.payload);
+          if(!state.productoHistorial) state.productoHistorial = [];
+          data = proceso_data(state.productoHistorial,action.payload, 'post');
+          state.productoHistorial = data;
+          return local_Storage(state);
+        }
+        break;
+        case 'put': {
+          data = proceso_data(state.productoHistorial,action.payload, 'put');
+          state.productoHistorial = data;
+          return local_Storage(state);
+        }
+        break;
+        case 'delete': {
+          data = proceso_data(state.productoHistorial,action.payload, 'delete');
+          state.productoHistorial = data;
+          return local_Storage(state);
+        }
+        break;
+        case 'drop': {
+          state.productoHistorial = [];
+          return local_Storage(state);
+        }
+        break;
+        default:
+        return local_Storage(state);
+        break;
+      }
+    }
+    case _action.BUSCADOR: {
+      switch(action.opt) {
+        case 'post' :
+          if(!state.buscador) state.buscador = {};
+            state.buscador = action.payload;
+            return local_Storage(state);
+        break;
+        case 'put': {
+          state.buscador = action.payload;
+        }
+        return local_Storage(state);
+        break;
+        case 'delete': 
+          state.buscador = {};
+          return local_Storage(state);
+        break;
+        case 'drop': {
+          state.buscador = {};
+          return local_Storage(state);
+        }
+        break;
+      }
+    }
     default: return state;
   }
 }

@@ -1,0 +1,21 @@
+[
+    {
+      "icon": "dashboard",
+      "name": "Inicio",
+      "redirectTo": "./home",
+      "submenu":[]
+    },
+    {
+      "icon": "assignment",
+      "name": "Contrato",
+      "redirectTo": "./contrato",
+      "submenu":[]
+    },
+    {
+      "icon": "assignment_turned_in",
+      "name": "Facturas",
+      "redirectTo": "./facturas",
+      "submenu":[]
+    }
+  ]
+  

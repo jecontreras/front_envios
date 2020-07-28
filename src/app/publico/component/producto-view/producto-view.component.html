@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markeplace</title>
+  <!-- Font awesome -->
+  <link href="./assets/publico/css/font-awesome.css" rel="stylesheet">
+  <!-- Bootstrap -->
+  <link href="./assets/publico/css/bootstrap.css" rel="stylesheet">
+  <!-- SmartMenus jQuery Bootstrap Addon CSS -->
+  <link href="./assets/publico/css/jquery.smartmenus.bootstrap.css" rel="stylesheet">
+  <!-- Product view slider -->
+  <link rel="stylesheet" type="text/css" href="./assets/publico/css/jquery.simpleLens.css">
+  <!-- slick slider -->
+  <link rel="stylesheet" type="text/css" href="./assets/publico/css/slick.css">
+  <!-- price picker slider -->
+  <link rel="stylesheet" type="text/css" href="./assets/publico/css/nouislider.css">
+  <!-- Theme color -->
+  <link id="switcher" href="./assets/publico/css/theme-color/default-theme.css" rel="stylesheet">
+  <!-- <link id="switcher" href="./assets/publico/css/theme-color/bridge-theme.css" rel="stylesheet"> -->
+  <!-- Top Slider CSS -->
+  <link href="./assets/publico/css/sequence-theme.modern-slide-in.css" rel="stylesheet" media="all">
+
+  <!-- Main style sheet -->
+  <link href="./assets/publico/css/style.css" rel="stylesheet">
+
+  <!-- Google Font -->
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+
+  <!-- catg header banner section -->
+  <section id="aa-catg-head-banner">
+    <img [src]="tiendaInfo.portada3 || './assets/publico/img/fashion/fashion-header-bg-8.jpg'" class="anchosBanner"
+      alt="fashion img">
+    <div class="aa-catg-head-banner-area">
+      <div class="container">
+        <div class="aa-catg-head-banner-content">
+          <h2>{{ data.pro_nombre }}</h2>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- / catg header banner section -->
+
+  <!-- product category -->
+  <section id="aa-product-details">
+    <div class="anchos">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="aa-product-details-area">
+            <div class="aa-product-details-content">
+              <div class="row">
+                <!-- Modal view slider -->
+                <div class="col-md-5 col-sm-5 col-xs-12">
+                  <div class="aa-product-view-slider">
+                    <div id="demo-1" class="simpleLens-gallery-container">
+                      <div class="simpleLens-container">
+                        <ng-image-slider [images]="listGaleria" [infinite]="sliderInfinite"
+                          [imagePopup]="sliderImagePopup" [showArrow]="sliderArrowShow"
+                          [imageSize]="{width: sliderImageWidth, height: sliderImageHeight}"
+                          [autoSlide]="sliderAutoSlide ? 1 : 0" [slideImage]="sliderSlideImage"
+                          [animationSpeed]="sliderAnimationSpeed" (imageClick)="imageOnClick($event)"
+                          (arrowClick)="arrowOnClick($event)" (lightboxArrowClick)="lightboxArrowClick($event)" #nav>
+                        </ng-image-slider>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Modal view content -->
+                <div class="col-md-7 col-sm-7 col-xs-12">
+                  <div class="aa-product-view-content p-3">
+                    <h3>{{ data.pro_nombre }}</h3>
+                    <div class="aa-price-block">
+                      <span
+                        class="aa-product-view-price">{{ _formato.monedaChange( 3, 2, data.pro_uni_venta || 0 ) }}</span>
+                      <p class="aa-product-avilability">Disponibilidad: <span>En stock</span></p>
+                    </div>
+                    <p [innerHtml]="data.pro_descripcion | slice: 0: rango"></p>
+                    <h4>Talla</h4>
+                    <div class="aa-prod-view-size">
+                      <a class="pointer" *ngFor="let item of data.listTallas" [ngClass]="{selecciono: item.check}"
+                        (click)="this.pedido.talla = item.tal_descripcion; item.check = !item.check">{{ item.tal_descripcion }}</a>
+                    </div>
+                    <!-- <h4>Color</h4>
+                     <div class="aa-color-tag">
+                       <a href="#" class="aa-color-green"></a>
+                       <a href="#" class="aa-color-yellow"></a>
+                       <a href="#" class="aa-color-pink"></a>                      
+                       <a href="#" class="aa-color-black"></a>
+                       <a href="#" class="aa-color-white"></a>                      
+                     </div> -->
+                    <div class="aa-prod-quantity">
+                      <h4>Cantidad</h4>
+                      <select [(ngModel)]="pedido.cantidad">
+                        <option value="1" selected="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                      </select>
+                      <p class="aa-prod-category">
+                        Categoria: <a class="pointer"
+                          (click)="categoriasVer()">{{ data['pro_categoria']?.cat_nombre }}</a>
+                      </p>
+                    </div>
+                    <div class="aa-prod-view-bottom">
+                      <a (click)="AgregarCart()" class="aa-add-to-cart-btn pointer"><span
+                          class="fa fa-shopping-cart"></span>Agregar al Carrito</a>
+                      <a class="aa-add-to-cart-btn"
+                        href="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&u=https://www.locomproaqui.com/productos/15?u=https://www.locomproaqui.com/productos/{{ this.data.id }}"
+                        target="_blank">Compartir</a>
+                      <a (click)="masInfo( data )" class="aa-add-to-cart-btn pointer"><span
+                          class="fa fab fa-whatsapp"></span>Pedir Informacion</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="aa-product-details-bottom">
+              <div class="mx-auto" style="width: 200px;">
+                <ul class="nav nav-tabs centerAncho" id="myTab2">
+                  <li><a href="#description" data-toggle="tab" (click)="this.view = 'descripcion'">Descripcion</a></li>
+                  <li><a href="#review" data-toggle="tab" (click)="this.view = 'comentarios'">Comentarios</a></li>
+                </ul>
+              </div>
+
+              <!-- Tab panes -->
+              <div class="container">
+                <div *ngIf="view == 'descripcion'">
+                  <p [innerHtml]="data.pro_descripcion"></p>
+                </div>
+                <div *ngIf="view == 'comentarios'">
+                  <div class="aa-product-review-area">
+                    <h4>2 Reviews for T-Shirt</h4>
+                    <ul class="aa-review-nav">
+                      <li>
+                        <div class="media">
+                          <div class="media-left">
+                            <a href="#">
+                              <img class="media-object" src="img/testimonial-img-3.jpg" alt="girl image">
+                            </a>
+                          </div>
+                          <div class="media-body">
+                            <h4 class="media-heading"><strong>Marla Jobs</strong> - <span>March 26, 2016</span></h4>
+                            <div class="aa-product-rating">
+                              <span class="fa fa-star"></span>
+                              <span class="fa fa-star"></span>
+                              <span class="fa fa-star"></span>
+                              <span class="fa fa-star"></span>
+                              <span class="fa fa-star-o"></span>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="media">
+                          <div class="media-left">
+                            <a href="#">
+                              <img class="media-object" src="img/testimonial-img-3.jpg" alt="girl image">
+                            </a>
+                          </div>
+                          <div class="media-body">
+                            <h4 class="media-heading"><strong>Marla Jobs</strong> - <span>March 26, 2016</span></h4>
+                            <div class="aa-product-rating">
+                              <span class="fa fa-star"></span>
+                              <span class="fa fa-star"></span>
+                              <span class="fa fa-star"></span>
+                              <span class="fa fa-star"></span>
+                              <span class="fa fa-star-o"></span>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                    <h4>Add a review</h4>
+                    <div class="aa-your-rating">
+                      <p>Your Rating</p>
+                      <a href="#"><span class="fa fa-star-o"></span></a>
+                      <a href="#"><span class="fa fa-star-o"></span></a>
+                      <a href="#"><span class="fa fa-star-o"></span></a>
+                      <a href="#"><span class="fa fa-star-o"></span></a>
+                      <a href="#"><span class="fa fa-star-o"></span></a>
+                    </div>
+                    <!-- review form -->
+                    <form action="" class="aa-review-form">
+                      <div class="form-group">
+                        <label for="message">Your Review</label>
+                        <textarea class="form-control" rows="3" id="message"></textarea>
+                      </div>
+                      <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" placeholder="Name">
+                      </div>
+                      <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="example@gmail.com">
+                      </div>
+
+                      <button type="submit" class="btn btn-default aa-review-submit">Submit</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Related product -->
+            <div class="aa-product-related-item">
+              <h3>Productos Relacionados</h3>
+              <ul class="aa-product-catg aa-related-item-slider">
+                <!-- start single product item -->
+                <ng-image-slider [images]="imageObject" [infinite]="sliderInfinite" [imagePopup]="sliderImagePopup"
+                  [showArrow]="sliderArrowShow" [imageSize]="{width: sliderImageWidth, height: sliderImageHeight}"
+                  [autoSlide]="sliderAutoSlide ? 1 : 0" [slideImage]="sliderSlideImage"
+                  [animationSpeed]="sliderAnimationSpeed" (imageClick)="imageOnClick($event)"
+                  (arrowClick)="arrowOnClick($event)" (lightboxArrowClick)="lightboxArrowClick($event)" #nav>
+                </ng-image-slider>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- / product category -->
+  <!-- / wpf loader Two -->
+  <!-- SCROLL TOP BUTTON -->
+  <a class="scrollToTop" href="#"><i class="fa fa-chevron-up"></i></a>
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="./assets/publico/js/bootstrap.js"></script>
+  <!-- SmartMenus jQuery plugin -->
+  <script type="text/javascript" src="./assets/publico/js/jquery.smartmenus.js"></script>
+  <!-- SmartMenus jQuery Bootstrap Addon -->
+  <script type="text/javascript" src="./assets/publico/js/jquery.smartmenus.bootstrap.js"></script>
+  <!-- To Slider JS -->
+  <!-- Product view slider -->
+  <script type="text/javascript" src="./assets/publico/js/jquery.simpleGallery.js"></script>
+  <script type="text/javascript" src="./assets/publico/js/jquery.simpleLens.js"></script>
+  <!-- slick slider -->
+  <script type="text/javascript" src="./assets/publico/js/slick.js"></script>
+  <!-- Price picker slider -->
+  <script type="text/javascript" src="./assets/publico/js/nouislider.js"></script>
+  <!-- Custom js -->
+  <script src="./assets/publico/js/custom.js"></script>
+</body>
+
+</html>

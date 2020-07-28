@@ -24,21 +24,23 @@ export class ConfigurationComponent implements OnInit {
   public isConfig: boolean;
 
   scroll = (): void => {
-    if (this.headerFixedLayout === false) {
-      (document.querySelector('#nav-ps-next') as HTMLElement).style.maxHeight = 'calc(100vh)';
-      const el = document.querySelector('.pcoded-navbar.menupos-fixed') as HTMLElement;
-      const scrollPosition = window.pageYOffset;
-      if (scrollPosition > 60) {
-        el.style.position = 'fixed';
-        el.style.transition = 'none';
-        el.style.marginTop = '0';
-      } else {
-        el.style.position = 'absolute';
-        el.style.marginTop = '60px';
-      }
-    } else if (document.querySelector('.pcoded-navbar').hasAttribute('style')) {
-      document.querySelector('.pcoded-navbar.menupos-fixed').removeAttribute('style');
-    }
+    try {
+      if (this.headerFixedLayout === false) {
+        (document.querySelector('#nav-ps-next') as HTMLElement).style.maxHeight = 'calc(100vh)';
+        const el = document.querySelector('.pcoded-navbar.menupos-fixed') as HTMLElement;
+        const scrollPosition = window.pageYOffset;
+        if (scrollPosition > 60) {
+          el.style.position = 'fixed';
+          el.style.transition = 'none';
+          el.style.marginTop = '0';
+        } else {
+          el.style.position = 'absolute';
+          el.style.marginTop = '60px';
+        }
+      } else if (document.querySelector('.pcoded-navbar').hasAttribute('style')) {
+        document.querySelector('.pcoded-navbar.menupos-fixed').removeAttribute('style');
+      } 
+    } catch (error) {}
   }
 
   constructor(private zone: NgZone, private location: Location) {

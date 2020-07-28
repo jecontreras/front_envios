@@ -36,6 +36,7 @@ import { PublicoComponent } from './theme/layout/publico/publico.component';
 import { SocketIoModule } from 'ng-socket-io';
 import { ChatModule } from './chat/chat.module';
 import { PortadaComponent } from './theme/layout/portada/portada.component';
+import { NgImageSliderModule } from 'ng-image-slider';
 
 
 @NgModule({
@@ -77,6 +78,7 @@ import { PortadaComponent } from './theme/layout/portada/portada.component';
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
+    NgImageSliderModule
   ],
   providers: [NavigationItem],
   bootstrap: [AppComponent]
