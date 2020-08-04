@@ -29,7 +29,6 @@
     "css-animator": "^2.3.1",
     "jquery": "^3.4.1",
     "moment": "^2.24.0",
-    "ng-chat": "^3.0.3",
     "ng-click-outside": "^4.0.0",
     "ng-image-slider": "^2.6.1",
     "ng-socket-io": "^0.2.4",

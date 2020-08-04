@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { ActividadService } from './servicesComponents/actividad.service';
 import { Store } from '@ngrx/store';
 import { STORAGES } from './interfaces/sotarage';
 
@@ -15,7 +14,6 @@ export class AppComponent implements OnInit {
   
   constructor(
     private router: Router,
-    private _Actividad: ActividadService,
     private _store: Store<STORAGES>
   ) {
     this._store.subscribe((store: any) => {
@@ -27,7 +25,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    if( Object.keys( this.dataUser ).length > 0) this._Actividad.generarActividad({ user: this.dataUser.id }).subscribe((res:any)=> console.log(res));
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
         return;

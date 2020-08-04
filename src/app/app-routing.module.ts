@@ -17,10 +17,6 @@ const routes: Routes = [
         redirectTo: 'dashboard/home',
         pathMatch: 'full'
       },
-      // {
-      //   path: 'dashboard',
-      //   loadChildren: () => import('./demo/dashboard/dashboard.module').then(module => module.DashboardModule)
-      // },
       {
         path: 'dashboard',
         loadChildren: () => import ('./page/pages.module').then( module => module.PagesModule )
@@ -45,10 +41,6 @@ const routes: Routes = [
     path: '',
     component: PublicoComponent,
     children: [
-      {
-        path: 'publicacionviews/:id',
-        loadChildren: () => import('./publico/publico.module').then(module => module.PublicoModule)
-      },
       {
         path: "publico",
         loadChildren: () => import('./publico/publico.module').then(module => module.PublicoModule)
