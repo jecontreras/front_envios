@@ -9,12 +9,14 @@ import { NgxCurrencyModule } from "ngx-currency";
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { HomeComponent } from './component/home/home.component';
 import { FleteComponent } from './component/flete/flete.component';
+import { FormFleteComponent } from './form/form-flete/form-flete.component';
 
 @NgModule({
   declarations: [ 
     HomeComponent,
     PagesComponent,
-    FleteComponent
+    FleteComponent,
+    FormFleteComponent
   ],
   imports: [
     CommonModule,

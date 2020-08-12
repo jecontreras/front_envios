@@ -1,331 +1,66 @@
-<div class="row">
-    <div class="col-12">
+<div class="card ng-trigger ng-trigger-cardRemove" animates="" animatesinitmode="show"
+    style="visibility: visible; opacity: 1;">
+    <div class="ng-tns-c14-12 ng-trigger ng-trigger-collapsedCard ng-star-inserted" style="overflow: hidden;">
+
         <div class="d-flex flex-row-reverse bd-highlight">
-            <button type="button" class="btn btn-warning m-l-0" [routerLink]="['/dashboard/bancos']">
-                ATRAS
-            </button>
-            <button type="button" class="btn btn-primary m-l-0" (click)="submit()">
-                <span *ngIf="data.id">ACTUALIZAR</span>
-                <span *ngIf="!data.id">CREAR</span>
-            </button>
+            <div class="p-2 bd-highlight">
+                <button type="button" class="btn btn-primary m-l-0" (click)="crear( false )">
+                    <span>Crear Flete</span>
+                </button>
+            </div>
         </div>
-        <br><br>
-    </div>
-    <div class="col-12 content">
-        <div class="row mat-elevation-z5 p-2">
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Clave</label>
-                <input type="text" class="form-control" [(ngModel)]="data.clave">
+
+        <div class="card-body ng-tns-c14-12 table-border-style ng-star-inserted">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th *ngFor="let item of tablet.header">{{ item }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of tablet.listRow">
+                            <td>
+                                <button type="button" class="btn btn-primary" (click)="crear( item )">
+                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                </button>
+                            </td>
+                            <td>{{ item.codigo }}</td>
+                            <td>{{ item.numerorelacion }}</td>
+                            <td>{{ item.fechadespacho }}</td>
+                            <td>{{ item.primernombreremitente }} {{ item.segundoapellidoremitente }}</td>
+                            <td>{{ item.contactoremitente }}</td>
+                            <td>{{ item.primernombredestinatario }} {{ item.primerapellidodestinatario }}</td>
+                            <td>{{ item.ciudaddestinatario }}</td>
+                            <td>{{ item.contactodestinatario }}</td>
+                            <td>{{ item.ciudaddestinatario }}</td>
+                            <td>{{ item.totalvalormercancia }}</td>
+                            <td>{{ item.totalvalorproducto }}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Numerorelacion</label>
-                <input type="text" class="form-control" [(ngModel)]="data.numerorelacion">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Numerorelacion</label>
-                <input type="text" class="form-control" [(ngModel)]="data.numerorelacion">
-            </div>
-            <div class="col-12 content">
-                <div class="row">
-                    <div class="col-12">
-                        <h4>Solicitud de recogida</h4>
-                    </div>
-                    <div class="form-group col-xs-6 col-sm-6 col-12">
-                        <label for="exampleInputEmail1">Numero</label>
-                        <input type="text" class="form-control" [(ngModel)]="data.solicitudrecogida.numero">
-                    </div>
-                    <div class="form-group col-xs-6 col-sm-6 col-12">
-                        <label for="exampleInputEmail1">Fecha</label>
-                        <input type="text" class="form-control" [(ngModel)]="data.solicitudrecogida.fecha">
-                    </div>
-                    <div class="form-group col-xs-6 col-sm-6 col-12">
-                        <label for="exampleInputEmail1">Ventana de Inicio</label>
-                        <input type="text" class="form-control" [(ngModel)]="data.solicitudrecogida.fecha">
-                    </div>
-                    <div class="form-group col-xs-6 col-sm-6 col-12">
-                        <label for="exampleInputEmail1">Ventana Fin</label>
-                        <input type="text" class="form-control" [(ngModel)]="data.solicitudrecogida.ventanafin">
-                    </div>  
+            <div class="col-12" *ngIf="progreses">
+                <div class="d-flex justify-content-center row">
+                    <div class="spinner-grow text-primary" role="status"><span class="sr-only">Loading...</span></div>
+                    <div class="spinner-grow text-secondary" role="status"><span class="sr-only">Loading...</span></div>
+                    <div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div>
+                    <div class="spinner-grow text-danger" role="status"><span class="sr-only">Loading...</span></div>
+                    <div class="spinner-grow text-warning" role="status"><span class="sr-only">Loading...</span></div>
+                    <div class="spinner-grow text-info" role="status"><span class="sr-only">Loading...</span></div>
+                    <div class="spinner-grow text-light" role="status"><span class="sr-only">Loading...</span></div>
+                    <div class="spinner-grow text-dark" role="status"><span class="sr-only">Loading...</span></div>
                 </div>
             </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Unidadnegocio</label>
-                <input type="text" class="form-control" [(ngModel)]="data.unidadnegocio">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Numero Remesa</label>
-                <input type="text" class="form-control" [(ngModel)]="data.numeroremesa">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Fecha despacho</label>
-                <input type="text" class="form-control" [(ngModel)]="data.fechadespacho">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Cuenta Remitente</label>
-                <input type="text" class="form-control" [(ngModel)]="data.cuentaremitente">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Tipo Identificacion Remitente</label>
-                <input type="text" class="form-control" [(ngModel)]="data.tipoidentificacionremitente">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Identificacion Remitente</label>
-                <input type="text" class="form-control" [(ngModel)]="data.identificacionremitente">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Sede Remitente</label>
-                <input type="text" class="form-control" [(ngModel)]="data.sederemitente">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Primero Nombre Remitente</label>
-                <input type="text" class="form-control" [(ngModel)]="data.primernombreremitente">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Segundo Nombre Remitente</label>
-                <input type="text" class="form-control" [(ngModel)]="data.segundonombreremitente">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Primer Apellido Remitente</label>
-                <input type="text" class="form-control" [(ngModel)]="data.primerapellidoremitente">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Segundo Apellido Remitente</label>
-                <input type="text" class="form-control" [(ngModel)]="data.segundoapellidoremitente">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Razon Social Remitente</label>
-                <input type="text" class="form-control" [(ngModel)]="data.razonsocialremitente">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">naturalezaremitente</label>
-                <input type="text" class="form-control" [(ngModel)]="data.segundoapellidoremitente">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Direccion Remitente</label>
-                <input type="text" class="form-control" [(ngModel)]="data.direccionremitente">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Contacto Remitente</label>
-                <input type="text" class="form-control" [(ngModel)]="data.contactoremitente">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Email Remitente</label>
-                <input type="text" class="form-control" [(ngModel)]="data.emailremitente">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Telefono Remitente</label>
-                <input type="text" class="form-control" [(ngModel)]="data.telefonoremitente">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Ciudad Origen</label>
-                <input type="text" class="form-control" [(ngModel)]="data.ciudadorigen">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Tipo Identificacion Destinatario</label>
-                <input type="text" class="form-control" [(ngModel)]="data.tipoidentificaciondestinatario">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Identificacion Destinatario</label>
-                <input type="text" class="form-control" [(ngModel)]="data.identificaciondestinatario">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Sede Destinatario</label>
-                <input type="text" class="form-control" [(ngModel)]="data.sededestinatario">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Primer Nombre Destinatario</label>
-                <input type="text" class="form-control" [(ngModel)]="data.primernombredestinatario">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Segundo Nombre Destinatario</label>
-                <input type="text" class="form-control" [(ngModel)]="data.segundonombredestinatario">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Primer Apellido Destinatario</label>
-                <input type="text" class="form-control" [(ngModel)]="data.primerapellidodestinatario">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Segundo Apellido Destinatario</label>
-                <input type="text" class="form-control" [(ngModel)]="data.segundoapellidodestinatario">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Razon Social Destinatario</label>
-                <input type="text" class="form-control" [(ngModel)]="data.razonsocialdestinatario">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Natura leza Destinatario</label>
-                <input type="text" class="form-control" [(ngModel)]="data.naturalezadestinatario">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Direccion Destinatario</label>
-                <input type="text" class="form-control" [(ngModel)]="data.direcciondestinatario">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Contacto Destinatario</label>
-                <input type="text" class="form-control" [(ngModel)]="data.contactodestinatario">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Email Destinatario</label>
-                <input type="text" class="form-control" [(ngModel)]="data.emaildestinatario">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Telefono Destinatario</label>
-                <input type="text" class="form-control" [(ngModel)]="data.telefonodestinatario">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Ciudad Destinatario</label>
-                <input type="text" class="form-control" [(ngModel)]="data.ciudaddestinatario">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Barrio Destinatario</label>
-                <input type="text" class="form-control" [(ngModel)]="data.barriodestinatario">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Total Peso</label>
-                <input type="text" class="form-control" [(ngModel)]="data.totalpeso">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Total Peso Volumen</label>
-                <input type="text" class="form-control" [(ngModel)]="data.totalpesovolumen">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Total Valor Mercancia</label>
-                <input type="text" class="form-control" [(ngModel)]="data.totalvalormercancia">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Forma Pago</label>
-                <input type="text" class="form-control" [(ngModel)]="data.formapago">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Observaciones</label>
-                <input type="text" class="form-control" [(ngModel)]="data.observaciones">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Llevabodega</label>
-                <input type="text" class="form-control" [(ngModel)]="data.llevabodega">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Recoge Bodega</label>
-                <input type="text" class="form-control" [(ngModel)]="data.recogebodega">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Centro Costos</label>
-                <input type="text" class="form-control" [(ngModel)]="data.centrocostos">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Total Valor Producto</label>
-                <input type="text" class="form-control" [(ngModel)]="data.totalvalorproducto">
-            </div>
-            <!-- <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Tipo Servicio</label>
-                <input type="text" class="form-control" [(ngModel)]="data.tiposervicio">
-            </div> -->
-            <div class="col-12 content">
-                <div class="row">
-                    <div class="col-12">
-                        <h3>Unidad</h3>
-                    </div>
-                    <div class="form-group col-xs-6 col-sm-6 col-12">
-                        <label for="exampleInputEmail1">Tipo Unidad</label>
-                        <input type="text" class="form-control" [(ngModel)]="data.unidad.tipounidad">
-                    </div>
-                    <div class="form-group col-xs-6 col-sm-6 col-12">
-                        <label for="exampleInputEmail1">Tipo Empaque</label>
-                        <input type="text" class="form-control" [(ngModel)]="data.unidad.tipoempaque">
-                    </div>
-                    <div class="form-group col-xs-6 col-sm-6 col-12">
-                        <label for="exampleInputEmail1">Clase Empaque</label>
-                        <input type="text" class="form-control" [(ngModel)]="data.unidad.claseempaque">
-                    </div>
-                    <div class="form-group col-xs-6 col-sm-6 col-12">
-                        <label for="exampleInputEmail1">Dice Contener</label>
-                        <input type="text" class="form-control" [(ngModel)]="data.unidad.dicecontener">
-                    </div>
-                    <div class="form-group col-xs-6 col-sm-6 col-12">
-                        <label for="exampleInputEmail1">Kilos Reales</label>
-                        <input type="text" class="form-control" [(ngModel)]="data.unidad.kilosreales">
-                    </div>
-                    <div class="form-group col-xs-6 col-sm-6 col-12">
-                        <label for="exampleInputEmail1">Largo</label>
-                        <input type="text" class="form-control" [(ngModel)]="data.unidad.largo">
-                    </div>
-                    <div class="form-group col-xs-6 col-sm-6 col-12">
-                        <label for="exampleInputEmail1">Alto</label>
-                        <input type="text" class="form-control" [(ngModel)]="data.unidad.alto">
-                    </div>
-                    <div class="form-group col-xs-6 col-sm-6 col-12">
-                        <label for="exampleInputEmail1">Ancho</label>
-                        <input type="text" class="form-control" [(ngModel)]="data.unidad.ancho">
-                    </div>
-                    <div class="form-group col-xs-6 col-sm-6 col-12">
-                        <label for="exampleInputEmail1">Peso Volumen</label>
-                        <input type="text" class="form-control" [(ngModel)]="data.unidad.pesovolumen">
-                    </div>
-                    <div class="form-group col-xs-6 col-sm-6 col-12">
-                        <label for="exampleInputEmail1">Valor Mercancia</label>
-                        <input type="text" class="form-control" [(ngModel)]="data.unidad.valormercancia">
-                    </div>
-                    <div class="form-group col-xs-6 col-sm-6 col-12">
-                        <label for="exampleInputEmail1">Codigo Barras</label>
-                        <input type="text" class="form-control" [(ngModel)]="data.unidad.codigobarras">
-                    </div>
-                    <div class="form-group col-xs-6 col-sm-6 col-12">
-                        <label for="exampleInputEmail1">Numero Bolsa</label>
-                        <input type="text" class="form-control" [(ngModel)]="data.unidad.numerobolsa">
-                    </div>
-                    <div class="form-group col-xs-6 col-sm-6 col-12">
-                        <label for="exampleInputEmail1">Referencias</label>
-                        <input type="text" class="form-control" [(ngModel)]="data.unidad.referencias">
-                    </div>
-                    <div class="form-group col-xs-6 col-sm-6 col-12">
-                        <label for="exampleInputEmail1">Unidades Internas</label>
-                        <input type="text" class="form-control" [(ngModel)]="data.unidad.unidadesinternas">
+            
+            <div class="col-12" *ngIf="!progreses && tablet.listRow.length == 0">
+                <div class="d-flex justify-content-center row">
+                    <div role="alert" class="alert alert-primary">
+                        No Hay Datos Para Mostrar
+                        <button *ngIf="config.vista == 'tareas'" type="button" class="btn btn-primary" (click)="refActivadades()" [disabled]="btnDisabled">Volver a intentar</button>
                     </div>
                 </div>
             </div>
-            <div class="col-12 content">
-                <div class="row">
-                    <div class="col-12">
-                        <h3>Documento Referencia</h3>
-                    </div>
-                    <div class="form-group col-xs-6 col-sm-6 col-12">
-                        <label for="exampleInputEmail1">Tipo Documento</label>
-                        <input type="text" class="form-control" [(ngModel)]="data.documentoreferencia.tipodocumento">
-                    </div>
-                    <div class="form-group col-xs-6 col-sm-6 col-12">
-                        <label for="exampleInputEmail1">Numero Documento</label>
-                        <input type="text" class="form-control" [(ngModel)]="data.documentoreferencia.numerodocumento">
-                    </div>
-                    <div class="form-group col-xs-6 col-sm-6 col-12">
-                        <label for="exampleInputEmail1">Fecha Documento</label>
-                        <input type="text" class="form-control" [(ngModel)]="data.documentoreferencia.fechadocumento">
-                    </div>
-                </div>
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Generar Documentos</label>
-                <input type="text" class="form-control" [(ngModel)]="data.generardocumentos">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Numero Referencia Cliente</label>
-                <input type="text" class="form-control" [(ngModel)]="data.numeroreferenciacliente">
-            </div>
-            <div class="form-group col-xs-6 col-sm-6 col-12">
-                <label for="exampleInputEmail1">Fuente</label>
-                <input type="text" class="form-control" [(ngModel)]="data.fuente">
-            </div>
         </div>
-    </div>
-    <div class="col-12">
-        <div class="d-flex flex-row-reverse bd-highlight">
-            <button type="button" class="btn btn-warning m-l-0" [routerLink]="['/dashboard/bancos']">
-                ATRAS
-            </button>
-            <button type="button" class="btn btn-primary m-l-0" (click)="submit()">
-                <span *ngIf="data.id">ACTUALIZAR</span>
-                <span *ngIf="!data.id">CREAR</span>
-            </button>
-        </div>
-        <br><br>
     </div>
 </div>
