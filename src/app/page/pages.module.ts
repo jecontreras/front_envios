@@ -10,13 +10,15 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { HomeComponent } from './component/home/home.component';
 import { FleteComponent } from './component/flete/flete.component';
 import { FormFleteComponent } from './form/form-flete/form-flete.component';
+import { ElaboracionGuiasComponent } from './component/elaboracion-guias/elaboracion-guias.component';
 
 @NgModule({
   declarations: [ 
     HomeComponent,
     PagesComponent,
     FleteComponent,
-    FormFleteComponent
+    FormFleteComponent,
+    ElaboracionGuiasComponent
   ],
   imports: [
     CommonModule,

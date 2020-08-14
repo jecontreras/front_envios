@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './component/home/home.component';
 import { FleteComponent } from './component/flete/flete.component';
 import { FormFleteComponent } from './form/form-flete/form-flete.component';
+import { ElaboracionGuiasComponent } from './component/elaboracion-guias/elaboracion-guias.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
     path: "formflete/:id",
     component: FormFleteComponent
   },
+  {
+    path: "elaboracionguias",
+    component: ElaboracionGuiasComponent
+  }
 ];
 
 @NgModule({

@@ -41,9 +41,9 @@ const NavigationItems = [
       },
       {
         id: 'flete',
-        title: 'Flete',
+        title: 'Elaboracion de guias',
         type: 'item',
-        url: '/dashboard/flete',
+        url: '/dashboard/elaboracionguias',
         icon: 'feather icon-home'
       }
     ]

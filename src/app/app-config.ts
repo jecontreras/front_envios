@@ -1,6 +1,6 @@
 export class NextConfig {
   public static config = {
-    layout: 'vertical', // vertical, horizontal
+    layout: 'horizontal', // vertical, horizontal
     subLayout: '', // horizontal-2
     collapseMenu: false,
     layoutType: 'menu-light', // menu-dark, menu-light, dark

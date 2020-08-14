@@ -22,4 +22,7 @@ export class FleteService {
   delete(query:any){
     return this._model.querys('fletes/'+query.id, query, 'delete');
   }
+  fleteCotizar( query:any ){
+    return this._model.querys('fletes/consultarliquidacion',query, 'post');
+  }
 }
