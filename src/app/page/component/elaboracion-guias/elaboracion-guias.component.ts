@@ -113,7 +113,7 @@ export class ElaboracionGuiasComponent implements OnInit {
       solictudVentanaFin: this.data.fechaRemesa,
       unidadNegocio: Number( this.data.totalUnidad ),
       fechaDespacho: this.data.fechaRemesa,
-      cuentaRemitente: "",
+      cuentaRemitente: 1422863,
       tipoIdentificacionRemitente: "CC",
       identificacionRemitente: Number( this.data.identificacionRemitente || 9999999 ),
       sedeRemitent: "",
