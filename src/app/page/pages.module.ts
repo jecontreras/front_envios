@@ -11,6 +11,7 @@ import { HomeComponent } from './component/home/home.component';
 import { FleteComponent } from './component/flete/flete.component';
 import { FormFleteComponent } from './form/form-flete/form-flete.component';
 import { ElaboracionGuiasComponent } from './component/elaboracion-guias/elaboracion-guias.component';
+import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 
 @NgModule({
   declarations: [ 
@@ -27,7 +28,8 @@ import { ElaboracionGuiasComponent } from './component/elaboracion-guias/elabora
     InfiniteScrollModule,
     AngularEditorModule,
     NgxCurrencyModule,
-    NgxDropzoneModule
+    NgxDropzoneModule,
+    AutocompleteLibModule
   ],
   bootstrap: [ PagesComponent ]
 })

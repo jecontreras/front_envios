@@ -24,6 +24,7 @@
     "@ng-bootstrap/ng-bootstrap": "^4.2.1",
     "@ngrx/store": "github:ngrx/store-builds",
     "@ngrx/store-devtools": "github:ngrx/store-devtools-builds",
+    "angular-ng-autocomplete": "^2.0.1",
     "apexcharts": "^3.8.0",
     "bootstrap": "^4.3.1",
     "css-animator": "^2.3.1",
