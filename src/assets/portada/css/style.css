@@ -1988,7 +1988,7 @@ ul, ol {
 		display: none;
 	}
 	.menu-item .nav-menu {
-		display: none;
+		/* display: none; */
 	}
 	.offcanvas-menu-overlay {
 		position: fixed;

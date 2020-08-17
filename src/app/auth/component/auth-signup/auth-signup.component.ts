@@ -35,7 +35,7 @@ export class AuthSignupComponent implements OnInit {
     private _router: Router
   ) { 
     if (this._authSrvice.isLoggedIn()) {
-      this._router.navigate(['/dashboard/home']);
+      this._router.navigate(['/dashboard/elaboracionguias']);
     }
   }
 
@@ -71,7 +71,7 @@ export class AuthSignupComponent implements OnInit {
   ProcesoStorages( res:any ){
     let accion:any = new UserAction(res.data, 'post');
     this._store.dispatch(accion);
-    this._router.navigate(['/dashboard/home']);
+    this._router.navigate(['/dashboard/elaboracionguias']);
   }
 
   validador(){

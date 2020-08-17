@@ -12,6 +12,7 @@ import { FleteComponent } from './component/flete/flete.component';
 import { FormFleteComponent } from './form/form-flete/form-flete.component';
 import { ElaboracionGuiasComponent } from './component/elaboracion-guias/elaboracion-guias.component';
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
+import { EstadoGuiasComponent } from './component/estado-guias/estado-guias.component';
 
 @NgModule({
   declarations: [ 
@@ -19,7 +20,8 @@ import {AutocompleteLibModule} from 'angular-ng-autocomplete';
     PagesComponent,
     FleteComponent,
     FormFleteComponent,
-    ElaboracionGuiasComponent
+    ElaboracionGuiasComponent,
+    EstadoGuiasComponent
   ],
   imports: [
     CommonModule,

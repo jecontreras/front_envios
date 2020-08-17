@@ -5,12 +5,14 @@ import { PortadaRoutingModule } from './portada-routing.module';
 import { FormsModule } from '@angular/forms';
 import { NgImageSliderModule } from 'ng-image-slider';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { TerminosComponent } from './component/terminos/terminos.component';
 
 
 
 @NgModule({
   declarations: [
-    IndexComponent
+    IndexComponent,
+    TerminosComponent
   ],
   imports: [
     CommonModule,

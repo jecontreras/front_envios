@@ -33,17 +33,17 @@ const NavigationItems = [
     icon: 'feather icon-monitor',
     children: [
       {
-        id: 'dashboard',
-        title: 'Home',
-        type: 'item',
-        url: '/dashboard/home',
-        icon: 'feather icon-home'
-      },
-      {
         id: 'flete',
         title: 'Elaboracion de guias',
         type: 'item',
         url: '/dashboard/elaboracionguias',
+        icon: 'feather icon-home'
+      },
+      {
+        id: 'flete',
+        title: 'Estado de guias',
+        type: 'item',
+        url: '/dashboard/estadoGuias',
         icon: 'feather icon-home'
       }
     ]

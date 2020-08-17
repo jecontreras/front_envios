@@ -23,6 +23,8 @@ export class ElaboracionGuiasComponent implements OnInit {
   dataUser:any = {};
   listCiudades:any = DANEGROUP;
   keyword = 'city';
+  mensaje:string;
+  errorCotisa:string;
 
 
   constructor(
@@ -65,6 +67,8 @@ export class ElaboracionGuiasComponent implements OnInit {
   submitCotizar(){
     this.tablet.listRow = [];
     console.log( this.data );
+    let validador:boolean = this.validandoCotizador ();
+    if( !validador ) return false;
     this.data.pesoVolumen = ( ( parseInt( this.data.volumenAlto ) * parseInt( this.data.volumenLargo ) * parseInt( this.data.volumenAncho ) ) / 166 ) || 0;
     this.data.pesoVolumen = parseInt( this.data.pesoVolumen );
     let data = {
@@ -81,9 +85,13 @@ export class ElaboracionGuiasComponent implements OnInit {
       ancho: Number( this.data.volumenAncho ),
       tipoEmpaque: ""
     };
+    this.btnDisabled = true;
+    this.errorCotisa = "";
     this._flete.fleteCotizar( data ).subscribe( ( res:any )=>{
       console.log( res );
+      this.btnDisabled = false;
       for( let row of res.data ){
+        if( row['respuesta'][0]['codigo'][0] == -1 ) { this.errorCotisa = row['respuesta'][0]['mensaje'][0];return false;}
         this.tablet.listRow.push({
           imgTrasp: "https://aveonline.co/app/temas/imagen_transpo/104926-1-tcc.jpg",
           origenDestino: `${ this.data.ciudadOrigenText } ${ this.data.ciudadDestino.city } ( ${ this.data.ciudadDestino.state})` ,
@@ -99,7 +107,7 @@ export class ElaboracionGuiasComponent implements OnInit {
           tiempoEstimado: "7 Dias"
         });
       }
-    } ,(error) => this._tools.tooast( { title:"Error en el servidor por favor reintenta!"}));
+    } ,(error) => { this._tools.tooast( { title:"Error en el servidor por favor reintenta!", icon: "error" } ); this.btnDisabled = false; });
   }
 
   selectTrans( item ){
@@ -107,6 +115,11 @@ export class ElaboracionGuiasComponent implements OnInit {
   }
 
   generarGuia(){
+    let validador:boolean = this.valodandoGenerar();
+    if( !validador ) return false;
+    this.data.fechaRemesa = moment().format("YYYY-MM-DD");
+    this.mensaje = "";
+    this.btnDisabled = true;
     let data:any = {
       solicitudFecha: this.data.fechaRemesa,
       solictudVentanaInicio: this.data.fechaRemesa,
@@ -120,7 +133,7 @@ export class ElaboracionGuiasComponent implements OnInit {
       nombreRemitente: this.data.remitenteNombre,
       direccionCliente: this.data.remitenteDireccion,
       emailRemitente: this.data.remitenteCorreo,
-      telefonoRemitente: this.data.remitenteFijo,
+      telefonoRemitente: this.data.remitenteCelular || this.data.remitenteFijo,
       ciudadOrigen: Number( this.data.ciudadOrigen ),
       tipoIdentificacionDestinatario: "CC",
       identificacionDestinatario: Number( this.data.destinatarioNitIdentificacion ),
@@ -129,7 +142,7 @@ export class ElaboracionGuiasComponent implements OnInit {
       direccionDestinatario: this.data.destinatarioDireccion,
       contactoDestinatario: this.data.destinatarioNombre,
       emailDestinatario: this.data.destinatarioCorreo,
-      telefonoDestinatario: Number( this.data.destinatarioTelfijo ),
+      telefonoDestinatario: Number( this.data.destinatarioCelular || this.data.destinatarioTelfijo ),
       ciudadDestinatario: Number( this.data.ciudadDestino.code ),
       barrioDestinatario: this.data.destinatarioBarrio,
       totalPeso: Number( this.data.totalkilo ),
@@ -151,11 +164,67 @@ export class ElaboracionGuiasComponent implements OnInit {
       unidadesInternas: Number( this.data.totalUnidad ),
       tipoDocumento: "CC",
       numeroDocumento: Number( this.data.destinatarioNitIdentificacion || 999999 ),
-      fechaDocumento: this.data.destinatarioFechaExpedicion || "2019-10-10"
+      fechaDocumento: this.data.destinatarioFechaExpedicion || "2019-10-10",
+      tipoEnvio: this.data.tipoEnvio, // string
+      seleccionAgente: this.data.seleccionAgente, // string
+      paisOrigen: this.data.paisOrigen, // string
+      paisDestino: this.data.paisDestino, // string
+      valorAsegurado: this.data.valorAsegurado, //number
+      numeroFactura: this.data.numeroFactura, //number
+      flete: this.data.flete,  // boleando
+      valorRecaudar: this.data.valorRecaudar,   //number
+      destinatarioCosto: this.data.destinatarioCosto, // boleand
+      remitenteBarrio: this.data.remitenteBarrio, // strint
+      destinatarioFechaExpedicion: this.data.destinatarioFechaExpedicion, // strint
+      destinatarioCelular: this.data.destinatarioCelular, // number
+      vencimiento: this.data.vencimiento, // string
+      referencia: this.data.referencia, //string
+      observacionAdicional: this.data.observacionAdicional, //string
+      transportadoraSelect: this.data.transportadoraSelect //string
     };
     this._flete.fleteCrear( data ).subscribe((res:any)=>{
       console.log( res );
-    },( error )=> { console.error( error ); });
+      this.btnDisabled = false;
+      if( res.status !== 200){ this.mensaje = res.data.msx;}
+      else this._tools.tooast( { titulo:"Exitoso guia generada" } );
+      
+    },( error )=> { this._tools.tooast( { title:"Error en el servidor por favor reintenta!", icon: "error" } ); console.error( error ); this.btnDisabled = false; });
+  }
+
+  validandoCotizador(){
+    if( !this.data.ciudadDestino ) { this._tools.tooast({ title: "Error Falta ciudad de destino", icon: "error" } ); return false; }
+    if( !this.data.ciudadOrigen ) { this._tools.tooast({ title: "Error Falta ciudad de origen", icon: "error" } ); return false; }
+    if( !this.data.valorRecaudar ) { this._tools.tooast({ title: "Error Falta Valor recaudo", icon: "error" } ); return false; }
+    if( !this.data.totalUnidad ) { this._tools.tooast({ title: "Error Falta totalUnidad", icon: "error" } ); return false; }
+    if( !this.data.totalkilo ) { this._tools.tooast({ title: "Error Falta Peso real", icon: "error" } ); return false; }
+    if( !this.data.volumenAlto ) { this._tools.tooast({ title: "Error Falta Volumen alto", icon: "error" } ); return false; }
+    if( !this.data.volumenLargo ) { this._tools.tooast({ title: "Error Falta Volumen largo", icon: "error" } ); return false; }
+    if( !this.data.volumenAncho ) { this._tools.tooast({ title: "Error Falta Volumen ancho", icon: "error" } ); return false; }
+    return true;
+  }
+
+  valodandoGenerar(){
+    if( !this.data.totalUnidad ) { this._tools.tooast({ title: "Error Falta Total unidad", icon: "error" } ); return false; }
+    if( !this.data.identificacionRemitente ) { this._tools.tooast({ title: "Error Falta Identificacion remitente", icon: "error" } ); return false; }
+    if( !this.data.remitenteNombre ) { this._tools.tooast({ title: "Error Falta Remitente Nombre", icon: "error" } ); return false; }
+    if( !this.data.remitenteDireccion ) { this._tools.tooast({ title: "Error Falta Remitente dirección", icon: "error" } ); return false; }
+    if( !this.data.remitenteCelular ) { this._tools.tooast({ title: "Error Falta Celular", icon: "error" } ); return false; }
+    if( !this.data.ciudadOrigen ) { this._tools.tooast({ title: "Error Falta Ciudad Origen", icon: "error" } ); return false; }
+    if( !this.data.destinatarioNitIdentificacion ) { this._tools.tooast({ title: "Error Falta Destinatario nit Identificación", icon: "error" } ); return false; }
+    if( !this.data.destinatarioNombre ) { this._tools.tooast({ title: "Error Falta Destinatario nombre", icon: "error" } ); return false; }
+    if( !this.data.destinatarioDireccion ) { this._tools.tooast({ title: "Error Falta Destinatario Dirección", icon: "error" } ); return false; }
+    if( !this.data.destinatarioCelular ) { this._tools.tooast({ title: "Error Falta Destinatario celular", icon: "error" } ); return false; }
+    if( !this.data.ciudadDestino ) { this._tools.tooast({ title: "Error Falta Ciudad de destino", icon: "error" } ); return false; }
+    if( !this.data.destinatarioBarrio ) { this._tools.tooast({ title: "Error Falta Destinatario barrio", icon: "error" } ); return false; }
+    if( !this.data.totalkilo ) { this._tools.tooast({ title: "Error Falta Total de kilos", icon: "error" } ); return false; }
+    if( !this.data.valorFactura ) { this._tools.tooast({ title: "Error Falta Valor de la factura", icon: "error" } ); return false; }
+    if( !this.data.contenido ) { this._tools.tooast({ title: "Error Falta Contenido o dice tener", icon: "error" } ); return false; }
+    if( !this.data.volumenAlto ) { this._tools.tooast({ title: "Error Falta Volumen alto", icon: "error" } ); return false; }
+    if( !this.data.volumenLargo ) { this._tools.tooast({ title: "Error Falta Volumen largo", icon: "error" } ); return false; }
+    if( !this.data.volumenAncho ) { this._tools.tooast({ title: "Error Falta Volumen ancho", icon: "error" } ); return false; }
+    if( !this.data.numeroBolsa ) { this._tools.tooast({ title: "Error Falta Numero de bolsa", icon: "error" } ); return false; }
+    if( !this.data.totalUnidad ) { this._tools.tooast({ title: "Error Falta Total unidad", icon: "error" } ); return false; }
+    return true; 
   }
 
 }

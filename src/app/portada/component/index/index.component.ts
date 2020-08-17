@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserEnviosService } from 'src/app/servicesComponents/user-envios.service';
 import { ToolsService } from 'src/app/services/tools.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-index',
@@ -26,6 +27,7 @@ export class IndexComponent implements OnInit {
     "./assets/portada/imagenes/banner2.jpg",
     "./assets/portada/imagenes/banner3.jpg",
   ];
+  urlFront: string = environment.urlFront+"/portada/terminos";
 
   constructor(
     private _userEnvios: UserEnviosService,

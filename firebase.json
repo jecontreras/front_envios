@@ -1,0 +1,16 @@
+{
+  "hosting": {
+    "public": "dist/next-v8.1.2-lite",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

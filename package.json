@@ -34,7 +34,7 @@
     "ng-image-slider": "^2.6.1",
     "ng-socket-io": "^0.2.4",
     "ng2-validation": "^4.2.0",
-    "ngx-currency": "^2.3.3",
+    "ngx-currency": "^2.5.1",
     "ngx-dropzone": "^2.2.2",
     "ngx-infinite-scroll": "^9.0.0",
     "ngx-perfect-scrollbar": "^8.0.0",
