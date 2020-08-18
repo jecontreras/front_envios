@@ -5,6 +5,7 @@ import { STORAGES } from 'src/app/interfaces/sotarage';
 import { Store } from '@ngrx/store';
 import { DANEGROUP } from 'src/app/JSON/dane-nogroup';
 import * as moment from 'moment';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-elaboracion-guias',
@@ -14,7 +15,7 @@ import * as moment from 'moment';
 export class ElaboracionGuiasComponent implements OnInit {
   data:any = {};
   tablet:any = {
-    header: ["Opciones","Transp","Origen / Destino","Unid","Total Kilos","Kilos Vol","Valoración","Tray","Flete","Flete Manejo","Flete Total","Total","Tiempos Aprox"],
+    header: ["Opciones","Transp","Origen / Destino","Unid","Total Kilos","Kilos Vol","Valoración","Tray","Flete","Flete Manejo","Valor Tarifa","Total","Tiempos Aprox"],
     listRow: []
   };
   progreses:boolean = false;
@@ -25,7 +26,7 @@ export class ElaboracionGuiasComponent implements OnInit {
   keyword = 'city';
   mensaje:string;
   errorCotisa:string;
-
+  urlFront:string = environment.urlFront;
 
   constructor(
     private _flete: FleteService,
@@ -101,9 +102,13 @@ export class ElaboracionGuiasComponent implements OnInit {
           valoracion: "nacional",
           tray: "mensajeria",
           flete: this._tools.monedaChange( 3, 2, ( row.subtotales[0]['ConceptoAgrupado'][0]['valor'][0] || 0 ) ),
+          fleteSin: row.subtotales[0]['ConceptoAgrupado'][0]['valor'][0],
           fleteManejo: this._tools.monedaChange( 3, 2, ( row.subtotales[0]['ConceptoAgrupado'][1]['valor'][0] || 0 ) ),
+          fleteManejoSin: row.subtotales[0]['ConceptoAgrupado'][1]['valor'][0],
           fleteTotal: this._tools.monedaChange( 3, 2, ( row.total[0].valortarifa[0] || 0 ) ),
+          fleteTotalSin: row.total[0].valortarifa[0],
           total: this._tools.monedaChange( 3, 2, ( row.total[0].totaldespacho[0] || 0 ) ),
+          totalSin: row.total[0].totaldespacho[0],
           tiempoEstimado: "7 Dias"
         });
       }
@@ -112,6 +117,9 @@ export class ElaboracionGuiasComponent implements OnInit {
 
   selectTrans( item ){
     this.data.transportadoraSelect = "TCC";
+    this.data.fleteValor = item.fleteSin;
+    this.data.fleteManejo = item.fleteManejoSin;
+    this.data.flteTotal = item.totalSin;
   }
 
   generarGuia(){
@@ -121,6 +129,11 @@ export class ElaboracionGuiasComponent implements OnInit {
     this.mensaje = "";
     this.btnDisabled = true;
     let data:any = {
+      fleteValor: this.data.fleteValor,
+      fleteManejo: this.data.fleteManejo,
+      user: this.dataUser.id,
+      codigo: this._tools.codigo(),
+      flteTotal: this.data.flteTotal,
       solicitudFecha: this.data.fechaRemesa,
       solictudVentanaInicio: this.data.fechaRemesa,
       solictudVentanaFin: this.data.fechaRemesa,
@@ -134,7 +147,7 @@ export class ElaboracionGuiasComponent implements OnInit {
       direccionCliente: this.data.remitenteDireccion,
       emailRemitente: this.data.remitenteCorreo,
       telefonoRemitente: this.data.remitenteCelular || this.data.remitenteFijo,
-      ciudadOrigen: Number( this.data.ciudadOrigen ),
+      ciudadOrigen: /*11001000,*/ Number( this.data.ciudadOrigen ),
       tipoIdentificacionDestinatario: "CC",
       identificacionDestinatario: Number( this.data.destinatarioNitIdentificacion ),
       nombreDestinatario: this.data.destinatarioNombre,
@@ -143,7 +156,7 @@ export class ElaboracionGuiasComponent implements OnInit {
       contactoDestinatario: this.data.destinatarioNombre,
       emailDestinatario: this.data.destinatarioCorreo,
       telefonoDestinatario: Number( this.data.destinatarioCelular || this.data.destinatarioTelfijo ),
-      ciudadDestinatario: Number( this.data.ciudadDestino.code ),
+      ciudadDestinatario: /*11001000,*/ Number( this.data.ciudadDestino.code ),
       barrioDestinatario: this.data.destinatarioBarrio,
       totalPeso: Number( this.data.totalkilo ),
       totalPesovolumen: Number( this.data.pesoVolumen ),
@@ -185,8 +198,12 @@ export class ElaboracionGuiasComponent implements OnInit {
     this._flete.fleteCrear( data ).subscribe((res:any)=>{
       console.log( res );
       this.btnDisabled = false;
-      if( res.status !== 200){ this.mensaje = res.data.msx;}
-      else this._tools.tooast( { titulo:"Exitoso guia generada" } );
+      if( res.status !== 200){ this.mensaje = res.data.msx; this._tools.tooast( { title:"Error al generar la guia", icon: "error" } ); }
+      else { 
+        this.mensaje =  res.data.data['ns2:mensaje'][0];
+        this.mensaje+= `ver guia ->>  ${this.urlFront}/dashboard/estadoGuias`;
+        this._tools.tooast( { title:"Exitoso guia generada" } );
+      }
       
     },( error )=> { this._tools.tooast( { title:"Error en el servidor por favor reintenta!", icon: "error" } ); console.error( error ); this.btnDisabled = false; });
   }

@@ -6,13 +6,13 @@ import { FormsModule } from '@angular/forms';
 import { NgImageSliderModule } from 'ng-image-slider';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { TerminosComponent } from './component/terminos/terminos.component';
-
-
+import { ConfigurarPagosComponent } from './component/configurar-pagos/configurar-pagos.component';
 
 @NgModule({
   declarations: [
     IndexComponent,
-    TerminosComponent
+    TerminosComponent,
+    ConfigurarPagosComponent
   ],
   imports: [
     CommonModule,

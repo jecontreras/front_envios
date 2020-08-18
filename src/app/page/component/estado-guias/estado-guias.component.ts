@@ -26,7 +26,7 @@ export class EstadoGuiasComponent implements OnInit {
   notEmptyPost:boolean = true;
   dataUser:any = {};
   tablet:any = {
-    header: ["Opciones"],
+    header: ["Opciones","Guia","# Factura","Doc Referencia","Valor Pedido","Transportador","Agente","Peso","Piezas","Flete","Manejo","Flete x Recaudo","Total","Vlr Recaudo","Fecha / Dest","Estado","Novedades Global"],
     listRow: []
   }
 
@@ -62,6 +62,14 @@ export class EstadoGuiasComponent implements OnInit {
        this.query.page++;
        this.getRow();
      }
+   }
+
+   detalles( item:any ){
+
+   }
+
+   openView( url:string ){
+     window.open( url );
    }
 
 
