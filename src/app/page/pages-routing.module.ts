@@ -5,6 +5,7 @@ import { FleteComponent } from './component/flete/flete.component';
 import { FormFleteComponent } from './form/form-flete/form-flete.component';
 import { ElaboracionGuiasComponent } from './component/elaboracion-guias/elaboracion-guias.component';
 import { EstadoGuiasComponent } from './component/estado-guias/estado-guias.component';
+import { FormGuiaDetallesComponent } from './form/form-guia-detalles/form-guia-detalles.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,10 @@ const routes: Routes = [
   {
     path: "estadoGuias",
     component: EstadoGuiasComponent
+  },
+  {
+    path: "guiadetalles/:id",
+    component: FormGuiaDetallesComponent
   }
 ];
 

@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import { DANEGROUP } from 'src/app/JSON/dane-nogroup';
 import * as moment from 'moment';
 import { environment } from 'src/environments/environment';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-elaboracion-guias',
@@ -59,7 +60,7 @@ export class ElaboracionGuiasComponent implements OnInit {
       remitenteFijo: this.dataUser.telFijo,
       identificacionRemitente: this.dataUser.documento,
       remitenteCelular: this.dataUser.celular,
-      remitenteBarrio: this.dataUser.barrio,
+      remitenteBarrio: this.dataUser.barrio || "trigal",
       fechaRemesa: moment().format("YYYY-MM-DD"),
       ... this.data
     }
@@ -70,8 +71,8 @@ export class ElaboracionGuiasComponent implements OnInit {
     console.log( this.data );
     let validador:boolean = this.validandoCotizador ();
     if( !validador ) return false;
-    this.data.pesoVolumen = ( ( parseInt( this.data.volumenAlto ) * parseInt( this.data.volumenLargo ) * parseInt( this.data.volumenAncho ) ) / 166 ) || 0;
-    this.data.pesoVolumen = parseInt( this.data.pesoVolumen );
+    this.data.pesoVolumen = ( ( parseFloat( this.data.volumenAlto ) * parseFloat( this.data.volumenLargo ) * parseFloat( this.data.volumenAncho ) ) / 5000 ) || 0;
+    this.data.pesoVolumen = Math.round( this.data.pesoVolumen );
     let data = {
       idCiudadDestino: this.data.ciudadDestino.code,
       idCiudadOrigen: this.data.ciudadOrigen,
@@ -84,7 +85,32 @@ export class ElaboracionGuiasComponent implements OnInit {
       alto: Number( this.data.volumenAlto ),
       largo: Number( this.data.volumenLargo ),
       ancho: Number( this.data.volumenAncho ),
-      tipoEmpaque: ""
+      tipoEmpaque: "",
+      drpCiudadOrigen: ( this.listCiudades.find(( row:any )=> row.code == this.data.ciudadOrigen ) ).name,
+      txtIdentificacionDe: Number( this.data.identificacionRemitente ),
+      txtTelefonoDe: Number( this.data.remitenteCelular ),
+      txtDireccionDe: this.data.remitenteBarrio,
+      txtCod_Postal_Rem: 54403,
+      txtEMailRemitente: "joseeduar147@gmail.com",
+      txtPara: "Victor moizes",
+      txtIdentificacionPara: 98090871986,
+      drpCiudadDestino: this.data.ciudadDestino.name,
+      txtTelefonoPara: 3228576900,
+      txtDireccionPara: "calle 1",
+      txtCod_Postal_Des: "",
+      txtDice: this.data.contenido,
+      txtNotas: "ok",
+      txtAccion: "",
+      txtEMailDestinatario: "joseeduar147@gmail.com",
+      txtDoc1: "",
+      txtDoc2: "",
+      txtDoc3: "",
+      txtFec_CitaPactada: "",
+      txtFec_VenOrdenCompra: "",
+      esGrabar: 0,
+      lblMca_Cubicacion1: "",
+      hiddenInputToUpdateATBuffer_CommonToolkitScripts: 1,
+      txtGuia_a_Consultar: "",
     };
     this.btnDisabled = true;
     this.errorCotisa = "";
@@ -146,7 +172,8 @@ export class ElaboracionGuiasComponent implements OnInit {
       nombreRemitente: this.data.remitenteNombre,
       direccionCliente: this.data.remitenteDireccion,
       emailRemitente: this.data.remitenteCorreo,
-      telefonoRemitente: this.data.remitenteCelular || this.data.remitenteFijo,
+      telefonoRemitente: this.data.remitenteFijo || this.data.remitenteCelular,
+      celularRemitente: this.data.remitenteCelular,
       ciudadOrigen: /*11001000,*/ Number( this.data.ciudadOrigen ),
       tipoIdentificacionDestinatario: "CC",
       identificacionDestinatario: Number( this.data.destinatarioNitIdentificacion ),
@@ -155,7 +182,8 @@ export class ElaboracionGuiasComponent implements OnInit {
       direccionDestinatario: this.data.destinatarioDireccion,
       contactoDestinatario: this.data.destinatarioNombre,
       emailDestinatario: this.data.destinatarioCorreo,
-      telefonoDestinatario: Number( this.data.destinatarioCelular || this.data.destinatarioTelfijo ),
+      telefonoDestinatario: Number( this.data.destinatarioTelfijo || this.data.destinatarioCelular),
+      celularDestinatario: Number( this.data.destinatarioCelular ),
       ciudadDestinatario: /*11001000,*/ Number( this.data.ciudadDestino.code ),
       barrioDestinatario: this.data.destinatarioBarrio,
       totalPeso: Number( this.data.totalkilo ),

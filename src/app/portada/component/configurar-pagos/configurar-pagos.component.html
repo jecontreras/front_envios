@@ -6,7 +6,7 @@
             <div class="container">
                 <div class="row">
                     <div class="form-group col-12">
-                        <h4>DATOS DE EL FORMULARIO</h4>
+                        <h4>Diligenciar formulario para recibir tus pagos</h4>
                     </div>
                     <div class="form-group col-xs-4 col-sm-4 col-6">
                         <label>NOMBRES Y APELLIDOS: </label>
@@ -28,8 +28,7 @@
                         <label>Tipo de cuenta: </label>
                         <select class="form-control" [(ngModel)]="data.tipoCuenta" >
                             <option value="AhorroBancolombia">CUENTA AHORRO BANCOLOMBIA</option>
-                            <option value="AhorroMano">AHORRO A LA MANO</option>
-                            <option value="Bancolombia">BANCOLOMBIA</option>
+                            <option value="AhorroManoBancolombia">AHORRO A LA MANO BANCOLOMBIA</option>
                             <option value="Nequi">NEQUI</option>
                             <option value="Daviplata">DAVIPLATA</option>
                         </select>
@@ -39,8 +38,16 @@
                         <input type="text" class="form-control form-control-sm" [(ngModel)]="data.nCuenta">
                     </div>
                     <div class="form-group col-xs-4 col-sm-4 col-6">
+                        <label>Email: </label>
+                        <input type="text" class="form-control form-control-sm" [(ngModel)]="data.email">
+                    </div>
+                    <div class="form-group col-xs-4 col-sm-4 col-6">
                         <label>Foto de la cedula: </label>
-                        <input type="file" class="form-control-file" (change)="subirFile($event)">
+                        <input type="file" class="form-control-file" (change)="subirFile($event, 'fotoCedula')">
+                    </div>
+                    <div class="form-group col-xs-4 col-sm-4 col-6">
+                        <label>Foto de servicios publicos: </label>
+                        <input type="file" class="form-control-file" (change)="subirFile($event, 'fotoServicios')">
                     </div>
                     <div class="form-group col-12">
                         <div class="d-flex flex-row-reverse bd-highlight">

@@ -19,7 +19,7 @@ export class IndexComponent implements OnInit {
   cuenta de ahorros Bancolombia-ahorro a la mano de bancolombia-nequi
   cuenta de ahorros davivienda-daviplata`};
 
-  foto1: string = "./assets/portada/imagenes/foto1.jpg";
+  foto1: string = "./assets/imagenes/logo.jpeg";
   listaFotos:any = [
     "./assets/portada/imagenes/foto1.jpg",
     "./assets/portada/imagenes/banner1.jpg",
@@ -33,11 +33,11 @@ export class IndexComponent implements OnInit {
 
   ngOnInit(): void {
     let index:number = 0;
-    setInterval(()=>{
-      this.foto1 = this.listaFotos[index];
-      index++;
-      if( index >= 3 ) index = 0;
-    },5000);
+    // setInterval(()=>{
+    //   this.foto1 = this.listaFotos[index];
+    //   index++;
+    //   if( index >= 3 ) index = 0;
+    // },5000);
   }
 
   registrando(){

@@ -35,13 +35,13 @@
                                     </td>
                                     <td>{{ item.nRemesa }}</td>
                                     <td>
-                                        <input class="form-control form-control-sm" [(ngModel)]="item.numeroFactura" type="text">
+                                        <input style="width: 138px;" class="form-control form-control-sm" [(ngModel)]="item.numeroFactura" type="text" (ngModelChange)="updateInfro(item, 'numeroFactura')">
                                     </td>
                                     <td>
-                                        <input class="form-control form-control-sm" [(ngModel)]="item.referencia" type="text">
+                                        <input style="width: 138px;" class="form-control form-control-sm" [(ngModel)]="item.referencia" type="text" (ngModelChange)="updateInfro(item, 'referencia')">
                                     </td>
                                     <td>
-                                        <input class="form-control form-control-sm" [(ngModel)]="item.valorFactura" type="text">
+                                        <input style="width: 138px;" currencyMask class="form-control form-control-sm" [(ngModel)]="item.totalValorMercancia" [options]="formatoMoneda" (blur)="updateInfro(item, 'totalValorMercancia')" />
                                     </td>
                                     <td>{{ item.transportadoraSelect }}</td>
                                     <td>{{ item.seleccionAgente }}</td>

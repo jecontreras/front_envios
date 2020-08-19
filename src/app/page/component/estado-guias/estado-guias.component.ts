@@ -4,6 +4,7 @@ import { FleteService } from 'src/app/servicesComponents/flete.service';
 import { STORAGES } from 'src/app/interfaces/sotarage';
 import { Store } from '@ngrx/store';
 import * as _ from 'lodash';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-estado-guias',
@@ -28,7 +29,9 @@ export class EstadoGuiasComponent implements OnInit {
   tablet:any = {
     header: ["Opciones","Guia","# Factura","Doc Referencia","Valor Pedido","Transportador","Agente","Peso","Piezas","Flete","Manejo","Flete x Recaudo","Total","Vlr Recaudo","Fecha / Dest","Estado","Novedades Global"],
     listRow: []
-  }
+  };
+  urlFront:string = environment.urlFront;
+  formatoMoneda:any = {};
 
   constructor(
     private _tools: ToolsService,
@@ -39,6 +42,7 @@ export class EstadoGuiasComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.formatoMoneda = this._tools.formatoMoneda;
     this.getRow();
   }
 
@@ -65,11 +69,21 @@ export class EstadoGuiasComponent implements OnInit {
    }
 
    detalles( item:any ){
-
+      window.open( `${ this.urlFront }/dashboard/guiadetalles/${ item.id }`, "Detalles Guias", "width=640, height=480");
    }
 
    openView( url:string ){
      window.open( url );
+   }
+
+   updateInfro( item:any, opt:string){
+     if( this.btnDisabled ) return false;
+     this.btnDisabled = true;
+     let data:any = { id: item.id }; data[opt] = item[opt];
+     this._flete.update( data ).subscribe(( res:any )=>{
+      this._tools.tooast( { title: "Actualizado exitoso" } );
+      this.btnDisabled = false;
+     },( error )=> { this._tools.tooast( { title: "Error en el servidor", icon:"error" } ); this.btnDisabled = false; } );
    }
 
 

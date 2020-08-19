@@ -30,6 +30,7 @@ export class ConfigurarPagosComponent implements OnInit {
       this.disabled = false;
       this._tools.tooast( { title: "Exitos Registrado" });
       this.data = { };
+      window.open("https://creditoglobalsas.wixsite.com/misitio");
     },( error )=> { this.disabled = true; this._tools.tooast( { title: "Error de servidor", icon:"error"} ); });
   }
 
@@ -44,9 +45,8 @@ export class ConfigurarPagosComponent implements OnInit {
     return true;
   }
 
-  async subirFile( ev:any ){
-    this.data.fotoCedula = await this._archivos.getBase64( ev.target.files[0] );
-    console.log( this.data );
+  async subirFile( ev:any, opt:string ){
+    this.data[opt] = await this._archivos.getBase64( ev.target.files[0] );
   }
 
 }
