@@ -67,6 +67,7 @@ export class ElaboracionGuiasComponent implements OnInit {
   }
 
   submitCotizar(){
+
     this.tablet.listRow = [];
     console.log( this.data );
     let validador:boolean = this.validandoCotizador ();
@@ -88,7 +89,7 @@ export class ElaboracionGuiasComponent implements OnInit {
       tipoEmpaque: "",
       drpCiudadOrigen: ( this.listCiudades.find(( row:any )=> row.code == this.data.ciudadOrigen ) ).name,
       txtIdentificacionDe: Number( this.data.identificacionRemitente ),
-      txtTelefonoDe: Number( this.data.remitenteCelular ),
+      txtTelefonoDe: Number( this.data.remitenteFijo ||  this.data.remitenteCelular ),
       txtDireccionDe: this.data.remitenteBarrio,
       txtCod_Postal_Rem: 54403,
       txtEMailRemitente: "joseeduar147@gmail.com",
@@ -117,32 +118,61 @@ export class ElaboracionGuiasComponent implements OnInit {
     this._flete.fleteCotizar( data ).subscribe( ( res:any )=>{
       console.log( res );
       this.btnDisabled = false;
-      for( let row of res.data ){
-        if( row['respuesta'][0]['codigo'][0] == -1 ) { this.errorCotisa = row['respuesta'][0]['mensaje'][0];return false;}
-        this.tablet.listRow.push({
-          imgTrasp: "https://aveonline.co/app/temas/imagen_transpo/104926-1-tcc.jpg",
-          origenDestino: `${ this.data.ciudadOrigenText } ${ this.data.ciudadDestino.city } ( ${ this.data.ciudadDestino.state})` ,
-          unida: row.total[0].totalunidades[0],
-          totalKilos: row.total[0].totalpesoreal[0],
-          kilosVol: parseInt(row.total[0].totalpesovolumen[0] || 0),
-          valoracion: "nacional",
-          tray: "mensajeria",
-          flete: this._tools.monedaChange( 3, 2, ( row.subtotales[0]['ConceptoAgrupado'][0]['valor'][0] || 0 ) ),
-          fleteSin: row.subtotales[0]['ConceptoAgrupado'][0]['valor'][0],
-          fleteManejo: this._tools.monedaChange( 3, 2, ( row.subtotales[0]['ConceptoAgrupado'][1]['valor'][0] || 0 ) ),
-          fleteManejoSin: row.subtotales[0]['ConceptoAgrupado'][1]['valor'][0],
-          fleteTotal: this._tools.monedaChange( 3, 2, ( row.total[0].valortarifa[0] || 0 ) ),
-          fleteTotalSin: row.total[0].valortarifa[0],
-          total: this._tools.monedaChange( 3, 2, ( row.total[0].totaldespacho[0] || 0 ) ),
-          totalSin: row.total[0].totaldespacho[0],
-          tiempoEstimado: "7 Dias"
-        });
-      }
+      this.armandoCotizacionTcc( res.data.tcc );
+      this.armandoCotizacionEnvia( res.data.envia );
     } ,(error) => { this._tools.tooast( { title:"Error en el servidor por favor reintenta!", icon: "error" } ); this.btnDisabled = false; });
+
+  }
+
+  armandoCotizacionTcc( res:any ){
+    for( let row of res ){
+      if( row['respuesta'][0]['codigo'][0] == -1 ) { this.errorCotisa = row['respuesta'][0]['mensaje'][0];return false;}
+      this.tablet.listRow.push({
+        imgTrasp: "https://aveonline.co/app/temas/imagen_transpo/104926-1-tcc.jpg",
+        origenDestino: `${ this.data.ciudadOrigenText } ${ this.data.ciudadDestino.city } ( ${ this.data.ciudadDestino.state})` ,
+        unida: row.total[0].totalunidades[0],
+        totalKilos: row.total[0].totalpesoreal[0],
+        kilosVol: parseInt(row.total[0].totalpesovolumen[0] || 0),
+        valoracion: "nacional",
+        tray: "mensajeria",
+        flete: this._tools.monedaChange( 3, 2, ( row.subtotales[0]['ConceptoAgrupado'][0]['valor'][0] || 0 ) ),
+        fleteSin: row.subtotales[0]['ConceptoAgrupado'][0]['valor'][0],
+        fleteManejo: this._tools.monedaChange( 3, 2, ( row.subtotales[0]['ConceptoAgrupado'][1]['valor'][0] || 0 ) ),
+        fleteManejoSin: row.subtotales[0]['ConceptoAgrupado'][1]['valor'][0],
+        fleteTotal: this._tools.monedaChange( 3, 2, ( row.total[0].valortarifa[0] || 0 ) ),
+        fleteTotalSin: row.total[0].valortarifa[0],
+        total: this._tools.monedaChange( 3, 2, ( row.total[0].totaldespacho[0] || 0 ) ),
+        totalSin: row.total[0].totaldespacho[0],
+        tiempoEstimado: "7 Dias",
+        trasportadora: "TCC"
+      });
+    }
+  }
+
+  armandoCotizacionEnvia( res:any ){
+    this.tablet.listRow.push({
+      imgTrasp: "https://aveonline.co/app/temas/imagen_transpo/084935-1-envia-094632-1-ENVIA.jpg",
+      origenDestino: `${ this.data.ciudadOrigenText } ${ this.data.ciudadDestino.city } ( ${ this.data.ciudadDestino.state})` ,
+      unida: this.data.totalUnidad,
+      totalKilos: res[2]["Peso a Cobrar"],
+      kilosVol: this.data.pesoVolumen,
+      valoracion: res[0]['Cubrimiento'],
+      tray: "mensajeria",
+      flete: this._tools.monedaChange( 3, 2, ( res[3]['Flete'] || 0 ) ),
+      fleteSin: res[3]['Flete'],
+      fleteManejo: this._tools.monedaChange( 3, 2, ( res[5]['Otros'] || 0 ) ),
+      fleteManejoSin: res[5]['Otros'],
+      fleteTotal: this._tools.monedaChange( 3, 2, ( res[4]['F.V.'] || 0 ) ),
+      fleteTotalSin: res[4]['F.V.'],
+      total: this._tools.monedaChange( 3, 2, ( res[6]['Total'] || 0 ) ),
+      totalSin: res[6]['Total'],
+      tiempoEstimado: res[6]['Dias'],
+      trasportadora: "ENVIA"
+    });
   }
 
   selectTrans( item ){
-    this.data.transportadoraSelect = "TCC";
+    this.data.transportadoraSelect = item.trasportadora;
     this.data.fleteValor = item.fleteSin;
     this.data.fleteManejo = item.fleteManejoSin;
     this.data.flteTotal = item.totalSin;
@@ -223,7 +253,13 @@ export class ElaboracionGuiasComponent implements OnInit {
       observacionAdicional: this.data.observacionAdicional, //string
       transportadoraSelect: this.data.transportadoraSelect //string
     };
-    this._flete.fleteCrear( data ).subscribe((res:any)=>{
+
+    if( this.data.transportadoraSelect == "TCC" ) this.creandoGuiaTcc( data );
+    else this.creandoGuiaEnvia( data );
+  }
+
+  creandoGuiaTcc( data:any  ){
+    this._flete.fleteCrearTcc( data ).subscribe((res:any)=>{
       console.log( res );
       this.btnDisabled = false;
       if( res.status !== 200){ this.mensaje = res.data.msx; this._tools.tooast( { title:"Error al generar la guia", icon: "error" } ); }
@@ -233,7 +269,31 @@ export class ElaboracionGuiasComponent implements OnInit {
         this._tools.tooast( { title:"Exitoso guia generada" } );
       }
       
-    },( error )=> { this._tools.tooast( { title:"Error en el servidor por favor reintenta!", icon: "error" } ); console.error( error ); this.btnDisabled = false; });
+    },( error )=> { this._tools.tooast( { title:"Error en el servidor por favor reintenta!", icon: "error" } ); console.error( error ); this.btnDisabled = false; } );
+  }
+
+  creandoGuiaEnvia( datable:any ){
+    let data:any = {
+      drpCiudadOrigen: ( this.listCiudades.find(( row:any )=> row.code == this.data.ciudadOrigen ) ).name,
+      txtIdentificacionDe: this.data.identificacionRemitente,
+      txtTelefonoDe: this.data.remitenteFijo,
+      txtDireccionDe: this.data.remitenteDireccion,
+      txtPara: this.data.destinatarioNombre,
+      drpCiudadDestino: this.data.ciudadDestino.name,
+      txtTelefonoPara: this.data.destinatarioCelular,
+      txtDireccionPara: `${ this.data.destinatarioDireccion } ( ${ this.data.destinatarioBarrio } )`,
+      txtUnidades: this.data.totalUnidad,
+      txtPeso: this.data.totalkilo,
+      txtVolumen: this.data.pesoVolumen,
+      txtDeclarado: this.data.valorFactura,
+      txtValorRecaudo: this.data.valorRecaudar,
+      txtDice: this.data.contenido,
+      ... datable
+    };
+    this._flete.fleteCrearEnvia( data ).subscribe( ( res:any )=>{
+      this.btnDisabled = false;
+      this._tools.tooast( { title:"Exitoso guia generada" } );
+    },( error )=> { this._tools.tooast( { title:"Error en el servidor por favor reintenta!", icon: "error" } ); console.error( error ); this.btnDisabled = false; } );
   }
 
   validandoCotizador(){

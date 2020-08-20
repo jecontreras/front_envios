@@ -25,7 +25,10 @@ export class FleteService {
   fleteCotizar( query:any ){
     return this._model.querys('fletes/consultarliquidacion',query, 'post');
   }
-  fleteCrear( query:any ){
-    return this._model.querys('fletes/grabardespacho',query, 'post');
+  fleteCrearTcc( query:any ){
+    return this._model.querys('fletes/grabardespachotcc',query, 'post');
+  }
+  fleteCrearEnvia( query:any ){
+    return this._model.querys('fletes/grabardespachoenvia',query, 'post');
   }
 }
