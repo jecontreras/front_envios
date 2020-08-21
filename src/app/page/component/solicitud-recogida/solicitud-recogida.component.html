@@ -1,0 +1,401 @@
+<div class="card ng-trigger ng-trigger-cardRemove" animates="" animatesinitmode="show"
+    style="visibility: visible; opacity: 1;">
+    <div class="ng-tns-c14-12 ng-trigger ng-trigger-collapsedCard ng-star-inserted" style="overflow: hidden;">
+        <div class="d-flex flex-row bd-highlight mb-3">
+            <div class="p-2 bd-highlight">
+                <h5>RECOLECCION</h5>
+            </div>
+        </div>
+    </div>
+    <div class="content p-5">
+        <div class="row">
+            <div class="col-12">
+                <table border="0" cellpadding="2" cellspacing="3"
+                    style='color: black; font-family: "normal Verdana", Arial, Helvetica, sans-serif; font-size: 10px; width: 600pxpx;'>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <table bgcolor="#d7d7d7" cellspacing="1" style="width: 740pxpx;">
+                                    <tbody>
+                                        <tr bgcolor="#f2f2f2">
+                                            <td>
+                                                <div id="UpdatePanel1">
+                                                    <table cellpadding="0" class="textos"
+                                                        style="color: #6a6a6a; font-family: Tahoma; font-size: 11px; width: 750px;">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td colspan="4"><h3>Informacion Recoleccion</h3></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="2" valign="top">
+                                                                    <table>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td valign="top" width="100%">
+                                                                                    Dia en que se realizará la
+                                                                                    recolección:&nbsp;<input
+                                                                                        class="textos" id="txtFechaIni"
+                                                                                        [(ngModel)]="data.txtFechaIni"
+                                                                                        maxlength="30"
+                                                                                        name="txtFechaIni"
+                                                                                        style="color: #6a6a6a; font-family: Tahoma; font-size: 11px; width: 150px;"
+                                                                                        tabindex="8" type="text"
+                                                                                        value="jueves,  20/08/2020" />&nbsp;<input
+                                                                                        id="btnIniI0" name="btnIniI0"
+                                                                                        src="http://200.69.100.66/Online/Imagenes/calen.gif"
+                                                                                        tabindex="9" type="image" />
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                                <td colspan="2" valign="top">
+                                                                    <table class="style1" style="width: 348px;">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td valign="top">Ciudad de recoleccion:
+                                                                                </td>
+                                                                                <td valign="top">
+                                                                                    <ng-autocomplete [(ngModel)]="data.drpCiudad" [data]="listCiudades" [searchKeyword]="keyword" 
+                                                                                        placeHolder="Buscar Ciudad" autocomplete="off" historyIdentifier="listCiudades" 
+                                                                                        [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate"
+                                                                                        (change)="validarFecha()"
+                                                                                    >
+                                                                                    </ng-autocomplete>
+
+                                                                                    <ng-template #itemTemplate let-item>
+                                                                                        <div class="item">
+                                                                                            <!-- <img src="{{item.flag}}" height="25"> -->
+                                                                                            <span [innerHTML]="item.city"></span> &nbsp; | &nbsp;
+                                                                                            <small>Departamento: {{item.state}}</small>
+                                                                                        </div>
+                                                                                    </ng-template>
+
+                                                                                    <ng-template #notFoundTemplate let-notFound>
+                                                                                        <div [innerHTML]="notFound"></div>
+                                                                                    </ng-template>
+                                                                                    <button type="button" class="btn btn-primary" (click)="validarFecha()">Validar</button>
+                                                                                    <!-- <input autocomplete="off"
+                                                                                        class="textos" id="drpCiudad"
+                                                                                        [(ngModel)]="data.drpCiudad"
+                                                                                        (blur)="validarFecha()"
+                                                                                        name="drpCiudad"
+                                                                                        style="color: #6a6a6a; font-family: Tahoma; font-size: 11px; width: 200px;"
+                                                                                        tabindex="10" type="text"
+                                                                                        value="CUCUTA-NORTE DE SANTANDER" /> -->
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="4" valign="top"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td valign="top">Nombre y Apellido Solicitante</td>
+                                                                <td colspan="3" valign="top">
+                                                                    <input class="textos" id="txtNombreApellido"
+                                                                        maxlength="50" name="txtNombreApellido"
+                                                                        [(ngModel)]="data.txtNombreApellidoC"
+                                                                        style="color: #6a6a6a; font-family: Tahoma; font-size: 11px; width: 300px;"
+                                                                        tabindex="11" type="text" />
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td valign="top"></td>
+                                                                <td valign="top"></td>
+                                                                <td colspan="2" valign="top"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td valign="top">Direccion:</td>
+                                                                <td style="margin-left: 40px;" valign="top">
+                                                                    <input class="textos" id="txtDir_Cliente"
+                                                                        [(ngModel)]="data.txtDir_Cliente" maxlength="50"
+                                                                        name="txtDir_Cliente"
+                                                                        style="color: #6a6a6a; font-family: Tahoma; font-size: 11px; width: 200px;"
+                                                                        tabindex="14" type="text" />
+                                                                </td>
+                                                                <td colspan="2" rowspan="2" valign="top">
+                                                                    <div>
+                                                                        <span class="textoError" id="lblWarning"
+                                                                            style="background-color: #d4340c; border-color: white; color: white; font-family: Arial, sans-serif; padding: 2px;"></span>
+                                                                    </div>
+                                                                    <div *ngIf="data.lblWarningFecha">
+                                                                        <span class="textoError" id="lblWarningFecha"
+                                                                            style="background-color: #d4340c; border-color: white; color: white; font-family: Arial, sans-serif; padding: 2px;">{{ data.lblWarningFecha }}.</span>
+                                                                    </div>
+                                                                    <div>
+                                                                        <span class="textoError"
+                                                                            id="lblWarningCubrimiento"
+                                                                            style="background-color: #d4340c; border-color: white; color: white; font-family: Arial, sans-serif; padding: 2px;"></span>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td valign="top">Codigo Postal:</td>
+                                                                <td style="margin-left: 40px;" valign="top">
+                                                                    <span class="textos"
+                                                                        id="txtCod_Postal_Rem"></span><span
+                                                                        id="txtCod_Postal_RemZona"
+                                                                        style="color: #f2f2f2;"></span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td valign="top">Telefono:<br /></td>
+                                                                <td valign="top">
+                                                                    <input class="textos" id="TxtTel_Cliente"
+                                                                        [(ngModel)]="data.TxtTel_Cliente" maxlength="10"
+                                                                        name="TxtTel_Cliente"
+                                                                        style="color: #6a6a6a; font-family: Tahoma; font-size: 11px; width: 200px;"
+                                                                        tabindex="17" type="text" />
+                                                                </td>
+                                                                <td valign="top">Celular</td>
+                                                                <td valign="top">
+                                                                    <input class="textos" id="TxtTel_Cliente2"
+                                                                        [(ngModel)]="data.TxtTel_Cliente2"
+                                                                        maxlength="10" name="TxtTel_Cliente2"
+                                                                        style="color: #6a6a6a; font-family: Tahoma; font-size: 11px; width: 200px;"
+                                                                        tabindex="18" type="text" />
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td valign="top">Identific Remitente</td>
+                                                                <td valign="top">
+                                                                    <input class="textos" id="txtNum_Cliente"
+                                                                        [(ngModel)]="data.txtNum_Cliente"
+                                                                        name="txtNum_Cliente"
+                                                                        style="color: #6a6a6a; font-family: Tahoma; font-size: 11px;"
+                                                                        type="text" value="1093753373-2" />
+                                                                </td>
+                                                                <td valign="top">&nbsp;</td>
+                                                                <td valign="top">&nbsp;</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Nombre y apellido Remitente</td>
+                                                                <td colspan="3">
+                                                                    <input class="textos" id="txtNombreApellidoC"
+                                                                        [(ngModel)]="data.txtNombreApellidoC"
+                                                                        maxlength="50" name="txtNombreApellidoC"
+                                                                        style="color: #6a6a6a; font-family: Tahoma; font-size: 11px; width: 300px;"
+                                                                        tabindex="19" type="text" value="VICTOR VERA" />
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="4" valign="middle">
+                                                                    <table border="0"
+                                                                        style="border-style: solid; border-width: 1px; width: 746px;">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td width="300px"></td>
+                                                                                <td>Hora inicial:</td>
+                                                                                <td>
+                                                                                    <input class="textos"
+                                                                                        id="txtHInicial"
+                                                                                        [(ngModel)]="data.txtHInicial"
+                                                                                        name="txtHInicial"
+                                                                                        style="color: #6a6a6a; font-family: Tahoma; font-size: 11px; width: 45px;"
+                                                                                        tabindex="23" type="text"
+                                                                                        value="08:00" />
+                                                                                </td>
+                                                                                <td>Hora final:</td>
+                                                                                <td>
+                                                                                    <input class="textos" id="txtHFinal"
+                                                                                        [(ngModel)]="data.txtHFinal"
+                                                                                        name="txtHFinal"
+                                                                                        style="color: #6a6a6a; font-family: Tahoma; font-size: 11px; width: 45px;"
+                                                                                        tabindex="24" type="text"
+                                                                                        value="14:00" />
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table border="0" cellpadding="2" cellspacing="3"
+                    style='color: black; font-family: "normal Verdana", Arial, Helvetica, sans-serif; font-size: 10px; width: 600pxpx;'>
+                    <tbody>
+                        <tr>
+                            <td valign="top" width="750px">
+                                <div id="pnlActivaDestinatarios">
+                                    <table bgcolor="#d7d7d7" border="0" cellpadding="0" cellspacing="1"
+                                        style="width: 100%px;">
+                                        <tbody>
+                                            <tr bgcolor="#f2f2f2">
+                                                <td valign="top">
+                                                    <table class="textos"
+                                                        style="color: #6a6a6a; font-family: Tahoma; font-size: 11px; width: 100%px;">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="auto-style4" colspan="3"
+                                                                    style="height: 76px;"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="3"><h3>Embalaje</h3></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="3">
+                                                                    <table class="style1" style="width: 746px;">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td align="center">Unidades</td>
+                                                                                <td align="center">Peso (Kg. Aproximado)
+                                                                                </td>
+                                                                                <td align="center">Valor Declarado</td>
+                                                                                <td>&nbsp;</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td align="center">
+                                                                                    <input class="textos"
+                                                                                        id="txtNum_Unidades"
+                                                                                        maxlength="5"
+                                                                                        [(ngModel)]="data.txtNum_Unidades"
+                                                                                        name="txtNum_Unidades"
+                                                                                        style="color: #6a6a6a; font-family: Tahoma; font-size: 11px; width: 50px;"
+                                                                                        tabindex="89" type="text" />
+                                                                                </td>
+                                                                                <td align="center">
+                                                                                    <input class="textos"
+                                                                                        id="txtPesoReal_K" maxlength="5"
+                                                                                        [(ngModel)]="data.txtPesoReal_K"
+                                                                                        name="txtPesoReal_K"
+                                                                                        style="color: #6a6a6a; font-family: Tahoma; font-size: 11px; width: 50px;"
+                                                                                        tabindex="90"
+                                                                                        type="text" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+                                                                                        class="textos" id="btnCubicar"
+                                                                                        name="btnCubicar"
+                                                                                        style="color: #6a6a6a; font-family: Tahoma; font-size: 11px;"
+                                                                                        tabindex="32" type="submit"
+                                                                                        value="Cubicar" />
+                                                                                </td>
+                                                                                <td align="center">
+                                                                                    <input class="textos"
+                                                                                        id="txtValor_Declarado"
+                                                                                        [(ngModel)]="data.txtValor_Declarado"
+                                                                                        maxlength="10"
+                                                                                        name="txtValor_Declarado"
+                                                                                        style="color: #6a6a6a; font-family: Tahoma; font-size: 11px; width: 100px;"
+                                                                                        tabindex="91" type="text" />
+                                                                                </td>
+                                                                                <td>&nbsp;</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td colspan="2"></td>
+                                                                                <td>&nbsp;</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Dice Contener:</td>
+                                                                                <td colspan="2">
+                                                                                    <input class="textos"
+                                                                                        id="txtDice_Contener"
+                                                                                        [(ngModel)]="data.txtDice_Contener"
+                                                                                        maxlength="40"
+                                                                                        name="txtDice_Contener"
+                                                                                        style="color: #6a6a6a; font-family: Tahoma; font-size: 11px; width: 250px;"
+                                                                                        tabindex="92"
+                                                                                        type="text" />&nbsp;<input
+                                                                                        id="chkMca_EsDocumento"
+                                                                                        name="chkMca_EsDocumento"
+                                                                                        tabindex="93"
+                                                                                        type="checkbox" /><label
+                                                                                        for="chkMca_EsDocumento">Contiene
+                                                                                        Documentos</label>
+                                                                                </td>
+                                                                                <td>&nbsp;</td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="2">&nbsp;</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td valign="top"></td>
+                                                                <td>&nbsp;</td>
+                                                                <td>&nbsp;</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Observaciones:</td>
+                                                                <td>&nbsp;</td>
+                                                                <td>&nbsp;</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <textarea class="textos" cols="65"
+                                                                        id="txaObservaciones" name="txaObservaciones"
+                                                                        [(ngModel)]="data.txaObservaciones"
+                                                                        rows="3"
+                                                                        style="color: #6a6a6a; font-family: Tahoma; font-size: 11px;"
+                                                                        tabindex="103"></textarea>
+                                                                </td>
+                                                                <td>
+                                                                    <div style="color: red;">
+                                                                        La información de Valor Declarado es necesaria
+                                                                        ya
+                                                                        que en caso de pérdida o siniestro, Colvanes
+                                                                        responderá por el monto aqui descrito
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <button type="button" (click)="guardarBtn()" class="btn btn-success">Guardar</button>&nbsp;
+                                                                    <img alt=""
+                                                                        id="divProgress"
+                                                                        src="http://200.69.100.66/Online/imagenes/uploading.gif"
+                                                                        style="border: none; visibility: hidden;" />&nbsp;
+                                                                        <button type="button" class="btn btn-secondary" (click)="limpiar()">Limpiar</button>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Nota / Instruccion Adicional</td>
+                                                                <td>&nbsp;</td>
+                                                                <td>&nbsp;</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <input class="textos" id="txtNota" maxlength="40"
+                                                                        [(ngModel)]="data.txtNota"
+                                                                        name="txtNota"
+                                                                        style="color: #6a6a6a; font-family: Tahoma; font-size: 11px; width: 250px;"
+                                                                        tabindex="95" type="text" />
+                                                                </td>
+                                                                <td>&nbsp;</td>
+                                                                <td>&nbsp;</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="3"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="3">
+                                                                    <span class="textos"
+                                                                        id="lblFechaHabil">{{ data.lblWarningFecha }}</span>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

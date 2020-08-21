@@ -6,6 +6,7 @@ import { FormFleteComponent } from './form/form-flete/form-flete.component';
 import { ElaboracionGuiasComponent } from './component/elaboracion-guias/elaboracion-guias.component';
 import { EstadoGuiasComponent } from './component/estado-guias/estado-guias.component';
 import { FormGuiaDetallesComponent } from './form/form-guia-detalles/form-guia-detalles.component';
+import { SolicitudRecogidaComponent } from './component/solicitud-recogida/solicitud-recogida.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,10 @@ const routes: Routes = [
   {
     path: "guiadetalles/:id",
     component: FormGuiaDetallesComponent
+  },
+  {
+    path: "solicitudrecogia",
+    component: SolicitudRecogidaComponent
   }
 ];
 

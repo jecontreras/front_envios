@@ -126,7 +126,7 @@ export class ElaboracionGuiasComponent implements OnInit {
 
   armandoCotizacionTcc( res:any ){
     for( let row of res ){
-      if( row['respuesta'][0]['codigo'][0] == -1 ) { this.errorCotisa = row['respuesta'][0]['mensaje'][0];return false;}
+      if( row['respuesta'][0]['codigo'][0] == -1 ) { this.errorCotisa = row['respuesta'][0]['mensaje'][0] + " Tcc"; return false;}
       this.tablet.listRow.push({
         imgTrasp: "https://aveonline.co/app/temas/imagen_transpo/104926-1-tcc.jpg",
         origenDestino: `${ this.data.ciudadOrigenText } ${ this.data.ciudadDestino.city } ( ${ this.data.ciudadDestino.state})` ,
@@ -166,7 +166,7 @@ export class ElaboracionGuiasComponent implements OnInit {
       fleteTotalSin: res[4]['F.V.'],
       total: this._tools.monedaChange( 3, 2, ( res[6]['Total'] || 0 ) ),
       totalSin: res[6]['Total'],
-      tiempoEstimado: res[6]['Dias'],
+      tiempoEstimado: res[1]['Dias'],
       trasportadora: "ENVIA"
     });
   }

@@ -14,6 +14,7 @@ import { ElaboracionGuiasComponent } from './component/elaboracion-guias/elabora
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 import { EstadoGuiasComponent } from './component/estado-guias/estado-guias.component';
 import { FormGuiaDetallesComponent } from './form/form-guia-detalles/form-guia-detalles.component';
+import { SolicitudRecogidaComponent } from './component/solicitud-recogida/solicitud-recogida.component';
 
 @NgModule({
   declarations: [ 
@@ -23,7 +24,8 @@ import { FormGuiaDetallesComponent } from './form/form-guia-detalles/form-guia-d
     FormFleteComponent,
     ElaboracionGuiasComponent,
     EstadoGuiasComponent,
-    FormGuiaDetallesComponent
+    FormGuiaDetallesComponent,
+    SolicitudRecogidaComponent
   ],
   entryComponents:[
     FormGuiaDetallesComponent
