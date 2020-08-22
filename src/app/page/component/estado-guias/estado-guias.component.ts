@@ -69,8 +69,11 @@ export class EstadoGuiasComponent implements OnInit {
    }
 
    detalles( item:any ){
-      window.open( `${ this.urlFront }/dashboard/guiadetalles/${ item.id }`, "Detalles Guias", "width=640, height=480");
-   }
+     console.log( item );
+    //  if( item.transportadoraSelect == "ENVIA" ) window.open( `http://200.69.100.66/OnlineR/Rastreo1.aspx?Mca_MostrarFlete=0&Guia=${ item.nRemesa }`, "Detalles Guias", "width=640, height=480" );
+    //  else 
+     window.open( `${ this.urlFront }/dashboard/guiadetalles/${ item.id }`, "Detalles Guias", "width=640, height=480");
+    }
 
    openView( url:string ){
      window.open( url );

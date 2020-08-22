@@ -4,6 +4,7 @@ import { RecogiasService } from 'src/app/servicesComponents/recogias.service';
 import { ToolsService } from 'src/app/services/tools.service';
 import { STORAGES } from 'src/app/interfaces/sotarage';
 import { Store } from '@ngrx/store';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-solicitud-recogida',
@@ -13,7 +14,7 @@ import { Store } from '@ngrx/store';
 export class SolicitudRecogidaComponent implements OnInit {
 
   data:any = {
-    txtFechaIni: "jueves,  20/08/2020"
+    // txtFechaIni: "jueves,  20/08/2020"
   };
   listCiudades:any = DANEGROUP;
   keyword = 'city';
@@ -34,6 +35,7 @@ export class SolicitudRecogidaComponent implements OnInit {
   }
 
   ngOnInit() {
+    moment.locale("es");
     this.formData();
   }
 
@@ -43,11 +45,17 @@ export class SolicitudRecogidaComponent implements OnInit {
       txtNombreApellidoC: this.dataUser.name + " " + this.dataUser.lastname,
       txtHInicial: "08:00",
       txtHFinal: "14:00",
+      txtFechaIni: `${ moment().format("dddd") }, ${ moment().format("DD/MM/YYYY") }`,
       ...this.data
     };
+    console.log( this.data );
   }
 
   validarFecha(){
+    setTimeout( ()=> this.getValidarFecha(), 2000 );
+  }
+
+  getValidarFecha(){
     let data = {
       txtFechaIni: this.data.txtFechaIni,
       drpCiudad: this.data.drpCiudad.name,
