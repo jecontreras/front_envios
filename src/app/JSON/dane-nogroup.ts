@@ -1594,7 +1594,7 @@ export const DANEGROUP: any = [
 	{"code": "68211000","city": "CONTRATACIÓN","state": "SANTANDER","active": "R", "name": ""},
 	{"code": "68318000","city": "GUACA","state": "SANTANDER","active": "R", "name": ""},
 	{"code": "68549000","city": "PINCHOTE","state": "SANTANDER","active": "", "name": ""},
-	{"code": "68001000","city": "BUCARAMANGA","state": "SANTANDER","active": "", "name": ""},
+	{"code": "68001000","city": "BUCARAMANGA","state": "SANTANDER","active": "", "name": "BUCARAMANGA-SANTANDER"},
 	{"code": "68092000","city": "BETULIA","state": "SANTANDER","active": "R", "name": "BETULIA-SANTANDER"},
 	{"code": "68235000","city": "EL CARMEN DE CHUCURÍ","state": "SANTANDER","active": "R", "name": ""},
 	{"code": "68266000","city": "ENCISO","state": "SANTANDER","active": "R", "name": ""},

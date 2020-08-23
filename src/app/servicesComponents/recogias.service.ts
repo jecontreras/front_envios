@@ -25,4 +25,7 @@ export class RecogiasService {
   consulfechas(query:any){
     return this._model.querys('recogias/consulfechas',query, 'post');
   }
+  createRecogia(query:any){
+    return this._model.querys('recogias/crearrecogia',query, 'post');
+  }
 }

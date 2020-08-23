@@ -99,7 +99,8 @@ export class SolicitudRecogidaComponent implements OnInit {
     };
     data.drpCiudadTcc = this.data.drpCiudad.code;
     data.drpCiudadEnvia = this.data.drpCiudad.name;
-    this._recogias.create( data ).subscribe(( res:any )=>{
+    // console.log( data );
+    this._recogias.createRecogia( data ).subscribe(( res:any )=>{
       this.btnDisabled = false;
       this._tools.tooast( { title: "Generado exitos" });
       this.data = {};
