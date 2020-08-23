@@ -307,7 +307,7 @@ export const DANEGROUP: any = [
 	{"code": "13468000","city": "SANTA CRUZ DE MOMPÓX","state": "BOLIVAR","active": "", "name": ""},
 	{"code": "13688000","city": "SANTA ROSA DEL SUR","state": "BOLIVAR","active": "", "name": ""},
 	{"code": "15693000","city": "SANTA ROSA DE VITERBO","state": "BOYACA","active": "", "name": ""},
-	{"code": "15753000","city": "SOATÁ","state": "BOYACA","active": "R", "name": ""},
+	{"code": "15753000","city": "SOATÁ","state": "BOYACA","active": "R", "name": "SOATA-BOYACA"},
 	{"code": "15759000","city": "SOGAMOSO","state": "BOYACA","active": "", "name": ""},
 	{"code": "15001000","city": "TUNJA","state": "BOYACA","active": "", "name": ""},
 	{"code": "15861000","city": "VENTAQUEMADA","state": "BOYACA","active": "", "name": ""},

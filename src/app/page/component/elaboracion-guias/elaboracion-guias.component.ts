@@ -74,6 +74,7 @@ export class ElaboracionGuiasComponent implements OnInit {
     if( !validador ) return false;
     this.data.pesoVolumen = ( ( parseFloat( this.data.volumenAlto ) * parseFloat( this.data.volumenLargo ) * parseFloat( this.data.volumenAncho ) ) / 5000 ) || 0;
     this.data.pesoVolumen = Math.round( this.data.pesoVolumen );
+    this.data.valorFactura = this.data.valorRecaudar;
     let data = {
       idCiudadDestino: this.data.ciudadDestino.code,
       idCiudadOrigen: this.data.ciudadOrigen,
@@ -184,6 +185,7 @@ export class ElaboracionGuiasComponent implements OnInit {
     this.data.fechaRemesa = moment().format("YYYY-MM-DD");
     this.mensaje = "";
     this.btnDisabled = true;
+    this.data.valorFactura = this.data.valorRecaudar;
     let data:any = {
       fleteValor: this.data.fleteValor,
       fleteManejo: this.data.fleteManejo,
@@ -267,6 +269,7 @@ export class ElaboracionGuiasComponent implements OnInit {
         this.mensaje =  res.data.data['ns2:mensaje'][0];
         this.mensaje+= `ver guia ->>  ${this.urlFront}/dashboard/estadoGuias`;
         this._tools.tooast( { title:"Exitoso guia generada" } );
+        this.data.id = res.data.msx.id;
       }
       
     },( error )=> { this._tools.tooast( { title:"Error en el servidor por favor reintenta!", icon: "error" } ); console.error( error ); this.btnDisabled = false; } );
@@ -292,8 +295,16 @@ export class ElaboracionGuiasComponent implements OnInit {
     };
     this._flete.fleteCrearEnvia( data ).subscribe( ( res:any )=>{
       this.btnDisabled = false;
+      this.mensaje+= `ver guia ->>  ${this.urlFront}/dashboard/estadoGuias`;
       this._tools.tooast( { title:"Exitoso guia generada" } );
+      this.data.id = res.data.id;
     },( error )=> { this._tools.tooast( { title:"Error en el servidor por favor reintenta!", icon: "error" } ); console.error( error ); this.btnDisabled = false; } );
+  }
+
+  limpiar(){
+    this.data = {};
+    this.tablet.listRow = [];
+    this.armandoData();
   }
 
   validandoCotizador(){

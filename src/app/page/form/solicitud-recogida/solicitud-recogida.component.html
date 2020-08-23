@@ -10,25 +10,25 @@
     <div class="content p-5">
         <div class="row">
             <div class="col-12">
-                <table border="0" cellpadding="2" cellspacing="3"
-                    style='color: black; font-family: "normal Verdana", Arial, Helvetica, sans-serif; font-size: 10px; width: 600pxpx;'>
+                <table cellpadding="2" cellspacing="3"
+                    class="table">
                     <tbody>
                         <tr>
                             <td>
-                                <table bgcolor="#d7d7d7" cellspacing="1" style="width: 740pxpx;">
+                                <table bgcolor="#d7d7d7" cellspacing="1" class="table">
                                     <tbody>
                                         <tr bgcolor="#f2f2f2">
                                             <td>
                                                 <div id="UpdatePanel1">
                                                     <table cellpadding="0" class="textos"
-                                                        style="color: #6a6a6a; font-family: Tahoma; font-size: 11px; width: 750px;">
+                                                        class="table">
                                                         <tbody>
                                                             <tr>
                                                                 <td colspan="4"><h3>Informacion Recoleccion</h3></td>
                                                             </tr>
                                                             <tr>
                                                                 <td colspan="2" valign="top">
-                                                                    <table>
+                                                                    <table class="table">
                                                                         <tbody>
                                                                             <tr>
                                                                                 <td valign="top" width="100%">
@@ -50,7 +50,7 @@
                                                                     </table>
                                                                 </td>
                                                                 <td colspan="2" valign="top">
-                                                                    <table class="style1" style="width: 348px;">
+                                                                    <table class="table">
                                                                         <tbody>
                                                                             <tr>
                                                                                 <td valign="top">Ciudad de recoleccion:
@@ -224,19 +224,17 @@
                         </tr>
                     </tbody>
                 </table>
-                <table border="0" cellpadding="2" cellspacing="3"
-                    style='color: black; font-family: "normal Verdana", Arial, Helvetica, sans-serif; font-size: 10px; width: 600pxpx;'>
+                <table cellpadding="2" cellspacing="3"
+                class="table">
                     <tbody>
                         <tr>
                             <td valign="top" width="750px">
                                 <div id="pnlActivaDestinatarios">
-                                    <table bgcolor="#d7d7d7" border="0" cellpadding="0" cellspacing="1"
-                                        style="width: 100%px;">
+                                    <table class="table" cellpadding="0" cellspacing="1">
                                         <tbody>
-                                            <tr bgcolor="#f2f2f2">
+                                            <tr>
                                                 <td valign="top">
-                                                    <table class="textos"
-                                                        style="color: #6a6a6a; font-family: Tahoma; font-size: 11px; width: 100%px;">
+                                                    <table class="table textos">
                                                         <tbody>
                                                             <tr>
                                                                 <td class="auto-style4" colspan="3"
@@ -247,7 +245,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td colspan="3">
-                                                                    <table class="style1" style="width: 746px;">
+                                                                    <table class="style1 table" style="width: 746px;">
                                                                         <tbody>
                                                                             <tr>
                                                                                 <td align="center">Unidades</td>
@@ -273,12 +271,7 @@
                                                                                         name="txtPesoReal_K"
                                                                                         style="color: #6a6a6a; font-family: Tahoma; font-size: 11px; width: 50px;"
                                                                                         tabindex="90"
-                                                                                        type="text" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
-                                                                                        class="textos" id="btnCubicar"
-                                                                                        name="btnCubicar"
-                                                                                        style="color: #6a6a6a; font-family: Tahoma; font-size: 11px;"
-                                                                                        tabindex="32" type="submit"
-                                                                                        value="Cubicar" />
+                                                                                        type="text" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                                                 </td>
                                                                                 <td align="center">
                                                                                     <input class="textos"
@@ -306,13 +299,7 @@
                                                                                         name="txtDice_Contener"
                                                                                         style="color: #6a6a6a; font-family: Tahoma; font-size: 11px; width: 250px;"
                                                                                         tabindex="92"
-                                                                                        type="text" />&nbsp;<input
-                                                                                        id="chkMca_EsDocumento"
-                                                                                        name="chkMca_EsDocumento"
-                                                                                        tabindex="93"
-                                                                                        type="checkbox" /><label
-                                                                                        for="chkMca_EsDocumento">Contiene
-                                                                                        Documentos</label>
+                                                                                        type="text" />&nbsp;
                                                                                 </td>
                                                                                 <td>&nbsp;</td>
                                                                             </tr>
@@ -351,7 +338,7 @@
                                                                     </div>
                                                                 </td>
                                                                 <td>
-                                                                    <button type="button" (click)="guardarBtn()" class="btn btn-success">Guardar</button>&nbsp;
+                                                                    <button type="button" [disabled]="btnDisabled" (click)="guardarBtn()" class="btn btn-success">Guardar</button>&nbsp;
                                                                     <img alt=""
                                                                         id="divProgress"
                                                                         src="http://200.69.100.66/Online/imagenes/uploading.gif"

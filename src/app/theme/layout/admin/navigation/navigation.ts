@@ -53,6 +53,13 @@ const NavigationItems = [
         url: '/dashboard/solicitudrecogia',
         icon: 'feather icon-home'
       },
+      {
+        id: 'solicitud-recogia',
+        title: 'Lista de Recogia',
+        type: 'item',
+        url: '/dashboard/listrecogia',
+        icon: 'feather icon-home'
+      },
     ]
   }
 

@@ -27,7 +27,7 @@ export class FormGuiaDetallesComponent implements OnInit {
   }
 
   getFlete(){
-    this._flete.get( { where: { /*id: this.id*/ } } ).subscribe(( res:any )=>{
+    this._flete.get( { where: { id: this.id } } ).subscribe(( res:any )=>{
       res = res.data[0];
       if( !res ) return false;
       this.data = res;

@@ -96,34 +96,34 @@
                 <label>Numero de la Factura: </label>
                 <input type="text" class="form-control form-control-sm" [(ngModel)]="data.numeroFactura">
             </div>
-            <div class="form-group col-xs-4 col-sm-3 col-4">
+            <!-- <div class="form-group col-xs-4 col-sm-3 col-4">
                 <label>Valor de la factura: </label>
                 <input type="number" class="form-control form-control-sm" [(ngModel)]="data.valorFactura">
-            </div>
+            </div> -->
             <div class="form-group col-xs-4 col-sm-3 col-4">
                 <label>Numero de bolsas: </label>
                 <input type="number" class="form-control form-control-sm" [(ngModel)]="data.numeroBolsa">
             </div>
-            <div class="form-group col-xs-4 col-sm-3 col-4">
+            <!-- <div class="form-group col-xs-4 col-sm-3 col-4">
                 <input class="form-check-input" type="checkbox" [(ngModel)]="data.flete">
                 <label class="form-check-label" for="defaultCheck1">
                     Flete
                 </label>
-            </div>
+            </div> -->
             <div class="form-group col-xs-4 col-sm-3 col-4">
                 <label>Valor a recaudar: </label>
                 <input type="number" class="form-control form-control-sm" [(ngModel)]="data.valorRecaudar">
             </div>
-            <div class="form-group col-xs-4 col-sm-3 col-4">
+            <!-- <div class="form-group col-xs-4 col-sm-3 col-4">
                 <input class="form-check-input" type="checkbox" [(ngModel)]="data.destinatarioCosto">
                 <label class="form-check-label" for="defaultCheck1">
                     El Destinatario asume el costo del recaudo
                 </label>
-            </div>
+            </div> -->
             <div class="form-group col-12">
                 <div class="d-flex flex-row-reverse bd-highlight">
                     <div class="p-2 bd-highlight">
-                        <button type="button" class="btn btn-success" (click)="submitCotizar()" [disabled]="btnDisabled">COTIZAR ENVIO</button>
+                        <button type="button" class="btn btn-success" (click)="submitCotizar()" *ngIf="!data.id" [disabled]="btnDisabled">COTIZAR ENVIO</button>
                     </div>
                   </div>
             </div>
@@ -301,7 +301,8 @@
                 <div class="form-group col-12">
                     <div class="d-flex flex-row-reverse bd-highlight">
                         <div class="p-2 bd-highlight">
-                            <button type="button" class="btn btn-danger" [disabled]="btnDisabled" (click)="generarGuia()">GENERAR GUIA</button>
+                            <button type="button" class="btn btn-danger" *ngIf="!data.id" [disabled]="btnDisabled" (click)="generarGuia()">GENERAR GUIA</button>
+                            <button type="button" class="btn btn-warning" [disabled]="btnDisabled" (click)="limpiar()">LIMPIAR</button>
                         </div>
                       </div>
                 </div>

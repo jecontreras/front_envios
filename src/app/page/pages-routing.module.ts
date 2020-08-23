@@ -6,7 +6,8 @@ import { FormFleteComponent } from './form/form-flete/form-flete.component';
 import { ElaboracionGuiasComponent } from './component/elaboracion-guias/elaboracion-guias.component';
 import { EstadoGuiasComponent } from './component/estado-guias/estado-guias.component';
 import { FormGuiaDetallesComponent } from './form/form-guia-detalles/form-guia-detalles.component';
-import { SolicitudRecogidaComponent } from './component/solicitud-recogida/solicitud-recogida.component';
+import { SolicitudRecogidaComponent } from './form/solicitud-recogida/solicitud-recogida.component';
+import { ListRecogiaComponent } from './component/list-recogia/list-recogia.component';
 
 const routes: Routes = [
   {
@@ -40,7 +41,15 @@ const routes: Routes = [
   {
     path: "solicitudrecogia",
     component: SolicitudRecogidaComponent
-  }
+  },
+  {
+    path: "listrecogia",
+    component: ListRecogiaComponent
+  },
+  {
+    path: "solicitudrecogia/:id",
+    component: SolicitudRecogidaComponent
+  },
 ];
 
 @NgModule({

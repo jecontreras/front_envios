@@ -25,48 +25,21 @@
                                             <button type="button" class="btn btn-primary" (click)="detalles( item )">
                                                 <i class="fa fa-eye" aria-hidden="true"></i>
                                             </button>
-                                            <div *ngIf="item.urlRotulos">
-                                                <button type="button" (click)="openView(item.urlRotulos)" class="btn btn-primary">Rotulos</button>
-                                            </div>
-                                            <div *ngIf="item.urlRelacionenvio">
-                                                <button type="button" (click)="openView(item.urlRelacionenvio)" class="btn btn-primary">Relacion</button>
-                                            </div>
-                                            <div>
-                                                <button type="button" (click)="cancelar( item )" class="btn btn-danger">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </div>
+                                            <button type="button" class="btn btn-danger" [disabled]="btnDisabled" *ngIf="item.estado == 0" (click)="cancelar( item )">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
                                         </div>
                                     </td>
-                                    <td>{{ item.nRemesa }}</td>
+                                    <td>{{ item.txtNombreApellidoC }}</td>
+                                    <td>{{ item.TxtTel_Cliente }}</td>
+                                    <td>{{ item.txtNum_Cliente }}</td>
+                                    <td>{{ item.nameCiudad }}</td>
+                                    <td>{{ item.txtDice_Contener }}</td>
+                                    <td>{{ item.txtNum_Unidades }}</td>
+                                    <td>{{ item.txtPesoReal_K }}</td>
+                                    <td>{{ item.createdAt | date: "medium" }}</td>
                                     <td>
-                                        <input style="width: 138px;" class="form-control form-control-sm" [(ngModel)]="item.numeroFactura" type="text" (ngModelChange)="updateInfro(item, 'numeroFactura')">
-                                    </td>
-                                    <td>
-                                        <input style="width: 138px;" class="form-control form-control-sm" [(ngModel)]="item.referencia" type="text" (ngModelChange)="updateInfro(item, 'referencia')">
-                                    </td>
-                                    <td>
-                                        <input style="width: 138px;" currencyMask class="form-control form-control-sm" [(ngModel)]="item.totalValorMercancia" [options]="formatoMoneda" (blur)="updateInfro(item, 'totalValorMercancia')" />
-                                    </td>
-                                    <td>
-                                        <div *ngIf="item.transportadoraSelect == 'ENVIA'" >
-                                            <img src="https://aveonline.co/app/temas/imagen_transpo/084935-1-envia-094632-1-ENVIA.jpg" class="img">
-                                        </div>
-                                        <div *ngIf="item.transportadoraSelect == 'TCC'" >
-                                            <img src="https://aveonline.co/app/temas/imagen_transpo/104926-1-tcc.jpg" class="img">
-                                        </div>
-                                    </td>
-                                    <td>{{ item.seleccionAgente }}</td>
-                                    <td>{{ item.kilosReales }}</td>
-                                    <td>{{ item.unidadesInternas }}</td>
-                                    <td>{{ item.fleteValor }}</td>
-                                    <td>{{ item.fleteManejo }}</td>
-                                    <td></td>
-                                    <td>{{ item.flteTotal }}</td>
-                                    <td>{{ item.valorRecaudar }}</td>
-                                    <td>{{ item.fechaDest }}</td>
-                                    <td>
-                                        <div [ngClass]="{esGenerado: item.estado == 'GENERADA', esCancelado: item.estado != 'GENERADA'}">
+                                        <div [ngClass]="{ colorVerde: item.estado == 0, colorOrange: item.estado == 1, colorDanger: item.estado == 2 }">
                                             {{ item.estadosName }}
                                         </div>
                                     </td>

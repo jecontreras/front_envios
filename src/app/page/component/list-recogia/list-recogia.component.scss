@@ -1,15 +1,17 @@
-img{
-    height: 35px
-}
-
-.esGenerado{
+.colorVerde{
     background: green;
     color: white;
     padding: 5px;
 }
 
-.esCancelado{
+.colorDanger{
     background: red;
+    color: white;
+    padding: 5px;
+}
+
+.colorOrange{
+    background: orange;
     color: white;
     padding: 5px;
 }

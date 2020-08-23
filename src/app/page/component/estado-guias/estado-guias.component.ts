@@ -38,7 +38,12 @@ export class EstadoGuiasComponent implements OnInit {
     private _flete: FleteService,
     private _store: Store<STORAGES>
   ) { 
-
+    this._store.subscribe((store: any) => {
+      store = store.name;
+      if(!store) return false;
+      this.dataUser = store.user || {};
+      this.query.where.user = this.dataUser.id;
+    });
   }
 
   ngOnInit() {
@@ -48,7 +53,7 @@ export class EstadoGuiasComponent implements OnInit {
 
   getRow(){
     this.progreses = true;
-    this._flete.get( {} ).subscribe(( res:any )=>{
+    this._flete.get( this.query ).subscribe(( res:any )=>{
       this.tablet.listRow = _.unionBy(this.tablet.listRow || [], res.data, 'id');
       this.count = res.count;
           
@@ -88,6 +93,22 @@ export class EstadoGuiasComponent implements OnInit {
       this.btnDisabled = false;
      },( error )=> { this._tools.tooast( { title: "Error en el servidor", icon:"error" } ); this.btnDisabled = false; } );
    }
+
+   async cancelar( item:any ){
+    let alerta = await this._tools.confirm({title:"Eliminar", detalle:"Deseas Eliminar Dato", confir:"Si Eliminar"} );
+    if( !alerta.value ) return false;
+    let data = {
+      id: item.id,
+      estado: "ANULADA EN CUCUTA",
+      nRemesa: item.nRemesa
+    };
+    item.estadosName = data.estado;
+    this.btnDisabled = true;
+     this._flete.fleteBorrar( data ).subscribe(( res:any )=>{
+       this._tools.tooast( { title: "Eliminado Recogia" } );
+       this.btnDisabled = false;
+     },( error:any )=> { this._tools.tooast( { title: "Error de servidor", icon:"error" } ); this.btnDisabled = false; } );
+  }
 
 
 }
