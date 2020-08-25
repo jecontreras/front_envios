@@ -71,7 +71,7 @@ export class AuthSignupComponent implements OnInit {
   ProcesoStorages( res:any ){
     let accion:any = new UserAction(res.data, 'post');
     this._store.dispatch(accion);
-    this._router.navigate(['/dashboard/elaboracionguias']);
+    this._router.navigate(['/dashboard/perfil']);
   }
 
   validador(){

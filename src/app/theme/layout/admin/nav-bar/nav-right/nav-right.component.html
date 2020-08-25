@@ -1,5 +1,5 @@
 <ul class="navbar-nav ml-auto">
-  <li>
+  <!-- <li>
     <div class="dropdown" ngbDropdown placement="auto">
       <a ngbDropdownToggle href="javascript:" data-toggle="dropdown"><i class="icon feather icon-bell"></i></a>
       <div ngbDropdownMenu class="dropdown-menu dropdown-menu-right notification">
@@ -50,7 +50,7 @@
         </div>
       </div>
     </div>
-  </li>
+  </li> -->
   <li>
     <div class="dropdown drp-user" ngbDropdown placement="auto">
       <a href="javascript:" ngbDropdownToggle data-toggle="dropdown">
@@ -63,11 +63,11 @@
           <a href="javascript:" class="dud-logout" title="Logout" (click)="logout()">
             <i class="feather icon-log-out"></i>
           </a><br>
-          <span>Mi Nivel: </span><span *ngIf="dataUser.miNivel" class="separaNivel">{{ dataUser.miNivel['nivel']?.title }}</span>
+          <!-- <span>Mi Nivel: </span><span *ngIf="dataUser.miNivel" class="separaNivel">{{ dataUser.miNivel['nivel']?.title }}</span> -->
         </div>
         <ul class="pro-body">
           <li><a href="javascript:" [routerLink]="['/dashboard/perfil']" class="dropdown-item"><i class="feather icon-user"></i> Perfil</a></li>
-          <li><a href="javascript:" [routerLink]="['/dashboard/mensajes']" class="dropdown-item"><i class="feather icon-mail"></i> Mis Mensajes</a></li>
+          <!-- <li><a href="javascript:" [routerLink]="['/dashboard/mensajes']" class="dropdown-item"><i class="feather icon-mail"></i> Mis Mensajes</a></li> -->
         </ul>
       </div>
     </div>

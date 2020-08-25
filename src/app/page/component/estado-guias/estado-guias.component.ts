@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ToolsService } from 'src/app/services/tools.service';
 import { FleteService } from 'src/app/servicesComponents/flete.service';
 import { STORAGES } from 'src/app/interfaces/sotarage';
-import { Store } from '@ngrx/store';
-import * as _ from 'lodash';
 import { environment } from 'src/environments/environment';
+import { Store } from '@ngrx/store';
+import * as moment from 'moment';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-estado-guias',
@@ -16,9 +17,7 @@ export class EstadoGuiasComponent implements OnInit {
   progreses:boolean = false;
   btnDisabled:boolean = false;
   public query:any = { 
-    where:{ 
-
-    }, 
+    where:{ }, 
     sort: "createdAt DESC",
     page: 0
    };
@@ -27,14 +26,17 @@ export class EstadoGuiasComponent implements OnInit {
   notEmptyPost:boolean = true;
   dataUser:any = {};
   tablet:any = {
-    header: ["Opciones","Guia","# Factura","Doc Referencia","Valor Pedido","Transportador","Agente","Peso","Piezas","Flete","Manejo","Flete x Recaudo","Total","Vlr Recaudo","Fecha / Dest","Estado","Novedades Global"],
+    header: ["Opciones","Guia","# Factura","Valor Pedido","Transportador","Agente","Peso","Piezas","Flete","Manejo","Flete x Recaudo","Total","Vlr Recaudo","Fecha / Dest","Estado","Novedades Global"],
     listRow: []
   };
   urlFront:string = environment.urlFront;
   formatoMoneda:any = {};
 
+  filtro:any = {};
+  rolName:string;
+
   constructor(
-    private _tools: ToolsService,
+    public _tools: ToolsService,
     private _flete: FleteService,
     private _store: Store<STORAGES>
   ) { 
@@ -43,6 +45,7 @@ export class EstadoGuiasComponent implements OnInit {
       if(!store) return false;
       this.dataUser = store.user || {};
       this.query.where.user = this.dataUser.id;
+      if( Object.keys( this.dataUser ).length > 0 ) this.rolName = this.dataUser.rol.nombre;
     });
   }
 
@@ -63,6 +66,19 @@ export class EstadoGuiasComponent implements OnInit {
       this.notscrolly = true;
       this.progreses = false;
     },(error)=> this.progreses = false );
+  }
+
+  getFiltro(){
+    if( this.filtro.fecha1 && this.filtro.fecha2 ){
+      this.query.where.createdAt = {
+        ">=": moment( this.filtro.fecha1 ),
+        "<=": moment( this.filtro.fecha2 )
+      };
+    }
+    if( this.filtro.user ) this.query.where.users = this.filtro.user;
+    this.query.page = 0;
+    this.tablet.listRow = [];
+    this.getRow();
   }
 
   onScroll(){

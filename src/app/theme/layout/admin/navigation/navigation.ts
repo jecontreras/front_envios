@@ -60,6 +60,13 @@ const NavigationItems = [
         url: '/dashboard/listrecogia',
         icon: 'feather icon-home'
       },
+      {
+        id: 'perfil',
+        title: 'Editar Perfil',
+        type: 'item',
+        url: '/dashboard/perfil',
+        icon: 'feather icon-home'
+      },
     ]
   }
 

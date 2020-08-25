@@ -10,6 +10,27 @@
     <div class="content p-5">
         <div class="row">
             <div class="col-12">
+                <div class="d-flex justify-content-center">
+                    <div class="row container">
+                        <div class="form-group col-4" *ngIf="rolName == 'admin'">
+                            <label for="exampleInputEmail1">User Name // Email</label>
+                            <input type="text" class="form-control" [(ngModel)]="filtro.user" placeholder="Enter nombre">
+                        </div>
+                        <div class="col-3">
+                            <label for="exampleInputEmail1">Fecha Inicial</label>
+                            <input type="datetime-local" [(ngModel)]="filtro.fecha1" name="birthdaytime">
+                        </div>
+                        <div class="col-3">
+                            <label for="exampleInputEmail1">Fecha final</label>
+                            <input type="datetime-local" [(ngModel)]="filtro.fecha2" name="birthdaytime">
+                        </div>
+                        <div class="col-2">
+                            <button type="button" class="btn btn-primary" (click)="getFiltro()">Buscar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
                 <div class="card-body ng-tns-c14-12 table-border-style ng-star-inserted">
                     <div class="table-responsive">
                         <table class="table table-hover">
@@ -42,9 +63,9 @@
                                     <td>
                                         <input style="width: 138px;" class="form-control form-control-sm" [(ngModel)]="item.numeroFactura" type="text" (ngModelChange)="updateInfro(item, 'numeroFactura')">
                                     </td>
-                                    <td>
+                                    <!-- <td>
                                         <input style="width: 138px;" class="form-control form-control-sm" [(ngModel)]="item.referencia" type="text" (ngModelChange)="updateInfro(item, 'referencia')">
-                                    </td>
+                                    </td> -->
                                     <td>
                                         <input style="width: 138px;" currencyMask class="form-control form-control-sm" [(ngModel)]="item.totalValorMercancia" [options]="formatoMoneda" (blur)="updateInfro(item, 'totalValorMercancia')" />
                                     </td>
@@ -59,11 +80,11 @@
                                     <td>{{ item.seleccionAgente }}</td>
                                     <td>{{ item.kilosReales }}</td>
                                     <td>{{ item.unidadesInternas }}</td>
-                                    <td>{{ item.fleteValor }}</td>
-                                    <td>{{ item.fleteManejo }}</td>
+                                    <td>{{ _tools.monedaChange( 3, 2, item.fleteValor || 0 ) }}</td>
+                                    <td>{{ _tools.monedaChange( 3, 2, item.fleteManejo || 0 ) }}</td>
                                     <td></td>
-                                    <td>{{ item.flteTotal }}</td>
-                                    <td>{{ item.valorRecaudar }}</td>
+                                    <td>{{ _tools.monedaChange( 3, 2, item.flteTotal || 0 ) }}</td>
+                                    <td>{{ _tools.monedaChange( 3, 2, item.valorRecaudar || 0 ) }}</td>
                                     <td>{{ item.fechaDest }}</td>
                                     <td>
                                         <div [ngClass]="{esGenerado: item.estado == 'GENERADA', esCancelado: item.estado != 'GENERADA'}">

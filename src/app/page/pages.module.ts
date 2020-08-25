@@ -16,6 +16,7 @@ import { EstadoGuiasComponent } from './component/estado-guias/estado-guias.comp
 import { FormGuiaDetallesComponent } from './form/form-guia-detalles/form-guia-detalles.component';
 import { SolicitudRecogidaComponent } from './form/solicitud-recogida/solicitud-recogida.component';
 import { ListRecogiaComponent } from './component/list-recogia/list-recogia.component';
+import { PerfilComponent } from './component/perfil/perfil.component';
 
 @NgModule({
   declarations: [ 
@@ -27,7 +28,8 @@ import { ListRecogiaComponent } from './component/list-recogia/list-recogia.comp
     EstadoGuiasComponent,
     FormGuiaDetallesComponent,
     SolicitudRecogidaComponent,
-    ListRecogiaComponent
+    ListRecogiaComponent,
+    PerfilComponent
   ],
   entryComponents:[
     FormGuiaDetallesComponent

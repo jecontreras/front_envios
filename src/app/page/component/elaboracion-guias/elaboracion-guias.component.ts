@@ -62,6 +62,7 @@ export class ElaboracionGuiasComponent implements OnInit {
       remitenteCelular: this.dataUser.celular,
       remitenteBarrio: this.dataUser.barrio || "trigal",
       fechaRemesa: moment().format("YYYY-MM-DD"),
+      selectEnvio: "contraEntrega",
       ... this.data
     }
   }
@@ -76,6 +77,7 @@ export class ElaboracionGuiasComponent implements OnInit {
     this.data.pesoVolumen = Math.round( this.data.pesoVolumen );
     this.data.valorFactura = this.data.valorRecaudar;
     let data = {
+      selectEnvio: this.data.selectEnvio,
       idCiudadDestino: this.data.ciudadDestino.code,
       idCiudadOrigen: this.data.ciudadOrigen,
       valorMercancia: Number( this.data.valorRecaudar ),
@@ -151,9 +153,10 @@ export class ElaboracionGuiasComponent implements OnInit {
   }
 
   armandoCotizacionEnvia( res:any ){
+    if( res[6]['Total'] == 0 ) { this.errorCotisa = `No hay cubrimiento enesta direccion ${ this.data.ciudadDestino.state }`; return false; }
     this.tablet.listRow.push({
       imgTrasp: "https://aveonline.co/app/temas/imagen_transpo/084935-1-envia-094632-1-ENVIA.jpg",
-      origenDestino: `${ this.data.ciudadOrigenText } ${ this.data.ciudadDestino.city } ( ${ this.data.ciudadDestino.state})` ,
+      origenDestino: `${ this.data.ciudadOrigenText } ${ this.data.ciudadDestino.city } ( ${ this.data.ciudadDestino.state } )` ,
       unida: this.data.totalUnidad,
       totalKilos: res[2]["Peso a Cobrar"],
       kilosVol: this.data.pesoVolumen,

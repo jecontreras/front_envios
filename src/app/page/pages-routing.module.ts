@@ -8,6 +8,7 @@ import { EstadoGuiasComponent } from './component/estado-guias/estado-guias.comp
 import { FormGuiaDetallesComponent } from './form/form-guia-detalles/form-guia-detalles.component';
 import { SolicitudRecogidaComponent } from './form/solicitud-recogida/solicitud-recogida.component';
 import { ListRecogiaComponent } from './component/list-recogia/list-recogia.component';
+import { PerfilComponent } from './component/perfil/perfil.component';
 
 const routes: Routes = [
   {
@@ -50,6 +51,10 @@ const routes: Routes = [
     path: "solicitudrecogia/:id",
     component: SolicitudRecogidaComponent
   },
+  {
+    path: "perfil",
+    component: PerfilComponent
+  }
 ];
 
 @NgModule({

@@ -1386,7 +1386,7 @@ export const DANEGROUP: any = [
 	{"code": "54820004","city": "GIBRALTAR","state": "NORTE DE SANTANDER","active": "R", "name": ""},
 	{"code": "54820004","city": "GIBRALTAR","state": "NORTE DE SANTANDER","active": "R", "name": ""},
 	{"code": "54820004","city": "GIBRALTAR","state": "NORTE DE SANTANDER","active": "R", "name": ""},
-	{"code": "54001001","city": "AGUA CLARA","state": "NORTE DE SANTANDER","active": "R", "name": ""},
+	{"code": "54001001","city": "AGUA CLARA","state": "NORTE DE SANTANDER","active": "R", "name": "AGUACLARA-NORTE DE SANTANDER"},
 	{"code": "54001007","city": "PATILLALES","state": "NORTE DE SANTANDER","active": "R", "name": ""},
 	{"code": "54001017","city": "SAN FAUSTINO","state": "NORTE DE SANTANDER","active": "", "name": ""},
 	{"code": "54001041","city": "GUARAMITO","state": "NORTE DE SANTANDER","active": "R", "name": ""},
