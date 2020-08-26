@@ -49,7 +49,7 @@ export class PerfilComponent implements OnInit {
   ngOnInit() {
     this.data = _.clone( this.dataUser );
     this.blurdepartamento();
-    this.data.ciudadDestino = this.listCiudades.find( ( item:any )=> item.city == this.data.ciudad ).city;
+    try { this.data.ciudadDestino = this.listCiudades.find( ( item:any )=> item.city == this.data.ciudad ).city; } catch (error) {}
   }
 
   async datafiles(ev: any) {

@@ -4,6 +4,7 @@ import { ToolsService } from 'src/app/services/tools.service';
 import { STORAGES } from 'src/app/interfaces/sotarage';
 import { Store } from '@ngrx/store';
 import * as _ from 'lodash';
+import * as moment from 'moment';
 import { RecogiasService } from 'src/app/servicesComponents/recogias.service';
 
 @Component({
@@ -30,13 +31,21 @@ export class ListRecogiaComponent implements OnInit {
   };
   urlFront:string = environment.urlFront;
   formatoMoneda:any = {};
+  filtro:any = {};
+  rolName:string;
 
   constructor(
     private _tools: ToolsService,
     private _recogia: RecogiasService,
     private _store: Store<STORAGES>,
   ) { 
-
+    this._store.subscribe((store: any) => {
+      store = store.name;
+      if(!store) return false;
+      this.dataUser = store.user || {};
+      this.query.where.user = this.dataUser.id;
+      if( Object.keys( this.dataUser ).length > 0 ) this.rolName = this.dataUser.rol.nombre;
+    });
   }
 
   ngOnInit() {
@@ -44,9 +53,23 @@ export class ListRecogiaComponent implements OnInit {
     this.getRow();
   }
 
+  getFiltro(){
+    if( this.filtro.fecha1 && this.filtro.fecha2 ){
+      this.query.where.createdAt = {
+        ">=": moment( this.filtro.fecha1 ),
+        "<=": moment( this.filtro.fecha2 )
+      };
+    }
+    if( this.filtro.user ) this.query.where.users = this.filtro.user;
+    else delete this.query.where.users;
+    this.query.page = 0;
+    this.tablet.listRow = [];
+    this.getRow();
+  }
+
   getRow(){
     this.progreses = true;
-    this._recogia.get( {} ).subscribe(( res:any )=>{
+    this._recogia.get( this.query ).subscribe(( res:any )=>{
       this.tablet.listRow = _.unionBy(this.tablet.listRow || [], res.data, 'id');
       this.count = res.count;
           

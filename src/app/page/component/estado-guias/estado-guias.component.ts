@@ -74,7 +74,7 @@ export class EstadoGuiasComponent implements OnInit {
         ">=": moment( this.filtro.fecha1 ),
         "<=": moment( this.filtro.fecha2 )
       };
-    }
+    }else delete this.query.where.users;
     if( this.filtro.user ) this.query.where.users = this.filtro.user;
     this.query.page = 0;
     this.tablet.listRow = [];
@@ -115,7 +115,7 @@ export class EstadoGuiasComponent implements OnInit {
     if( !alerta.value ) return false;
     let data = {
       id: item.id,
-      estado: "ANULADA EN CUCUTA",
+      estado: "ANULADA EN " + item.barrioDestinatario,
       nRemesa: item.nRemesa
     };
     item.estadosName = data.estado;

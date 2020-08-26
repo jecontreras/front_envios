@@ -168,8 +168,8 @@ export class ElaboracionGuiasComponent implements OnInit {
       fleteManejoSin: res[5]['Otros'],
       fleteTotal: this._tools.monedaChange( 3, 2, ( res[4]['F.V.'] || 0 ) ),
       fleteTotalSin: res[4]['F.V.'],
-      total: this._tools.monedaChange( 3, 2, ( res[6]['Total'] || 0 ) ),
-      totalSin: res[6]['Total'],
+      total: this._tools.monedaChange( 3, 2, ( res[6]['Total']+1000 || 0 ) ),
+      totalSin: res[6]['Total']+1000,
       tiempoEstimado: res[1]['Dias'],
       trasportadora: "ENVIA"
     });
@@ -190,6 +190,7 @@ export class ElaboracionGuiasComponent implements OnInit {
     this.btnDisabled = true;
     this.data.valorFactura = this.data.valorRecaudar;
     let data:any = {
+      selectEnvio: this.data.selectEnvio,
       fleteValor: this.data.fleteValor,
       fleteManejo: this.data.fleteManejo,
       user: this.dataUser.id,
@@ -313,7 +314,8 @@ export class ElaboracionGuiasComponent implements OnInit {
   validandoCotizador(){
     if( !this.data.ciudadDestino ) { this._tools.tooast({ title: "Error Falta ciudad de destino", icon: "error" } ); return false; }
     if( !this.data.ciudadOrigen ) { this._tools.tooast({ title: "Error Falta ciudad de origen", icon: "error" } ); return false; }
-    if( !this.data.valorRecaudar ) { this._tools.tooast({ title: "Error Falta Valor recaudo", icon: "error" } ); return false; }
+    // if( !this.data.valorRecaudar ) { this._tools.tooast({ title: "Error Falta Valor recaudo", icon: "error" } ); return false; }
+    if( !this.data.valorRecaudar ) this.data.valorRecaudar = 0;
     if( !this.data.totalUnidad ) { this._tools.tooast({ title: "Error Falta totalUnidad", icon: "error" } ); return false; }
     if( !this.data.totalkilo ) { this._tools.tooast({ title: "Error Falta Peso real", icon: "error" } ); return false; }
     if( !this.data.volumenAlto ) { this._tools.tooast({ title: "Error Falta Volumen alto", icon: "error" } ); return false; }
@@ -341,7 +343,7 @@ export class ElaboracionGuiasComponent implements OnInit {
     if( !this.data.volumenAlto ) { this._tools.tooast({ title: "Error Falta Volumen alto", icon: "error" } ); return false; }
     if( !this.data.volumenLargo ) { this._tools.tooast({ title: "Error Falta Volumen largo", icon: "error" } ); return false; }
     if( !this.data.volumenAncho ) { this._tools.tooast({ title: "Error Falta Volumen ancho", icon: "error" } ); return false; }
-    if( !this.data.numeroBolsa ) { this._tools.tooast({ title: "Error Falta Numero de bolsa", icon: "error" } ); return false; }
+    //if( !this.data.numeroBolsa ) { this._tools.tooast({ title: "Error Falta Numero de bolsa", icon: "error" } ); return false; }
     if( !this.data.totalUnidad ) { this._tools.tooast({ title: "Error Falta Total unidad", icon: "error" } ); return false; }
     return true; 
   }

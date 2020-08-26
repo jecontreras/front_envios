@@ -3032,9 +3032,9 @@ $style-block-width: 400px;
     top: 0;
 
     ~ .pcoded-main-container {
-        padding-top: $header-height;
+        //padding-top: $header-height;
         @media only screen and (max-width: 991px) {
-            padding-top: $header-height;
+            // padding-top: $header-height;
         }
     }
 }

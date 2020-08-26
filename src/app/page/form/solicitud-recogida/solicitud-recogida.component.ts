@@ -43,7 +43,10 @@ export class SolicitudRecogidaComponent implements OnInit {
     moment.locale("es");
     this.id = (this.activate.snapshot.paramMap.get('id'));
     if( this.id ) this.getFlete();
-    else this.formData();
+    else {
+      this.formData();
+      this._tools.confirm( { title: "tener encuenta", confir:"continuar", detalle: "Por favor antes de continuar por favor comunicar con el servicio al cliente antes de solicitar una recogida +57 313 4453649"} );
+    }
   }
 
   getFlete(){
@@ -53,7 +56,7 @@ export class SolicitudRecogidaComponent implements OnInit {
       this.data = res;
       this.data.drpCiudad = ( this.listCiudades.find(( item:any )=> item.code == this.data.drpCiudadTcc || item.name == this.data.drpCiudadEnvia ).city );
       console.log( this.data );
-    },( error )=> this._tools.tooast( { title: "Error de servidor"} ) );
+    },( error )=> this._tools.tooast( { title: "Error de servidor", icon:"error"} ) );
   }
 
   formData(){
@@ -64,6 +67,7 @@ export class SolicitudRecogidaComponent implements OnInit {
       txtHFinal: "14:00",
       txtFechaIni: `${ moment().format("dddd") }, ${ moment().format("DD/MM/YYYY") }`,
       user: this.dataUser.id,
+      selectEnvio: "contraEntrega",
       ...this.data
     };
     console.log( this.data );
@@ -80,7 +84,8 @@ export class SolicitudRecogidaComponent implements OnInit {
       txtNum_Cliente: this.data.txtNum_Cliente,
       txtNombreApellidoC: this.data.txtNombreApellidoC || "",
       txtHInicial: this.data.txtHInicial,
-      txtHFinal: this.data.txtHFinal
+      txtHFinal: this.data.txtHFinal,
+      selectEnvio: this.data.selectEnvio
     };
     console.log( data );
     if( !data.drpCiudad ) return false;
@@ -103,9 +108,14 @@ export class SolicitudRecogidaComponent implements OnInit {
     this._recogias.createRecogia( data ).subscribe(( res:any )=>{
       this.btnDisabled = false;
       this._tools.tooast( { title: "Generado exitos" });
+      this.openWhatSapp();
       this.data = {};
       setTimeout(()=> this.Router.navigate( ["/dashboard/listrecogia"] ), 2000 );
     },( error:any )=> { this._tools.tooast( { title: "Error"} ); this.btnDisabled = true; } );
+  }
+
+  openWhatSapp(){
+    window.open(`https://web.whatsapp.com/send?phone=573134453649&text=${ encodeURIComponent(`Hola Servicio al cliente serian tan amables de darme el resibo de Relacion Despachos soy usuario ${ this.dataUser.username } Email ${ this.dataUser.email } `) }&source&data&app_absent`);
   }
 
   limpiar(){
