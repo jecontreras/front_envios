@@ -28,4 +28,7 @@ export class RecogiasService {
   createRecogia(query:any){
     return this._model.querys('recogias/crearrecogia',query, 'post');
   }
+  cancelarrecogia(query:any){
+    return this._model.querys('recogias/cancelarrecogia',query, 'post');
+  }
 }

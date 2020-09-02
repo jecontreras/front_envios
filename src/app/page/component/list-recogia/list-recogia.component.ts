@@ -43,8 +43,8 @@ export class ListRecogiaComponent implements OnInit {
       store = store.name;
       if(!store) return false;
       this.dataUser = store.user || {};
-      this.query.where.user = this.dataUser.id;
       if( Object.keys( this.dataUser ).length > 0 ) this.rolName = this.dataUser.rol.nombre;
+      if( this.rolName !== 'admin' ) this.query.where.user = this.dataUser.id;
     });
   }
 
@@ -94,11 +94,13 @@ export class ListRecogiaComponent implements OnInit {
      if( !alerta.value ) return false;
      let data = {
        id: item.id,
-       estado: 2
+       estado: 2,
+       selectEnvio: item.selectEnvio,
+       txtNum_OrdenSG: item.txtNum_OrdenSG
      };
      item.estado = data.estado;
      this.btnDisabled = true;
-      this._recogia.update( data ).subscribe(( res:any )=>{
+      this._recogia.cancelarrecogia( data ).subscribe(( res:any )=>{
         this._tools.tooast( { title: "Eliminado Recogia" } );
         this.btnDisabled = false;
       },( error:any )=> { this._tools.tooast( { title: "Error de servidor", icon:"error" } ); this.btnDisabled = false; } );

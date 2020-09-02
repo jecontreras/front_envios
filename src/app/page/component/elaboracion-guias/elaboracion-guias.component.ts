@@ -53,8 +53,8 @@ export class ElaboracionGuiasComponent implements OnInit {
       ciudadOrigen: this.dataUser.codigoCiudad,
       ciudadOrigenText: this.dataUser.ciudad,
       paisDestino: "colombia",
-      seleccionAgente: `${ this.dataUser.name } ${ ( this.dataUser.lastname || "men" ) }`,
-      remitenteNombre: `${ this.dataUser.name } ${ ( this.dataUser.lastname || "men" ) }`,
+      seleccionAgente: `${ this.dataUser.name } ${ ( this.dataUser.lastname || "" ) }`,
+      remitenteNombre: `${ this.dataUser.name } ${ ( this.dataUser.lastname || "" ) }`,
       remitenteDireccion:   this.dataUser.direccion,
       remitenteCorreo: this.dataUser.email,
       remitenteFijo: this.dataUser.telFijo,
@@ -118,12 +118,14 @@ export class ElaboracionGuiasComponent implements OnInit {
     };
     this.btnDisabled = true;
     this.errorCotisa = "";
+    this.progreses = true;
     this._flete.fleteCotizar( data ).subscribe( ( res:any )=>{
       console.log( res );
       this.btnDisabled = false;
+      this.progreses = false;
       this.armandoCotizacionTcc( res.data.tcc );
       this.armandoCotizacionEnvia( res.data.envia );
-    } ,(error) => { this._tools.tooast( { title:"Error en el servidor por favor reintenta!", icon: "error" } ); this.btnDisabled = false; });
+    } ,(error) => { this._tools.tooast( { title:"Error en el servidor por favor reintenta!", icon: "error" } ); this.btnDisabled = false; this.progreses = true;});
 
   }
 
@@ -168,8 +170,8 @@ export class ElaboracionGuiasComponent implements OnInit {
       fleteManejoSin: res[5]['Otros'],
       fleteTotal: this._tools.monedaChange( 3, 2, ( res[4]['F.V.'] || 0 ) ),
       fleteTotalSin: res[4]['F.V.'],
-      total: this._tools.monedaChange( 3, 2, ( res[6]['Total']+1000 || 0 ) ),
-      totalSin: res[6]['Total']+1000,
+      total: this._tools.monedaChange( 3, 2, ( Number( res[6]['Total'] ) + 1000 || 0 ) ),
+      totalSin: Number(  res[6]['Total'] ) + 1000,
       tiempoEstimado: res[1]['Dias'],
       trasportadora: "ENVIA"
     });
@@ -182,7 +184,7 @@ export class ElaboracionGuiasComponent implements OnInit {
     this.data.flteTotal = item.totalSin;
   }
 
-  generarGuia(){
+  async generarGuia(){
     let validador:boolean = this.valodandoGenerar();
     if( !validador ) return false;
     this.data.fechaRemesa = moment().format("YYYY-MM-DD");
@@ -259,50 +261,55 @@ export class ElaboracionGuiasComponent implements OnInit {
       observacionAdicional: this.data.observacionAdicional, //string
       transportadoraSelect: this.data.transportadoraSelect //string
     };
-
-    if( this.data.transportadoraSelect == "TCC" ) this.creandoGuiaTcc( data );
-    else this.creandoGuiaEnvia( data );
+    this._tools.ProcessTime( { title: "Cargando por favor esperar", tiempo: 7000 } );
+    if( this.data.transportadoraSelect == "TCC" ) { await this.creandoGuiaTcc( data ); }
+    else { await this.creandoGuiaEnvia( data ); }
   }
 
   creandoGuiaTcc( data:any  ){
-    this._flete.fleteCrearTcc( data ).subscribe((res:any)=>{
-      console.log( res );
-      this.btnDisabled = false;
-      if( res.status !== 200){ this.mensaje = res.data.msx; this._tools.tooast( { title:"Error al generar la guia", icon: "error" } ); }
-      else { 
-        this.mensaje =  res.data.data['ns2:mensaje'][0];
-        this.mensaje+= `ver guia ->>  ${this.urlFront}/dashboard/estadoGuias`;
-        this._tools.tooast( { title:"Exitoso guia generada" } );
-        this.data.id = res.data.msx.id;
-      }
-      
-    },( error )=> { this._tools.tooast( { title:"Error en el servidor por favor reintenta!", icon: "error" } ); console.error( error ); this.btnDisabled = false; } );
+    return new Promise(resolve=>{
+      this._flete.fleteCrearTcc( data ).subscribe((res:any)=>{
+        console.log( res );
+        this.btnDisabled = false;
+        if( res.status !== 200){ this.mensaje = res.data.msx; this._tools.tooast( { title:"Error al generar la guia", icon: "error" } ); }
+        else { 
+          this.mensaje =  res.data.data['ns2:mensaje'][0];
+          this.mensaje+= `ver guia ->>  ${this.urlFront}/dashboard/estadoGuias`;
+          this._tools.tooast( { title:"Exitoso guia generada" } );
+          this.data.id = res.data.msx.id;
+        }
+        resolve(res);
+      },( error )=> { this._tools.tooast( { title:"Error en el servidor por favor reintenta!", icon: "error" } ); console.error( error ); this.btnDisabled = false; resolve( false )} );
+    });
   }
 
   creandoGuiaEnvia( datable:any ){
-    let data:any = {
-      drpCiudadOrigen: ( this.listCiudades.find(( row:any )=> row.code == this.data.ciudadOrigen ) ).name,
-      txtIdentificacionDe: this.data.identificacionRemitente,
-      txtTelefonoDe: this.data.remitenteFijo,
-      txtDireccionDe: this.data.remitenteDireccion,
-      txtPara: this.data.destinatarioNombre,
-      drpCiudadDestino: this.data.ciudadDestino.name,
-      txtTelefonoPara: this.data.destinatarioCelular,
-      txtDireccionPara: `${ this.data.destinatarioDireccion } ( ${ this.data.destinatarioBarrio } )`,
-      txtUnidades: this.data.totalUnidad,
-      txtPeso: this.data.totalkilo,
-      txtVolumen: this.data.pesoVolumen,
-      txtDeclarado: this.data.valorFactura,
-      txtValorRecaudo: this.data.valorRecaudar,
-      txtDice: this.data.contenido,
-      ... datable
-    };
-    this._flete.fleteCrearEnvia( data ).subscribe( ( res:any )=>{
-      this.btnDisabled = false;
-      this.mensaje+= `ver guia ->>  ${this.urlFront}/dashboard/estadoGuias`;
-      this._tools.tooast( { title:"Exitoso guia generada" } );
-      this.data.id = res.data.id;
-    },( error )=> { this._tools.tooast( { title:"Error en el servidor por favor reintenta!", icon: "error" } ); console.error( error ); this.btnDisabled = false; } );
+    return new Promise(resolve=>{
+      let data:any = {
+        drpCiudadOrigen: ( this.listCiudades.find(( row:any )=> row.code == this.data.ciudadOrigen ) ).name,
+        txtIdentificacionDe: this.data.identificacionRemitente,
+        txtTelefonoDe: this.data.remitenteFijo,
+        txtDireccionDe: this.data.remitenteDireccion,
+        txtPara: this.data.destinatarioNombre,
+        drpCiudadDestino: this.data.ciudadDestino.name,
+        txtTelefonoPara: this.data.destinatarioCelular,
+        txtDireccionPara: `${ this.data.destinatarioDireccion } ( ${ this.data.destinatarioBarrio } )`,
+        txtUnidades: this.data.totalUnidad,
+        txtPeso: this.data.totalkilo,
+        txtVolumen: this.data.pesoVolumen,
+        txtDeclarado: this.data.valorFactura,
+        txtValorRecaudo: this.data.valorRecaudar,
+        txtDice: this.data.contenido,
+        ... datable
+      };
+      this._flete.fleteCrearEnvia( data ).subscribe( ( res:any )=>{
+        this.btnDisabled = false;
+        this.mensaje+= `ver guia ->>  ${this.urlFront}/dashboard/estadoGuias`;
+        this._tools.tooast( { title:"Exitoso guia generada" } );
+        this.data.id = res.data.id;
+        resolve( res );
+      },( error )=> { this._tools.tooast( { title:"Error en el servidor por favor reintenta!", icon: "error" } ); console.error( error ); this.btnDisabled = false; resolve( false );} );
+    });
   }
 
   limpiar(){

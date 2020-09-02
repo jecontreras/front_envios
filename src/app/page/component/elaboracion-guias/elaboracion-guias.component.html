@@ -57,7 +57,8 @@
                     <div class="item">
                         <!-- <img src="{{item.flag}}" height="25"> -->
                         <span [innerHTML]="item.city"></span> &nbsp; | &nbsp;
-                        <small>Departamento: {{item.state}}</small>
+                        <small>Departamento: {{ item.state }}</small> &nbsp; | &nbsp;
+                        <small>--: {{ item.name }}</small>
                     </div>
                 </ng-template>
 
@@ -184,13 +185,13 @@
                         </div>
                     </div>
                     
-                    <div class="col-12" *ngIf="!progreses && tablet.listRow.length == 0">
+                    <!-- <div class="col-12" *ngIf="!progreses && tablet.listRow.length == 0">
                         <div class="d-flex justify-content-center row">
                             <div role="alert" class="alert alert-primary">
                                 No Hay Datos Para Mostrar
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="col-12" *ngIf="errorCotisa">
                         <div class="d-flex justify-content-center row">
                             <h5 class="text-danger">{{ errorCotisa }}</h5>

@@ -14,11 +14,11 @@
                     </div>
                     <div class="form-group col-xs-4 col-sm-4 col-6">
                         <label>NUMERO DE CEDULA: </label>
-                        <input type="text" class="form-control form-control-sm" [(ngModel)]="data.nCedula">
+                        <input type="number" class="form-control form-control-sm" [(ngModel)]="data.nCedula">
                     </div>
                     <div class="form-group col-xs-4 col-sm-4 col-6">
                         <label>NUMERO DE CELULAR: </label>
-                        <input type="text" class="form-control form-control-sm" [(ngModel)]="data.nCelular">
+                        <input type="number" class="form-control form-control-sm" [(ngModel)]="data.nCelular">
                     </div>
                     <div class="form-group col-xs-4 col-sm-4 col-6">
                         <label>DIRECCION DE DOMICILIO-VIVIENDA: </label>
@@ -43,11 +43,11 @@
                     </div>
                     <div class="form-group col-xs-4 col-sm-4 col-6">
                         <label>Foto de la cedula: </label>
-                        <input type="file" class="form-control-file" (change)="subirFile($event, 'fotoCedula')">
+                        <input type="file" [disabled]="disabled" class="form-control-file" (change)="subirFile($event, 'fotoCedula')">
                     </div>
                     <div class="form-group col-xs-4 col-sm-4 col-6">
                         <label>Foto de servicios publicos: </label>
-                        <input type="file" class="form-control-file" (change)="subirFile($event, 'fotoServicios')">
+                        <input type="file" [disabled]="disabled" class="form-control-file" (change)="subirFile($event, 'fotoServicios')">
                     </div>
                     <div class="form-group col-12">
                         <div class="d-flex flex-row-reverse bd-highlight">

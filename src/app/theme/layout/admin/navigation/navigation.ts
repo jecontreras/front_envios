@@ -61,6 +61,13 @@ const NavigationItems = [
         icon: 'feather icon-home'
       },
       {
+        id: 'relacion-despacho',
+        title: 'Mis Relaciones despacho',
+        type: 'item',
+        url: '/dashboard/relaciondespacho',
+        icon: 'feather icon-home'
+      },
+      {
         id: 'perfil',
         title: 'Editar Perfil',
         type: 'item',

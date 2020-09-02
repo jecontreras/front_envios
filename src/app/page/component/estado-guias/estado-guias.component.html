@@ -32,7 +32,8 @@
             </div>
             <div class="col-12">
                 <div class="card-body ng-tns-c14-12 table-border-style ng-star-inserted">
-                    <div class="table-responsive">
+                    <div class="table-responsive" infiniteScroll [infiniteScrollDistance]="3" [infiniteScrollThrottle]="50"
+                        (scrolled)="onScroll()">
                         <table class="table table-hover">
                             <thead>
                                 <tr>
@@ -52,7 +53,7 @@
                                             <div *ngIf="item.urlRelacionenvio">
                                                 <button type="button" (click)="openView(item.urlRelacionenvio)" class="btn btn-primary">Relacion</button>
                                             </div>
-                                            <div>
+                                            <div *ngIf="item.estado == 'GENERADA'">
                                                 <button type="button" (click)="cancelar( item )" class="btn btn-danger">
                                                     <i class="fas fa-trash"></i>
                                                 </button>

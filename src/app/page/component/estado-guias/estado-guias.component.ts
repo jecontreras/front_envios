@@ -44,8 +44,8 @@ export class EstadoGuiasComponent implements OnInit {
       store = store.name;
       if(!store) return false;
       this.dataUser = store.user || {};
-      this.query.where.user = this.dataUser.id;
       if( Object.keys( this.dataUser ).length > 0 ) this.rolName = this.dataUser.rol.nombre;
+      if( this.rolName !== 'admin' ) this.query.where.user = this.dataUser.id;
     });
   }
 

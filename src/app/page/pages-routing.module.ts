@@ -9,6 +9,7 @@ import { FormGuiaDetallesComponent } from './form/form-guia-detalles/form-guia-d
 import { SolicitudRecogidaComponent } from './form/solicitud-recogida/solicitud-recogida.component';
 import { ListRecogiaComponent } from './component/list-recogia/list-recogia.component';
 import { PerfilComponent } from './component/perfil/perfil.component';
+import { RelacionDespachoComponent } from './component/relacion-despacho/relacion-despacho.component';
 
 const routes: Routes = [
   {
@@ -54,6 +55,10 @@ const routes: Routes = [
   {
     path: "perfil",
     component: PerfilComponent
+  },
+  {
+    path: "relaciondespacho",
+    component: RelacionDespachoComponent
   }
 ];
 
