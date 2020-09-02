@@ -10,6 +10,7 @@ import { SolicitudRecogidaComponent } from './form/solicitud-recogida/solicitud-
 import { ListRecogiaComponent } from './component/list-recogia/list-recogia.component';
 import { PerfilComponent } from './component/perfil/perfil.component';
 import { RelacionDespachoComponent } from './component/relacion-despacho/relacion-despacho.component';
+import { TokenPlatformComponent } from './component/token-platform/token-platform.component';
 
 const routes: Routes = [
   {
@@ -59,6 +60,10 @@ const routes: Routes = [
   {
     path: "relaciondespacho",
     component: RelacionDespachoComponent
+  },
+  {
+    path: "tokenplataforma",
+    component: TokenPlatformComponent
   }
 ];
 
