@@ -24,7 +24,19 @@
                                         <input type="text" class="form-control" [(ngModel)]="item.plataforma" placeholder="Platoforma" (blur)="actualizar('plataforma', item)">
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control" [(ngModel)]="item.__VIEWSTATE" placeholder="__VIEWSTATE" (blur)="actualizar('__VIEWSTATEGENERATOR', item)">
+                                        <input type="text" class="form-control" [(ngModel)]="item.__VIEWSTATE" placeholder="__VIEWSTATE1" (blur)="actualizar('__VIEWSTATEGENERATOR', item)">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" [(ngModel)]="item._VIEWSTATE2" placeholder="__VIEWSTATE2" (blur)="actualizar('_VIEWSTATE2', item)">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" [(ngModel)]="item._VIEWSTATE3" placeholder="__VIEWSTATE3" (blur)="actualizar('_VIEWSTATE3', item)">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" [(ngModel)]="item._VIEWSTATE4" placeholder="_VIEWSTATE4" (blur)="actualizar('_VIEWSTATE4', item)">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" [(ngModel)]="item._VIEWSTATE5" placeholder="__VIEWSTATE5" (blur)="actualizar('_VIEWSTATE5', item)">
                                     </td>
                                     <td>
                                         <input type="text" class="form-control" [(ngModel)]="item.__VIEWSTATEGENERATOR" placeholder="__VIEWSTATEGENERATOR" (blur)="actualizar('__VIEWSTATEGENERATOR', item)">
@@ -37,33 +49,33 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="col-12" *ngIf="progreses">
-                        <div class="d-flex justify-content-center row">
-                            <div class="spinner-grow text-primary" role="status"><span class="sr-only">Loading...</span>
-                            </div>
-                            <div class="spinner-grow text-secondary" role="status"><span
-                                    class="sr-only">Loading...</span></div>
-                            <div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span>
-                            </div>
-                            <div class="spinner-grow text-danger" role="status"><span class="sr-only">Loading...</span>
-                            </div>
-                            <div class="spinner-grow text-warning" role="status"><span class="sr-only">Loading...</span>
-                            </div>
-                            <div class="spinner-grow text-info" role="status"><span class="sr-only">Loading...</span>
-                            </div>
-                            <div class="spinner-grow text-light" role="status"><span class="sr-only">Loading...</span>
-                            </div>
-                            <div class="spinner-grow text-dark" role="status"><span class="sr-only">Loading...</span>
-                            </div>
-                        </div>
+                </div>
+            </div>
+            <div class="col-12" *ngIf="progreses">
+                <div class="d-flex justify-content-center row">
+                    <div class="spinner-grow text-primary" role="status"><span class="sr-only">Loading...</span>
                     </div>
+                    <div class="spinner-grow text-secondary" role="status"><span
+                            class="sr-only">Loading...</span></div>
+                    <div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-danger" role="status"><span class="sr-only">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-warning" role="status"><span class="sr-only">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-info" role="status"><span class="sr-only">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-light" role="status"><span class="sr-only">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-dark" role="status"><span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </div>
 
-                    <div class="col-12" *ngIf="!progreses && tablet.listRow.length == 0">
-                        <div class="d-flex justify-content-center row">
-                            <div role="alert" class="alert alert-primary">
-                                No Hay Datos Para Mostrar
-                            </div>
-                        </div>
+            <div class="col-12" *ngIf="!progreses && tablet.listRow.length == 0">
+                <div class="d-flex justify-content-center row">
+                    <div role="alert" class="alert alert-primary">
+                        No Hay Datos Para Mostrar
                     </div>
                 </div>
             </div>

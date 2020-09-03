@@ -115,7 +115,7 @@ export class SolicitudRecogidaComponent implements OnInit {
   }
 
   openWhatSapp(){
-    window.open(`https://web.whatsapp.com/send?phone=573134453649&text=${ encodeURIComponent(`Hola Servicio al cliente serian tan amables de darme el resibo de Relacion Despachos soy usuario ${ this.dataUser.username } Email ${ this.dataUser.email } `) }&source&data&app_absent`);
+    window.open(`https://web.whatsapp.com/send?phone=573134453649&text=${ encodeURIComponent(`Hola Servicio al cliente en estos momento solicitud una solicitud de recogia soy usuario ${ this.dataUser.username } Email ${ this.dataUser.email } `) }&source&data&app_absent`);
   }
 
   limpiar(){

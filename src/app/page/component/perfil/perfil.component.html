@@ -1,141 +1,160 @@
-<div class="row" id="user-profile">
-    <div class="col-lg-3 col-md-4 col-sm-4">
-        <div class="main-box clearfix">
-            <header class="main-box-header clearfix">
-                <h2>{{ data.nombre }}</h2>
-            </header>
-            <div class="main-box-body clearfix">
-                <div class="profile-status">
-                    <i class="fa fa-circle"></i> Online
-                </div>
-                <div class="d-flex justify-content-center">
-                    <img [src]="data.foto || './assets/imagenes/perfil.png'" alt=""
-                        class="profile-img img-responsive center-block foto" />
-                </div>
-                <div class="d-flex justify-content-center row">
-                    <div class="col-12">
-                        <input type="file" placeholder="Imagenes" (ngModelChange)="datafiles($event)" (blur)="datafiles($event)">
-                    </div>
-                    <div class="col-12">
-                        <button type="button" class="btn btn-success" *ngIf="!file.foto1[0]">Probar Foto</button>
-                        <button type="button" class="btn btn-success" *ngIf="file.foto1[0]" [disabled]="disableFile" (click)="submitFile()">Subir Foto</button>
-                    </div>
-                </div>
-                <div class="profile-label">
-                    <span class="label label-danger" *ngIf="data.miNivel">{{ data.miNivel.nivel.title || 'Gratuito' }}</span>
-                </div>
-                <div class="profile-stars">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <div class="profile-since">
-                    Registrado: {{ data.createdAt | date: 'medium' }}
-                </div>
-                <!-- <div class="profile-details">
-                    <ul class="fa-ul">
-                        <li><i class="fa-li fa fa-truck"></i>Orders: <span>456</span></li>
-                        <li><i class="fa-li fa fa-comment"></i>Posts: <span>828</span></li>
-                        <li><i class="fa-li fa fa-tasks"></i>Tasks done: <span>1024</span>
-                        </li>
-                    </ul>
-                </div> -->
-                <div class="profile-message-btn center-block text-center">
-                    <!-- <a href="#" class="btn btn-success">
-                        <i class="fa fa-envelope"></i>
-                        Send message
-                    </a> -->
-                </div>
+<div class="card ng-trigger ng-trigger-cardRemove" animates="" animatesinitmode="show"
+    style="visibility: visible; opacity: 1;">
+    <div class="ng-tns-c14-12 ng-trigger ng-trigger-collapsedCard ng-star-inserted" style="overflow: hidden;">
+        <div class="d-flex flex-row bd-highlight mb-3">
+            <div class="p-2 bd-highlight">
+                <h5>ELABORACIÓN DE GUIA</h5>
             </div>
         </div>
     </div>
-    <div class="col-lg-9 col-md-8 col-sm-8">
-        <div class="main-box clearfix">
-            <div class="tabs-wrapper profile-tabs">
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tab-newsfeed" data-toggle="tab">Perfil</a></li>
-                </ul>
-                <div class="container">
-                    <div class="row">
-                        <div class="form-group col-xs-6 col-6">
-                            <label for="exampleInputEmail1">User Name</label>
-                            <input type="text" class="form-control" [(ngModel)]="data.username"
-                                placeholder="Enter nombre">
+    <div class="content p-5">
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-4">
+                <div class="main-box clearfix">
+                    <header class="main-box-header clearfix">
+                        <h2>{{ data.nombre }}</h2>
+                    </header>
+                    <div class="main-box-body clearfix">
+                        <div class="profile-status">
+                            <i class="fa fa-circle"></i> Online
                         </div>
-                        <div class="form-group col-xs-6 col-6">
-                            <label for="exampleInputEmail1">Nombre</label>
-                            <input type="text" class="form-control" [(ngModel)]="data.name"
-                                placeholder="Enter nombre">
+                        <div class="d-flex justify-content-center">
+                            <img [src]="data.foto || './assets/imagenes/perfil.png'" alt=""
+                                class="profile-img img-responsive center-block foto" />
                         </div>
-                        <div class="form-group col-xs-6 col-6">
-                            <label for="exampleInputEmail1">Apellido</label>
-                            <input type="text" class="form-control" [(ngModel)]="data.lastname"
-                                placeholder="Enter nombre">
+                        <div class="d-flex justify-content-center row">
+                            <div class="col-12">
+                                <input type="file" placeholder="Imagenes" (ngModelChange)="datafiles($event)"
+                                    (blur)="datafiles($event)">
+                            </div>
+                            <div class="col-12">
+                                <button type="button" class="btn btn-success" *ngIf="!file.foto1[0]">Probar
+                                    Foto</button>
+                                <button type="button" class="btn btn-success" *ngIf="file.foto1[0]"
+                                    [disabled]="disableFile" (click)="submitFile()">Subir Foto</button>
+                            </div>
                         </div>
-                        <div class="form-group col-xs-6 col-6">
-                            <label for="exampleInputEmail1">Email</label>
-                            <input type="text" class="form-control" [(ngModel)]="data.email"
-                                placeholder="Enter email">
+                        <div class="profile-label">
+                            <span class="label label-danger"
+                                *ngIf="data.miNivel">{{ data.miNivel.nivel.title || 'Gratuito' }}</span>
                         </div>
-                        <div class="form-group col-xs-6 col-6">
-                            <label for="exampleInputEmail1">Numero Celular</label>
-                            <input type="number" class="form-control" [(ngModel)]="data.celular"
-                                placeholder="Enter Numero">
+                        <div class="profile-stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-o"></i>
                         </div>
-                        <div class="form-group col-xs-6 col-6">
-                            <label for="exampleInputEmail1">Documento</label>
-                            <input type="number" class="form-control" [(ngModel)]="data.documento"
-                                placeholder="Enter Numero">
+                        <div class="profile-since">
+                            Registrado: {{ data.createdAt | date: 'medium' }}
                         </div>
-                        <div class="form-group col-xs-6 col-6">
-                            <label>Ciudad *</label>
-                            <!-- <input type="text" class="form-control form-control-sm" [(ngModel)]="data.ciudadDestino"> -->
-                            <ng-autocomplete [(ngModel)]="data.ciudadDestino" [data]="listCiudades" [searchKeyword]="keyword" placeHolder="Buscar Ciudad" autocomplete="off"
-                                historyIdentifier="listCiudades" [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate" (change)="blurCiudad()" (blur)="blurCiudad()">
-                            </ng-autocomplete>
-            
-                            <ng-template #itemTemplate let-item>
-                                <div class="item">
-                                    <!-- <img src="{{item.flag}}" height="25"> -->
-                                    <span [innerHTML]="item.city"></span> &nbsp; | &nbsp;
-                                    <small>Departamento: {{item.state}}</small>
+                        <!-- <div class="profile-details">
+                            <ul class="fa-ul">
+                                <li><i class="fa-li fa fa-truck"></i>Orders: <span>456</span></li>
+                                <li><i class="fa-li fa fa-comment"></i>Posts: <span>828</span></li>
+                                <li><i class="fa-li fa fa-tasks"></i>Tasks done: <span>1024</span>
+                                </li>
+                            </ul>
+                        </div> -->
+                        <div class="profile-message-btn center-block text-center">
+                            <!-- <a href="#" class="btn btn-success">
+                                <i class="fa fa-envelope"></i>
+                                Send message
+                            </a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-8 col-sm-8">
+                <div class="main-box clearfix">
+                    <div class="tabs-wrapper profile-tabs">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#tab-newsfeed" data-toggle="tab">Perfil</a></li>
+                        </ul>
+                        <div class="container">
+                            <div class="row">
+                                <div class="form-group col-xs-6 col-6">
+                                    <label for="exampleInputEmail1">User Name</label>
+                                    <input type="text" class="form-control" [(ngModel)]="data.username"
+                                        placeholder="Enter nombre">
                                 </div>
-                            </ng-template>
-            
-                            <ng-template #notFoundTemplate let-notFound>
-                                <div [innerHTML]="notFound"></div>
-                            </ng-template>
-                        </div>
-                        <div class="form-group col-xs-6 col-6">
-                            <label for="exampleInputEmail1">Departamento</label>
-                            <input type="text" disabled class="form-control" [(ngModel)]="data.departamento"
-                                placeholder="Enter Numero">
-                        </div>
-                        <div class="form-group col-xs-6 col-6">
-                            <label for="exampleInputEmail1">Barrio</label>
-                            <input type="text" class="form-control" [(ngModel)]="data.barrio"
-                                placeholder="Enter Numero">
-                        </div>
-                        <div class="form-group col-xs-6 col-6">
-                            <label for="exampleInputEmail1">Contraseña</label>
-                            <input type="text" class="form-control" [(ngModel)]="data.password"
-                                placeholder="Enter Dirección">
-                        </div>
-                        <div class="form-group col-xs-6 col-6">
-                            <label for="exampleInputEmail1">Confirmar Contraseña</label>
-                            <input type="text" class="form-control" [(ngModel)]="data.confirpassword"
-                                placeholder="Enter Dirección">
-                        </div>
-                        <div class="form-group col-12">
-                            <p class="text-center">
-                                <button (click)="submit()" class="btn btn-success" type="submit"
-                                    [disabled]="btnDisabled">
-                                    <span *ngIf="!id">Guardar</span>
-                                    <span *ngIf="id">Editar</span>
-                                </button>
-                            </p>
+                                <div class="form-group col-xs-6 col-6">
+                                    <label for="exampleInputEmail1">Nombre</label>
+                                    <input type="text" class="form-control" [(ngModel)]="data.name"
+                                        placeholder="Enter nombre">
+                                </div>
+                                <div class="form-group col-xs-6 col-6">
+                                    <label for="exampleInputEmail1">Apellido</label>
+                                    <input type="text" class="form-control" [(ngModel)]="data.lastname"
+                                        placeholder="Enter nombre">
+                                </div>
+                                <div class="form-group col-xs-6 col-6">
+                                    <label for="exampleInputEmail1">Email</label>
+                                    <input type="text" class="form-control" [(ngModel)]="data.email"
+                                        placeholder="Enter email">
+                                </div>
+                                <div class="form-group col-xs-6 col-6">
+                                    <label for="exampleInputEmail1">Numero Celular</label>
+                                    <input type="number" class="form-control" [(ngModel)]="data.celular"
+                                        placeholder="Enter Numero">
+                                </div>
+                                <div class="form-group col-xs-6 col-6">
+                                    <label for="exampleInputEmail1">Documento</label>
+                                    <input type="number" class="form-control" [(ngModel)]="data.documento"
+                                        placeholder="Enter Numero">
+                                </div>
+                                <div class="form-group col-xs-6 col-6">
+                                    <label>Ciudad *</label>
+                                    <!-- <input type="text" class="form-control form-control-sm" [(ngModel)]="data.ciudadDestino"> -->
+                                    <ng-autocomplete [(ngModel)]="data.ciudadDestino" [data]="listCiudades"
+                                        [searchKeyword]="keyword" placeHolder="Buscar Ciudad" autocomplete="off"
+                                        historyIdentifier="listCiudades" [itemTemplate]="itemTemplate"
+                                        [notFoundTemplate]="notFoundTemplate" (change)="blurCiudad()"
+                                        (blur)="blurCiudad()">
+                                    </ng-autocomplete>
+
+                                    <ng-template #itemTemplate let-item>
+                                        <div class="item">
+                                            <!-- <img src="{{item.flag}}" height="25"> -->
+                                            <span [innerHTML]="item.city"></span> &nbsp; | &nbsp;
+                                            <small>Departamento: {{item.state}}</small>
+                                        </div>
+                                    </ng-template>
+
+                                    <ng-template #notFoundTemplate let-notFound>
+                                        <div [innerHTML]="notFound"></div>
+                                    </ng-template>
+                                </div>
+                                <div class="form-group col-xs-6 col-6">
+                                    <label for="exampleInputEmail1">Departamento</label>
+                                    <input type="text" disabled class="form-control" [(ngModel)]="data.departamento"
+                                        placeholder="Enter Numero">
+                                </div>
+                                <div class="form-group col-xs-6 col-6">
+                                    <label for="exampleInputEmail1">Barrio</label>
+                                    <input type="text" class="form-control" [(ngModel)]="data.barrio"
+                                        placeholder="Enter Numero">
+                                </div>
+                                <div class="form-group col-xs-6 col-6">
+                                    <label for="exampleInputEmail1">Contraseña</label>
+                                    <input type="text" class="form-control" [(ngModel)]="data.password"
+                                        placeholder="Enter Dirección">
+                                </div>
+                                <div class="form-group col-xs-6 col-6">
+                                    <label for="exampleInputEmail1">Confirmar Contraseña</label>
+                                    <input type="text" class="form-control" [(ngModel)]="data.confirpassword"
+                                        placeholder="Enter Dirección">
+                                </div>
+                                <div class="form-group col-12">
+                                    <p class="text-center">
+                                        <button (click)="submit()" class="btn btn-success" type="submit"
+                                            [disabled]="btnDisabled">
+                                            <span *ngIf="!id">Guardar</span>
+                                            <span *ngIf="id">Editar</span>
+                                        </button>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

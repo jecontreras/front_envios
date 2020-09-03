@@ -10,7 +10,7 @@ import { ToolsService } from 'src/app/services/tools.service';
 export class TokenPlatformComponent implements OnInit {
   
   tablet:any = {
-    header: ["Plataforma","__VIEWSTATE","__VIEWSTATEGENERATOR","txtUsuario","Creado"],
+    header: ["Plataforma","__VIEWSTATE LIQUIDACION","__VIEWSTATE CREAR DESPACHOS","__VIEWSTATE ELIMINAR DESPACHOS","__VIEWSTATE CREAR RECOGIAS","__VIEWSTATE CONSULTAR FECHAS RECOGIA","__VIEWSTATEGENERATOR","txtUsuario","Creado"],
     listRow: []
   };
   query:any = {

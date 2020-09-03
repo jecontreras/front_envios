@@ -1,11 +1,11 @@
 <div class="card ng-trigger ng-trigger-cardRemove" animates="" animatesinitmode="show"
     style="visibility: visible; opacity: 1;">
     <div class="ng-tns-c14-12 ng-trigger ng-trigger-collapsedCard ng-star-inserted" style="overflow: hidden;">
-        <div class="d-flex flex-row bd-highlight mb-3">
+        <div class="d-flex flex-row-reverse bd-highlight">
             <div class="p-2 bd-highlight">
-                <h5>LISTA DE RECOGIAS</h5>
+                <button type="button" class="btn btn-success" (click)="openImprimir()">IMPRIMIR</button>
             </div>
-        </div>
+          </div>
     </div>
     <div class="content p-5">
         <div class="row">
@@ -39,8 +39,7 @@
                                         style="border-bottom: none; border-image: initial; border-left: 0.5pt solid windowtext; border-right: none; border-top: none; padding: 0cm 3.5pt; width: 150.6pt;"
                                         valign="top" width="201">
                                         <p class="MsoNormal" style="font-size: 12pt; margin: 0cm 0cm 0.0001pt;">
-                                            <span style="font-family: Arial; font-size: 8pt;">CIUDAD:&nbsp;<u>CUCUTA-NORTE
-                                                    DE SANTANDER</u>
+                                            <span style="font-family: Arial; font-size: 8pt;">CIUDAD:&nbsp;<u>{{ infoInit.ciudad }}</u>
 
                                             </span>
                                         </p>
@@ -49,7 +48,7 @@
                                         valign="top" width="189">
                                         <p class="MsoNormal" style="font-size: 12pt; margin: 0cm 0cm 0.0001pt;">
                                             <span
-                                                style="font-family: Arial; font-size: 8pt;">FECHA:&nbsp;<u>01/09/2020</u>
+                                                style="font-family: Arial; font-size: 8pt;">FECHA:&nbsp;<u>{{ infoInit.fecha }}</u>
 
                                             </span>
                                         </p>
@@ -81,7 +80,7 @@
                                         valign="top" width="112">
                                         <p class="MsoNormal" style="font-size: 12pt; margin: 0cm 0cm 0.0001pt;">
                                             <span lang="EN-US"
-                                                style="font-family: Arial; font-size: 8pt;">CC/NIT:&nbsp;<u>1093753373-2</u>
+                                                style="font-family: Arial; font-size: 8pt;">CC/NIT:&nbsp;<u>{{ infoInit.cc }}</u>
 
                                             </span>
                                         </p>
@@ -90,9 +89,7 @@
                                         style="border-bottom-color: windowtext; border-bottom-width: 0.5pt; border-image: initial; border-left-color: inherit; border-left-width: initial; border-right-color: inherit; border-right-width: initial; border-style: none none solid; border-top-color: inherit; border-top-width: initial; padding: 0cm 3.5pt;"
                                         valign="top">
                                         <p class="MsoNormal" style="font-size: 12pt; margin: 0cm 0cm 0.0001pt;">
-                                            <span style="font-family: Arial; font-size: 8pt;">DIR:&nbsp;<u>MANZANA 6
-                                                    LOTE 27 BARRIO TUCUNARE
-                                                    PARTE ALTA</u>
+                                            <span style="font-family: Arial; font-size: 8pt;">DIR:&nbsp;<u>{{ infoInit.direccion }}</u>
 
                                             </span>
                                         </p>
@@ -103,7 +100,7 @@
                                         valign="top" width="259">
                                         <p class="MsoNormal" style="font-size: 12pt; margin: 0cm 0cm 0.0001pt;">
                                             <span lang="EN-US"
-                                                style="font-family: Arial; font-size: 8pt;">TEL:&nbsp;<u>3154074456</u>
+                                                style="font-family: Arial; font-size: 8pt;">TEL:&nbsp;<u>{{ infoInit.tel }}</u>
 
                                             </span>
                                         </p>
@@ -207,35 +204,34 @@
                                     <td style="border-bottom: 0.5pt solid windowtext; border-image: initial; border-left: 0.5pt solid windowtext; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 20.85pt;"
                                         valign="top" width="28">
                                         <p class="MsoNormal" style="font-size: 12pt; margin: 0cm 0cm 0.0001pt;">
-                                            <span style="font-family: Arial; font-size: 7pt;">1</span>
+                                            <span style="font-family: Arial; font-size: 7pt;">{{ item.count }}</span>
                                         </p>
                                     </td>
                                     <td style="border-bottom: 0.5pt solid windowtext; border-left: none; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 85.75pt;"
                                         valign="top" width="114">
                                         <p class="MsoNormal" style="font-size: 12pt; margin: 0cm 0cm 0.0001pt;">
-                                            <span style="font-family: Arial; font-size: 7pt;">VALENTINA VALENCIA</span>
+                                            <span style="font-family: Arial; font-size: 7pt;">{{ item.contactoDestinatario }}</span>
                                         </p>
                                     </td>
                                     <td colspan="4"
                                         style="border-bottom: 0.5pt solid windowtext; border-left: none; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 54.4pt;"
                                         valign="top" width="73">
                                         <p class="MsoNormal" style="font-size: 12pt; margin: 0cm 0cm 0.0001pt;">
-                                            <span style="font-family: Arial; font-size: 7pt;">BOGOTA-D.C.</span>
+                                            <span style="font-family: Arial; font-size: 7pt;">{{ item.ciudadDestinatarioText }}</span>
                                         </p>
                                     </td>
                                     <td colspan="3"
                                         style="border-bottom: 0.5pt solid windowtext; border-left: none; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 76pt;"
                                         valign="top" width="101">
                                         <p class="MsoNormal" style="font-size: 12pt; margin: 0cm 0cm 0.0001pt;">
-                                            <span style="font-family: Arial; font-size: 7pt;">CARRERA 31D #2-77 BARRIO
-                                                LA ASUNCION
+                                            <span style="font-family: Arial; font-size: 7pt;">{{ item.direccionDestinatario }} - {{ item.barrioDestinatario }}
                                             </span>
                                         </p>
                                     </td>
                                     <td style="border-bottom: 0.5pt solid windowtext; border-left: none; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 55pt;"
                                         valign="top" width="73">
                                         <p class="MsoNormal" style="font-size: 12pt; margin: 0cm 0cm 0.0001pt;">
-                                            <span style="font-family: Arial; font-size: 7pt;">CALZADO</span>
+                                            <span style="font-family: Arial; font-size: 7pt;">{{ item.diceContener }}</span>
                                         </p>
                                     </td>
                                     <td style="border-bottom: 0.5pt solid windowtext; border-left: none; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 60.4pt;"
@@ -250,35 +246,35 @@
                                         valign="top">
                                         <p align="right" class="MsoNormal"
                                             style="font-size: 12pt; margin: 0cm 0cm 0.0001pt; text-align: right;">
-                                            <span style="font-family: Arial; font-size: 7pt;">1</span>
+                                            <span style="font-family: Arial; font-size: 7pt;">{{ item.unidadNegocio }}</span>
                                         </p>
                                     </td>
                                     <td style="border-bottom: 0.5pt solid windowtext; border-left: none; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 31.25pt;"
                                         valign="top" width="42">
                                         <p align="right" class="MsoNormal"
                                             style="font-size: 12pt; margin: 0cm 0cm 0.0001pt; text-align: right;">
-                                            <span style="font-family: Arial; font-size: 7pt;">2</span>
+                                            <span style="font-family: Arial; font-size: 7pt;">{{ item.totalPeso }}</span>
                                         </p>
                                     </td>
                                     <td style="border-bottom: 0.5pt solid windowtext; border-left: none; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 25.45pt;"
                                         valign="top" width="34">
                                         <p align="right" class="MsoNormal"
                                             style="font-size: 12pt; margin: 0cm 0cm 0.0001pt; text-align: right;">
-                                            <span style="font-family: Arial; font-size: 7pt;">2</span>
+                                            <span style="font-family: Arial; font-size: 7pt;">{{ item.totalPesovolumen }}</span>
                                         </p>
                                     </td>
                                     <td style="border-bottom: 0.5pt solid windowtext; border-left: none; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 34.1pt;"
                                         valign="top" width="45">
                                         <p align="right" class="MsoNormal"
                                             style="font-size: 12pt; margin: 0cm 0cm 0.0001pt; text-align: right;">
-                                            <span style="font-family: Arial; font-size: 7pt;">50,000</span>
+                                            <span style="font-family: Arial; font-size: 7pt;">{{ _tools.monedaChange( 3, 2, item.totalValorMercancia ) }}</span>
                                         </p>
                                     </td>
                                     <td style="border-bottom: 0.5pt solid windowtext; border-left: none; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 34.1pt;"
                                         valign="top" width="45">
                                         <p align="right" class="MsoNormal"
                                             style="font-size: 12pt; margin: 0cm 0cm 0.0001pt; text-align: right;">
-                                            <span style="font-family: Arial; font-size: 7pt;">14,000</span>
+                                            <span style="font-family: Arial; font-size: 7pt;">{{ _tools.monedaChange( 3, 2, item.flteTotal ) }}</span>
                                         </p>
                                     </td>
                                     <td style="border-bottom: 0.5pt solid windowtext; border-left: none; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 53.5pt;"
@@ -310,41 +306,41 @@
                                         valign="top">
                                         <p align="right" class="MsoNormal"
                                             style="font-size: 12pt; margin: 0cm 0cm 0.0001pt; text-align: right;">
-                                            <span style="font-family: Arial; font-size: 7pt;">4</span>
+                                            <span style="font-family: Arial; font-size: 7pt;"> {{ total.unidad }}</span>
                                         </p>
                                     </td>
                                     <td style="border-bottom: 0.5pt solid windowtext; border-left: none; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 31.25pt;"
                                         valign="top" width="42">
                                         <p align="right" class="MsoNormal"
                                             style="font-size: 12pt; margin: 0cm 0cm 0.0001pt; text-align: right;">
-                                            <span style="font-family: Arial; font-size: 7pt;">8</span>
+                                            <span style="font-family: Arial; font-size: 7pt;">{{ total.peso }}</span>
                                         </p>
                                     </td>
                                     <td style="border-bottom: 0.5pt solid windowtext; border-left: none; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 25.45pt;"
                                         valign="top" width="34">
                                         <p align="right" class="MsoNormal"
                                             style="font-size: 12pt; margin: 0cm 0cm 0.0001pt; text-align: right;">
-                                            <span style="font-family: Arial; font-size: 7pt;">8</span>
+                                            <span style="font-family: Arial; font-size: 7pt;">{{ total.volumen }}</span>
                                         </p>
                                     </td>
                                     <td style="border-bottom: 0.5pt solid windowtext; border-left: none; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 34.1pt;"
                                         valign="top" width="45">
                                         <p align="right" class="MsoNormal"
                                             style="font-size: 12pt; margin: 0cm 0cm 0.0001pt; text-align: right;">
-                                            <span style="font-family: Arial; font-size: 7pt;">250,000</span>
+                                            <span style="font-family: Arial; font-size: 7pt;">{{ _tools.monedaChange( 3, 2, total.totalValorMercancia ) }}</span>
                                         </p>
                                     </td>
                                     <td style="border-bottom: 0.5pt solid windowtext; border-left: none; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 34.1pt;"
                                         valign="top" width="45">
                                         <p align="right" class="MsoNormal"
                                             style="font-size: 12pt; margin: 0cm 0cm 0.0001pt; text-align: right;">
-                                            <span style="font-family: Arial; font-size: 7pt;">58,760</span>
+                                            <span style="font-family: Arial; font-size: 7pt;">{{ _tools.monedaChange( 3, 2, total.flteTotal ) }}</span>
                                         </p>
                                     </td>
                                     <td style="border-bottom: 0.5pt solid windowtext; border-left: none; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 53.5pt;"
                                         valign="top" width="71">
                                         <p class="MsoNormal" style="font-size: 12pt; margin: 0cm 0cm 0.0001pt;">
-                                            <span style="font-family: Arial; font-size: 7pt;">4</span>
+                                            <span style="font-family: Arial; font-size: 7pt;">{{ total.cantidadItem }}</span>
                                         </p>
                                     </td>
                                     <td style="border-bottom: 0.5pt solid windowtext; border-left: none; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 194.5pt;"
@@ -401,147 +397,39 @@
                                         </p>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr *ngFor="let item of listDistribucion">
                                     <td style="border-bottom: 0.5pt solid windowtext; border-image: initial; border-left: 0.5pt solid windowtext; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 116.75pt;"
                                         valign="top" width="156">
                                         <p class="MsoNormal" style="font-size: 12pt; margin: 0cm 0cm 0.0001pt;">
-                                            <span style="font-family: Arial; font-size: 8pt;">BOGOTA</span>
+                                            <span style="font-family: Arial; font-size: 8pt;">{{ item.name }}</span>
                                         </p>
                                     </td>
                                     <td style="border-bottom: 0.5pt solid windowtext; border-left: none; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 46.15pt;"
                                         valign="top" width="62">
                                         <p align="right" class="MsoNormal"
                                             style="font-size: 12pt; margin: 0cm 0cm 0.0001pt; text-align: right;">
-                                            <span style="font-family: Arial; font-size: 8pt;">1</span>
+                                            <span style="font-family: Arial; font-size: 8pt;">{{ item.item }}</span>
                                         </p>
                                     </td>
                                     <td style="border-bottom: 0.5pt solid windowtext; border-left: none; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 29.7pt;"
                                         valign="top" width="40">
                                         <p align="right" class="MsoNormal"
                                             style="font-size: 12pt; margin: 0cm 0cm 0.0001pt; text-align: right;">
-                                            <span style="font-family: Arial; font-size: 8pt;">1</span>
+                                            <span style="font-family: Arial; font-size: 8pt;">{{ item.unds }}</span>
                                         </p>
                                     </td>
                                     <td style="border-bottom: 0.5pt solid windowtext; border-left: none; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 50.15pt;"
                                         valign="top" width="67">
                                         <p align="right" class="MsoNormal"
                                             style="font-size: 12pt; margin: 0cm 0cm 0.0001pt; text-align: right;">
-                                            <span style="font-family: Arial; font-size: 8pt;">1</span>
+                                            <span style="font-family: Arial; font-size: 8pt;">{{ item.docEnter }}</span>
                                         </p>
                                     </td>
                                     <td style="border-bottom: 0.5pt solid windowtext; border-left: none; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 45pt;"
                                         valign="top" width="60">
                                         <p align="right" class="MsoNormal"
                                             style="font-size: 12pt; margin: 0cm 0cm 0.0001pt; text-align: right;">
-                                            <span style="font-family: Arial; font-size: 8pt;">0</span>
-                                        </p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="border-bottom: 0.5pt solid windowtext; border-image: initial; border-left: 0.5pt solid windowtext; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 116.75pt;"
-                                        valign="top" width="156">
-                                        <p class="MsoNormal" style="font-size: 12pt; margin: 0cm 0cm 0.0001pt;">
-                                            <span style="font-family: Arial; font-size: 8pt;">NEIVA</span>
-                                        </p>
-                                    </td>
-                                    <td style="border-bottom: 0.5pt solid windowtext; border-left: none; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 46.15pt;"
-                                        valign="top" width="62">
-                                        <p align="right" class="MsoNormal"
-                                            style="font-size: 12pt; margin: 0cm 0cm 0.0001pt; text-align: right;">
-                                            <span style="font-family: Arial; font-size: 8pt;">1</span>
-                                        </p>
-                                    </td>
-                                    <td style="border-bottom: 0.5pt solid windowtext; border-left: none; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 29.7pt;"
-                                        valign="top" width="40">
-                                        <p align="right" class="MsoNormal"
-                                            style="font-size: 12pt; margin: 0cm 0cm 0.0001pt; text-align: right;">
-                                            <span style="font-family: Arial; font-size: 8pt;">1</span>
-                                        </p>
-                                    </td>
-                                    <td style="border-bottom: 0.5pt solid windowtext; border-left: none; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 50.15pt;"
-                                        valign="top" width="67">
-                                        <p align="right" class="MsoNormal"
-                                            style="font-size: 12pt; margin: 0cm 0cm 0.0001pt; text-align: right;">
-                                            <span style="font-family: Arial; font-size: 8pt;">1</span>
-                                        </p>
-                                    </td>
-                                    <td style="border-bottom: 0.5pt solid windowtext; border-left: none; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 45pt;"
-                                        valign="top" width="60">
-                                        <p align="right" class="MsoNormal"
-                                            style="font-size: 12pt; margin: 0cm 0cm 0.0001pt; text-align: right;">
-                                            <span style="font-family: Arial; font-size: 8pt;">0</span>
-                                        </p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="border-bottom: 0.5pt solid windowtext; border-image: initial; border-left: 0.5pt solid windowtext; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 116.75pt;"
-                                        valign="top" width="156">
-                                        <p class="MsoNormal" style="font-size: 12pt; margin: 0cm 0cm 0.0001pt;">
-                                            <span style="font-family: Arial; font-size: 8pt;">MEDELLIN</span>
-                                        </p>
-                                    </td>
-                                    <td style="border-bottom: 0.5pt solid windowtext; border-left: none; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 46.15pt;"
-                                        valign="top" width="62">
-                                        <p align="right" class="MsoNormal"
-                                            style="font-size: 12pt; margin: 0cm 0cm 0.0001pt; text-align: right;">
-                                            <span style="font-family: Arial; font-size: 8pt;">1</span>
-                                        </p>
-                                    </td>
-                                    <td style="border-bottom: 0.5pt solid windowtext; border-left: none; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 29.7pt;"
-                                        valign="top" width="40">
-                                        <p align="right" class="MsoNormal"
-                                            style="font-size: 12pt; margin: 0cm 0cm 0.0001pt; text-align: right;">
-                                            <span style="font-family: Arial; font-size: 8pt;">1</span>
-                                        </p>
-                                    </td>
-                                    <td style="border-bottom: 0.5pt solid windowtext; border-left: none; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 50.15pt;"
-                                        valign="top" width="67">
-                                        <p align="right" class="MsoNormal"
-                                            style="font-size: 12pt; margin: 0cm 0cm 0.0001pt; text-align: right;">
-                                            <span style="font-family: Arial; font-size: 8pt;">1</span>
-                                        </p>
-                                    </td>
-                                    <td style="border-bottom: 0.5pt solid windowtext; border-left: none; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 45pt;"
-                                        valign="top" width="60">
-                                        <p align="right" class="MsoNormal"
-                                            style="font-size: 12pt; margin: 0cm 0cm 0.0001pt; text-align: right;">
-                                            <span style="font-family: Arial; font-size: 8pt;">0</span>
-                                        </p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="border-bottom: 0.5pt solid windowtext; border-image: initial; border-left: 0.5pt solid windowtext; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 116.75pt;"
-                                        valign="top" width="156">
-                                        <p class="MsoNormal" style="font-size: 12pt; margin: 0cm 0cm 0.0001pt;">
-                                            <span style="font-family: Arial; font-size: 8pt;">PEREIRA</span>
-                                        </p>
-                                    </td>
-                                    <td style="border-bottom: 0.5pt solid windowtext; border-left: none; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 46.15pt;"
-                                        valign="top" width="62">
-                                        <p align="right" class="MsoNormal"
-                                            style="font-size: 12pt; margin: 0cm 0cm 0.0001pt; text-align: right;">
-                                            <span style="font-family: Arial; font-size: 8pt;">1</span>
-                                        </p>
-                                    </td>
-                                    <td style="border-bottom: 0.5pt solid windowtext; border-left: none; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 29.7pt;"
-                                        valign="top" width="40">
-                                        <p align="right" class="MsoNormal"
-                                            style="font-size: 12pt; margin: 0cm 0cm 0.0001pt; text-align: right;">
-                                            <span style="font-family: Arial; font-size: 8pt;">1</span>
-                                        </p>
-                                    </td>
-                                    <td style="border-bottom: 0.5pt solid windowtext; border-left: none; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 50.15pt;"
-                                        valign="top" width="67">
-                                        <p align="right" class="MsoNormal"
-                                            style="font-size: 12pt; margin: 0cm 0cm 0.0001pt; text-align: right;">
-                                            <span style="font-family: Arial; font-size: 8pt;">1</span>
-                                        </p>
-                                    </td>
-                                    <td style="border-bottom: 0.5pt solid windowtext; border-left: none; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 45pt;"
-                                        valign="top" width="60">
-                                        <p align="right" class="MsoNormal"
-                                            style="font-size: 12pt; margin: 0cm 0cm 0.0001pt; text-align: right;">
-                                            <span style="font-family: Arial; font-size: 8pt;">0</span>
+                                            <span style="font-family: Arial; font-size: 8pt;">{{ item.docDev }}</span>
                                         </p>
                                     </td>
                                 </tr>
