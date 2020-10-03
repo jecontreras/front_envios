@@ -53,7 +53,7 @@
                                             <div *ngIf="item.urlRelacionenvio">
                                                 <button type="button" (click)="openView(item.urlRelacionenvio)" class="btn btn-primary">Relacion</button>
                                             </div>
-                                            <div *ngIf="item.estado == 'GENERADA'">
+                                            <div>
                                                 <button type="button" (click)="cancelar( item )" class="btn btn-danger">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
@@ -88,7 +88,7 @@
                                     <td>{{ _tools.monedaChange( 3, 2, item.valorRecaudar || 0 ) }}</td>
                                     <td>{{ item.fechaDest }}</td>
                                     <td>
-                                        <div [ngClass]="{esGenerado: item.estado == 'GENERADA', esCancelado: item.estado != 'GENERADA'}">
+                                        <div [ngClass]="{ esGenerado: item.estado == 'GENERADA', esCancelado: item.estado != 'GENERADA'}">
                                             {{ item.estadosName }}
                                         </div>
                                     </td>

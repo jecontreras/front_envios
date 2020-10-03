@@ -8,7 +8,7 @@ import * as moment from 'moment';
 import * as _ from 'lodash';
 
 @Component({
-  selector: 'app-estado-guias',
+  selector: 'app-estados-guias',
   templateUrl: './estado-guias.component.html',
   styleUrls: ['./estado-guias.component.scss']
 })
@@ -116,7 +116,8 @@ export class EstadoGuiasComponent implements OnInit {
     let data = {
       id: item.id,
       estado: "ANULADA EN " + item.barrioDestinatario,
-      nRemesa: item.nRemesa
+      nRemesa: item.nRemesa,
+      state: 1
     };
     item.estadosName = data.estado;
     this.btnDisabled = true;

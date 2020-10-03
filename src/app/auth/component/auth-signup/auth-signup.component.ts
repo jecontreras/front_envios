@@ -78,6 +78,8 @@ export class AuthSignupComponent implements OnInit {
     if( !this.data.cabeza ) { this._tools.tooast({ title:"Lo sentimos necesitas que un lider comparta el link para que te puedas registrar",icon: "warning" }); return false; }
     if( !this.data.username ) { this._tools.tooast({ title:"Ingresar su username",icon: "warning" }); return false; }
     if( !this.data.email ) { this._tools.tooast({ title:"Ingresar su Email",icon: "warning" }); return false; }
+    if( !this.data.emailVerificar ) { this._tools.tooast({ title:"Ingresar su Email de vereficar",icon: "warning" }); return false; }
+    if( this.data.email != this.data.emailVerificar ) { this._tools.tooast({ title:"Error los emails nos son iguales por favor vereficar",icon: "warning" }); return false; }
     if( !this.data.indicativo ) { this._tools.tooast({ title:"Ingresar su indicativo de tu pais",icon: "warning" }); return false; }
     if( !this.data.celular ) { this._tools.tooast({ title:"Ingresar su celular o whatsapp",icon: "warning" }); return false; }
     if( !this.data.password ) { this._tools.tooast({ title:"Ingresar su Contreseña",icon: "warning" }); return false; }

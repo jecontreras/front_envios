@@ -13,17 +13,18 @@
                     <div class="nav-menu">
                         <nav class="mainmenu">
                             <ul>
-                                <li><a target="_blank" href="{{ urlPagos }}">SOLICITUD DE CREDITO Y CONFIGURACION DE TUS PAGOS</a></li>
+                                <!-- <li><a target="_blank" href="{{ urlPagos }}">SOLICITUD DE CREDITO Y CONFIGURACION DE TUS PAGOS</a></li> -->
+                                <li><a [routerLink]="['/auth/login']">REGISTRATE - INICIA SECCIÓN</a></li>
                                 <li class="active"><a target="_blank"
-                                        href="https://fabricaybodega-59c8e.firebaseapp.com/registro/1">REGISTRATE
-                                        COMO MAYORISTA</a></li>
-                                <li><a target="_blank" href="https://fabricaybodega-59c8e.firebaseapp.com/">INGRESA
-                                        A TU OFICINA</a></li>
-                                <li><a target="_blank" href="https://fabricaybodega-59c8e.firebaseapp.com/">CALZADO
-                                        A CREDITO</a></li>
-                                <li><a target="_blank" href="https://enviosrrapidoscom.web.app/">PLATAFORMA DE
-                                        ENVIOS</a></li>
-                                <li><a [routerLink]="['/auth/login']">LOGIN ADMIN</a></li>
+                                        href="https://fabricaybodega-59c8e.firebaseapp.com/registro/1">CATALOGO PARA EL
+                                        SISTEMA</a></li>
+                                <li><a [routerLink]="['/portada/guiadetalles']">RASTREO DE ENVÍO</a></li>
+                                <!-- <li><a target="_blank" href="https://fabricaybodega-59c8e.firebaseapp.com/">INGRESA
+                                        A TU OFICINA</a></li> -->
+                                <!-- <li><a target="_blank" href="https://fabricaybodega-59c8e.firebaseapp.com/">CALZADO
+                                        A CREDITO</a></li> -->
+                                <!-- <li><a target="_blank" href="https://enviosrrapidoscom.web.app/">PLATAFORMA DE
+                                        ENVIOS</a></li> -->
                                 <!-- <li><a target="_blank"
                                         href="https://bit.ly/GENERARGUIASDEENVIA">GENERAR
                                         GUÍAS</a></li> -->
@@ -62,20 +63,12 @@
                     <div class="ft-contact">
                         <h6>Menu</h6>
                         <ul>
+                            <li><a [routerLink]="['/auth/login']">REGISTRATE - INICIA SECCIÓN</a></li>
                             <li class="active"><a target="_blank"
-                                    href="https://fabricaybodega-59c8e.firebaseapp.com/registro/1">REGISTRATE COMO
-                                    MAYORISTA</a></li>
-                            <li><a target="_blank" href="https://fabricaybodega-59c8e.firebaseapp.com/">INGRESA A TU
-                                    OFICINA</a></li>
-                            <li><a target="_blank" href="https://fabricaybodega-59c8e.firebaseapp.com/">CALZADO A
-                                    CREDITO</a></li>
-                            <li><a target="_blank" href="https://enviosrrapidoscom.web.app/">PLATAFORMA DE
-                                    ENVIOS</a></li>
-                            <!-- <li><a target="_blank"
-                                    href="https://bit.ly/GENERARGUIASDEENVIA">GENERAR
-                                    GUÍAS</a></li> -->
-                                    <li><a target="_blank" href="{{ urlPagos }}">CONFIGURAR TUS PAGOS</a></li>
-                                    <li><a target="_blank" href="{{ urlTerminos }}">TERMINOS Y CONDICIONES</a></li>
+                                    href="https://fabricaybodega-59c8e.firebaseapp.com/registro/1">CATALOGO PARA EL
+                                    SISTEMA</a></li>
+                            <li><a [routerLink]="['/portada/guiadetalles']">RASTREO DE ENVÍO</a></li>
+                            <li><a target="_blank" href="{{ urlTerminos }}">TERMINOS Y CONDICIONES</a></li>
                         </ul>
                     </div>
                     <div class="ft-contact">

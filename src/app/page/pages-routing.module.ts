@@ -5,12 +5,12 @@ import { FleteComponent } from './component/flete/flete.component';
 import { FormFleteComponent } from './form/form-flete/form-flete.component';
 import { ElaboracionGuiasComponent } from './component/elaboracion-guias/elaboracion-guias.component';
 import { EstadoGuiasComponent } from './component/estado-guias/estado-guias.component';
-import { FormGuiaDetallesComponent } from './form/form-guia-detalles/form-guia-detalles.component';
 import { SolicitudRecogidaComponent } from './form/solicitud-recogida/solicitud-recogida.component';
 import { ListRecogiaComponent } from './component/list-recogia/list-recogia.component';
 import { PerfilComponent } from './component/perfil/perfil.component';
 import { RelacionDespachoComponent } from './component/relacion-despacho/relacion-despacho.component';
 import { TokenPlatformComponent } from './component/token-platform/token-platform.component';
+import { FormEstadoGuiaComponent } from './form/form-estado-guia/form-estado-guia.component';
 
 const routes: Routes = [
   {
@@ -39,7 +39,7 @@ const routes: Routes = [
   },
   {
     path: "guiadetalles/:id",
-    component: FormGuiaDetallesComponent
+    component: FormEstadoGuiaComponent
   },
   {
     path: "solicitudrecogia",

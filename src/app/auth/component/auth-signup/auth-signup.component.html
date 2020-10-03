@@ -20,6 +20,12 @@
             </div>
             <div class="input-group mb-3">
               <div class="input-group-prepend">
+                <span class="input-group-text"><i class="feather icon-mail"></i></span>
+              </div>
+              <input type="email" [(ngModel)]="data.emailVerificar" class="form-control" placeholder="Volver a escribir el Email">
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fa fa-map" aria-hidden="true"></i></span>
               </div>
               <select class="custom-select" placeholder="Indicativo de tu pais" [(ngModel)]="data.indicativo">

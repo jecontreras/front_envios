@@ -7,15 +7,19 @@ import { NgImageSliderModule } from 'ng-image-slider';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { TerminosComponent } from './component/terminos/terminos.component';
 import { ConfigurarPagosComponent } from './component/configurar-pagos/configurar-pagos.component';
+import { FormGuiaDetallesComponent } from './component/form-guia-detalles/form-guia-detalles.component';
+import { ComponentModule } from '../component/component.module';
 
 @NgModule({
   declarations: [
     IndexComponent,
     TerminosComponent,
-    ConfigurarPagosComponent
+    ConfigurarPagosComponent,
+    FormGuiaDetallesComponent
   ],
   imports: [
     CommonModule,
+    ComponentModule,
     PortadaRoutingModule,
     CommonModule,
     FormsModule,

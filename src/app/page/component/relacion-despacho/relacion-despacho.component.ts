@@ -17,7 +17,8 @@ export class RelacionDespachoComponent implements OnInit {
   listRow:any = [];
   public query:any = { 
     where:{
-      estado: "GENERADA"
+      // estado: "GENERADA" 
+      state: 0
     }, 
     sort: "createdAt ASC",
     limit: -1,

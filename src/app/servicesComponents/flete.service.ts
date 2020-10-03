@@ -13,6 +13,9 @@ export class FleteService {
   get(query:any){
     return this._model.querys('fletes/querys',query, 'post');
   }
+  getGuia(query:any){
+    return this._model.querys('fletes/consultarguia',query, 'post');
+  }
   create(query:any){
     return this._model.querys('fletes',query, 'post');
   }
