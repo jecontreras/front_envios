@@ -16,13 +16,14 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="feather icon-mail"></i></span>
               </div>
-              <input type="email" [(ngModel)]="data.email" class="form-control" placeholder="Email">
+              <input type="email" [(ngModel)]="data.email" class="form-control" placeholder="Email ( dominio gmail o hotmail o outlook )" (blur)="validadorEmail( data.email )">
+              <span class="text-danger">{{ error }}</span>
             </div>
             <div class="input-group mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="feather icon-mail"></i></span>
               </div>
-              <input type="email" [(ngModel)]="data.emailVerificar" class="form-control" placeholder="Volver a escribir el Email">
+              <input type="email" [(ngModel)]="data.emailVerificar" class="form-control" placeholder="Volver a escribir el Email ( dominio gmail o hotmail o outlook )">
             </div>
             <div class="input-group mb-3">
               <div class="input-group-prepend">
@@ -30,7 +31,7 @@
               </div>
               <select class="custom-select" placeholder="Indicativo de tu pais" [(ngModel)]="data.indicativo">
                 <option [value]="item.phone_code" *ngFor="let item of listIndicativo">
-                  {{ item.nombre }}
+                  {{ item.nombre }} - {{ item.phone_code }}
                 </option>
               </select>
             </div>

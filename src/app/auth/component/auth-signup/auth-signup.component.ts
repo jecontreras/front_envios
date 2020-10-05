@@ -25,6 +25,7 @@ export class AuthSignupComponent implements OnInit {
   disabled:boolean = false;
   cabeza:any;
   liderInfo:any = {};
+  error: string;
   
   constructor(
     private _authSrvice: AuthService,
@@ -50,6 +51,17 @@ export class AuthSignupComponent implements OnInit {
       if( !res ) { this._tools.tooast( { title: "Error lider no encontrado", icon:"error" } ); this._router.navigate(["/portada/index"]); return false; }
       else { this.liderInfo = res; this.data.cabeza = res.id; }
     },(error)=> { this._tools.tooast( { title: "Error de servidor", icon:"error" } ); this._router.navigate(["/portada/index"]); } );
+  }
+
+  validadorEmail( email:string ){
+    let validador:any = email.split("@");
+    validador = validador[1];
+    if( validador ){
+      validador = validador.toLowerCase();
+      console.log( validador );
+      if( ( validador == "gmail.com" ) || ( validador == "hotmail.com" ) || ( validador == "hotmail.es" ) || ( validador == "outlook.com" ) || ( validador == "outlook.es" ) ) { this.error = ""; return true; }
+      else this.error = "Error el dominio tiene que ser gmail o hotmail o outlook";
+    }
   }
 
   submit(){

@@ -17,6 +17,10 @@ export class UsuariosService {
     return this._model.querys('user/querys',query, 'post');
   }
 
+  cambiarContrasena(query:any){
+    return this._model.querys('user/resetiar',query, 'post');
+  }
+
   getInfo(query:any){
     return this._model.querys('user/infoUser',query, 'post');
   }

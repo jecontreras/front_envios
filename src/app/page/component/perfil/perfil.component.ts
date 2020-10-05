@@ -119,9 +119,9 @@ export class PerfilComponent implements OnInit {
       this.data = res;
       let accion = new UserAction( res, 'put');
       this._store.dispatch(accion);
-      this._tools.presentToast("Perfil Actualizado correctamente");
+      this._tools.tooast({ title: "Perfil Actualizado correctamente" });
       this.data.ciudadDestino = this.listCiudades.find( ( item:any )=> item.city == this.data.ciudad ).city;
-    },(error)=> this._tools.presentToast("Error al Actualizar el Perfil"));
+    },(error)=> this._tools.tooast( { title: "Error al Actualizar el Perfil", icon: "error"}));
   }
 
   cambioPassword(){
@@ -130,11 +130,13 @@ export class PerfilComponent implements OnInit {
       password: this.data.password,
       confirpassword: this.data.confirpassword
     };
-    if( data.password !== data.confirpassword ) return this._tools.presentToast("Error las contraseñas no son iguales");
+    if( data.password !== data.confirpassword ) return this._tools.tooast({ title: "Error las contraseñas no son iguales", icon: "error"});
     this._user.cambioPass(data).subscribe((res:any)=>{
       console.log(res);
-      this._tools.presentToast("Contraseña actualizada");
-    },(error)=> this._tools.presentToast( error.data ||  "Error de servidor"));
+      this._tools.tooast( { title: "Contraseña actualizada" });
+    },(error)=> { 
+      let errors = error.error.data;
+      this._tools.tooast( { title: errors ||  "Error de servidor", icon: "error" } ); } );
   }
 
 }
