@@ -8,9 +8,12 @@ import { ToolsService } from 'src/app/services/tools.service';
   styleUrls: ['./token-platform.component.scss']
 })
 export class TokenPlatformComponent implements OnInit {
-  
+
   tablet:any = {
-    header: ["Plataforma","__VIEWSTATE LIQUIDACION","__VIEWSTATE CREAR DESPACHOS","__VIEWSTATE ELIMINAR DESPACHOS","__VIEWSTATE CREAR RECOGIAS","__VIEWSTATE CONSULTAR FECHAS RECOGIA","__VIEWSTATEGENERATOR","txtUsuario","Creado"],
+    header: [
+              "Plataforma","__VIEWSTATE LIQUIDACION","__VIEWSTATE CREAR DESPACHOS","__VIEWSTATE ELIMINAR DESPACHOS", "URLTOKEN ELIMINAR DESPACHOS", "__VIEWSTATE CREAR RECOGIAS",
+              "__VIEWSTATE CONSULTAR FECHAS RECOGIA","__VIEWSTATEGENERATOR","txtUsuario","Creado"
+    ],
     listRow: []
   };
   query:any = {
@@ -18,6 +21,7 @@ export class TokenPlatformComponent implements OnInit {
   };
   progreses:boolean = false;
   btnDisabled: boolean = false;
+  ver:string = "B4C1394A"
 
   constructor(
     private _tokenPlatform: TokenPlatformService,
@@ -26,6 +30,8 @@ export class TokenPlatformComponent implements OnInit {
 
   ngOnInit() {
     this.getRow();
+    console.log(this.ver)
+    url = "ScriptManager1=UpdatePanel1%7CbtnLiquidar&__EVENTTARGET=&__EVENTARGUMENT=&__LASTFOCUS=&__VIEWSTATE=";
   }
 
   getRow(){

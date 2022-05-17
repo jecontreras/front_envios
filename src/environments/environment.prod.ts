@@ -7,6 +7,6 @@ export const environment = {
   socketConfig: config,
   production: true,
   urlSocket: "http://localhost:3000",
-  url: "https://enviosrapidos.herokuapp.com",
+  url: "https://enviosrapidoback.herokuapp.com",
   urlFront: "https://enviosrrapidoscom.web.app"
 };

@@ -25,7 +25,7 @@ export class EstadoGuiasComponent implements OnInit {
 
   ngOnInit() {
     this.id = (this.activate.snapshot.paramMap.get('id'));
-    if( this.id ) { this.query.id = this.id; this.getFlete();}
+    if( this.id ) { this.query.where.nRemesa = this.id; this.getFlete();}
     // console.log( this.id );
   }
 
