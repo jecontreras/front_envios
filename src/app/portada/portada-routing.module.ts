@@ -24,12 +24,12 @@ const routes: Routes = [
   },
   {
     path: "guiadetalles/:id",
-    component: FormGuiaDetallesComponent
+    component: FormGuiaDetallesComponent 
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
-})
+}) 
 export class PortadaRoutingModule { }

@@ -20,17 +20,21 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let item of tablet.listRow">
-                                    <td>
-                                        <input type="text" class="form-control" [(ngModel)]="item.plataforma" placeholder="Platoforma" (blur)="actualizar('plataforma', item)">
+                                    <td style="width: 17%;">
+                                        <input type="text" class="form-control" [(ngModel)]="item.nombre" placeholder="Platoforma" (blur)="actualizar('plataforma', item)">
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control" [(ngModel)]="item.__VIEWSTATE" placeholder="__VIEWSTATE1" (blur)="actualizar('__VIEWSTATEGENERATOR', item)">
+                                        <input type="text" class="form-control" [(ngModel)]="item._VIEWSTATE2" placeholder="__VIEWSTATE1" (blur)="actualizar('_VIEWSTATE2', item)">
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control" [(ngModel)]="item._VIEWSTATE2" placeholder="__VIEWSTATE2" (blur)="actualizar('_VIEWSTATE2', item)">
+                                        <input type="text" class="form-control" [(ngModel)]="item.__VIEWSTATE" placeholder="__VIEWSTATE2" (blur)="actualizar('__VIEWSTATE', item)">
                                     </td>
                                     <td>
                                         <input type="text" class="form-control" [(ngModel)]="item._VIEWSTATE3" placeholder="__VIEWSTATE3" (blur)="actualizar('_VIEWSTATE3', item)">
+                                        <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="B4C1394A" [(ngModel)]="ver"/>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" [(ngModel)]="item.urlTokenBorraFlete" placeholder="urlTokenBorraFlete" (blur)="actualizar('urlTokenBorraFlete', item)">
                                     </td>
                                     <td>
                                         <input type="text" class="form-control" [(ngModel)]="item._VIEWSTATE4" placeholder="_VIEWSTATE4" (blur)="actualizar('_VIEWSTATE4', item)">

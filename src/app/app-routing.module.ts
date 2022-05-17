@@ -52,7 +52,7 @@ const routes: Routes = [
       }
     ]
   },
-  {
+  { 
     path: '',
     component: PublicoComponent,
     children: [

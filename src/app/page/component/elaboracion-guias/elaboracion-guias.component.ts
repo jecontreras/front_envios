@@ -73,7 +73,7 @@ export class ElaboracionGuiasComponent implements OnInit {
     console.log( this.data );
     let validador:boolean = this.validandoCotizador ();
     if( !validador ) return false;
-    this.data.pesoVolumen = ( ( parseFloat( this.data.volumenAlto ) * parseFloat( this.data.volumenLargo ) * parseFloat( this.data.volumenAncho ) ) / 5000 ) || 0;
+    this.data.pesoVolumen = ( ( parseFloat( this.data.volumenAlto ) * parseFloat( this.data.volumenLargo ) * parseFloat( this.data.volumenAncho ) ) / 5000 ) || 1;
     this.data.pesoVolumen = Math.round( this.data.pesoVolumen );
     this.data.valorFactura = this.data.valorRecaudar;
     let data = {
@@ -85,7 +85,7 @@ export class ElaboracionGuiasComponent implements OnInit {
       idUniSNegogocio: 1,
       numeroUnidad: Number( this.data.totalUnidad ),
       pesoReal: Number( this.data.totalkilo ),
-      pesoVolumen: this.data.pesoVolumen,
+      pesoVolumen: this.data.pesoVolumen || 1,
       alto: Number( this.data.volumenAlto ),
       largo: Number( this.data.volumenLargo ),
       ancho: Number( this.data.volumenAncho ),
@@ -316,6 +316,10 @@ export class ElaboracionGuiasComponent implements OnInit {
     this.data = {};
     this.tablet.listRow = [];
     this.armandoData();
+  }
+
+  crear( obj:any ){
+
   }
 
   validandoCotizador(){
