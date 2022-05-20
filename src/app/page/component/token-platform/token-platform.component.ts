@@ -22,6 +22,7 @@ export class TokenPlatformComponent implements OnInit {
   progreses:boolean = false;
   btnDisabled: boolean = false;
   ver:string = "B4C1394A"
+  url:string;
 
   constructor(
     private _tokenPlatform: TokenPlatformService,
@@ -31,7 +32,7 @@ export class TokenPlatformComponent implements OnInit {
   ngOnInit() {
     this.getRow();
     console.log(this.ver)
-    url = "ScriptManager1=UpdatePanel1%7CbtnLiquidar&__EVENTTARGET=&__EVENTARGUMENT=&__LASTFOCUS=&__VIEWSTATE=";
+    this.url = "ScriptManager1=UpdatePanel1%7CbtnLiquidar&__EVENTTARGET=&__EVENTARGUMENT=&__LASTFOCUS=&__VIEWSTATE=";
   }
 
   getRow(){

@@ -16,8 +16,8 @@ export class EstadoGuiasComponent implements OnInit {
 
   progreses:boolean = false;
   btnDisabled:boolean = false;
-  public query:any = { 
-    where:{ }, 
+  public query:any = {
+    where:{ },
     sort: "createdAt DESC",
     page: 0
    };
@@ -39,7 +39,7 @@ export class EstadoGuiasComponent implements OnInit {
     public _tools: ToolsService,
     private _flete: FleteService,
     private _store: Store<STORAGES>
-  ) { 
+  ) {
     this._store.subscribe((store: any) => {
       store = store.name;
       if(!store) return false;
@@ -59,7 +59,7 @@ export class EstadoGuiasComponent implements OnInit {
     this._flete.get( this.query ).subscribe(( res:any )=>{
       this.tablet.listRow = _.unionBy(this.tablet.listRow || [], res.data, 'id');
       this.count = res.count;
-          
+
       if (res.data.length === 0 ) {
         this.notEmptyPost =  false;
       }
@@ -92,7 +92,7 @@ export class EstadoGuiasComponent implements OnInit {
    detalles( item:any ){
      console.log( item );
     //  if( item.transportadoraSelect == "ENVIA" ) window.open( `http://200.69.100.66/OnlineR/Rastreo1.aspx?Mca_MostrarFlete=0&Guia=${ item.nRemesa }`, "Detalles Guias", "width=640, height=480" );
-    //  else 
+    //  else
      window.open( `${ this.urlFront }/dashboard/guiadetalles/${ item.nRemesa }`, "Detalles Guias", "width=640, height=480");
     }
 
@@ -117,7 +117,8 @@ export class EstadoGuiasComponent implements OnInit {
       id: item.id,
       estado: "ANULADA EN " + item.barrioDestinatario,
       nRemesa: item.nRemesa,
-      state: 1
+      state: 1,
+      transportadoraSelect: item.transportadoraSelect
     };
     item.estadosName = data.estado;
     this.btnDisabled = true;

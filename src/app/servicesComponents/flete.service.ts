@@ -34,6 +34,9 @@ export class FleteService {
   fleteCrearEnvia( query:any ){
     return this._model.querys('fletes/grabardespachoenvia',query, 'post');
   }
+  fleteCrearCordinadora( query:any ){
+    return this._model.querys('fletes/grabardespachoCordinadora',query, 'post');
+  }
   fleteBorrar( query:any ){
     return this._model.querys('fletes/borrarflete',query, 'post');
   }

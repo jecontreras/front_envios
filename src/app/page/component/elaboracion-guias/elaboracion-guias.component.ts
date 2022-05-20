@@ -7,6 +7,7 @@ import { DANEGROUP } from 'src/app/JSON/dane-nogroup';
 import * as moment from 'moment';
 import { environment } from 'src/environments/environment';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { CiudadesService } from 'src/app/servicesComponents/ciudades.service';
 
 @Component({
   selector: 'app-elaboracion-guias',
@@ -32,7 +33,8 @@ export class ElaboracionGuiasComponent implements OnInit {
   constructor(
     private _flete: FleteService,
     private _tools: ToolsService,
-    private _store: Store<STORAGES>
+    private _store: Store<STORAGES>,
+    private _ciudades: CiudadesService
   ) {
     this._store.subscribe((store: any) => {
       //console.log(store);
@@ -47,7 +49,7 @@ export class ElaboracionGuiasComponent implements OnInit {
   }
 
   armandoData(){
-    this.data = { 
+    this.data = {
       paisOrigen: "colombia",
       tipoEnvio: "nacionales",
       ciudadOrigen: this.dataUser.codigoCiudad,
@@ -66,6 +68,31 @@ export class ElaboracionGuiasComponent implements OnInit {
       ... this.data
     }
   }
+
+
+  async procesosCiudades(){
+    for( let row of this.listCiudades ){
+      setInterval(async ()=>{
+        let result =       await this.guardarCiudades( {
+                code: row.code,
+                city: row.city,
+                state: row.state,
+                name: row.name,
+                nameDepartamento: row.city
+              }
+        );
+      }, 3000 );
+    }
+  }
+
+  guardarCiudades( data ){
+    return new Promise( resolve =>{
+      this._ciudades.create( data ).subscribe( ( res:any ) =>{
+        resolve( true );
+      },( resolve( false ) ));
+    });
+  }
+
 
   submitCotizar(){
 
@@ -125,6 +152,7 @@ export class ElaboracionGuiasComponent implements OnInit {
       this.progreses = false;
       this.armandoCotizacionTcc( res.data.tcc );
       this.armandoCotizacionEnvia( res.data.envia );
+      this.armandoCotizacionCordinadora( res.data.cordinadora );
     } ,(error) => { this._tools.tooast( { title:"Error en el servidor por favor reintenta!", icon: "error" } ); this.btnDisabled = false; this.progreses = true;});
 
   }
@@ -174,6 +202,29 @@ export class ElaboracionGuiasComponent implements OnInit {
       totalSin: Number(  res[6]['Total'] ) + 1000,
       tiempoEstimado: res[1]['Dias'],
       trasportadora: "ENVIA"
+    });
+  }
+
+  armandoCotizacionCordinadora( res:any ){
+    if( res[6]['Total'] == 0 ) { this.errorCotisa = `No hay cubrimiento enesta direccion ${ this.data.ciudadDestino.state }`; return false; }
+    this.tablet.listRow.push({
+      imgTrasp: "./assets/imagenes/logoCordinadora.png",
+      origenDestino: `${ this.data.ciudadOrigenText } ${ this.data.ciudadDestino.city } ( ${ this.data.ciudadDestino.state } )` ,
+      unida: this.data.totalUnidad,
+      totalKilos: res[2]["Peso a Cobrar"],
+      kilosVol: this.data.pesoVolumen,
+      valoracion: res[0]['Cubrimiento'],
+      tray: "mensajeria",
+      flete: this._tools.monedaChange( 3, 2, ( res[3]['Flete'] || 0 ) ),
+      fleteSin: res[3]['Flete'],
+      fleteManejo: this._tools.monedaChange( 3, 2, ( res[5]['Otros'] || 0 ) ),
+      fleteManejoSin: res[5]['Otros'],
+      fleteTotal: this._tools.monedaChange( 3, 2, ( res[4]['F.V.'] || 0 ) ),
+      fleteTotalSin: res[4]['F.V.'],
+      total: this._tools.monedaChange( 3, 2, ( Number( res[6]['Total'] ) + 1000 || 0 ) ),
+      totalSin: Number(  res[6]['Total'] ) + 1000,
+      tiempoEstimado: res[1]['Dias'],
+      trasportadora: "CORDINADORA"
     });
   }
 
@@ -262,7 +313,8 @@ export class ElaboracionGuiasComponent implements OnInit {
       transportadoraSelect: this.data.transportadoraSelect //string
     };
     this._tools.ProcessTime( { title: "Cargando por favor esperar", tiempo: 7000 } );
-    if( this.data.transportadoraSelect == "TCC" ) { await this.creandoGuiaTcc( data ); }
+    if( this.data.transportadoraSelect == "TCC" ) await this.creandoGuiaTcc( data );
+    else if( this.data.transportadoraSelect == "CORDINADORA") this.creandoCordinadora( data );
     else { await this.creandoGuiaEnvia( data ); }
   }
 
@@ -272,7 +324,7 @@ export class ElaboracionGuiasComponent implements OnInit {
         console.log( res );
         this.btnDisabled = false;
         if( res.status !== 200){ this.mensaje = res.data.msx; this._tools.tooast( { title:"Error al generar la guia", icon: "error" } ); }
-        else { 
+        else {
           this.mensaje =  res.data.data['ns2:mensaje'][0];
           this.mensaje+= `ver guia ->>  ${this.urlFront}/dashboard/estadoGuias`;
           this._tools.tooast( { title:"Exitoso guia generada" } );
@@ -303,6 +355,35 @@ export class ElaboracionGuiasComponent implements OnInit {
         ... datable
       };
       this._flete.fleteCrearEnvia( data ).subscribe( ( res:any )=>{
+        this.btnDisabled = false;
+        this.mensaje+= `ver guia ->>  ${this.urlFront}/dashboard/estadoGuias`;
+        this._tools.tooast( { title:"Exitoso guia generada" } );
+        this.data.id = res.data.id;
+        resolve( res );
+      },( error )=> { this._tools.tooast( { title:"Error en el servidor por favor reintenta!", icon: "error" } ); console.error( error ); this.btnDisabled = false; resolve( false );} );
+    });
+  }
+
+  creandoCordinadora( datable:any ){
+    return new Promise(resolve=>{
+      let data:any = {
+        drpCiudadOrigen: ( this.listCiudades.find(( row:any )=> row.code == this.data.ciudadOrigen ) ).name,
+        txtIdentificacionDe: this.data.identificacionRemitente,
+        txtTelefonoDe: this.data.remitenteFijo,
+        txtDireccionDe: this.data.remitenteDireccion,
+        txtPara: this.data.destinatarioNombre,
+        drpCiudadDestino: this.data.ciudadDestino.name,
+        txtTelefonoPara: this.data.destinatarioCelular,
+        txtDireccionPara: `${ this.data.destinatarioDireccion } ( ${ this.data.destinatarioBarrio } )`,
+        txtUnidades: this.data.totalUnidad,
+        txtPeso: this.data.totalkilo,
+        txtVolumen: this.data.pesoVolumen,
+        txtDeclarado: this.data.valorFactura,
+        txtValorRecaudo: this.data.valorRecaudar,
+        txtDice: this.data.contenido,
+        ... datable
+      };
+      this._flete.fleteCrearCordinadora( data ).subscribe( ( res:any )=>{
         this.btnDisabled = false;
         this.mensaje+= `ver guia ->>  ${this.urlFront}/dashboard/estadoGuias`;
         this._tools.tooast( { title:"Exitoso guia generada" } );
@@ -356,7 +437,7 @@ export class ElaboracionGuiasComponent implements OnInit {
     if( !this.data.volumenAncho ) { this._tools.tooast({ title: "Error Falta Volumen ancho", icon: "error" } ); return false; }
     //if( !this.data.numeroBolsa ) { this._tools.tooast({ title: "Error Falta Numero de bolsa", icon: "error" } ); return false; }
     if( !this.data.totalUnidad ) { this._tools.tooast({ title: "Error Falta Total unidad", icon: "error" } ); return false; }
-    return true; 
+    return true;
   }
 
 }
