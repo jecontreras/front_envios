@@ -61,7 +61,7 @@
                                     <td>{{ item.txtPesoReal_K }}</td>
                                     <td>{{ item.createdAt | date: "medium" }}</td>
                                     <td>
-                                        <div [ngClass]="{ colorVerde: item.estado == 0, colorOrange: item.estado == 1, colorDanger: item.estado == 2 }">
+                                        <div [ngClass]="{ colorVerde: item.estado == 0, colorDanger: item.estado == 1, colorOrange: item.estado == 2 }">
                                             {{ item.estadosName }}
                                         </div>
                                     </td>

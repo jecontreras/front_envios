@@ -10,8 +10,7 @@
     <div class="content p-5">
         <div class="row">
             <div class="col-12">
-                <table cellpadding="2" cellspacing="3"
-                    class="table">
+                <table cellpadding="2" cellspacing="3" class="table">
                     <tbody>
                         <tr>
                             <td>
@@ -20,8 +19,7 @@
                                         <tr bgcolor="#f2f2f2">
                                             <td>
                                                 <div id="UpdatePanel1">
-                                                    <table cellpadding="0" class="textos"
-                                                        class="table">
+                                                    <table cellpadding="0" class="textos" class="table">
                                                         <tbody>
                                                             <tr>
                                                                 <td colspan="4">
@@ -30,10 +28,24 @@
                                                                             <h3>Informacion Recoleccion</h3>
                                                                         </div>
                                                                         <div class="form-group col-4" *ngIf="!data.id">
-                                                                            <label>Tipo de envio que vas a enviar a recoger *</label>
-                                                                            <select class="form-control form-control-sm" [(ngModel)]="data.selectEnvio">
-                                                                                <option value="contraEntrega">Contra entrega</option>
-                                                                                <option value="envioNormal">Envio Normal</option>
+                                                                            <label>Tipo de Trasportadora*</label>
+                                                                            <select class="form-control form-control-sm"
+                                                                                [(ngModel)]="data.plataforma">
+                                                                                <option value="envia">Envia</option>
+                                                                                <option value="cordinadora">Cordinadora
+                                                                                </option>
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="form-group col-4"
+                                                                            *ngIf="!data.id && data.plataforma == 'envia'">
+                                                                            <label>Tipo de envio que vas a enviar a
+                                                                                recoger *</label>
+                                                                            <select class="form-control form-control-sm"
+                                                                                [(ngModel)]="data.selectEnvio">
+                                                                                <option value="contraEntrega">Contra
+                                                                                    entrega</option>
+                                                                                <option value="envioNormal">Envio Normal
+                                                                                </option>
                                                                             </select>
                                                                         </div>
                                                                     </div>
@@ -46,17 +58,29 @@
                                                                             <tr>
                                                                                 <td valign="top" width="100%">
                                                                                     Dia en que se realizará la
-                                                                                    recolección:&nbsp;<input
+                                                                                    recolección:&nbsp;
+                                                                                    <input
+                                                                                        *ngIf="data.plataforma == 'envia'"
                                                                                         class="textos" id="txtFechaIni"
                                                                                         [(ngModel)]="data.txtFechaIni"
                                                                                         maxlength="30"
                                                                                         name="txtFechaIni"
                                                                                         style="color: #6a6a6a; font-family: Tahoma; font-size: 11px; width: 150px;"
-                                                                                        tabindex="8" type="text"
-                                                                                        value="jueves,  20/08/2020" />&nbsp;<input
+                                                                                        tabindex="8"
+                                                                                        type="text" />&nbsp;
+                                                                                    <input
                                                                                         id="btnIniI0" name="btnIniI0"
+                                                                                        *ngIf="data.plataforma == 'envia'"
                                                                                         src="http://200.69.100.66/Online/Imagenes/calen.gif"
                                                                                         tabindex="9" type="image" />
+                                                                                    <input 
+                                                                                    *ngIf="data.plataforma != 'envia'"
+                                                                                        type="date" 
+                                                                                        class="textos" id="txtFechaIni"
+                                                                                        style="color: #6a6a6a; font-family: Tahoma; font-size: 11px; width: 150px;"
+                                                                                        id="exampleFormControlInput1" 
+                                                                                        [(ngModel)]="data.fecha_recogida"
+                                                                                    >
                                                                                 </td>
                                                                             </tr>
                                                                         </tbody>
@@ -69,25 +93,38 @@
                                                                                 <td valign="top">Ciudad de recoleccion:
                                                                                 </td>
                                                                                 <td valign="top">
-                                                                                    <ng-autocomplete [(ngModel)]="data.drpCiudad" [data]="listCiudades" [searchKeyword]="keyword" 
-                                                                                        placeHolder="Buscar Ciudad" autocomplete="off" historyIdentifier="listCiudades" 
-                                                                                        [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate"
-                                                                                        (change)="validarFecha()"
-                                                                                    >
+                                                                                    <ng-autocomplete
+                                                                                        [(ngModel)]="data.drpCiudad"
+                                                                                        [data]="listCiudades"
+                                                                                        [searchKeyword]="keyword"
+                                                                                        placeHolder="Buscar Ciudad"
+                                                                                        autocomplete="off"
+                                                                                        historyIdentifier="listCiudades"
+                                                                                        [itemTemplate]="itemTemplate"
+                                                                                        [notFoundTemplate]="notFoundTemplate"
+                                                                                        (change)="validarFecha()">
                                                                                     </ng-autocomplete>
 
                                                                                     <ng-template #itemTemplate let-item>
                                                                                         <div class="item">
                                                                                             <!-- <img src="{{item.flag}}" height="25"> -->
-                                                                                            <span [innerHTML]="item.city"></span> &nbsp; | &nbsp;
-                                                                                            <small>Departamento: {{item.state}}</small>
+                                                                                            <span
+                                                                                                [innerHTML]="item.city"></span>
+                                                                                            &nbsp; | &nbsp;
+                                                                                            <small>Departamento:
+                                                                                                {{item.state}}</small>
                                                                                         </div>
                                                                                     </ng-template>
 
-                                                                                    <ng-template #notFoundTemplate let-notFound>
-                                                                                        <div [innerHTML]="notFound"></div>
+                                                                                    <ng-template #notFoundTemplate
+                                                                                        let-notFound>
+                                                                                        <div [innerHTML]="notFound">
+                                                                                        </div>
                                                                                     </ng-template>
-                                                                                    <button type="button" class="btn btn-primary" (click)="validarFecha()">Validar</button>
+                                                                                    <button type="button"
+                                                                                        class="btn btn-primary"
+                                                                                        *ngIf="data.plataforma == 'envia'"
+                                                                                        (click)="validarFecha()">Validar</button>
                                                                                     <!-- <input autocomplete="off"
                                                                                         class="textos" id="drpCiudad"
                                                                                         [(ngModel)]="data.drpCiudad"
@@ -129,14 +166,15 @@
                                                                         style="color: #6a6a6a; font-family: Tahoma; font-size: 11px; width: 200px;"
                                                                         tabindex="14" type="text" />
                                                                 </td>
-                                                                <td colspan="2" rowspan="2" valign="top">
+                                                                <td colspan="2" rowspan="2" valign="top" *ngIf="data.plataforma == 'envia' && data.lblWarningFecha">
                                                                     <div>
                                                                         <span class="textoError" id="lblWarning"
                                                                             style="background-color: #d4340c; border-color: white; color: white; font-family: Arial, sans-serif; padding: 2px;"></span>
                                                                     </div>
                                                                     <div *ngIf="data.lblWarningFecha">
                                                                         <span class="textoError" id="lblWarningFecha"
-                                                                            style="background-color: #d4340c; border-color: white; color: white; font-family: Arial, sans-serif; padding: 2px;">{{ data.lblWarningFecha }}.</span>
+                                                                            style="background-color: #d4340c; border-color: white; color: white; font-family: Arial, sans-serif; padding: 2px;">{{
+                                                                            data.lblWarningFecha }}.</span>
                                                                     </div>
                                                                     <div>
                                                                         <span class="textoError"
@@ -184,7 +222,7 @@
                                                                 <td valign="top">&nbsp;</td>
                                                                 <td valign="top">&nbsp;</td>
                                                             </tr>
-                                                            <tr>
+                                                            <!--<tr>
                                                                 <td>Nombre y apellido Remitente</td>
                                                                 <td colspan="3">
                                                                     <input class="textos" id="txtNombreApellidoC"
@@ -193,8 +231,8 @@
                                                                         style="color: #6a6a6a; font-family: Tahoma; font-size: 11px; width: 300px;"
                                                                         tabindex="19" type="text" value="VICTOR VERA" />
                                                                 </td>
-                                                            </tr>
-                                                            <tr>
+                                                            </tr>-->
+                                                            <tr *ngIf="data.plataforma == 'envia'">
                                                                 <td colspan="4" valign="middle">
                                                                     <table border="0"
                                                                         style="border-style: solid; border-width: 1px; width: 746px;">
@@ -237,8 +275,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <table cellpadding="2" cellspacing="3"
-                class="table">
+                <table cellpadding="2" cellspacing="3" class="table">
                     <tbody>
                         <tr>
                             <td valign="top" width="750px">
@@ -254,7 +291,9 @@
                                                                     style="height: 76px;"></td>
                                                             </tr>
                                                             <tr>
-                                                                <td colspan="3"><h3>Embalaje</h3></td>
+                                                                <td colspan="3">
+                                                                    <h3>Embalaje</h3>
+                                                                </td>
                                                             </tr>
                                                             <tr>
                                                                 <td colspan="3">
@@ -337,8 +376,7 @@
                                                                 <td>
                                                                     <textarea class="textos" cols="65"
                                                                         id="txaObservaciones" name="txaObservaciones"
-                                                                        [(ngModel)]="data.txaObservaciones"
-                                                                        rows="3"
+                                                                        [(ngModel)]="data.txaObservaciones" rows="3"
                                                                         style="color: #6a6a6a; font-family: Tahoma; font-size: 11px;"
                                                                         tabindex="103"></textarea>
                                                                 </td>
@@ -351,12 +389,14 @@
                                                                     </div>
                                                                 </td>
                                                                 <td>
-                                                                    <button type="button" [disabled]="btnDisabled" (click)="guardarBtn()" class="btn btn-success">Guardar</button>&nbsp;
-                                                                    <img alt=""
-                                                                        id="divProgress"
+                                                                    <button type="button" [disabled]="btnDisabled"
+                                                                        (click)="guardarBtn()"
+                                                                        class="btn btn-success">Guardar</button>&nbsp;
+                                                                    <img alt="" id="divProgress"
                                                                         src="http://200.69.100.66/Online/imagenes/uploading.gif"
                                                                         style="border: none; visibility: hidden;" />&nbsp;
-                                                                        <button type="button" class="btn btn-secondary" (click)="limpiar()">Limpiar</button>
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        (click)="limpiar()">Limpiar</button>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -367,8 +407,7 @@
                                                             <tr>
                                                                 <td>
                                                                     <input class="textos" id="txtNota" maxlength="40"
-                                                                        [(ngModel)]="data.txtNota"
-                                                                        name="txtNota"
+                                                                        [(ngModel)]="data.txtNota" name="txtNota"
                                                                         style="color: #6a6a6a; font-family: Tahoma; font-size: 11px; width: 250px;"
                                                                         tabindex="95" type="text" />
                                                                 </td>
@@ -380,8 +419,8 @@
                                                             </tr>
                                                             <tr>
                                                                 <td colspan="3">
-                                                                    <span class="textos"
-                                                                        id="lblFechaHabil">{{ data.lblWarningFecha }}</span>
+                                                                    <span class="textos" id="lblFechaHabil">{{
+                                                                        data.lblWarningFecha }}</span>
                                                                 </td>
                                                             </tr>
                                                         </tbody>

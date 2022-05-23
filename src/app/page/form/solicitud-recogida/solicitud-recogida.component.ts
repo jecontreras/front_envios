@@ -16,9 +16,11 @@ export class SolicitudRecogidaComponent implements OnInit {
 
   data:any = {
     // txtFechaIni: "jueves,  20/08/2020"
+    plataforma: 'envia',
+    fecha_recogida: new Date()
   };
   listCiudades:any = DANEGROUP;
-  keyword = 'city';
+  keyword = 'name';
   btnDisabled:boolean = false;
   dataUser:any = {};
   id:any;

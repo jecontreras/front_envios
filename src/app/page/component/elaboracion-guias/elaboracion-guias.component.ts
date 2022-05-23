@@ -25,7 +25,7 @@ export class ElaboracionGuiasComponent implements OnInit {
   public count: number = 0;
   dataUser:any = {};
   listCiudades:any = DANEGROUP;
-  keyword = 'city';
+  keyword = 'name';
   mensaje:string;
   errorCotisa:string;
   urlFront:string = environment.urlFront;

@@ -123,7 +123,7 @@ export class EstadoGuiasComponent implements OnInit {
     item.estadosName = data.estado;
     this.btnDisabled = true;
      this._flete.fleteBorrar( data ).subscribe(( res:any )=>{
-       this._tools.tooast( { title: "Eliminado Recogia" } );
+       this._tools.tooast( { title: "Eliminado Guia exitoso" } );
        this.btnDisabled = false;
      },( error:any )=> { this._tools.tooast( { title: "Error de servidor", icon:"error" } ); this.btnDisabled = false; } );
   }

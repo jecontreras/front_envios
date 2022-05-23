@@ -103,6 +103,7 @@ export class ListRecogiaComponent implements OnInit {
       this._recogia.cancelarrecogia( data ).subscribe(( res:any )=>{
         this._tools.tooast( { title: "Eliminado Recogia" } );
         this.btnDisabled = false;
+        item.estadosName = "ELIMINADO";
       },( error:any )=> { this._tools.tooast( { title: "Error de servidor", icon:"error" } ); this.btnDisabled = false; } );
    }
 
