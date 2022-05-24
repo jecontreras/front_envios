@@ -27,10 +27,10 @@
                                                                         <div class="col-4">
                                                                             <h3>Informacion Recoleccion</h3>
                                                                         </div>
-                                                                        <div class="form-group col-4" *ngIf="!data.id">
+                                                                        <div class="form-group col-4">
                                                                             <label>Tipo de Trasportadora*</label>
                                                                             <select class="form-control form-control-sm"
-                                                                                [(ngModel)]="data.plataforma">
+                                                                                [(ngModel)]="data.plataforma" [disabled]="data.id">
                                                                                 <option value="envia">Envia</option>
                                                                                 <option value="cordinadora">Cordinadora
                                                                                 </option>
@@ -73,12 +73,12 @@
                                                                                         *ngIf="data.plataforma == 'envia'"
                                                                                         src="http://200.69.100.66/Online/Imagenes/calen.gif"
                                                                                         tabindex="9" type="image" />
-                                                                                    <input 
+                                                                                    <input
                                                                                     *ngIf="data.plataforma != 'envia'"
-                                                                                        type="date" 
+                                                                                        type="date"
                                                                                         class="textos" id="txtFechaIni"
                                                                                         style="color: #6a6a6a; font-family: Tahoma; font-size: 11px; width: 150px;"
-                                                                                        id="exampleFormControlInput1" 
+                                                                                        id="exampleFormControlInput1"
                                                                                         [(ngModel)]="data.fecha_recogida"
                                                                                     >
                                                                                 </td>
@@ -388,7 +388,7 @@
                                                                         responderá por el monto aqui descrito
                                                                     </div>
                                                                 </td>
-                                                                <td>
+                                                                <td *ngIf="data.id">
                                                                     <button type="button" [disabled]="btnDisabled"
                                                                         (click)="guardarBtn()"
                                                                         class="btn btn-success">Guardar</button>&nbsp;

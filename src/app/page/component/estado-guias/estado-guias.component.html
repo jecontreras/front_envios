@@ -48,10 +48,10 @@
                                                 <i class="fa fa-eye" aria-hidden="true"></i>
                                             </button>
                                             <div *ngIf="item.urlRotulos">
-                                                <button type="button" (click)="openView(item.urlRotulos)" class="btn btn-primary">Rotulos</button>
+                                                <button type="button" (click)="openView( item, 'urlRotulos' )" class="btn btn-primary">Rotulos</button>
                                             </div>
                                             <div *ngIf="item.urlRelacionenvio">
-                                                <button type="button" (click)="openView(item.urlRelacionenvio)" class="btn btn-primary">Relacion</button>
+                                                <button type="button" (click)="openView( item, 'urlRelacionenvio' )" class="btn btn-primary">Relacion</button>
                                             </div>
                                             <div>
                                                 <button type="button" (click)="cancelar( item )" class="btn btn-danger">

@@ -29,7 +29,7 @@ export class EstadoGuiasComponent implements OnInit {
     header: ["Opciones","Guia","# Factura","Valor Pedido","Transportador","Agente","Peso","Piezas","Flete","Manejo","Flete x Recaudo","Total","Vlr Recaudo","Fecha / Dest","Estado","Novedades Global"],
     listRow: []
   };
-  urlFront:string = environment.urlFront;
+  urlFront:string = window.location.origin;
   formatoMoneda:any = {};
 
   filtro:any = {};
@@ -96,7 +96,16 @@ export class EstadoGuiasComponent implements OnInit {
      window.open( `${ this.urlFront }/dashboard/guiadetalles/${ item.nRemesa }`, "Detalles Guias", "width=640, height=480");
     }
 
-   openView( url:string ){
+   openView( data:any, vista:string = "urlRotulos" ){
+     console.log(data, vista)
+     let url:string;
+     if( data.transportadoraSelect == 'ENVIA'){
+       if( vista == 'urlRotulos')  url = data.urlRotulos;
+       if( vista == 'urlRelacionenvio')  url = data.urlRelacionenvio;
+     }
+     if( data.transportadoraSelect == 'CORDINADORA'){
+
+     }
      window.open( url );
    }
 

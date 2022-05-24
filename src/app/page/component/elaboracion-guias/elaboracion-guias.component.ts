@@ -28,7 +28,7 @@ export class ElaboracionGuiasComponent implements OnInit {
   keyword = 'name';
   mensaje:string;
   errorCotisa:string;
-  urlFront:string = environment.urlFront;
+  urlFront:string = window.location.origin;
 
   constructor(
     private _flete: FleteService,
