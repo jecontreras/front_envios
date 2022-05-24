@@ -387,7 +387,8 @@ export class ElaboracionGuiasComponent implements OnInit {
         this.btnDisabled = false;
         this.mensaje+= `ver guia ->>  ${this.urlFront}/dashboard/estadoGuias`;
         this._tools.tooast( { title:"Exitoso guia generada" } );
-        this.data.id = res.data.id;
+        if( res.data ) this.data.id = res.data.id;
+        else this.data.id = res.id;
         resolve( res );
       },( error )=> { this._tools.tooast( { title:"Error en el servidor por favor reintenta!", icon: "error" } ); console.error( error ); this.btnDisabled = false; resolve( false );} );
     });

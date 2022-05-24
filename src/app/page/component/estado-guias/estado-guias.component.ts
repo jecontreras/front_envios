@@ -102,12 +102,33 @@ export class EstadoGuiasComponent implements OnInit {
      if( data.transportadoraSelect == 'ENVIA'){
        if( vista == 'urlRotulos')  url = data.urlRotulos;
        if( vista == 'urlRelacionenvio')  url = data.urlRelacionenvio;
+       window.open( url );
      }
      if( data.transportadoraSelect == 'CORDINADORA'){
-
+       this.downloadPdf( data.urlRotulos, 'cordinadora #'+data.nRemesa );
      }
-     window.open( url );
    }
+
+   downloadPdf(base64String, fileName){
+    if(window.navigator && window.navigator.msSaveOrOpenBlob){
+      // download PDF in IE
+      let byteChar = atob(base64String);
+      let byteArray = new Array(byteChar.length);
+      for(let i = 0; i < byteChar.length; i++){
+        byteArray[i] = byteChar.charCodeAt(i);
+      }
+      let uIntArray = new Uint8Array(byteArray);
+      let blob = new Blob([uIntArray], {type : 'application/pdf'});
+      window.navigator.msSaveOrOpenBlob(blob, `${fileName}.pdf`);
+    } else {
+      // Download PDF in Chrome etc.
+      const source = `data:application/pdf;base64,${base64String}`;
+      const link = document.createElement("a");
+      link.href = source;
+      link.download = `${fileName}.pdf`
+      link.click();
+    }
+  }
 
    updateInfro( item:any, opt:string){
      if( this.btnDisabled ) return false;
