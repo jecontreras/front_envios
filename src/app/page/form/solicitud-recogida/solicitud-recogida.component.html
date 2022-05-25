@@ -388,11 +388,11 @@
                                                                         responderá por el monto aqui descrito
                                                                     </div>
                                                                 </td>
-                                                                <td *ngIf="data.id">
+                                                                <td *ngIf="!data.id">
                                                                     <button type="button" [disabled]="btnDisabled"
                                                                         (click)="guardarBtn()"
                                                                         class="btn btn-success">Guardar</button>&nbsp;
-                                                                    <img alt="" id="divProgress"
+                                                                    <img alt="" *ngIf="btnDisabled"
                                                                         src="http://200.69.100.66/Online/imagenes/uploading.gif"
                                                                         style="border: none; visibility: hidden;" />&nbsp;
                                                                     <button type="button" class="btn btn-secondary"

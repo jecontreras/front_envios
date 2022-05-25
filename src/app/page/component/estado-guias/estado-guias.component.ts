@@ -32,7 +32,10 @@ export class EstadoGuiasComponent implements OnInit {
   urlFront:string = window.location.origin;
   formatoMoneda:any = {};
 
-  filtro:any = {};
+  filtro:any = {
+    fecha1: moment().add(- 30, 'days').format(),
+    fecha2: moment().format()
+  };
   rolName:string;
 
   constructor(
@@ -52,6 +55,7 @@ export class EstadoGuiasComponent implements OnInit {
   ngOnInit() {
     this.formatoMoneda = this._tools.formatoMoneda;
     this.getRow();
+    console.log( this.filtro )
   }
 
   getRow(){

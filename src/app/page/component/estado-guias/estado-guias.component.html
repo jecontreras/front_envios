@@ -18,11 +18,11 @@
                         </div>
                         <div class="col-3">
                             <label for="exampleInputEmail1">Fecha Inicial</label>
-                            <input type="datetime-local" [(ngModel)]="filtro.fecha1" name="birthdaytime">
+                            <input type="date" [(ngModel)]="filtro.fecha1" name="birthdaytime">
                         </div>
                         <div class="col-3">
                             <label for="exampleInputEmail1">Fecha final</label>
-                            <input type="datetime-local" [(ngModel)]="filtro.fecha2" name="birthdaytime">
+                            <input type="date" [(ngModel)]="filtro.fecha2" name="birthdaytime">
                         </div>
                         <div class="col-2">
                             <button type="button" class="btn btn-primary" (click)="getFiltro()">Buscar</button>
@@ -91,7 +91,7 @@
                                     <td>{{ _tools.monedaChange( 3, 2, item.valorRecaudar || 0 ) }}</td>
                                     <td>{{ item.fechaDest }}</td>
                                     <td>
-                                        <div [ngClass]="{ esGenerado: item.estado == 'GENERADA', esCancelado: item.estado != 'GENERADA'}">
+                                        <div [ngClass]="{ esGenerado: item.estado == 'GENERADA', esCancelado: item.estado != 'GENERADA' && item.estado != 'COMPLETADO', esCompletado: item.estado == 'COMPLETADO' }">
                                             {{ item.estadosName }}
                                         </div>
                                     </td>

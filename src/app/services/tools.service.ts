@@ -5,13 +5,13 @@ import Swal from 'sweetalert2'
   providedIn: 'root'
 })
 export class ToolsService {
-  
+
   loading:any;
   formatoMoneda:any = { prefix: 'COP$ ',align: 'left', thousands: '.', decimal: ',', precision: 0 };
-
+  currency: any = { prefix: '$ ', align: 'left', thousands: '.', decimal: ',', precision: 0 };
   constructor(
   ) { }
- 
+
   async presentToast(mensaje:string, type='completado') {
     //this.snackBar.open(mensaje, type, {duration: 5000});
   }
@@ -162,6 +162,6 @@ export class ToolsService {
     separados = separados.filter( (row:any)=> row != "");
     return '$' + separados.join("."); //+ ',' + inputNum[1];
   }
-  
+
 
 }
