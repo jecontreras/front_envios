@@ -144,6 +144,7 @@ export class ElaboracionGuiasComponent implements OnInit {
       lblMca_Cubicacion1: "",
       hiddenInputToUpdateATBuffer_CommonToolkitScripts: 1,
       txtGuia_a_Consultar: "",
+      valorAsegurado: this.data.valorAsegurado, //number
     };
     this.btnDisabled = true;
     this.errorCotisa = "";
@@ -223,8 +224,8 @@ export class ElaboracionGuiasComponent implements OnInit {
       fleteManejoSin: res[5]['Otros'],
       fleteTotal: this._tools.monedaChange( 3, 2, ( res[4]['F.V.'] || 0 ) ),
       fleteTotalSin: res[4]['F.V.'],
-      total: this._tools.monedaChange( 3, 2, ( Number( res[6]['Total'] ) + 1000 || 0 ) ),
-      totalSin: Number(  res[6]['Total'] ) + 1000,
+      total: this._tools.monedaChange( 3, 2, ( Number( res[6]['Total'] ) || 0 ) ),
+      totalSin: Number(  res[6]['Total'] ),
       tiempoEstimado: res[1]['Dias'],
       trasportadora: "CORDINADORA"
     });
