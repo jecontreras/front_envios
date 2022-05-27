@@ -89,7 +89,11 @@
                                             style="box-sizing: border-box;" /><span
                                             style="box-sizing: border-box; font-weight: bolder;"><label for=""
                                                 style="box-sizing: border-box; display: inline-block; margin-bottom: 0.5rem;">Valor
-                                                declarado:</label></span>&nbsp;{{ data.valorRecaudar }}<br
+                                                declarado:</label></span>&nbsp;{{ _tools.monedaChange( 3,2, data.valorAsegurado ) }}<br
+                                            style="box-sizing: border-box;" /><span
+                                            style="box-sizing: border-box; font-weight: bolder;"><label for=""
+                                                style="box-sizing: border-box; display: inline-block; margin-bottom: 0.5rem;">Valor
+                                                a Recaudar:</label></span>&nbsp;{{ _tools.monedaChange( 3,2, data.valorRecaudar ) }}<br
                                             style="box-sizing: border-box;" /><span
                                             style="box-sizing: border-box; font-weight: bolder;"><label for=""
                                                 style="box-sizing: border-box; display: inline-block; margin-bottom: 0.5rem;">Dice
@@ -103,14 +107,16 @@
                             style="-webkit-box-flex: 0; box-sizing: border-box; flex: 0 0 50%; max-width: 50%; min-height: 1px; padding-left: 15px; padding-right: 15px; position: relative; width: 194.75px;">
                             <div class="card-header"
                                 style="background-color: rgba(0, 0, 0, 0.03); border-bottom: 1px solid rgba(0, 0, 0, 0.125); border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0px 0px; box-sizing: border-box; margin-bottom: 0px; padding: 0.75rem 1.25rem;">
-                                <span style="box-sizing: border-box; font-weight: bolder;">Facturación</span>
+                                <span style="box-sizing: border-box; font-weight: bolder;">Estado</span>
                             </div>
                             <ul class="list-group list-group-flush"
                                 style="-webkit-box-direction: normal; -webkit-box-orient: vertical; box-sizing: border-box; display: flex; flex-direction: column; margin-bottom: 0px; margin-top: 0px; padding-left: 0px;">
                                 <li class="list-group-item"
                                     style="border-radius: 0px; border: 0px; box-sizing: border-box; display: block; margin-bottom: 0px; padding: 0.75rem 1.25rem; position: relative;">
-                                    <div class="form-group" style="box-sizing: border-box; margin-bottom: 1rem;">
-
+                                    <div class="form-group" style="box-sizing: border-box; margin-bottom: 1rem;" *ngIf="data.listEstadoSimple">
+                                      <p>Estado: {{ data.listEstadoSimple.descripcion }}</p>
+                                      <p>Fecha: {{ data.listEstadoSimple.fecha_texto }}</p>
+                                      <p>Hora: {{ data.listEstadoSimple.hora_ap }}</p>
                                     </div>
                                 </li>
                             </ul>
@@ -181,7 +187,7 @@
                                                 style="box-sizing: border-box; display: inline-block; margin-bottom: 0.5rem;">Ciudad
                                                 destinatario</label></span>
                                         <p style="box-sizing: border-box; margin-bottom: 1rem; margin-top: 0px;">
-                                            {{ data.ciudadDestino}}
+                                            {{ data.drpCiudadDestino }}
                                         </p>
                                         <span style="box-sizing: border-box; font-weight: bolder;"><label for=""
                                                 style="box-sizing: border-box; display: inline-block; margin-bottom: 0.5rem;">Teléfono
@@ -190,6 +196,19 @@
                                             {{ data.telefonoDestinatario }} - {{ data.celularDestinatario }}
                                         </p>
                                     </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-12">
+                          <div class="container content">
+                            <h4>Listado de Estados del envio</h4>
+                          </div>
+                        </div>
+                        <div class="col-12">
+                            <ul class="list-group" *ngIf="data.listEstadoDetallado">
+                                <li class="list-group-item" *ngFor="let item of data.listEstadoDetallado">
+                                    <p>Estado: {{ item.descripcion }}</p>
+                                    <p>Fecha: {{ item.fecha_texto }}</p>
                                 </li>
                             </ul>
                         </div>

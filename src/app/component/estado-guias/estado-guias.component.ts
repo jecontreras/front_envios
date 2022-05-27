@@ -3,6 +3,7 @@ import { DANEGROUP } from 'src/app/JSON/dane-nogroup';
 import { ActivatedRoute } from '@angular/router';
 import { FleteService } from 'src/app/servicesComponents/flete.service';
 import { ToolsService } from 'src/app/services/tools.service';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-estado-guias',
@@ -20,7 +21,7 @@ export class EstadoGuiasComponent implements OnInit {
   constructor(
     private activate: ActivatedRoute,
     private _flete: FleteService,
-    private _tools: ToolsService
+    public _tools: ToolsService
   ) { }
 
   ngOnInit() {
@@ -42,7 +43,12 @@ export class EstadoGuiasComponent implements OnInit {
       res = res.data[0];
       this.progreses = false;
       if( !res ) return false;
-      this.data = res;
+      this.data = res.guia;
+      try {
+        this.data.listEstadoSimple = res.simple[0].estado[0];
+        this.data.listEstadoDetallado = _.orderBy( res.detallado[0].estado, ['codigo'], ['desc'] );
+        this.data.estadosName = res.simple[0].estado[0].descripcion;
+      } catch (error) {}
       console.log( this.data );
       if( !res.memosac ){
         this.data.ciudadOrigen = ( this.listCiudades.find(( item:any )=> item.code == this.data.ciudadOrigen ).city ) || 'null';
