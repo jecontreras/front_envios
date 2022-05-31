@@ -93,13 +93,21 @@ const NavigationItems = [
         icon: 'feather icon-home'
       },
       {
+        id: 'monedero',
+        title: 'Tu billetera',
+        type: 'item',
+        disabled: false,
+        url: '/dashboard/monedero',
+        icon: 'feather icon-home'
+      },
+      {
         id: 'perfil',
         title: 'Editar Perfil',
         type: 'item',
         disabled: false,
         url: '/dashboard/perfil',
         icon: 'feather icon-home'
-      },
+      }
     ]
   }
 ];
@@ -122,8 +130,8 @@ export class NavigationItem {
     // console.log( this.rolName );
     for(let row of NavigationItems){
       for( let item of row.children ){
-        if( item.disabled ) { 
-          if( this.rolName == 'admin') filtrados.push( item ); 
+        if( item.disabled ) {
+          if( this.rolName == 'admin') filtrados.push( item );
         }
         else filtrados.push( item );
       }

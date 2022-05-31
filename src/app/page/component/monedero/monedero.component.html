@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col-12">
+        <h5>Mis Ventas a Retirar</h5>
+    </div>
+    <div class="col-12 col-sm-8 shadow-lg p-3 mb-5 bg-white rounded">
+      <ul class="list-group list-group-flush scrols">
+        <li class="list-group-item" *ngFor="let item of listOrdenes">
+          <div class="row">
+              <div class="col-6 col-sm-3 col-md-4">
+                <h5>Codigo: {{ item.codigo }}</h5>
+              </div>
+              <div class="col-6 col-sm-3 col-md-4">
+                <h5>Origen: {{ item.drpCiudadOrigen }}</h5>
+                <h5>Destino: {{ item.drpCiudadDestino }}</h5>
+              </div>
+              <div class="col-6 col-sm-3 col-md-4">
+                <h5>Recibe: {{ item.contactoDestinatario }}</h5>
+                <h5>Cell: {{ item.celularDestinatario }}</h5>
+              </div>
+              <div class="col-6 col-sm-3 col-md-4">
+                <h5 class="text-warning">Valor a recaudar: {{ _tools.monedaChange( 3, 2, item.valorRecaudar ) }}</h5>
+                <h5 class="text-danger">Valor del Flete: {{ _tools.monedaChange( 3, 2, item.flteTotal ) }}</h5>
+                <h5 class="text-success">Tu dinero: {{ _tools.monedaChange( 3, 2, ( item.valorRecaudar - item.flteTotal ) ) }}</h5>
+              </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="col-12 col-sm-4 shadow-lg p-3 mb-5 bg-white rounded">
+        <div class=" container content">
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-flex justify-content-center">
+                        <div>
+                          <h4>Tu saldo actual</h4>
+                          <h5 class="text-success" style="text-align: center;">{{ _tools.monedaChange( 3, 2, dataInfo.valor )  }}</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <button type="button" class="btn btn-success" (click)="retirarDinero( {} )">Solicitar retiro de dinero</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

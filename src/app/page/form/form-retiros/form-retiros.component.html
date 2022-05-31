@@ -1,0 +1,95 @@
+<div class="row">
+  <div class="col-12">
+      <h4> Retiros de dinero del usuario {{ dataUser.username }} </h4>
+  </div>
+    <div class="form-group col-md-6 col-sm-4 col-lg-4 col-xs-4" *ngIf="data.id && superSub">
+        <label for="exampleFormControlSelect1">Estado del Cobro</label>
+        <select class="form-control form-control-sm" [(ngModel)]="data.estado">
+            <option type="number" value="0">Activa</option>
+            <option type="number" value="1">Apraboda</option>
+            <option type="number" value="2">Rechazada</option>
+            <option type="number" value="3">Eliminado</option>
+        </select>
+    </div>
+    <div class="form-group col-md-6 col-sm-4 col-lg-4 col-xs-4">
+        <label for="exampleInputEmail1">Nombre y apellidos</label>
+        <input type="text" class="form-control" [(ngModel)]="data.nombre">
+    </div>
+    <div class="form-group col-md-6 col-sm-4 col-lg-4 col-xs-4">
+        <label>Número Cédula</label>
+        <input type="text" [(ngModel)]="data.cedula" class="form-control form-control-sm">
+    </div>
+    <div class="form-group col-md-6 col-sm-4 col-lg-4 col-xs-4">
+            <label>Número para llamarte en caso de falta de información</label>
+            <input type="text" [(ngModel)]="data.celular" class="form-control form-control-sm">
+    </div>
+    <div class="form-group col-md-6 col-sm-4 col-lg-4 col-xs-4" *ngIf="data.pais == 'colombia'">
+        <label>Metodo de pago para colombianos (Llenar si eres Colombiano)</label>
+        <select class="form-control form-control-sm" [(ngModel)]="data.metodo">
+            <option value="cuenta_de_ahorro_bancolombia">CUENTA DE AHORRO BANCOLOMBIA</option>
+            <option value="nequi">NEQUI</option>
+            <option value="davi_plata">DAVI PLATA</option>
+            <option value="ahorro_a_la_mano_bancolombia">AHORRO A LA MANO BANCOLOMBIA</option>
+        </select>
+    </div>
+    <div class="form-group col-md-6 col-sm-4 col-lg-4 col-xs-4" *ngIf="data.pais == 'venezuela'">
+        <label>Metodo de pago para Venezolanos (Llenar si eres Venezolano)</label>
+        <select class="form-control form-control-sm" [(ngModel)]="data.metodo">
+            <option value="Efecty">EFECTY</option>
+            <option value="transfer_bancaria">TRANSFERENCIA BANCARIA</option>
+        </select>
+    </div>
+    <div class="form-group col-md-6 col-sm-4 col-lg-4 col-xs-4" *ngIf="data.pais == 'colombia'">
+        <label *ngIf="data.metodo == 'nequi' || data.metodo == 'davi_plata'">Número de Celular de la cuenta
+            {{ data.metodo }}</label>
+        <label *ngIf="data.metodo != 'nequi' && data.metodo != 'davi_plata'">Número de la cuenta
+            bancaria</label>
+        <input type="text" [(ngModel)]="data.cob_num_cuenta" class="form-control form-control-sm">
+    </div>
+        <div class="form-group col-12 row" *ngIf="data.cob_pais == 'venezuela'">
+            <div class="form-group col-md-6 col-sm-4 col-lg-4 col-xs-4" *ngIf="data.metodo == 'Efecty'">
+                <label>Numero de cedula</label>
+                <input type="text" [(ngModel)]="data.cob_numero_cedula" class="form-control form-control-sm">
+            </div>
+            <div class="form-group col-md-6 col-sm-4 col-lg-4 col-xs-4" *ngIf="data.metodo == 'Efecty'">
+                <label>Ciudad o corregimiento donde deseas retirar</label>
+                <input type="text" [(ngModel)]="data.cob_ciudad_corregimiento" class="form-control form-control-sm">
+            </div>
+            <div class="form-group col-md-6 col-sm-4 col-lg-4 col-xs-4" *ngIf="data.metodo == 'transfer_bancaria'">
+                <label>Nombre del banco Correctamente</label>
+                <input type="text" [(ngModel)]="data.cob_nombre_banco" class="form-control form-control-sm">
+            </div>
+            <div class="form-group col-md-6 col-sm-4 col-lg-4 col-xs-4" *ngIf="data.metodo == 'transfer_bancaria'">
+                <label>Numero de cuenta</label>
+                <input type="text" [(ngModel)]="data.cob_num_cuenta" class="form-control form-control-sm">
+            </div>
+            <div class="form-group col-md-6 col-sm-4 col-lg-4 col-xs-4" *ngIf="data.metodo == 'transfer_bancaria'">
+                <label>Numero de cédula</label>
+                <input type="text" [(ngModel)]="data.cob_numero_cedula" class="form-control form-control-sm">
+            </div>
+            <div class="form-group col-md-6 col-sm-4 col-lg-4 col-xs-4">
+                <label>Email</label>
+                <input type="text" [(ngModel)]="data.usu_email" class="form-control form-control-sm">
+            </div>
+        </div>
+        <div class="form-group col-md-6 col-sm-4 col-lg-4 col-xs-4">
+            <label>Monto</label>
+            <input [disabled]="!superSub" currencyMask [(ngModel)]="data.monto" class="form-control form-control-sm" [options]="opcionCurrencys"/>
+        </div>
+        <div class="form-group col-md-6 col-sm-4 col-lg-4 col-xs-4">
+            <label>Devoluciones - </label>
+            <input [disabled]="!superSub" currencyMask [(ngModel)]="data.devoluciones" class="form-control form-control-sm" [options]="opcionCurrencys"/>
+        </div>
+        <div class="form-group col-md-6 col-sm-4 col-lg-4 col-xs-4" *ngIf="data.id">
+            <label>Valor Total del flete -</label>
+            <input [disabled]="!superSub" currencyMask [(ngModel)]="data.sumaFlete" class="form-control form-control-sm" [options]="opcionCurrencys"/>
+        </div>
+        <div class="form-group col-md-6 col-sm-4 col-lg-4 col-xs-4">
+            <label>Total Dinero Recibir </label>
+            <input [disabled]="!superSub" currencyMask [(ngModel)]="data.totalrecibir" class="form-control form-control-sm" [options]="opcionCurrencys"/>
+        </div>
+        <div class="form-group col-12">
+            <label>Descripcion</label>
+            <textarea class="form-control" [(ngModel)]="data.cob_descripcion" rows="3"></textarea>
+        </div>
+  </div>

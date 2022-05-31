@@ -114,7 +114,7 @@ export class EstadoGuiasComponent implements OnInit {
    }
 
    downloadPdf(base64String, fileName){
-    if(window.navigator && window.navigator.msSaveOrOpenBlob){
+    if(window.navigator && window.navigator['msSaveOrOpenBlob']){
       // download PDF in IE
       let byteChar = atob(base64String);
       let byteArray = new Array(byteChar.length);
@@ -123,7 +123,7 @@ export class EstadoGuiasComponent implements OnInit {
       }
       let uIntArray = new Uint8Array(byteArray);
       let blob = new Blob([uIntArray], {type : 'application/pdf'});
-      window.navigator.msSaveOrOpenBlob(blob, `${fileName}.pdf`);
+      window.navigator['msSaveOrOpenBlob'](blob, `${fileName}.pdf`);
     } else {
       // Download PDF in Chrome etc.
       const source = `data:application/pdf;base64,${base64String}`;
