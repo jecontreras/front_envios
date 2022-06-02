@@ -20,6 +20,8 @@ import { RelacionDespachoComponent } from './component/relacion-despacho/relacio
 import { TokenPlatformComponent } from './component/token-platform/token-platform.component';
 import { FormEstadoGuiaComponent } from './form/form-estado-guia/form-estado-guia.component';
 import { ComponentModule } from '../component/component.module';
+import { MonederoComponent } from './component/monedero/monedero.component';
+import { FormRetirosComponent } from './form/form-retiros/form-retiros.component';
 
 @NgModule({
   declarations: [ 
@@ -34,7 +36,9 @@ import { ComponentModule } from '../component/component.module';
     PerfilComponent,
     RelacionDespachoComponent,
     TokenPlatformComponent,
-    FormEstadoGuiaComponent
+    FormEstadoGuiaComponent,
+    MonederoComponent,
+    FormRetirosComponent
   ],
   imports: [
     ComponentModule,

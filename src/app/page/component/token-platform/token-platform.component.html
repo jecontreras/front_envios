@@ -3,7 +3,7 @@
     <div class="ng-tns-c14-12 ng-trigger ng-trigger-collapsedCard ng-star-inserted" style="overflow: hidden;">
         <div class="d-flex flex-row bd-highlight mb-3">
             <div class="p-2 bd-highlight">
-                <h5>LISTA DE RECOGIAS</h5>
+                <h5>Configuracion de plataforma</h5>
             </div>
         </div>
     </div>
@@ -47,6 +47,39 @@
                                     </td>
                                     <td>
                                         <input type="text" class="form-control" [(ngModel)]="item.txtUsuario" placeholder="txtPassword" (blur)="actualizar('txtUsuario', item)">
+                                    </td>
+                                    <td>{{ item.createdAt | date: "medium" }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="card-body ng-tns-c14-12 table-border-style ng-star-inserted">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th *ngFor="let item of tablet2.header">{{ item }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of tablet2.listRow">
+                                    <td style="width: 17%;">
+                                        <input type="text" class="form-control" [(ngModel)]="item.nombre" placeholder="Platoforma">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" [(ngModel)]="item.comision" placeholder="Platoforma" (blur)="actualizarPlt('comision', item)">
+                                    </td>
+                                    <td>
+                                      <select class="form-control" [(ngModel)]="item.typoImpresion"  (change)="actualizarPlt('typoImpresion', item)">
+                                        <option value="57">Generico tercio pagina</option>
+                                        <option value="55">Generico 10x10</option>
+                                        <option value="44">Generico</option>
+                                        <option value="59">Generico cuarto de pagina</option>
+                                        <option value="58">Generico media pagina</option>
+                                      </select>
                                     </td>
                                     <td>{{ item.createdAt | date: "medium" }}</td>
                                 </tr>

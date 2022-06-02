@@ -28,7 +28,8 @@ export class ElaboracionGuiasComponent implements OnInit {
   keyword = 'name';
   mensaje:string;
   errorCotisa:string;
-  urlFront:string = environment.urlFront;
+  urlFront:string = window.location.origin;
+  opcionCurrencys:any;
 
   constructor(
     private _flete: FleteService,
@@ -46,6 +47,7 @@ export class ElaboracionGuiasComponent implements OnInit {
 
   ngOnInit() {
     this.armandoData();
+    this.opcionCurrencys = this._tools.currency;
   }
 
   armandoData(){
@@ -142,6 +144,7 @@ export class ElaboracionGuiasComponent implements OnInit {
       lblMca_Cubicacion1: "",
       hiddenInputToUpdateATBuffer_CommonToolkitScripts: 1,
       txtGuia_a_Consultar: "",
+      valorAsegurado: this.data.valorAsegurado, //number
     };
     this.btnDisabled = true;
     this.errorCotisa = "";
@@ -159,7 +162,7 @@ export class ElaboracionGuiasComponent implements OnInit {
 
   armandoCotizacionTcc( res:any ){
     for( let row of res ){
-      if( row['respuesta'][0]['codigo'][0] == -1 ) { this.errorCotisa = row['respuesta'][0]['mensaje'][0] + " Tcc"; return false;}
+      if( row['respuesta'][0]['codigo'][0] == -1 ) { /*this.errorCotisa = row['respuesta'][0]['mensaje'][0] + " Tcc"; */return false;}
       this.tablet.listRow.push({
         imgTrasp: "https://aveonline.co/app/temas/imagen_transpo/104926-1-tcc.jpg",
         origenDestino: `${ this.data.ciudadOrigenText } ${ this.data.ciudadDestino.city } ( ${ this.data.ciudadDestino.state})` ,
@@ -183,7 +186,7 @@ export class ElaboracionGuiasComponent implements OnInit {
   }
 
   armandoCotizacionEnvia( res:any ){
-    if( res[6]['Total'] == 0 ) { this.errorCotisa = `No hay cubrimiento enesta direccion ${ this.data.ciudadDestino.state }`; return false; }
+    if( res[6]['Total'] == 0 ) { /*this.errorCotisa = `No hay cubrimiento enesta direccion ${ this.data.ciudadDestino.state }`;*/ return false; }
     this.tablet.listRow.push({
       imgTrasp: "https://aveonline.co/app/temas/imagen_transpo/084935-1-envia-094632-1-ENVIA.jpg",
       origenDestino: `${ this.data.ciudadOrigenText } ${ this.data.ciudadDestino.city } ( ${ this.data.ciudadDestino.state } )` ,
@@ -206,7 +209,7 @@ export class ElaboracionGuiasComponent implements OnInit {
   }
 
   armandoCotizacionCordinadora( res:any ){
-    if( res[6]['Total'] == 0 ) { this.errorCotisa = `No hay cubrimiento enesta direccion ${ this.data.ciudadDestino.state }`; return false; }
+    if( res[6]['Total'] == 0 ) { /*this.errorCotisa = `No hay cubrimiento enesta direccion ${ this.data.ciudadDestino.state }`; */return false; }
     this.tablet.listRow.push({
       imgTrasp: "./assets/imagenes/logoCordinadora.png",
       origenDestino: `${ this.data.ciudadOrigenText } ${ this.data.ciudadDestino.city } ( ${ this.data.ciudadDestino.state } )` ,
@@ -221,8 +224,8 @@ export class ElaboracionGuiasComponent implements OnInit {
       fleteManejoSin: res[5]['Otros'],
       fleteTotal: this._tools.monedaChange( 3, 2, ( res[4]['F.V.'] || 0 ) ),
       fleteTotalSin: res[4]['F.V.'],
-      total: this._tools.monedaChange( 3, 2, ( Number( res[6]['Total'] ) + 1000 || 0 ) ),
-      totalSin: Number(  res[6]['Total'] ) + 1000,
+      total: this._tools.monedaChange( 3, 2, ( Number( res[6]['Total'] ) || 0 ) ),
+      totalSin: Number(  res[6]['Total'] ),
       tiempoEstimado: res[1]['Dias'],
       trasportadora: "CORDINADORA"
     });
@@ -387,7 +390,8 @@ export class ElaboracionGuiasComponent implements OnInit {
         this.btnDisabled = false;
         this.mensaje+= `ver guia ->>  ${this.urlFront}/dashboard/estadoGuias`;
         this._tools.tooast( { title:"Exitoso guia generada" } );
-        this.data.id = res.data.id;
+        if( res.data ) this.data.id = res.data.id;
+        else this.data.id = res.id;
         resolve( res );
       },( error )=> { this._tools.tooast( { title:"Error en el servidor por favor reintenta!", icon: "error" } ); console.error( error ); this.btnDisabled = false; resolve( false );} );
     });

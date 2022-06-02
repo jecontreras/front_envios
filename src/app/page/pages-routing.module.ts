@@ -11,6 +11,8 @@ import { PerfilComponent } from './component/perfil/perfil.component';
 import { RelacionDespachoComponent } from './component/relacion-despacho/relacion-despacho.component';
 import { TokenPlatformComponent } from './component/token-platform/token-platform.component';
 import { FormEstadoGuiaComponent } from './form/form-estado-guia/form-estado-guia.component';
+import { FormRetirosComponent } from './form/form-retiros/form-retiros.component';
+import { MonederoComponent } from './component/monedero/monedero.component';
 
 const routes: Routes = [
   {
@@ -64,7 +66,20 @@ const routes: Routes = [
   {
     path: "tokenplataforma",
     component: TokenPlatformComponent
-  }
+  },
+  {
+    path: "monedero",
+    component: MonederoComponent
+  },
+  {
+    path: "formRetiros/:id",
+    component: FormRetirosComponent
+  },
+  {
+    path: "formRetiros",
+    component: FormRetirosComponent
+  },
+
 ];
 
 @NgModule({

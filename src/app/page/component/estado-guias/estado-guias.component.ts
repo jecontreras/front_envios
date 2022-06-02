@@ -29,10 +29,13 @@ export class EstadoGuiasComponent implements OnInit {
     header: ["Opciones","Guia","# Factura","Valor Pedido","Transportador","Agente","Peso","Piezas","Flete","Manejo","Flete x Recaudo","Total","Vlr Recaudo","Fecha / Dest","Estado","Novedades Global"],
     listRow: []
   };
-  urlFront:string = environment.urlFront;
+  urlFront:string = window.location.origin;
   formatoMoneda:any = {};
 
-  filtro:any = {};
+  filtro:any = {
+    fecha1: moment().add(- 30, 'days').format(),
+    fecha2: moment().format()
+  };
   rolName:string;
 
   constructor(
@@ -52,6 +55,7 @@ export class EstadoGuiasComponent implements OnInit {
   ngOnInit() {
     this.formatoMoneda = this._tools.formatoMoneda;
     this.getRow();
+    console.log( this.filtro )
   }
 
   getRow(){
@@ -96,9 +100,39 @@ export class EstadoGuiasComponent implements OnInit {
      window.open( `${ this.urlFront }/dashboard/guiadetalles/${ item.nRemesa }`, "Detalles Guias", "width=640, height=480");
     }
 
-   openView( url:string ){
-     window.open( url );
+   openView( data:any, vista:string = "urlRotulos" ){
+     console.log(data, vista)
+     let url:string;
+     if( data.transportadoraSelect == 'ENVIA'){
+       if( vista == 'urlRotulos')  url = data.urlRotulos;
+       if( vista == 'urlRelacionenvio')  url = data.urlRelacionenvio;
+       window.open( url );
+     }
+     if( data.transportadoraSelect == 'CORDINADORA'){
+       this.downloadPdf( data.urlRotulos, 'cordinadora #'+data.nRemesa );
+     }
    }
+
+   downloadPdf(base64String, fileName){
+    if(window.navigator && window.navigator['msSaveOrOpenBlob']){
+      // download PDF in IE
+      let byteChar = atob(base64String);
+      let byteArray = new Array(byteChar.length);
+      for(let i = 0; i < byteChar.length; i++){
+        byteArray[i] = byteChar.charCodeAt(i);
+      }
+      let uIntArray = new Uint8Array(byteArray);
+      let blob = new Blob([uIntArray], {type : 'application/pdf'});
+      window.navigator['msSaveOrOpenBlob'](blob, `${fileName}.pdf`);
+    } else {
+      // Download PDF in Chrome etc.
+      const source = `data:application/pdf;base64,${base64String}`;
+      const link = document.createElement("a");
+      link.href = source;
+      link.download = `${fileName}.pdf`
+      link.click();
+    }
+  }
 
    updateInfro( item:any, opt:string){
      if( this.btnDisabled ) return false;

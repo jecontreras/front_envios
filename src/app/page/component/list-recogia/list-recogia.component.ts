@@ -16,8 +16,8 @@ export class ListRecogiaComponent implements OnInit {
 
   progreses:boolean = false;
   btnDisabled:boolean = false;
-  public query:any = { 
-    where:{ }, 
+  public query:any = {
+    where:{ },
     sort: "createdAt DESC",
     page: 0
    };
@@ -29,7 +29,7 @@ export class ListRecogiaComponent implements OnInit {
     header: ["Opciones","Nombres","Telefono","Numero Cliente","Ciudad","Contiene","Numero Unidad","Total peso","Creado","Estado"],
     listRow: []
   };
-  urlFront:string = environment.urlFront;
+  urlFront:string = window.location.origin;
   formatoMoneda:any = {};
   filtro:any = {};
   rolName:string;
@@ -38,7 +38,7 @@ export class ListRecogiaComponent implements OnInit {
     private _tools: ToolsService,
     private _recogia: RecogiasService,
     private _store: Store<STORAGES>,
-  ) { 
+  ) {
     this._store.subscribe((store: any) => {
       store = store.name;
       if(!store) return false;
@@ -72,7 +72,7 @@ export class ListRecogiaComponent implements OnInit {
     this._recogia.get( this.query ).subscribe(( res:any )=>{
       this.tablet.listRow = _.unionBy(this.tablet.listRow || [], res.data, 'id');
       this.count = res.count;
-          
+
       if (res.data.length === 0 ) {
         this.notEmptyPost =  false;
       }
