@@ -46,7 +46,14 @@
                     <option value="envioNormal">Envio Normal</option>
                 </select>
             </div>
-            <div class="form-group col-xs-5 col-sm-5 col-12">
+            <div class="form-group col-xs-3 col-sm-3 col-12">
+                <label>Tipo de Transportadora *</label>
+                <select class="form-control form-control-sm" [(ngModel)]="data.transportadora">
+                    <option value="envia">Envia Ciudades</option>
+                    <option value="cordinadora">Cordinadora Ciudades</option>
+                </select>
+            </div>
+            <div class="form-group col-xs-5 col-sm-5 col-12" *ngIf="data.transportadora == 'ENVIA'">
                 <label>Ciudad Destino *</label>
                 <!-- <input type="text" class="form-control form-control-sm" [(ngModel)]="data.ciudadDestino"> -->
                 <ng-autocomplete [(ngModel)]="data.ciudadDestino" [data]="listCiudades" [searchKeyword]="keyword" placeHolder="Buscar Ciudad" autocomplete="off"
@@ -59,6 +66,26 @@
                         <span [innerHTML]="item.city"></span> &nbsp; | &nbsp;
                         <small>Departamento: {{ item.state }}</small> &nbsp; | &nbsp;
                         <small>--: {{ item.name }}</small>
+                    </div>
+                </ng-template>
+
+                <ng-template #notFoundTemplate let-notFound>
+                    <div [innerHTML]="notFound"></div>
+                </ng-template>
+            </div>
+            <div class="form-group col-xs-5 col-sm-5 col-12" *ngIf="data.transportadora == 'cordinadora'">
+                <label>Ciudad Destino *</label>
+                <!-- <input type="text" class="form-control form-control-sm" [(ngModel)]="data.ciudadDestino"> -->
+                <ng-autocomplete [(ngModel)]="data.ciudadDestino" [data]="listCiudades2" [searchKeyword]="keyword2" placeHolder="Buscar Ciudad" autocomplete="off"
+                    historyIdentifier="listCiudades2" [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate">
+                </ng-autocomplete>
+
+                <ng-template #itemTemplate let-item>
+                    <div class="item">
+                        <!-- <img src="{{item.flag}}" height="25"> -->
+                        <span [innerHTML]="item.nombre"></span> &nbsp; | &nbsp;
+                        <small>Departamento: {{ item.nombreDepartamento }}</small> &nbsp; | &nbsp;
+                        <small>--: {{ item.nombre }}</small>
                     </div>
                 </ng-template>
 

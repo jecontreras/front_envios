@@ -4,6 +4,7 @@ import { ToolsService } from 'src/app/services/tools.service';
 import { STORAGES } from 'src/app/interfaces/sotarage';
 import { Store } from '@ngrx/store';
 import { DANEGROUP } from 'src/app/JSON/dane-nogroup';
+import { DANECOR } from 'src/app/JSON/daneCordinadora';
 import * as moment from 'moment';
 import { environment } from 'src/environments/environment';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
@@ -15,7 +16,9 @@ import { CiudadesService } from 'src/app/servicesComponents/ciudades.service';
   styleUrls: ['./elaboracion-guias.component.scss']
 })
 export class ElaboracionGuiasComponent implements OnInit {
-  data:any = {};
+  data:any = {
+    transportadora: "cordinadora"
+  };
   tablet:any = {
     header: ["Opciones","Transp","Origen / Destino","Unid","Total Kilos","Kilos Vol","Valoración","Tray","Flete","Flete Manejo","Valor Tarifa","Total","Tiempos Aprox"],
     listRow: []
@@ -25,7 +28,9 @@ export class ElaboracionGuiasComponent implements OnInit {
   public count: number = 0;
   dataUser:any = {};
   listCiudades:any = DANEGROUP;
+  listCiudades2:any = DANECOR;
   keyword = 'name';
+  keyword2 = 'nombre';
   mensaje:string;
   errorCotisa:string;
   urlFront:string = window.location.origin;
@@ -105,9 +110,19 @@ export class ElaboracionGuiasComponent implements OnInit {
     this.data.pesoVolumen = ( ( parseFloat( this.data.volumenAlto ) * parseFloat( this.data.volumenLargo ) * parseFloat( this.data.volumenAncho ) ) / 5000 ) || 1;
     this.data.pesoVolumen = Math.round( this.data.pesoVolumen );
     this.data.valorFactura = this.data.valorRecaudar;
+    let destino = {
+      code: this.data.ciudadDestino.codigo,
+      name: this.data.ciudadDestino.nombre,
+    };
+    if( this.data.transportadora == 'ENVIA'){
+      destino = {
+        code: this.data.ciudadDestino.code,
+        name: this.data.ciudadDestino.name,
+      };
+    }
     let data = {
       selectEnvio: this.data.selectEnvio,
-      idCiudadDestino: this.data.ciudadDestino.code,
+      idCiudadDestino: String( destino.code ),
       idCiudadOrigen: this.data.ciudadOrigen,
       valorMercancia: Number( this.data.valorRecaudar ),
       fechaRemesa: this.data.fechaRemesa,
@@ -127,7 +142,7 @@ export class ElaboracionGuiasComponent implements OnInit {
       txtEMailRemitente: "joseeduar147@gmail.com",
       txtPara: "Victor moizes",
       txtIdentificacionPara: 98090871986,
-      drpCiudadDestino: this.data.ciudadDestino.name,
+      drpCiudadDestino: String(destino.name),
       txtTelefonoPara: 3228576900,
       txtDireccionPara: "calle 1",
       txtCod_Postal_Des: "",
@@ -161,11 +176,21 @@ export class ElaboracionGuiasComponent implements OnInit {
   }
 
   armandoCotizacionTcc( res:any ){
+    let destino = {
+      code: this.data.ciudadDestino.codigo,
+      name: this.data.ciudadDestino.nombre,
+    };
+    if( this.data.transportadora == 'ENVIA'){
+      destino = {
+        code: this.data.ciudadDestino.code,
+        name: this.data.ciudadDestino.name,
+      };
+    }
     for( let row of res ){
       if( row['respuesta'][0]['codigo'][0] == -1 ) { /*this.errorCotisa = row['respuesta'][0]['mensaje'][0] + " Tcc"; */return false;}
       this.tablet.listRow.push({
         imgTrasp: "https://aveonline.co/app/temas/imagen_transpo/104926-1-tcc.jpg",
-        origenDestino: `${ this.data.ciudadOrigenText } ${ this.data.ciudadDestino.city } ( ${ this.data.ciudadDestino.state})` ,
+        origenDestino: `${ this.data.ciudadOrigenText } A ( ${ destino.name})` ,
         unida: row.total[0].totalunidades[0],
         totalKilos: row.total[0].totalpesoreal[0],
         kilosVol: parseInt(row.total[0].totalpesovolumen[0] || 0),
@@ -186,10 +211,20 @@ export class ElaboracionGuiasComponent implements OnInit {
   }
 
   armandoCotizacionEnvia( res:any ){
+    let destino = {
+      code: this.data.ciudadDestino.codigo,
+      name: this.data.ciudadDestino.nombre,
+    };
+    if( this.data.transportadora == 'ENVIA'){
+      destino = {
+        code: this.data.ciudadDestino.code,
+        name: this.data.ciudadDestino.name,
+      };
+    }
     if( res[6]['Total'] == 0 ) { /*this.errorCotisa = `No hay cubrimiento enesta direccion ${ this.data.ciudadDestino.state }`;*/ return false; }
     this.tablet.listRow.push({
       imgTrasp: "https://aveonline.co/app/temas/imagen_transpo/084935-1-envia-094632-1-ENVIA.jpg",
-      origenDestino: `${ this.data.ciudadOrigenText } ${ this.data.ciudadDestino.city } ( ${ this.data.ciudadDestino.state } )` ,
+      origenDestino: `${ this.data.ciudadOrigenText } A ( ${ destino.name})` ,
       unida: this.data.totalUnidad,
       totalKilos: res[2]["Peso a Cobrar"],
       kilosVol: this.data.pesoVolumen,
@@ -209,10 +244,20 @@ export class ElaboracionGuiasComponent implements OnInit {
   }
 
   armandoCotizacionCordinadora( res:any ){
+    let destino = {
+      code: this.data.ciudadDestino.codigo,
+      name: this.data.ciudadDestino.nombre,
+    };
+    if( this.data.transportadora == 'ENVIA'){
+      destino = {
+        code: this.data.ciudadDestino.code,
+        name: this.data.ciudadDestino.name,
+      };
+    }
     if( res[6]['Total'] == 0 ) { /*this.errorCotisa = `No hay cubrimiento enesta direccion ${ this.data.ciudadDestino.state }`; */return false; }
     this.tablet.listRow.push({
       imgTrasp: "./assets/imagenes/logoCordinadora.png",
-      origenDestino: `${ this.data.ciudadOrigenText } ${ this.data.ciudadDestino.city } ( ${ this.data.ciudadDestino.state } )` ,
+      origenDestino: `${ this.data.ciudadOrigenText } A ( ${ destino.name})` ,
       unida: this.data.totalUnidad,
       totalKilos: res[2]["Peso a Cobrar"],
       kilosVol: this.data.pesoVolumen,
@@ -239,6 +284,16 @@ export class ElaboracionGuiasComponent implements OnInit {
   }
 
   async generarGuia(){
+    let destino = {
+      code: this.data.ciudadDestino.codigo,
+      name: this.data.ciudadDestino.nombre,
+    };
+    if( this.data.transportadora == 'ENVIA'){
+      destino = {
+        code: this.data.ciudadDestino.code,
+        name: this.data.ciudadDestino.name,
+      };
+    }
     let validador:boolean = this.valodandoGenerar();
     if( !validador ) return false;
     this.data.fechaRemesa = moment().format("YYYY-MM-DD");
@@ -276,7 +331,7 @@ export class ElaboracionGuiasComponent implements OnInit {
       emailDestinatario: this.data.destinatarioCorreo,
       telefonoDestinatario: Number( this.data.destinatarioTelfijo || this.data.destinatarioCelular),
       celularDestinatario: Number( this.data.destinatarioCelular ),
-      ciudadDestinatario: /*11001000,*/ Number( this.data.ciudadDestino.code ),
+      ciudadDestinatario: /*11001000,*/ String( destino.code ),
       barrioDestinatario: this.data.destinatarioBarrio,
       totalPeso: Number( this.data.totalkilo ),
       totalPesovolumen: Number( this.data.pesoVolumen ),
@@ -408,6 +463,7 @@ export class ElaboracionGuiasComponent implements OnInit {
   }
 
   validandoCotizador(){
+    console.log( this.data )
     if( !this.data.ciudadDestino ) { this._tools.tooast({ title: "Error Falta ciudad de destino", icon: "error" } ); return false; }
     if( !this.data.ciudadOrigen ) { this._tools.tooast({ title: "Error Falta ciudad de origen", icon: "error" } ); return false; }
     // if( !this.data.valorRecaudar ) { this._tools.tooast({ title: "Error Falta Valor recaudo", icon: "error" } ); return false; }
