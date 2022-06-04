@@ -17,7 +17,15 @@ import { CiudadesService } from 'src/app/servicesComponents/ciudades.service';
 })
 export class ElaboracionGuiasComponent implements OnInit {
   data:any = {
-    transportadora: "cordinadora"
+    transportadora: "envia",
+    totalkilo: 1,
+    volumenAlto: 8,
+    volumenAncho: 21,
+    volumenLargo: 28,
+    valorAsegurado: 50000,
+    valorRecaudar: 110000,
+    totalUnidad1: 1,
+    totalUnidad: 1
   };
   tablet:any = {
     header: ["Opciones","Transp","Origen / Destino","Unid","Total Kilos","Kilos Vol","Valoración","Tray","Flete","Flete Manejo","Valor Tarifa","Total","Tiempos Aprox"],
@@ -100,6 +108,10 @@ export class ElaboracionGuiasComponent implements OnInit {
     });
   }
 
+  blurPlat(){
+    this.data.ciudadDestino = "";
+  }
+
 
   submitCotizar(){
 
@@ -114,7 +126,7 @@ export class ElaboracionGuiasComponent implements OnInit {
       code: this.data.ciudadDestino.codigo,
       name: this.data.ciudadDestino.nombre,
     };
-    if( this.data.transportadora == 'ENVIA'){
+    if( this.data.transportadora == 'envia'){
       destino = {
         code: this.data.ciudadDestino.code,
         name: this.data.ciudadDestino.name,
@@ -127,7 +139,7 @@ export class ElaboracionGuiasComponent implements OnInit {
       valorMercancia: Number( this.data.valorRecaudar ),
       fechaRemesa: this.data.fechaRemesa,
       idUniSNegogocio: 1,
-      numeroUnidad: Number( this.data.totalUnidad ),
+      numeroUnidad: Number( 1 || this.data.totalUnidad ),
       pesoReal: Number( this.data.totalkilo ),
       pesoVolumen: this.data.pesoVolumen || 1,
       alto: Number( this.data.volumenAlto ),
@@ -180,13 +192,14 @@ export class ElaboracionGuiasComponent implements OnInit {
       code: this.data.ciudadDestino.codigo,
       name: this.data.ciudadDestino.nombre,
     };
-    if( this.data.transportadora == 'ENVIA'){
+    if( this.data.transportadora == 'envia'){
       destino = {
         code: this.data.ciudadDestino.code,
         name: this.data.ciudadDestino.name,
       };
     }
     for( let row of res ){
+      if( !row['respuesta'] ) { /*this.errorCotisa = `No hay cubrimiento enesta direccion ${ this.data.ciudadDestino.state }`;*/ return false; }
       if( row['respuesta'][0]['codigo'][0] == -1 ) { /*this.errorCotisa = row['respuesta'][0]['mensaje'][0] + " Tcc"; */return false;}
       this.tablet.listRow.push({
         imgTrasp: "https://aveonline.co/app/temas/imagen_transpo/104926-1-tcc.jpg",
@@ -215,12 +228,13 @@ export class ElaboracionGuiasComponent implements OnInit {
       code: this.data.ciudadDestino.codigo,
       name: this.data.ciudadDestino.nombre,
     };
-    if( this.data.transportadora == 'ENVIA'){
+    if( this.data.transportadora == 'envia'){
       destino = {
         code: this.data.ciudadDestino.code,
         name: this.data.ciudadDestino.name,
       };
     }
+    if( !res[6] ) { /*this.errorCotisa = `No hay cubrimiento enesta direccion ${ this.data.ciudadDestino.state }`;*/ return false; }
     if( res[6]['Total'] == 0 ) { /*this.errorCotisa = `No hay cubrimiento enesta direccion ${ this.data.ciudadDestino.state }`;*/ return false; }
     this.tablet.listRow.push({
       imgTrasp: "https://aveonline.co/app/temas/imagen_transpo/084935-1-envia-094632-1-ENVIA.jpg",
@@ -248,12 +262,13 @@ export class ElaboracionGuiasComponent implements OnInit {
       code: this.data.ciudadDestino.codigo,
       name: this.data.ciudadDestino.nombre,
     };
-    if( this.data.transportadora == 'ENVIA'){
+    if( this.data.transportadora == 'envia'){
       destino = {
         code: this.data.ciudadDestino.code,
         name: this.data.ciudadDestino.name,
       };
     }
+    if( !res[6] ) { /*this.errorCotisa = `No hay cubrimiento enesta direccion ${ this.data.ciudadDestino.state }`;*/ return false; }
     if( res[6]['Total'] == 0 ) { /*this.errorCotisa = `No hay cubrimiento enesta direccion ${ this.data.ciudadDestino.state }`; */return false; }
     this.tablet.listRow.push({
       imgTrasp: "./assets/imagenes/logoCordinadora.png",
@@ -288,7 +303,7 @@ export class ElaboracionGuiasComponent implements OnInit {
       code: this.data.ciudadDestino.codigo,
       name: this.data.ciudadDestino.nombre,
     };
-    if( this.data.transportadora == 'ENVIA'){
+    if( this.data.transportadora == 'envia'){
       destino = {
         code: this.data.ciudadDestino.code,
         name: this.data.ciudadDestino.name,
@@ -310,7 +325,7 @@ export class ElaboracionGuiasComponent implements OnInit {
       solicitudFecha: this.data.fechaRemesa,
       solictudVentanaInicio: this.data.fechaRemesa,
       solictudVentanaFin: this.data.fechaRemesa,
-      unidadNegocio: Number( this.data.totalUnidad ),
+      unidadNegocio: Number( 1 || this.data.totalUnidad ),
       fechaDespacho: this.data.fechaRemesa,
       cuentaRemitente: 1422863,
       tipoIdentificacionRemitente: "CC",
@@ -349,7 +364,7 @@ export class ElaboracionGuiasComponent implements OnInit {
       pesoVolumen: Number( this.data.pesoVolumen ),
       valorMercancia: Number( this.data.valorFactura ),
       numeroBolsa: Number( this.data.numeroBolsa ),
-      unidadesInternas: Number( this.data.totalUnidad ),
+      unidadesInternas: Number( 1 || this.data.totalUnidad ),
       tipoDocumento: "CC",
       numeroDocumento: Number( this.data.destinatarioNitIdentificacion || 999999 ),
       fechaDocumento: this.data.destinatarioFechaExpedicion || "2019-10-10",
@@ -404,7 +419,7 @@ export class ElaboracionGuiasComponent implements OnInit {
         drpCiudadDestino: this.data.ciudadDestino.name,
         txtTelefonoPara: this.data.destinatarioCelular,
         txtDireccionPara: `${ this.data.destinatarioDireccion } ( ${ this.data.destinatarioBarrio } )`,
-        txtUnidades: this.data.totalUnidad,
+        txtUnidades: 1, //this.data.totalUnidad,
         txtPeso: this.data.totalkilo,
         txtVolumen: this.data.pesoVolumen,
         txtDeclarado: this.data.valorFactura,
@@ -433,7 +448,7 @@ export class ElaboracionGuiasComponent implements OnInit {
         drpCiudadDestino: this.data.ciudadDestino.name,
         txtTelefonoPara: this.data.destinatarioCelular,
         txtDireccionPara: `${ this.data.destinatarioDireccion } ( ${ this.data.destinatarioBarrio } )`,
-        txtUnidades: this.data.totalUnidad,
+        txtUnidades: 1, //this.data.totalUnidad,
         txtPeso: this.data.totalkilo,
         txtVolumen: this.data.pesoVolumen,
         txtDeclarado: this.data.valorFactura,
@@ -453,13 +468,29 @@ export class ElaboracionGuiasComponent implements OnInit {
   }
 
   limpiar(){
-    this.data = {};
+    this.data = {
+      transportadora: "cordinadora",
+      totalkilo: 1,
+      volumenAlto: 8,
+      volumenAncho: 21,
+      volumenLargo: 28,
+      valorAsegurado: 50000,
+      valorRecaudar: 110000,
+      totalUnidad1: 1,
+      totalUnidad: 1
+    };
     this.tablet.listRow = [];
     this.armandoData();
   }
 
   crear( obj:any ){
 
+  }
+
+  formula(){
+    this.data.volumenAlto = this.data.volumenAlto * this.data.totalUnidad1;
+    this.data.valorAsegurado = this.data.valorAsegurado * this.data.totalUnidad1;
+    this.data.valorRecaudar = this.data.valorRecaudar * this.data.totalUnidad1;
   }
 
   validandoCotizador(){

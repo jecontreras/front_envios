@@ -43,7 +43,7 @@ export class ServiciosService {
       this.dataUser = store.user || {};
     });
     if(Object.keys(this.dataUser).length >0 ){
-      this.querys('user/query',{
+      this.querys('user/querys',{
         where:{
           id: this.dataUser.id
         }

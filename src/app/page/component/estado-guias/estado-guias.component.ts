@@ -109,7 +109,15 @@ export class EstadoGuiasComponent implements OnInit {
        window.open( url );
      }
      if( data.transportadoraSelect == 'CORDINADORA'){
-       this.downloadPdf( data.urlRotulos, 'cordinadora #'+data.nRemesa );
+       let datas:any = {
+          codigo_remision: data['nRemesa']
+       };
+       this._flete.fleteImprimir( datas ).subscribe(( res:any )=>{
+         res = res.data;
+         if( res == "Error") return false;
+
+         this.downloadPdf( data.urlRotulos, 'cordinadora #'+ res );
+       });
      }
    }
 

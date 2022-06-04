@@ -40,4 +40,7 @@ export class FleteService {
   fleteBorrar( query:any ){
     return this._model.querys('fletes/borrarflete',query, 'post');
   }
+  fleteImprimir( query:any ){
+    return this._model.querys('fletes/cordinadoraRotulo',query, 'post');
+  }
 }
