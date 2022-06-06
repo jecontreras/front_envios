@@ -26,7 +26,7 @@ export class EstadoGuiasComponent implements OnInit {
   notEmptyPost:boolean = true;
   dataUser:any = {};
   tablet:any = {
-    header: ["Opciones","Guia","# Factura","Valor Pedido","Transportador","Agente","Peso","Piezas","Flete","Manejo","Flete x Recaudo","Total","Vlr Recaudo","Fecha / Dest","Estado","Novedades Global"],
+    header: ["Opciones","Guia","Nombre destinatario","Valor Pedido","Transportador","Agente","Peso","Piezas","Flete","Vlr Recaudo","Fecha / Dest","Estado"],
     listRow: []
   };
   urlFront:string = window.location.origin;

@@ -308,7 +308,7 @@ export class ElaboracionGuiasComponent implements OnInit {
       code: this.data.codeDestino || this.data.ciudadDestino.codigo,
       name: this.data.ciudadDestino.nombre,
     };
-    if( this.data.transportadora == 'envia'){
+    if( this.data.transportadoraSelect == 'ENVIA'){
       destino = {
         code: this.data.ciudadDestino.code,
         name: this.data.ciudadDestino.name,
@@ -395,7 +395,7 @@ export class ElaboracionGuiasComponent implements OnInit {
     if( this.data.transportadoraSelect == "TCC" ) await this.creandoGuiaTcc( data );
     else if( this.data.transportadoraSelect == "CORDINADORA") this.creandoCordinadora( data );
     else { await this.creandoGuiaEnvia( data ); }
-    
+
   }
 
   creandoGuiaTcc( data:any  ){

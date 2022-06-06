@@ -51,6 +51,7 @@ export class MonederoComponent implements OnInit {
   }
 
   getFletes(){
+    this.querys.where.user = this.dataUser.id;
     this._fletes.get( this.querys ).subscribe(( res:any ) => {
       this.listOrdenes = _.unionBy( this.listOrdenes || [], res.data, 'id' );
     });

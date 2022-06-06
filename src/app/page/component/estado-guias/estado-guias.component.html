@@ -62,7 +62,7 @@
                                     </td>
                                     <td>{{ item.nRemesa }}</td>
                                     <td>
-                                        <input style="width: 138px;" class="form-control form-control-sm" [(ngModel)]="item.numeroFactura" type="text" (ngModelChange)="updateInfro(item, 'numeroFactura')">
+                                        {{ item.nombreDestinatario }}
                                     </td>
                                     <!-- <td>
                                         <input style="width: 138px;" class="form-control form-control-sm" [(ngModel)]="item.referencia" type="text" (ngModelChange)="updateInfro(item, 'referencia')">
@@ -84,9 +84,9 @@
                                     <td>{{ item.seleccionAgente }}</td>
                                     <td>{{ item.kilosReales }}</td>
                                     <td>{{ item.unidadesInternas }}</td>
-                                    <td>{{ _tools.monedaChange( 3, 2, item.fleteValor || 0 ) }}</td>
-                                    <td>{{ _tools.monedaChange( 3, 2, item.fleteManejo || 0 ) }}</td>
-                                    <td></td>
+                                    <!--<td>{{ _tools.monedaChange( 3, 2, item.fleteValor || 0 ) }}</td>
+                                    <td>{{ _tools.monedaChange( 3, 2, item.fleteManejo || 0 ) }}</td>-->
+                                    <!--<td></td>-->
                                     <td>{{ _tools.monedaChange( 3, 2, item.flteTotal || 0 ) }}</td>
                                     <td>{{ _tools.monedaChange( 3, 2, item.valorRecaudar || 0 ) }}</td>
                                     <td>{{ item.fechaDest }}</td>
