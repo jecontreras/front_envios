@@ -19,13 +19,14 @@ export class ElaboracionGuiasComponent implements OnInit {
   data:any = {
     transportadora: "envia",
     totalkilo: 1,
-    volumenAlto: 8,
+    volumenAlto: 9,
     volumenAncho: 21,
     volumenLargo: 28,
     valorAsegurado: 50000,
     valorRecaudar: 110000,
     totalUnidad1: 1,
-    totalUnidad: 1
+    totalUnidad: 1,
+    contenido: ""
   };
   tablet:any = {
     header: ["Opciones","Transp","Origen / Destino","Unid","Total Kilos","Kilos Vol","Valoración","Tray","Flete","Flete Manejo","Valor Tarifa","Total","Tiempos Aprox"],
@@ -70,8 +71,8 @@ export class ElaboracionGuiasComponent implements OnInit {
       ciudadOrigen: this.dataUser.codigoCiudad,
       ciudadOrigenText: this.dataUser.ciudad,
       paisDestino: "colombia",
-      seleccionAgente: `${ this.dataUser.name } ${ ( this.dataUser.lastname || "" ) }`,
-      remitenteNombre: `${ this.dataUser.name } ${ ( this.dataUser.lastname || "" ) }`,
+      seleccionAgente: `${ this.dataUser.name } `,
+      remitenteNombre: `${ this.dataUser.name } `,
       remitenteDireccion:   this.dataUser.direccion,
       remitenteCorreo: this.dataUser.email,
       remitenteFijo: this.dataUser.telFijo,
@@ -183,6 +184,8 @@ export class ElaboracionGuiasComponent implements OnInit {
       this.armandoCotizacionTcc( res.data.tcc );
       this.armandoCotizacionEnvia( res.data.envia );
       this.armandoCotizacionCordinadora( res.data.cordinadora );
+      this.data.codeDestino = res.data.idCiudadDestino;
+      console.log( this.data, res.data.idCiudadDestino );
     } ,(error) => { this._tools.tooast( { title:"Error en el servidor por favor reintenta!", icon: "error" } ); this.btnDisabled = false; this.progreses = true;});
 
   }
@@ -296,11 +299,13 @@ export class ElaboracionGuiasComponent implements OnInit {
     this.data.fleteValor = item.fleteSin;
     this.data.fleteManejo = item.fleteManejoSin;
     this.data.flteTotal = item.totalSin;
+    for( let row of this.tablet.listRow ) row.check = false;
+    item.check = !item.check;
   }
 
   async generarGuia(){
     let destino = {
-      code: this.data.ciudadDestino.codigo,
+      code: this.data.codeDestino || this.data.ciudadDestino.codigo,
       name: this.data.ciudadDestino.nombre,
     };
     if( this.data.transportadora == 'envia'){
@@ -363,7 +368,7 @@ export class ElaboracionGuiasComponent implements OnInit {
       ancho: Number( this.data.volumenAncho ),
       pesoVolumen: Number( this.data.pesoVolumen ),
       valorMercancia: Number( this.data.valorFactura ),
-      numeroBolsa: Number( this.data.numeroBolsa ),
+      numeroBolsa: Number( this.data.numeroBolsa || 1 ),
       unidadesInternas: Number( 1 || this.data.totalUnidad ),
       tipoDocumento: "CC",
       numeroDocumento: Number( this.data.destinatarioNitIdentificacion || 999999 ),
@@ -385,10 +390,12 @@ export class ElaboracionGuiasComponent implements OnInit {
       observacionAdicional: this.data.observacionAdicional, //string
       transportadoraSelect: this.data.transportadoraSelect //string
     };
+    window.document.scrollingElement.scrollTop=0
     this._tools.ProcessTime( { title: "Cargando por favor esperar", tiempo: 7000 } );
     if( this.data.transportadoraSelect == "TCC" ) await this.creandoGuiaTcc( data );
     else if( this.data.transportadoraSelect == "CORDINADORA") this.creandoCordinadora( data );
     else { await this.creandoGuiaEnvia( data ); }
+    
   }
 
   creandoGuiaTcc( data:any  ){
@@ -469,18 +476,20 @@ export class ElaboracionGuiasComponent implements OnInit {
 
   limpiar(){
     this.data = {
-      transportadora: "cordinadora",
+      transportadora: "envia",
       totalkilo: 1,
-      volumenAlto: 8,
+      volumenAlto: 9,
       volumenAncho: 21,
       volumenLargo: 28,
       valorAsegurado: 50000,
       valorRecaudar: 110000,
       totalUnidad1: 1,
-      totalUnidad: 1
+      totalUnidad: 1,
+      contenido: ""
     };
     this.tablet.listRow = [];
     this.armandoData();
+    window.document.scrollingElement.scrollTop=0
   }
 
   crear( obj:any ){

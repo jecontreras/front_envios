@@ -60,6 +60,7 @@ export class EstadoGuiasComponent implements OnInit {
 
   getRow(){
     this.progreses = true;
+    if( this.tablet.listRow.length == 0 ) this.query.page = 0;
     this._flete.get( this.query ).subscribe(( res:any )=>{
       this.tablet.listRow = _.unionBy(this.tablet.listRow || [], res.data, 'id');
       this.count = res.count;
