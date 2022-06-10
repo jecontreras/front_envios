@@ -17,7 +17,9 @@ export class EstadoGuiasComponent implements OnInit {
   progreses:boolean = false;
   btnDisabled:boolean = false;
   public query:any = {
-    where:{ },
+    where:{ 
+      state: { "!=": 1 }
+    },
     sort: "createdAt DESC",
     page: 0
    };
