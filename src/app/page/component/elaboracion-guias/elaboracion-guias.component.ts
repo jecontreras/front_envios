@@ -23,7 +23,7 @@ export class ElaboracionGuiasComponent implements OnInit {
     volumenAncho: 21,
     volumenLargo: 28,
     valorAsegurado: 50000,
-    valorRecaudar: 110000,
+    valorRecaudar: 0,
     totalUnidad1: 1,
     totalUnidad: 1,
     contenido: ""
@@ -308,7 +308,7 @@ export class ElaboracionGuiasComponent implements OnInit {
       code: this.data.codeDestino || this.data.ciudadDestino.codigo,
       name: this.data.ciudadDestino.nombre,
     };
-    if( this.data.transportadora == 'envia'){
+    if( this.data.transportadoraSelect == 'ENVIA'){
       destino = {
         code: this.data.ciudadDestino.code,
         name: this.data.ciudadDestino.name,
@@ -395,7 +395,7 @@ export class ElaboracionGuiasComponent implements OnInit {
     if( this.data.transportadoraSelect == "TCC" ) await this.creandoGuiaTcc( data );
     else if( this.data.transportadoraSelect == "CORDINADORA") this.creandoCordinadora( data );
     else { await this.creandoGuiaEnvia( data ); }
-    
+
   }
 
   creandoGuiaTcc( data:any  ){
@@ -482,7 +482,7 @@ export class ElaboracionGuiasComponent implements OnInit {
       volumenAncho: 21,
       volumenLargo: 28,
       valorAsegurado: 50000,
-      valorRecaudar: 110000,
+      valorRecaudar: 0,
       totalUnidad1: 1,
       totalUnidad: 1,
       contenido: ""
@@ -497,9 +497,9 @@ export class ElaboracionGuiasComponent implements OnInit {
   }
 
   formula(){
-    this.data.volumenAlto = this.data.volumenAlto * this.data.totalUnidad1;
-    this.data.valorAsegurado = this.data.valorAsegurado * this.data.totalUnidad1;
-    this.data.valorRecaudar = this.data.valorRecaudar * this.data.totalUnidad1;
+    this.data.volumenAlto = this.data.volumenAlto * this.data.totalkilo;
+    this.data.valorAsegurado = this.data.valorAsegurado * this.data.totalkilo;
+    this.data.valorRecaudar = this.data.valorRecaudar * this.data.totalkilo;
   }
 
   validandoCotizador(){

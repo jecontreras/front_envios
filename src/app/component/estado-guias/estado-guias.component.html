@@ -76,7 +76,7 @@
                                             style="box-sizing: border-box; font-weight: bolder;"><label for=""
                                                 style="box-sizing: border-box; display: inline-block; margin-bottom: 0.5rem;">Estado:</label></span>&nbsp;<span
                                             class="btn btn-warning"
-                                            style="background-color: #ffc107; border-radius: 0.25rem; border: 1px solid rgb(255, 193, 7); box-sizing: border-box; cursor: pointer; display: inline-block; font-size: 1rem; line-height: 1.5; padding: 0.375rem 0.75rem; text-align: center; transition: color 0.15s ease-in-out 0s, background-color 0.15s ease-in-out 0s, border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s; user-select: none; vertical-align: middle; white-space: nowrap;">{{ data.estadosName  }}
+                                            style="background-color: #ffc107; border-radius: 0.25rem; border: 1px solid rgb(255, 193, 7); box-sizing: border-box; cursor: pointer; display: inline-block; font-size: 1rem; line-height: 1.5; padding: 0.375rem 0.75rem; text-align: center; transition: color 0.15s ease-in-out 0s, background-color 0.15s ease-in-out 0s, border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s; user-select: none; vertical-align: middle; white-space: nowrap;">{{ data.estadosName  || 'GENERADA'}}
                                             <a [href]="data.tiket" *ngIf="data.tiket" target="_blank">Descargar</a>
                                         </span><br
                                             style="box-sizing: border-box;" /><span
