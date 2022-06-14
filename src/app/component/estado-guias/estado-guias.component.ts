@@ -49,6 +49,7 @@ export class EstadoGuiasComponent implements OnInit {
         this.data.listEstadoDetallado = _.orderBy( res.detallado[0].estado, ['codigo'], ['desc'] );
         this.data.estadosName = res.simple[0].estado[0].descripcion;
       } catch (error) {}
+      try { this.data.estadoDetallado = res.simple[0].novedad[0].descripcion; } catch (error) { }
       console.log( this.data );
       if( !res.memosac ){
         this.data.ciudadOrigen = ( this.listCiudades.find(( item:any )=> item.code == this.data.ciudadOrigen ).city ) || 'null';
@@ -56,6 +57,11 @@ export class EstadoGuiasComponent implements OnInit {
       }
       // console.log( this.data );
     },( error )=> { this._tools.tooast( { title: "Error de servidor"} ); this.progreses = false; } );
+  }
+
+  descargar( data:any ){
+    if( data.transportadoraSelect === "CORDINADORA" ) this._tools.downloadIMG( data.tiket );
+    else window.open( data.tiket )
   }
 
 }

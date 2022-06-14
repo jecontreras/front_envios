@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import Swal from 'sweetalert2'
 
 @Injectable({
@@ -10,6 +11,7 @@ export class ToolsService {
   formatoMoneda:any = { prefix: 'COP$ ',align: 'left', thousands: '.', decimal: ',', precision: 0 };
   currency: any = { prefix: '$ ', align: 'left', thousands: '.', decimal: ',', precision: 0 };
   constructor(
+    public sanitizer: DomSanitizer
   ) { }
 
   async presentToast(mensaje:string, type='completado') {
@@ -161,6 +163,57 @@ export class ToolsService {
     }
     separados = separados.filter( (row:any)=> row != "");
     return '$' + separados.join("."); //+ ',' + inputNum[1];
+  }
+
+  seguridadIfrane( url:string ){
+    return this.sanitizer.bypassSecurityTrustResourceUrl( url );
+  }
+
+  dataURItoBlob(dataURI) {
+    const byteString = window.atob(dataURI);
+    const arrayBuffer = new ArrayBuffer(byteString.length);
+    const int8Array = new Uint8Array(arrayBuffer);
+    for (let i = 0; i < byteString.length; i++) {
+      int8Array[i] = byteString.charCodeAt(i);
+    }
+    const blob = new Blob([int8Array], { type: 'application/pdf'});
+    return blob;
+  }
+
+  downloadPdf(base64String, fileName){
+
+    // data should be your response data in base64 format
+    
+    const blob = this.dataURItoBlob( base64String );
+    const urls = URL.createObjectURL(blob);
+    
+    // to open the PDF in a new window
+    window.open(urls, '_blank');
+    if(window.navigator && window.navigator['msSaveOrOpenBlob']){
+      // download PDF in IE
+      let byteChar = atob(base64String);
+      let byteArray = new Array(byteChar.length);
+      for(let i = 0; i < byteChar.length; i++){
+        byteArray[i] = byteChar.charCodeAt(i);
+      }
+      let uIntArray = new Uint8Array(byteArray);
+      let blob = new Blob([uIntArray], {type : 'application/pdf'});
+      window.navigator['msSaveOrOpenBlob'](blob, `${fileName}.pdf`);
+    } else {
+      // Download PDF in Chrome etc.
+      const source = `data:application/pdf;base64,${base64String}`;
+      const link = document.createElement("a");
+      link.href = source;
+      link.download = `${fileName}.pdf`
+      link.click();
+    }
+  }
+
+  downloadIMG( ImageBase64:string ){
+    var a = document.createElement("a"); //Create <a>
+    a.href = "data:image/png;base64," + ImageBase64; //Image Base64 Goes here
+    a.download = "Image.png"; //File name Here
+    a.click(); //Downloaded file
   }
 
 
