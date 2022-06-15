@@ -37,7 +37,6 @@ import { SocketIoModule } from 'ng-socket-io';
 import { PortadaComponent } from './theme/layout/portada/portada.component';
 import { NgImageSliderModule } from 'ng-image-slider';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +54,7 @@ import { NgImageSliderModule } from 'ng-image-slider';
     NavRightComponent,
     ConfigurationComponent,
     ToggleFullScreenDirective,
-    PortadaComponent
+    PortadaComponent,
   ],
   imports: [
     BrowserModule,
