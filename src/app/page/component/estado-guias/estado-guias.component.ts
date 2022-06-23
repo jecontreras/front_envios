@@ -35,8 +35,8 @@ export class EstadoGuiasComponent implements OnInit {
   formatoMoneda:any = {};
 
   filtro:any = {
-    fecha1: moment().add(- 30, 'days').format(),
-    fecha2: moment().format()
+    //fecha1: moment().add(- 30, 'days').format(),
+    //fecha2: moment().format()
   };
   rolName:string;
 
@@ -76,6 +76,7 @@ export class EstadoGuiasComponent implements OnInit {
   }
 
   getFiltro(){
+    this.notEmptyPost =  true;
     if( this.filtro.fecha1 && this.filtro.fecha2 ){
       this.query.where.createdAt = {
         ">=": moment( this.filtro.fecha1 ),
