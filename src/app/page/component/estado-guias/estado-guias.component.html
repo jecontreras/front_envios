@@ -91,7 +91,7 @@
                                     <td>{{ _tools.monedaChange( 3, 2, item.valorRecaudar || 0 ) }}</td>
                                     <td>{{ item.fechaDest }}</td>
                                     <td>
-                                        <div [ngClass]="{ esGenerado: item.estado == 'GENERADA', esCancelado: item.estado != 'GENERADA' && item.estado != 'COMPLETADO', esCompletado: item.estado == 'COMPLETADO' }">
+                                        <div [ngClass]="{ esGenerado: item.state == 0, esCancelado: item.state == 1 , esCompletado: item.state == 2 , esDevolucion: item.state == 3 }">
                                             {{ item.estadosName }}
                                         </div>
                                     </td>

@@ -61,6 +61,7 @@ export class ElaboracionGuiasComponent implements OnInit {
 
   ngOnInit() {
     this.armandoData();
+    this.getCiudades();
     this.opcionCurrencys = this._tools.currency;
   }
 
@@ -85,6 +86,11 @@ export class ElaboracionGuiasComponent implements OnInit {
     }
   }
 
+  getCiudades(){
+    this._ciudades.get( { where: { }, limit: 10000000 } ).subscribe( ( res:any ) => {
+      this.listCiudades = res.data;
+    });
+  }
 
   async procesosCiudades(){
     for( let row of this.listCiudades ){
