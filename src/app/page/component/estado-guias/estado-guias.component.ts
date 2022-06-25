@@ -83,7 +83,7 @@ export class EstadoGuiasComponent implements OnInit {
         "<=": moment( this.filtro.fecha2 )
       };
     }else delete this.query.where.users;
-    if( this.filtro.user ) this.query.where.users = this.filtro.user;
+    if( this.filtro.user ) this.query.where.users = this.filtro.user.toLowerCase();
     this.query.page = 0;
     this.tablet.listRow = [];
     this.getRow();
@@ -120,7 +120,7 @@ export class EstadoGuiasComponent implements OnInit {
          res = res.data;
          if( res == "Error") return false;
 
-         this.downloadPdf( data.urlRotulos, 'cordinadora #'+ res );
+         this.downloadPdf( res, 'cordinadora #'+ data.nRemesa );
        });
      }
    }
