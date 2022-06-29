@@ -102,6 +102,7 @@ export class EstadoGuiasComponent implements OnInit {
       if( this.filtro.estados == "4" ) delete this.query.where.state;
       else this.query.where.state = this.filtro.estados;
     }
+    if( this.filtro.transportadoraSelect ) this.query.where.transportadoraSelect = this.filtro.transportadoraSelect;
     this.tablet.listRow = [];
     console.log( this.query )
     this.getRow();

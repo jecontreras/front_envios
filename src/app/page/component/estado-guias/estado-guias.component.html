@@ -35,7 +35,17 @@
                   <option value="3">Devolucion</option>
                 </select>
             </div>
+            <div class="col-12 col-sm-3">
+                <label for="exampleFormControlSelect1">Plataforma de envios</label>
+                <select class="form-control" [(ngModel)]="filtro.transportadoraSelect">
+                  <option value="ENVIA">Envia</option>
+                  <option value="CORDINADORA">Coordinadora</option>
+                  <option value="SERVIENTREGA">Servientrega</option>
+                  <option value="INTERRAPIDISIMO">Inter rapidisimo</option>
+                </select>
+            </div>
             <div class="col-12 col-sm-2">
+                <button type="button" class="btn btn-warning" (click)="this.filtro = {}; getFiltro()">Limpiar</button>&nbsp;
                 <button type="button" class="btn btn-primary" (click)="getFiltro()">Buscar</button>
             </div>
             <div class="col-12">
