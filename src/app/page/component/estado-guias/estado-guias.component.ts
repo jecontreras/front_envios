@@ -83,9 +83,27 @@ export class EstadoGuiasComponent implements OnInit {
         "<=": moment( this.filtro.fecha2 )
       };
     }else delete this.query.where.users;
-    if( this.filtro.user ) this.query.where.users = this.filtro.user.toLowerCase();
-    this.query.page = 0;
+    if( this.filtro.user ) {
+      this.query ={
+        where: { 
+          users: _.deburr( ( this.filtro.user.toLowerCase() ) )
+        }
+      }
+    }else{
+      this.query = {
+        where:{ 
+          state: { "!=": 1 }
+        },
+        sort: "createdAt DESC",
+        page: 0
+       };
+    }
+    if( this.filtro.estados ){
+      if( this.filtro.estados == "4" ) delete this.query.where.state;
+      else this.query.where.state = this.filtro.estados;
+    }
     this.tablet.listRow = [];
+    console.log( this.query )
     this.getRow();
   }
 
