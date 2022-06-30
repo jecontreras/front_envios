@@ -9,6 +9,7 @@ import * as moment from 'moment';
 import { environment } from 'src/environments/environment';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { CiudadesService } from 'src/app/servicesComponents/ciudades.service';
+import { UsuariosService } from 'src/app/servicesComponents/usuarios.service';
 
 @Component({
   selector: 'app-elaboracion-guias',
@@ -49,7 +50,8 @@ export class ElaboracionGuiasComponent implements OnInit {
     private _flete: FleteService,
     private _tools: ToolsService,
     private _store: Store<STORAGES>,
-    private _ciudades: CiudadesService
+    private _ciudades: CiudadesService,
+    private _user: UsuariosService
   ) {
     this._store.subscribe((store: any) => {
       //console.log(store);
@@ -399,8 +401,9 @@ export class ElaboracionGuiasComponent implements OnInit {
     window.document.scrollingElement.scrollTop=0
     this._tools.ProcessTime( { title: "Cargando por favor esperar", tiempo: 7000 } );
     if( this.data.transportadoraSelect == "TCC" ) await this.creandoGuiaTcc( data );
-    else if( this.data.transportadoraSelect == "CORDINADORA") this.creandoCordinadora( data );
+    else if( this.data.transportadoraSelect == "CORDINADORA") await this.creandoCordinadora( data );
     else { await this.creandoGuiaEnvia( data ); }
+    this.crearCliente();
 
   }
 
@@ -508,12 +511,32 @@ export class ElaboracionGuiasComponent implements OnInit {
     this.data.valorRecaudar = this.data.valorRecaudar * this.data.totalkilo;
   }
 
+  crearCliente(){
+    this._user.createCliente( {
+      nombre: this.data.destinatarioNombre,
+      apellido: "",
+      Nidentificacion: this.data.destinatarioNitIdentificacion,
+      Nwhatsaap: this.data.destinatarioCelular,
+      direccionRecogida: this.data.destinatarioDireccion,
+      barrio: this.data.destinatarioBarrio,
+     } ).subscribe(( res:any )=>{ });
+  }
+  BuscarCliente(){
+    this._user.getCliente( { where: { Nidentificacion: this.data.destinatarioNitIdentificacion }}).subscribe( ( res:any )=>{
+      res = res.data[0];
+      if( !res ) return false;
+      this.data.destinatarioNombre = res.nombre;
+      this.data.destinatarioCelular = res.Nwhatsaap;
+      this.data.destinatarioDireccion = res.direccionRecogida;
+      this.data.destinatarioBarrio = res.barrio;
+    })
+  }
   validandoCotizador(){
     console.log( this.data )
     if( !this.data.ciudadDestino ) { this._tools.tooast({ title: "Error Falta ciudad de destino", icon: "error" } ); return false; }
     if( !this.data.ciudadOrigen ) { this._tools.tooast({ title: "Error Falta ciudad de origen", icon: "error" } ); return false; }
-    // if( !this.data.valorRecaudar ) { this._tools.tooast({ title: "Error Falta Valor recaudo", icon: "error" } ); return false; }
-    if( !this.data.valorRecaudar ) this.data.valorRecaudar = 0;
+    if( !this.data.valorRecaudar ) { this._tools.tooast({ title: "Error Falta Valor recaudo", icon: "error" } ); return false; }
+    //if( !this.data.valorRecaudar ) this.data.valorRecaudar = 0;
     if( !this.data.totalUnidad ) { this._tools.tooast({ title: "Error Falta totalUnidad", icon: "error" } ); return false; }
     if( !this.data.totalkilo ) { this._tools.tooast({ title: "Error Falta Peso real", icon: "error" } ); return false; }
     if( !this.data.volumenAlto ) { this._tools.tooast({ title: "Error Falta Volumen alto", icon: "error" } ); return false; }

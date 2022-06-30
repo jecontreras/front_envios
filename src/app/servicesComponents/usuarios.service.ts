@@ -52,6 +52,15 @@ export class UsuariosService {
   delete(query:any){
     return this._model.querys('user/'+query.id, query, 'delete');
   }
+
+  createCliente( query:any ){
+    return this._model.querys('userEnvios/', query, 'post');
+  }
+
+  getCliente( query:any ){
+    return this._model.querys('userEnvios/querys', query, 'post');
+  }
+
   procesoFacebook(){
     FB.getLoginStatus(function(response) {
       console.log( response );
