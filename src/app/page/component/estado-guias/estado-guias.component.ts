@@ -120,7 +120,7 @@ export class EstadoGuiasComponent implements OnInit {
          res = res.data;
          if( res == "Error") return false;
 
-         this.downloadPdf( data.urlRotulos, 'cordinadora #'+ res );
+         this._tools.downloadPdf( res, 'cordinadora #'+ data.nRemesa  );
        });
      }
    }

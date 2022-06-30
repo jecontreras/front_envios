@@ -61,7 +61,7 @@ export class ElaboracionGuiasComponent implements OnInit {
 
   ngOnInit() {
     this.armandoData();
-    this.getCiudades();
+    //this.getCiudades();
     this.opcionCurrencys = this._tools.currency;
   }
 
