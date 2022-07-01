@@ -19,7 +19,7 @@ export class IndexComponent implements OnInit {
   cuenta de ahorros Bancolombia-ahorro a la mano de bancolombia-nequi
   cuenta de ahorros davivienda-daviplata`};
 
-  foto1: string = "./assets/imagenes/logo.jpeg";
+  foto1: string = "./assets/extra/fondo.webp";
   listaFotos:any = [
     "./assets/portada/imagenes/foto1.jpg",
     "./assets/portada/imagenes/banner1.jpg",

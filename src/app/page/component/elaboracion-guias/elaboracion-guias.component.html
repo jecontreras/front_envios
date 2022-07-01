@@ -10,7 +10,11 @@
     <div class="content p-5">
         <div class="row">
             <div class="form-group col-12">
-                <h4>1. TIPO DE ENVIO Y AGENTE</h4>
+                <div class="card text-white bg-secondary  ">
+                    <div class="card-body">
+                        <h4 class="card-title text-white">1. TIPO DE ENVIO Y AGENTE</h4>
+                    </div>
+                </div>
             </div>
             <div class="form-group col-xs-3 col-sm-3 col-12">
                 <label>Tipo de envio y agente *</label>
@@ -94,7 +98,11 @@
                 </ng-template>
             </div>
             <div class="form-group col-12">
-                <h4>2. DATOS DE LA MERCANCIA</h4>
+                <div class="card text-white bg-secondary  ">
+                    <div class="card-body">
+                        <h4 class="card-title text-white">2. DATOS DE LA MERCANCIA</h4>
+                    </div>
+                </div>
             </div>
             <div class="form-group col-xs-4 col-sm-4 col-12">
                 <label>Total Unid(s) *</label>
@@ -165,7 +173,11 @@
                   </div>
             </div>
             <div class="form-group col-12">
-                <h4>3. SELECCIONE LA TRASPORTADORA HACIENDO CLICK SOBRE EL LOGO O CUALQUIER PARTE DE LA FILA SELECCIONADA</h4>
+                <div class="card text-white bg-secondary  ">
+                    <div class="card-body">
+                        <h4 class="card-title text-white">3. SELECCIONE LA TRASPORTADORA HACIENDO CLICK SOBRE EL LOGO O CUALQUIER PARTE DE LA FILA SELECCIONADA</h4>
+                    </div>
+                </div>
             </div>
             <div class="form-group col-12">
                 <div class="card-body ng-tns-c14-12 table-border-style ng-star-inserted">
@@ -179,7 +191,7 @@
                             <tbody>
                                 <tr *ngFor="let item of tablet.listRow" (click)="selectTrans( item )" class="mouse" [ngClass]="{check: item.check}">
                                     <td>
-                                        <button type="button" class="btn btn-primary" (click)="crear( item )">
+                                        <button type="button" class="btn btn-secondary " (click)="crear( item )">
                                             <i class="fa fa-eye" aria-hidden="true"></i>
                                         </button>
                                     </td>
@@ -203,7 +215,7 @@
                     </div>
                     <div class="col-12" *ngIf="progreses">
                         <div class="d-flex justify-content-center row">
-                            <div class="spinner-grow text-primary" role="status"><span class="sr-only">Loading...</span></div>
+                            <div class="spinner-grow text-secondary " role="status"><span class="sr-only">Loading...</span></div>
                             <div class="spinner-grow text-secondary" role="status"><span class="sr-only">Loading...</span></div>
                             <div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div>
                             <div class="spinner-grow text-danger" role="status"><span class="sr-only">Loading...</span></div>
@@ -216,7 +228,7 @@
 
                     <!-- <div class="col-12" *ngIf="!progreses && tablet.listRow.length == 0">
                         <div class="d-flex justify-content-center row">
-                            <div role="alert" class="alert alert-primary">
+                            <div role="alert" class="alert alert-secondary ">
                                 No Hay Datos Para Mostrar
                             </div>
                         </div>
@@ -230,15 +242,19 @@
             </div>
             <div class="row" *ngIf="data.transportadoraSelect">
                 <div class="form-group col-12">
-                    <h4>4.DATOS DEL REMITENTE.</h4>
-                </div>
-                <div class="form-group col-xs-4 col-sm-3 col-4">
-                    <label>Nombre Completo: </label>
-                    <input type="text" class="form-control form-control-sm" [(ngModel)]="data.remitenteNombre">
+                    <div class="card text-white bg-secondary  ">
+                        <div class="card-body">
+                            <h4 class="card-title text-white">4.DATOS DEL REMITENTE.</h4>
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group col-xs-4 col-sm-3 col-4">
                     <label>Nit / Identificacion*: </label>
                     <input type="number" class="form-control form-control-sm" [(ngModel)]="data.identificacionRemitente">
+                </div>
+                <div class="form-group col-xs-4 col-sm-3 col-4">
+                    <label>Nombre Completo: </label>
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="data.remitenteNombre">
                 </div>
                 <div class="form-group col-xs-4 col-sm-3 col-4">
                     <label>Direccion: </label>
@@ -248,10 +264,10 @@
                     <label>Correo electronico: </label>
                     <input type="text" class="form-control form-control-sm" [(ngModel)]="data.remitenteCorreo">
                 </div>
-                <div class="form-group col-xs-4 col-sm-3 col-4">
+                <!--<div class="form-group col-xs-4 col-sm-3 col-4">
                     <label>Telefono fijo: </label>
                     <input type="number" class="form-control form-control-sm" [(ngModel)]="data.remitenteFijo">
-                </div>
+                </div>-->
                 <div class="form-group col-xs-4 col-sm-3 col-4">
                     <label>Celular: </label>
                     <input type="number" class="form-control form-control-sm" [(ngModel)]="data.remitenteCelular">
@@ -261,15 +277,19 @@
                     <input type="text" class="form-control form-control-sm" [(ngModel)]="data.remitenteBarrio">
                 </div>
                 <div class="form-group col-12">
-                    <h4>4.DATOS DEL DESTINATARIO.</h4>
+                    <div class="card text-white bg-secondary  ">
+                        <div class="card-body">
+                            <h4 class="card-title text-white">5.DATOS DEL DESTINATARIO.</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-xs-4 col-sm-3 col-4">
+                    <label>Nit / Identificacion*: </label>
+                    <input type="number" class="form-control form-control-sm" [(ngModel)]="data.destinatarioNitIdentificacion" (blur)="BuscarCliente()">
                 </div>
                 <div class="form-group col-xs-4 col-sm-3 col-4">
                     <label>Nombre Completo*: </label>
                     <input type="text" class="form-control form-control-sm" [(ngModel)]="data.destinatarioNombre">
-                </div>
-                <div class="form-group col-xs-4 col-sm-3 col-4">
-                    <label>Nit / Identificacion*: </label>
-                    <input type="number" class="form-control form-control-sm" [(ngModel)]="data.destinatarioNitIdentificacion">
                 </div>
                 <!--<div class="form-group col-xs-4 col-sm-3 col-4">
                     <label>Fecha de expedicion: </label>
@@ -296,6 +316,11 @@
                     <input type="text" class="form-control form-control-sm" [(ngModel)]="data.destinatarioDireccion">
                 </div>
                 <div class="form-group col-12">
+                    <div class="card text-white bg-secondary  ">
+                        <div class="card-body">
+                            <h4 class="card-title text-white">5.INFORMACION ADICIONAL Y SERVICIOS COMPLEMENTARIOS.</h4>
+                        </div>
+                    </div>
                     <h4>5.INFORMACION ADICIONAL Y SERVICIOS COMPLEMENTARIOS.</h4>
                 </div>
                 <!--<div class="form-group col-xs-4 col-sm-3 col-4">
