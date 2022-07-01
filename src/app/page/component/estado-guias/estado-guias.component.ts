@@ -139,12 +139,12 @@ export class EstadoGuiasComponent implements OnInit {
          res = res.data;
          if( res == "Error") return false;
 
-         this.downloadPdf( res, 'cordinadora #'+ data.nRemesa );
+         this._tools.downloadPdf( res, 'cordinadora #'+ data.nRemesa );
        });
      }
    }
 
-   downloadPdf(base64String, fileName){
+   /*downloadPdf(base64String, fileName){
     if(window.navigator && window.navigator['msSaveOrOpenBlob']){
       // download PDF in IE
       let byteChar = atob(base64String);
@@ -163,7 +163,7 @@ export class EstadoGuiasComponent implements OnInit {
       link.download = `${fileName}.pdf`
       link.click();
     }
-  }
+  }*/
 
    updateInfro( item:any, opt:string){
      if( this.btnDisabled ) return false;

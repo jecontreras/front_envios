@@ -187,6 +187,7 @@ export class ElaboracionGuiasComponent implements OnInit {
       console.log( res );
       this.btnDisabled = false;
       this.progreses = false;
+      if( res.data == "Error parametros incompleto") return this._tools.tooast( { title: res.data, icon: "error" } );
       this.armandoCotizacionTcc( res.data.tcc );
       this.armandoCotizacionEnvia( res.data.envia );
       this.armandoCotizacionCordinadora( res.data.cordinadora );
