@@ -44,6 +44,7 @@ export class EstadoGuiasComponent implements OnInit {
       this.progreses = false;
       if( !res ) return false;
       this.data = res.guia;
+      this.data.estadosName = this.data.estado;
       try {
         this.data.listEstadoSimple = res.simple[0].estado[0];
         this.data.listEstadoDetallado = _.orderBy( res.detallado[0].estado, ['codigo'], ['desc'] );

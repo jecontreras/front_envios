@@ -10,7 +10,7 @@
     <div class="content p-5">
         <div class="row">
             <div class="form-group col-12">
-                <div class="card text-white bg-secondary  ">
+                <div class="card text-white bg-primary  ">
                     <div class="card-body">
                         <h4 class="card-title text-white">1. TIPO DE ENVIO Y AGENTE</h4>
                     </div>
@@ -45,7 +45,7 @@
             </div>
             <div class="form-group col-xs-3 col-sm-3 col-12">
                 <label>Tipo de envio *</label>
-                <select class="form-control form-control-sm" [(ngModel)]="data.selectEnvio">
+                <select class="form-control form-control-sm" [(ngModel)]="data.selectEnvio" (change)="blurTipo()">
                     <option value="contraEntrega">Contra entrega</option>
                     <option value="envioNormal">Envio Normal</option>
                 </select>
@@ -98,7 +98,7 @@
                 </ng-template>
             </div>
             <div class="form-group col-12">
-                <div class="card text-white bg-secondary  ">
+                <div class="card text-white bg-primary  ">
                     <div class="card-body">
                         <h4 class="card-title text-white">2. DATOS DE LA MERCANCIA</h4>
                     </div>
@@ -132,10 +132,17 @@
                 <input currencyMask [(ngModel)]="data.valorAsegurado" class="form-control form-control-sm" [options]="opcionCurrencys"/>
                 <!--<input type="number" class="form-control form-control-sm" [(ngModel)]="data.valorAsegurado">-->
             </div>
-            <div class="form-group col-xs-4 col-sm-3 col-4">
+            <div class="form-group col-xs-4 col-sm-3 col-4" *ngIf="data.selectEnvio == 'contraEntrega'">
                 <label>Valor a recaudar: </label>
                 <input currencyMask [(ngModel)]="data.valorRecaudar" class="form-control form-control-sm" [options]="opcionCurrencys"/>
                 <!--<input type="number" class="form-control form-control-sm" [(ngModel)]="data.valorRecaudar">-->
+            </div>
+            <div class="form-group col-xs-3 col-sm-3 col-12" *ngIf="data.selectEnvio == 'contraEntrega'">
+                <label>Quien paga el Envio *</label>
+                <select class="form-control form-control-sm" [(ngModel)]="data.pagaElEnvio">
+                    <option value="0">yo</option>
+                    <option value="1">cliente</option>
+                </select>
             </div>
             <div class="form-group col-xs-4 col-sm-4 col-4">
                 <label>Contenido *</label>
@@ -173,7 +180,7 @@
                   </div>
             </div>
             <div class="form-group col-12">
-                <div class="card text-white bg-secondary  ">
+                <div class="card text-white bg-primary  ">
                     <div class="card-body">
                         <h4 class="card-title text-white">3. SELECCIONE LA TRASPORTADORA HACIENDO CLICK SOBRE EL LOGO O CUALQUIER PARTE DE LA FILA SELECCIONADA</h4>
                     </div>
@@ -191,7 +198,7 @@
                             <tbody>
                                 <tr *ngFor="let item of tablet.listRow" (click)="selectTrans( item )" class="mouse" [ngClass]="{check: item.check}">
                                     <td>
-                                        <button type="button" class="btn btn-secondary " (click)="crear( item )">
+                                        <button type="button" class="btn btn-primary " (click)="crear( item )">
                                             <i class="fa fa-eye" aria-hidden="true"></i>
                                         </button>
                                     </td>
@@ -215,8 +222,8 @@
                     </div>
                     <div class="col-12" *ngIf="progreses">
                         <div class="d-flex justify-content-center row">
-                            <div class="spinner-grow text-secondary " role="status"><span class="sr-only">Loading...</span></div>
-                            <div class="spinner-grow text-secondary" role="status"><span class="sr-only">Loading...</span></div>
+                            <div class="spinner-grow text-primary " role="status"><span class="sr-only">Loading...</span></div>
+                            <div class="spinner-grow text-primary" role="status"><span class="sr-only">Loading...</span></div>
                             <div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div>
                             <div class="spinner-grow text-danger" role="status"><span class="sr-only">Loading...</span></div>
                             <div class="spinner-grow text-warning" role="status"><span class="sr-only">Loading...</span></div>
@@ -228,7 +235,7 @@
 
                     <!-- <div class="col-12" *ngIf="!progreses && tablet.listRow.length == 0">
                         <div class="d-flex justify-content-center row">
-                            <div role="alert" class="alert alert-secondary ">
+                            <div role="alert" class="alert alert-primary ">
                                 No Hay Datos Para Mostrar
                             </div>
                         </div>
@@ -242,7 +249,7 @@
             </div>
             <div class="row" *ngIf="data.transportadoraSelect">
                 <div class="form-group col-12">
-                    <div class="card text-white bg-secondary  ">
+                    <div class="card text-white bg-primary  ">
                         <div class="card-body">
                             <h4 class="card-title text-white">4.DATOS DEL REMITENTE.</h4>
                         </div>
@@ -277,7 +284,7 @@
                     <input type="text" class="form-control form-control-sm" [(ngModel)]="data.remitenteBarrio">
                 </div>
                 <div class="form-group col-12">
-                    <div class="card text-white bg-secondary  ">
+                    <div class="card text-white bg-primary  ">
                         <div class="card-body">
                             <h4 class="card-title text-white">5.DATOS DEL DESTINATARIO.</h4>
                         </div>
@@ -316,7 +323,7 @@
                     <input type="text" class="form-control form-control-sm" [(ngModel)]="data.destinatarioDireccion">
                 </div>
                 <div class="form-group col-12">
-                    <div class="card text-white bg-secondary  ">
+                    <div class="card text-white bg-primary  ">
                         <div class="card-body">
                             <h4 class="card-title text-white">5.INFORMACION ADICIONAL Y SERVICIOS COMPLEMENTARIOS.</h4>
                         </div>

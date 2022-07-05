@@ -109,8 +109,7 @@
                                     <ng-autocomplete [(ngModel)]="data.ciudadDestino" [data]="listCiudades"
                                         [searchKeyword]="keyword" placeHolder="Buscar Ciudad" autocomplete="off"
                                         historyIdentifier="listCiudades" [itemTemplate]="itemTemplate"
-                                        [notFoundTemplate]="notFoundTemplate" (change)="blurCiudad()"
-                                        (blur)="blurCiudad()">
+                                        [notFoundTemplate]="notFoundTemplate" (selected)="blurCiudad( $event )">
                                     </ng-autocomplete>
 
                                     <ng-template #itemTemplate let-item>

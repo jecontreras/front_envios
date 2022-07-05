@@ -27,6 +27,7 @@ export class ElaboracionGuiasComponent implements OnInit {
     valorRecaudar: 0,
     totalUnidad1: 1,
     totalUnidad: 1,
+    pagaElEnvio: 0,
     contenido: ""
   };
   tablet:any = {
@@ -63,7 +64,7 @@ export class ElaboracionGuiasComponent implements OnInit {
 
   ngOnInit() {
     this.armandoData();
-    //this.getCiudades();
+    this.getCiudades();
     this.opcionCurrencys = this._tools.currency;
   }
 
@@ -85,7 +86,8 @@ export class ElaboracionGuiasComponent implements OnInit {
       fechaRemesa: moment().format("YYYY-MM-DD"),
       selectEnvio: "contraEntrega",
       ... this.data
-    }
+    };
+    console.log( this.data)
   }
 
   getCiudades(){
@@ -121,6 +123,10 @@ export class ElaboracionGuiasComponent implements OnInit {
     this.data.ciudadDestino = "";
   }
 
+  blurTipo(){
+    this.tablet.listRow = [];
+    this.data.valorRecaudar = 0;
+  }
 
   submitCotizar(){
 
@@ -146,6 +152,7 @@ export class ElaboracionGuiasComponent implements OnInit {
       idCiudadDestino: String( destino.code ),
       idCiudadOrigen: this.data.ciudadOrigen,
       valorMercancia: Number( this.data.valorRecaudar ),
+      valorRecaudar: Number( this.data.valorRecaudar ),
       fechaRemesa: this.data.fechaRemesa,
       idUniSNegogocio: 1,
       numeroUnidad: Number( 1 || this.data.totalUnidad ),
@@ -155,7 +162,7 @@ export class ElaboracionGuiasComponent implements OnInit {
       largo: Number( this.data.volumenLargo ),
       ancho: Number( this.data.volumenAncho ),
       tipoEmpaque: "",
-      drpCiudadOrigen: ( this.listCiudades.find(( row:any )=> row.code == this.data.ciudadOrigen ) ).name,
+      drpCiudadOrigen: this.data.ciudadOrigen,
       txtIdentificacionDe: Number( this.data.identificacionRemitente ),
       txtTelefonoDe: Number( this.data.remitenteFijo ||  this.data.remitenteCelular ),
       txtDireccionDe: this.data.remitenteBarrio,
@@ -329,7 +336,10 @@ export class ElaboracionGuiasComponent implements OnInit {
     this.mensaje = "";
     this.btnDisabled = true;
     this.data.valorFactura = this.data.valorRecaudar;
+    if( this.data.selectEnvio == 'contraEntrega' ) if( this.data.pagaElEnvio == 1 ) this.data.valorRecaudar = ( this.data.valorRecaudar || 0 ) + ( this.data.flteTotal || 0 );
+    
     let data:any = {
+      pagaElEnvio: this.data.pagaElEnvio,
       selectEnvio: this.data.selectEnvio,
       fleteValor: this.data.fleteValor,
       fleteManejo: this.data.fleteManejo,
@@ -495,6 +505,7 @@ export class ElaboracionGuiasComponent implements OnInit {
       valorRecaudar: 0,
       totalUnidad1: 1,
       totalUnidad: 1,
+      pagaElEnvio: 0,
       contenido: ""
     };
     this.tablet.listRow = [];
@@ -536,8 +547,8 @@ export class ElaboracionGuiasComponent implements OnInit {
     console.log( this.data )
     if( !this.data.ciudadDestino ) { this._tools.tooast({ title: "Error Falta ciudad de destino", icon: "error" } ); return false; }
     if( !this.data.ciudadOrigen ) { this._tools.tooast({ title: "Error Falta ciudad de origen", icon: "error" } ); return false; }
-    if( !this.data.valorRecaudar ) { this._tools.tooast({ title: "Error Falta Valor recaudo", icon: "error" } ); return false; }
-    //if( !this.data.valorRecaudar ) this.data.valorRecaudar = 0;
+    if( this.data.selectEnvio == 'contraEntrega' ) if( !this.data.valorRecaudar ) { this._tools.tooast({ title: "Error Falta Valor recaudo", icon: "error" } ); return false; }
+    if( !this.data.valorRecaudar ) this.data.valorRecaudar = 0;
     if( !this.data.totalUnidad ) { this._tools.tooast({ title: "Error Falta totalUnidad", icon: "error" } ); return false; }
     if( !this.data.totalkilo ) { this._tools.tooast({ title: "Error Falta Peso real", icon: "error" } ); return false; }
     if( !this.data.volumenAlto ) { this._tools.tooast({ title: "Error Falta Volumen alto", icon: "error" } ); return false; }
@@ -560,7 +571,7 @@ export class ElaboracionGuiasComponent implements OnInit {
     if( !this.data.ciudadDestino ) { this._tools.tooast({ title: "Error Falta Ciudad de destino", icon: "error" } ); return false; }
     if( !this.data.destinatarioBarrio ) { this._tools.tooast({ title: "Error Falta Destinatario barrio", icon: "error" } ); return false; }
     if( !this.data.totalkilo ) { this._tools.tooast({ title: "Error Falta Total de kilos", icon: "error" } ); return false; }
-    if( !this.data.valorFactura ) { this._tools.tooast({ title: "Error Falta Valor de la factura", icon: "error" } ); return false; }
+    //if( !this.data.valorFactura ) { this._tools.tooast({ title: "Error Falta Valor de la factura", icon: "error" } ); return false; }
     if( !this.data.contenido ) { this._tools.tooast({ title: "Error Falta Contenido o dice tener", icon: "error" } ); return false; }
     if( !this.data.volumenAlto ) { this._tools.tooast({ title: "Error Falta Volumen alto", icon: "error" } ); return false; }
     if( !this.data.volumenLargo ) { this._tools.tooast({ title: "Error Falta Volumen largo", icon: "error" } ); return false; }

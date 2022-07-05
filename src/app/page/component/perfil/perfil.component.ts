@@ -9,6 +9,7 @@ import { PAIS } from 'src/app/JSON/paises';
 import { DEPARTAMENTO } from 'src/app/JSON/departamentos';
 import { ArchivosService } from 'src/app/servicesComponents/archivos.service';
 import { DANEGROUP } from 'src/app/JSON/dane-nogroup';
+import { CiudadesService } from 'src/app/servicesComponents/ciudades.service';
 
 @Component({
   selector: 'app-perfil',
@@ -37,7 +38,8 @@ export class PerfilComponent implements OnInit {
     private _store: Store<STORAGES>,
     private _user: UsuariosService,
     private _tools: ToolsService,
-    private _archivo: ArchivosService
+    private _archivo: ArchivosService,
+    private _ciudades: CiudadesService,
   ) { 
     this._store.subscribe((store: any) => {
       console.log(store);
@@ -49,7 +51,14 @@ export class PerfilComponent implements OnInit {
   ngOnInit() {
     this.data = _.clone( this.dataUser );
     this.blurdepartamento();
+    this.getCiudades();
     try { this.data.ciudadDestino = this.listCiudades.find( ( item:any )=> item.city == this.data.ciudad ).city; } catch (error) {}
+  }
+
+  getCiudades(){
+    this._ciudades.get( { where: { }, limit: 10000000 } ).subscribe( ( res:any ) => {
+      this.listCiudades = res.data;
+    });
   }
 
   async datafiles(ev: any) {
@@ -89,15 +98,11 @@ export class PerfilComponent implements OnInit {
     });
   }
 
-  blurCiudad(){
-    console.log("perro")
-    setTimeout(()=>{
-      console.log( this.data );
-      if( !this.data.ciudadDestino ) return false;
-      this.data.departamento = this.data.ciudadDestino.state + `( ${ this.data.ciudadDestino.city } )`;
-      this.data.ciudad = this.data.ciudadDestino.city;
-      this.data.codigoCiudad = this.data.ciudadDestino.code;
-    },2000);
+  blurCiudad( ev:any ){
+    this.data.departamento = ev.state + `( ${ ev.city } )`;
+    this.data.ciudad = ev.city;
+    this.data.codigoCiudad = ev.code;
+    console.log( this.data, ev );
   }
 
   blurdepartamento(){
@@ -107,20 +112,20 @@ export class PerfilComponent implements OnInit {
   }
 
   submit(){ 
-    console.log( this.data );
     this.update();
   }
+
 
   update(){
     if( this.data.password ) return this.cambioPassword();
     this.data = _.omit( this.data, ['rol', 'password', 'confirpassword', 'cabeza','comentarios','publicaciones','referidos','rol','updatedAt','createdAt']);
     this._user.update(this.data).subscribe((res:any)=>{
       console.log(res);
-      this.data = res;
+      //this.data = res;
       let accion = new UserAction( res, 'put');
       this._store.dispatch(accion);
       this._tools.tooast({ title: "Perfil Actualizado correctamente" });
-      this.data.ciudadDestino = this.listCiudades.find( ( item:any )=> item.city == this.data.ciudad ).city;
+      //this.data.ciudadDestino = ( this.listCiudades.find( ( item:any )=> item.city == this.data.ciudad ) ).city ;
     },(error)=> this._tools.tooast( { title: "Error al Actualizar el Perfil", icon: "error"}));
   }
 
