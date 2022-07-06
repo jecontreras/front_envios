@@ -533,7 +533,9 @@ export class ElaboracionGuiasComponent implements OnInit {
       barrio: this.data.destinatarioBarrio,
      } ).subscribe(( res:any )=>{ });
   }
+
   BuscarCliente(){
+    if( !this.data.destinatarioNitIdentificacion ) return false;
     this._user.getCliente( { where: { Nidentificacion: this.data.destinatarioNitIdentificacion }}).subscribe( ( res:any )=>{
       res = res.data[0];
       if( !res ) return false;
@@ -543,6 +545,7 @@ export class ElaboracionGuiasComponent implements OnInit {
       this.data.destinatarioBarrio = res.barrio;
     })
   }
+
   validandoCotizador(){
     console.log( this.data )
     if( !this.data.ciudadDestino ) { this._tools.tooast({ title: "Error Falta ciudad de destino", icon: "error" } ); return false; }

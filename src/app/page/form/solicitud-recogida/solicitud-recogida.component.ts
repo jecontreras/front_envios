@@ -6,6 +6,7 @@ import { STORAGES } from 'src/app/interfaces/sotarage';
 import { Store } from '@ngrx/store';
 import * as moment from 'moment';
 import { Router, ActivatedRoute } from '@angular/router';
+import { CiudadesService } from 'src/app/servicesComponents/ciudades.service';
 
 @Component({
   selector: 'app-solicitud-recogida',
@@ -16,7 +17,7 @@ export class SolicitudRecogidaComponent implements OnInit {
 
   data:any = {
     // txtFechaIni: "jueves,  20/08/2020"
-    plataforma: 'envia',
+    plataforma: 'cordinadora',
     fecha_recogida: new Date()
   };
   listCiudades:any = DANEGROUP;
@@ -32,6 +33,7 @@ export class SolicitudRecogidaComponent implements OnInit {
     private activate: ActivatedRoute,
     private Router: Router,
     private _recogia: RecogiasService,
+    private _ciudades: CiudadesService,
   ) {
       this._store.subscribe((store: any) => {
         //console.log(store);
@@ -49,6 +51,7 @@ export class SolicitudRecogidaComponent implements OnInit {
       this.formData();
       this._tools.confirm( { title: "tener encuenta", confir:"continuar", detalle: "Por favor antes de continuar por favor comunicar con el servicio al cliente antes de solicitar una recogida +57 313 4453649"} );
     }
+    this.getCiudades();
   }
 
   getFlete(){
@@ -60,6 +63,13 @@ export class SolicitudRecogidaComponent implements OnInit {
       console.log( this.data );
     },( error )=> this._tools.tooast( { title: "Error de servidor", icon:"error"} ) );
   }
+
+  getCiudades(){
+    this._ciudades.get( { where: { }, limit: 10000000 } ).subscribe( ( res:any ) => {
+      this.listCiudades = res.data;
+    });
+  }
+
 
   formData(){
     this.data = {

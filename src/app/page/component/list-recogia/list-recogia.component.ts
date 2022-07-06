@@ -111,4 +111,8 @@ export class ListRecogiaComponent implements OnInit {
     window.open( `${ this.urlFront }/dashboard/solicitudrecogia/${ item.id }`, "Detalles Recogia", "width=940, height=600");
    }
 
+   aplicarRegogida(){
+    
+   }
+
 }

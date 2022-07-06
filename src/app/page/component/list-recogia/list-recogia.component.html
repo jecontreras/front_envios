@@ -47,6 +47,9 @@
                                             <button type="button" class="btn btn-primary" (click)="detalles( item )">
                                                 <i class="fa fa-eye" aria-hidden="true"></i>
                                             </button>
+                                            <button type="button" class="btn btn-warning" *ngIf="!item.txtNum_OrdenSG && rolName == 'admin'" (click)="aplicarRegogida( item )">
+                                                <i class="fa fa-check-square" aria-hidden="true"></i>
+                                            </button>
                                             <button type="button" class="btn btn-danger" [disabled]="btnDisabled" *ngIf="item.estado == 0" (click)="cancelar( item )">
                                                 <i class="fas fa-trash"></i>
                                             </button>
