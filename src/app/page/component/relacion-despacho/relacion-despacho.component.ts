@@ -18,11 +18,18 @@ export class RelacionDespachoComponent implements OnInit {
   public query:any = { 
     where:{
       // estado: "GENERADA" 
+      solicitudFecha:{
+        "<=": moment(  ),
+        ">=": moment(  ).add( -1, 'days'),
+      },
       state: 0
     }, 
     sort: "createdAt ASC",
     limit: -1,
     page: 0
+  };
+  data:any = {
+    plataforma: "CORDINADORA"
   };
   listCiudad:any = DANEGROUP;
   total:any = {
@@ -61,8 +68,17 @@ export class RelacionDespachoComponent implements OnInit {
     this.getRow();
   }
 
+  filtroGet(){
+    this.listDistribucion = [];
+    this.getRow();  
+  }
+
   getRow(){
     let count = 0;
+    
+    if( this.data.plataforma == 'TODO' ) delete this.query.where.transportadoraSelect;
+    else this.query.where.transportadoraSelect = this.data.plataforma;
+
     this._flete.get( this.query ).subscribe( async ( res:any )=>{
       for( let row of res.data ){
         count++;

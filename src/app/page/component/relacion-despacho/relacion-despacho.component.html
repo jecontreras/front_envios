@@ -1,8 +1,26 @@
 <div class="card ng-trigger ng-trigger-cardRemove" animates="" animatesinitmode="show"
     style="visibility: visible; opacity: 1;">
     <div class="ng-tns-c14-12 ng-trigger ng-trigger-collapsedCard ng-star-inserted" style="overflow: hidden;">
-        <div class="d-flex flex-row-reverse bd-highlight">
-            <div class="p-2 bd-highlight">
+        <div class="d-flex justify-content-between">
+            <div></div>
+            <div class="d-flex justify-content-center">
+                <div>
+                    <label>Tipo de Trasportadora*</label>
+                    <select class="form-control form-control-sm"
+                        [(ngModel)]="data.plataforma">
+                        <option value="TODO">TODOS</option>
+                        <option value="ENVIA">Envia</option>
+                        <option value="CORDINADORA">Cordinadora
+                        </option>
+                    </select>
+                </div>
+                <div>
+                    <br>
+                    &nbsp;&nbsp;
+                    <button type="button" class="btn btn-primary" (click)="filtroGet()">BUSCAR</button>
+                </div>
+            </div>
+            <div>
                 <button type="button" class="btn btn-success" (click)="openImprimir()">IMPRIMIR</button>
             </div>
           </div>
@@ -194,7 +212,7 @@
                                         </p>
                                     </td>
                                     <td style="border-bottom: 0.5pt solid windowtext; border-left: none; border-right: 0.5pt solid windowtext; border-top: none; height: 3.5pt; padding: 0cm 3.5pt; width: 194.5pt;"
-                                        valign="top" width="259">
+                                        valign="top" width="259" >
                                         <p class="MsoNormal" style="font-size: 12pt; margin: 0cm 0cm 0.0001pt;">
                                             &nbsp;
                                         </p>
@@ -286,8 +304,10 @@
                                     <td style="border-bottom: 0.5pt solid windowtext; border-left: none; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 194.5pt;"
                                         valign="top" width="259">
                                         <p class="MsoNormal" style="font-size: 12pt; margin: 0cm 0cm 0.0001pt;">
-                                            <img height="30" id="_x0000_i1026"
-                                                src="http://200.69.100.66/files/jpg/{{ item.nRemesa }}.jpg" width="250" />
+                                            <img height="30"
+                                                src="http://200.69.100.66/files/jpg/{{ item.nRemesa }}.jpg" width="250" *ngIf="item.transportadoraSelect == 'ENVIA'"/>
+                                            <img height="30"
+                                                src="./assets/imagenes/logoCordinadora.png" width="250" *ngIf="item.transportadoraSelect == 'CORDINADORA'"/>
 
                                         </p>
                                         <br />
