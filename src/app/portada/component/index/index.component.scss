@@ -88,9 +88,13 @@
       font-size: 54px!important;
     }
   }
-  .colorTitle{
-    color: #f8f8f8;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+
+  #scrols{
+    overflow: auto;
+    height: 845px;
+  }
+  #scrols::-webkit-scrollbar {
+    width: 8px;     /* Tamaño del scroll en vertical */
+    height: 8px;    /* Tamaño del scroll en horizontal */
+    display: none;  /* Ocultar scroll */
   }

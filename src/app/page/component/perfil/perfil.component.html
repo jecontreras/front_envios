@@ -38,13 +38,6 @@
                             <span class="label label-danger"
                                 *ngIf="data.miNivel">{{ data.miNivel.nivel.title || 'Gratuito' }}</span>
                         </div>
-                        <div class="profile-stars">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-o"></i>
-                        </div>
                         <div class="profile-since">
                             Registrado: {{ data.createdAt | date: 'medium' }}
                         </div>

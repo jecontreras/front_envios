@@ -40,6 +40,8 @@ export class FormRetirosComponent implements OnInit {
       console.log( res );
       if( !res ) return false;
       this.data.monto = res.valorTotal;
+      this.data.sumaFlete = res.fleteValorTotal;
+      this.data.totalrecibir = Number( res.valorTotal ) - Number( res.fleteValorTotal );
     });
   }
 

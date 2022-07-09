@@ -72,19 +72,15 @@
                 <input type="text" [(ngModel)]="data.usu_email" class="form-control form-control-sm">
             </div>
         </div>
-        <div class="form-group col-md-6 col-sm-4 col-lg-4 col-xs-4">
-            <label>Monto</label>
+        <div class="form-group col-md-6 col-sm-4 col-lg-4 col-xs-4 dineroCompleto">
+            <label>Valor Recaudado</label>
             <input [disabled]="!superSub" currencyMask [(ngModel)]="data.monto" class="form-control form-control-sm" [options]="opcionCurrencys"/>
         </div>
-        <div class="form-group col-md-6 col-sm-4 col-lg-4 col-xs-4">
-            <label>Devoluciones - </label>
-            <input [disabled]="!superSub" currencyMask [(ngModel)]="data.devoluciones" class="form-control form-control-sm" [options]="opcionCurrencys"/>
-        </div>
-        <div class="form-group col-md-6 col-sm-4 col-lg-4 col-xs-4" *ngIf="data.id">
+        <div class="form-group col-md-6 col-sm-4 col-lg-4 col-xs-4 dineroFlete">
             <label>Valor Total del flete -</label>
             <input [disabled]="!superSub" currencyMask [(ngModel)]="data.sumaFlete" class="form-control form-control-sm" [options]="opcionCurrencys"/>
         </div>
-        <div class="form-group col-md-6 col-sm-4 col-lg-4 col-xs-4">
+        <div class="form-group col-md-6 col-sm-4 col-lg-4 col-xs-4 dineroCompleto">
             <label>Total Dinero Recibir </label>
             <input [disabled]="!superSub" currencyMask [(ngModel)]="data.totalrecibir" class="form-control form-control-sm" [options]="opcionCurrencys"/>
         </div>

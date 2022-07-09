@@ -11,7 +11,8 @@ export const environment = {
   socketConfig: config,
   //url: "https://backpublihazclick.herokuapp.com",
   url: 'http://localhost:1338',
-  urlFront: "http://localhost:4200"
+  urlFront: "http://localhost:4200",
+  URLFILE: "https://backlocompro.herokuapp.com",
 };
 
 /*

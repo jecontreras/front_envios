@@ -17,7 +17,7 @@ export class MonederoComponent implements OnInit {
   listOrdenes:any = [];
   querys:any = {
     where:{
-      state: 2,
+      state: [2,3],
       pagadoRt: false
     },
     sort: "createdAt DESC",
@@ -25,7 +25,9 @@ export class MonederoComponent implements OnInit {
     limit: 100000
   };
   dataInfo:any = {
-    valor: 0
+    valor: 0,
+    fleteValorTotal: 0,
+    valorDisponible: 0
   };
   dataUser:any = {};
   urlFront:string = window.location.origin;
@@ -63,6 +65,8 @@ export class MonederoComponent implements OnInit {
       console.log( res );
       if( !res ) return false;
       this.dataInfo.valor = res.valorTotal;
+      this.dataInfo.valorFlete = res.fleteValorTotal;
+      this.dataInfo.valorDisponible = ( Number( res.valorTotal ) - Number( res.fleteValorTotal ) );
     });
   }
 
