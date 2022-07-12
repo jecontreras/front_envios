@@ -93,13 +93,31 @@ const NavigationItems = [
         icon: 'feather icon-home'
       },
       {
-        id: 'monedero',
-        title: 'Tu billetera',
-        type: 'item',
-        disabled: false,
-        url: '/dashboard/monedero',
+        id: 'billetera',
+        title: 'Configuracion Pagos',
+        type: 'collapse',
+        disabled: true,
+        children:[
+          {
+            id: 'monedero',
+            title: 'Tu billetera',
+            type: 'item',
+            disabled: false,
+            url: '/dashboard/monedero',
+            icon: 'feather icon-home'
+          },
+          {
+            id: 'listretiros',
+            title: 'Lista de Retiros',
+            type: 'item',
+            disabled: false,
+            url: '/dashboard/listretiros',
+            icon: 'feather icon-home'
+          },
+        ],
         icon: 'feather icon-home'
       },
+
       {
         id: 'perfil',
         title: 'Editar Perfil',

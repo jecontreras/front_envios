@@ -13,11 +13,12 @@ import { TokenPlatformComponent } from './component/token-platform/token-platfor
 import { FormEstadoGuiaComponent } from './form/form-estado-guia/form-estado-guia.component';
 import { FormRetirosComponent } from './form/form-retiros/form-retiros.component';
 import { MonederoComponent } from './component/monedero/monedero.component';
+import { ListRetirosComponent } from './component/list-retiros/list-retiros.component';
 
 const routes: Routes = [
   {
     path: "home",
-    component: FleteComponent
+    component: ElaboracionGuiasComponent
   },
   {
     path: "flete",
@@ -78,6 +79,10 @@ const routes: Routes = [
   {
     path: "formRetiros",
     component: FormRetirosComponent
+  },
+  {
+    path: "listretiros",
+    component: ListRetirosComponent
   },
 
 ];

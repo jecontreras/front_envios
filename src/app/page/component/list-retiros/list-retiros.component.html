@@ -1,0 +1,83 @@
+<div class="card ng-trigger ng-trigger-cardRemove" animates="" animatesinitmode="show"
+    style="visibility: visible; opacity: 1;">
+    <div class="ng-tns-c14-12 ng-trigger ng-trigger-collapsedCard ng-star-inserted" style="overflow: hidden;">
+        <div class="d-flex flex-row bd-highlight mb-3">
+            <div class="p-2 bd-highlight">
+                <h5>LISTA DE RETIROS</h5>
+            </div>
+        </div>
+    </div>
+    <div class="content p-5">
+        <div class="row">
+            <div class="col-12">
+                <div class="card-body ng-tns-c14-12 table-border-style ng-star-inserted">
+                    <div class="table-responsive" infiniteScroll [infiniteScrollDistance]="3" [infiniteScrollThrottle]="50"
+                        (scrolled)="onScroll()">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th *ngFor="let item of tablet.header">{{ item }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of tablet.listRow">
+                                    <td>
+                                        <div class="row">
+                                            <button type="button" class="btn btn-primary" (click)="detalles( item )">
+                                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-warning" *ngIf="!item.txtNum_OrdenSG && rolName == 'admin'" (click)="aplicarRegogida( item )">
+                                                <i class="fa fa-check-square" aria-hidden="true"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-danger" [disabled]="btnDisabled" *ngIf="item.estado == 0" (click)="cancelar( item )">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div [ngClass]="{ colorOrange: item.estado == 'pendiente', colorDanger: item.estado == 'rechazado', colorVerde: item.estado == 'completado' }">
+                                            {{ item.estado }}
+                                        </div>
+                                    </td>
+                                    <td>{{ item['user']?.username }}</td>
+                                    <td>{{ item.cantidad }}</td>
+                                    <td>{{ item.pagoFlete }}</td>
+                                    <td>{{ item.createdAt | date: "medium" }}</td>
+                                    <td>{{ item.descripcion }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-12" *ngIf="progreses">
+                        <div class="d-flex justify-content-center row">
+                            <div class="spinner-grow text-primary" role="status"><span class="sr-only">Loading...</span>
+                            </div>
+                            <div class="spinner-grow text-secondary" role="status"><span
+                                    class="sr-only">Loading...</span></div>
+                            <div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span>
+                            </div>
+                            <div class="spinner-grow text-danger" role="status"><span class="sr-only">Loading...</span>
+                            </div>
+                            <div class="spinner-grow text-warning" role="status"><span class="sr-only">Loading...</span>
+                            </div>
+                            <div class="spinner-grow text-info" role="status"><span class="sr-only">Loading...</span>
+                            </div>
+                            <div class="spinner-grow text-light" role="status"><span class="sr-only">Loading...</span>
+                            </div>
+                            <div class="spinner-grow text-dark" role="status"><span class="sr-only">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12" *ngIf="!progreses && tablet.listRow.length == 0">
+                        <div class="d-flex justify-content-center row">
+                            <div role="alert" class="alert alert-primary">
+                                No Hay Datos Para Mostrar
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

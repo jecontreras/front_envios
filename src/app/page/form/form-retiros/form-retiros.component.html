@@ -1,14 +1,18 @@
 <div class="row">
   <div class="col-12">
-      <h4> Retiros de dinero del usuario {{ dataUser.username }} </h4>
+    <div class="d-flex justify-content-around">
+        <div><h4> Retiros de dinero del usuario {{ dataUser.username }} </h4></div>
+        <div></div>
+        <div><button type="button" class="btn btn-success" (click)="crearRetiro()" *ngIf="!id">Crear Retiro</button></div>
+    </div>
   </div>
     <div class="form-group col-md-6 col-sm-4 col-lg-4 col-xs-4" *ngIf="data.id && superSub">
         <label for="exampleFormControlSelect1">Estado del Cobro</label>
-        <select class="form-control form-control-sm" [(ngModel)]="data.estado">
-            <option type="number" value="0">Activa</option>
-            <option type="number" value="1">Apraboda</option>
-            <option type="number" value="2">Rechazada</option>
-            <option type="number" value="3">Eliminado</option>
+        <select class="form-control form-control-sm" [(ngModel)]="data.estado" (change)="updateEstado()">
+            <option type="number" value="pendiente">Activa</option>
+            <option type="number" value="completado">Apraboda</option>
+            <option type="number" value="rechazado">Rechazada</option>
+            <option type="number" value="eliminado">Eliminado</option>
         </select>
     </div>
     <div class="form-group col-md-6 col-sm-4 col-lg-4 col-xs-4">
@@ -46,14 +50,16 @@
             bancaria</label>
         <input type="text" [(ngModel)]="data.cob_num_cuenta" class="form-control form-control-sm">
     </div>
+    <div class="form-group col-md-6 col-sm-4 col-lg-4 col-xs-4" *ngIf="!id">
+    </div>
         <div class="form-group col-12 row" *ngIf="data.cob_pais == 'venezuela'">
             <div class="form-group col-md-6 col-sm-4 col-lg-4 col-xs-4" *ngIf="data.metodo == 'Efecty'">
                 <label>Numero de cedula</label>
-                <input type="text" [(ngModel)]="data.cob_numero_cedula" class="form-control form-control-sm">
+                <input type="text" [(ngModel)]="data.cedula" class="form-control form-control-sm">
             </div>
             <div class="form-group col-md-6 col-sm-4 col-lg-4 col-xs-4" *ngIf="data.metodo == 'Efecty'">
                 <label>Ciudad o corregimiento donde deseas retirar</label>
-                <input type="text" [(ngModel)]="data.cob_ciudad_corregimiento" class="form-control form-control-sm">
+                <input type="text" [(ngModel)]="data.ciudad_corregimiento" class="form-control form-control-sm">
             </div>
             <div class="form-group col-md-6 col-sm-4 col-lg-4 col-xs-4" *ngIf="data.metodo == 'transfer_bancaria'">
                 <label>Nombre del banco Correctamente</label>
@@ -65,7 +71,7 @@
             </div>
             <div class="form-group col-md-6 col-sm-4 col-lg-4 col-xs-4" *ngIf="data.metodo == 'transfer_bancaria'">
                 <label>Numero de cédula</label>
-                <input type="text" [(ngModel)]="data.cob_numero_cedula" class="form-control form-control-sm">
+                <input type="text" [(ngModel)]="data.cedula" class="form-control form-control-sm">
             </div>
             <div class="form-group col-md-6 col-sm-4 col-lg-4 col-xs-4">
                 <label>Email</label>
