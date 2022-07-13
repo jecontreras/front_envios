@@ -1,0 +1,60 @@
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-around">
+            <div>
+                <h4> Datos del Usuario: {{ dataUser.username }} </h4>
+            </div>
+            <div></div>
+            <div><button type="button" class="btn btn-success" (click)="updateUser()">Actulizar Usuario</button></div>
+        </div>
+    </div>
+    <div class="col-12 row">
+        <div class="form-group col-md-6 col-sm-4 col-lg-4 col-xs-4">
+            <label for="exampleInputEmail1">Nombre</label>
+            <input type="text" class="form-control" [(ngModel)]="data.name">
+        </div>
+        <div class="form-group col-md-6 col-sm-4 col-lg-4 col-xs-4">
+            <label for="exampleInputEmail1">Email</label>
+            <input type="text" class="form-control" [(ngModel)]="data.email">
+        </div>
+        <div class="form-group col-md-6 col-sm-4 col-lg-4 col-xs-4">
+            <label for="exampleInputEmail1">Celular</label>
+            <input type="text" class="form-control" [(ngModel)]="data.celular">
+        </div>
+        <div class="form-group col-md-6 col-sm-4 col-lg-4 col-xs-4">
+            <label for="exampleInputEmail1">Ciudad</label>
+            <label>Ciudad *</label>
+            <!-- <input type="text" class="form-control form-control-sm" [(ngModel)]="data.ciudadDestino"> -->
+            <ng-autocomplete [(ngModel)]="data.ciudadDestino" [data]="listCiudades" [searchKeyword]="keyword"
+                placeHolder="Buscar Ciudad" autocomplete="off" historyIdentifier="listCiudades"
+                [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate" (selected)="blurCiudad( $event )">
+            </ng-autocomplete>
+
+            <ng-template #itemTemplate let-item>
+                <div class="item">
+                    <!-- <img src="{{item.flag}}" height="25"> -->
+                    <span [innerHTML]="item.city"></span> &nbsp; | &nbsp;
+                    <small>Departamento: {{item.state}}</small>
+                </div>
+            </ng-template>
+
+            <ng-template #notFoundTemplate let-notFound>
+                <div [innerHTML]="notFound"></div>
+            </ng-template>
+        </div>
+        <div class="form-group col-md-6 col-sm-4 col-lg-4 col-xs-4">
+            <label for="exampleInputEmail1">Direccion</label>
+            <input type="text" class="form-control" [(ngModel)]="data.direccion">
+        </div>
+        <div class="form-group col-md-6 col-sm-4 col-lg-4 col-xs-4">
+            <label for="exampleInputEmail1">Departamento</label>
+            <input type="text" class="form-control" [(ngModel)]="data.departamento" disabled>
+        </div>
+        <div class="form-group col-md-6 col-sm-4 col-lg-4 col-xs-4">
+            <label for="exampleInputEmail1">Rol</label>
+            <select class="form-control form-control-sm" [(ngModel)]="data.rol">
+                <option type="text" *ngFor="let item of listRoles" [value]=item.id> {{ item.descripcion }}</option>
+            </select>
+        </div>
+    </div>
+</div>

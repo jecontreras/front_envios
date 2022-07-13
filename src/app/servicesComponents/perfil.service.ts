@@ -11,15 +11,15 @@ export class PerfilService {
   ) { }
 
   get(query:any){
-    return this._model.querys('tblperfil/querys',query, 'post');
+    return this._model.querys('rol/querys',query, 'post');
   }
   create(query:any){
-    return this._model.querys('tblperfil',query, 'post');
+    return this._model.querys('rol',query, 'post');
   }
   update(query:any){
-    return this._model.querys('tblperfil/'+query.id, query, 'put');
+    return this._model.querys('rol/'+query.id, query, 'put');
   }
   delete(query:any){
-    return this._model.querys('tblperfil/'+query.id, query, 'delete');
+    return this._model.querys('rol/'+query.id, query, 'delete');
   }
 }

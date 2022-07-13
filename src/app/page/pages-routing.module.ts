@@ -14,6 +14,8 @@ import { FormEstadoGuiaComponent } from './form/form-estado-guia/form-estado-gui
 import { FormRetirosComponent } from './form/form-retiros/form-retiros.component';
 import { MonederoComponent } from './component/monedero/monedero.component';
 import { ListRetirosComponent } from './component/list-retiros/list-retiros.component';
+import { UsuariosComponent } from './component/usuarios/usuarios.component';
+import { FormUsuariosComponent } from './form/form-usuarios/form-usuarios.component';
 
 const routes: Routes = [
   {
@@ -83,6 +85,14 @@ const routes: Routes = [
   {
     path: "listretiros",
     component: ListRetirosComponent
+  },
+  {
+    path: "listusuarios",
+    component: UsuariosComponent
+  },
+  {
+    path: "formUsuario/:id",
+    component: FormUsuariosComponent
   },
 
 ];

@@ -89,6 +89,14 @@ const NavigationItems = [
             url: '/dashboard/tokenplataforma',
             icon: 'feather icon-home'
           },
+          {
+            id: 'listUsuarios',
+            title: 'Usuarios',
+            type: 'item',
+            disabled: false,
+            url: '/dashboard/listusuarios',
+            icon: 'feather icon-home'
+          },
         ],
         icon: 'feather icon-home'
       },

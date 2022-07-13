@@ -23,6 +23,8 @@ import { ComponentModule } from '../component/component.module';
 import { MonederoComponent } from './component/monedero/monedero.component';
 import { FormRetirosComponent } from './form/form-retiros/form-retiros.component';
 import { ListRetirosComponent } from './component/list-retiros/list-retiros.component';
+import { UsuariosComponent } from './component/usuarios/usuarios.component';
+import { FormUsuariosComponent } from './form/form-usuarios/form-usuarios.component';
 
 @NgModule({
   declarations: [ 
@@ -40,7 +42,9 @@ import { ListRetirosComponent } from './component/list-retiros/list-retiros.comp
     FormEstadoGuiaComponent,
     MonederoComponent,
     FormRetirosComponent,
-    ListRetirosComponent
+    ListRetirosComponent,
+    UsuariosComponent,
+    FormUsuariosComponent
   ],
   imports: [
     ComponentModule,
