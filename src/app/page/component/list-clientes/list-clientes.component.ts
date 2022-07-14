@@ -1,20 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { UsuariosService } from 'src/app/servicesComponents/usuarios.service';
-import * as _ from 'lodash';
 import { ToolsService } from 'src/app/services/tools.service';
+import { UserEnviosService } from 'src/app/servicesComponents/user-envios.service';
+import * as _ from 'lodash';
 
 @Component({
-  selector: 'app-usuarios',
-  templateUrl: './usuarios.component.html',
-  styleUrls: ['./usuarios.component.scss']
+  selector: 'app-list-clientes',
+  templateUrl: './list-clientes.component.html',
+  styleUrls: ['./list-clientes.component.scss']
 })
-export class UsuariosComponent implements OnInit {
-  
+export class ListClientesComponent implements OnInit {
+
   progreses:boolean = false;
   btnDisabled:boolean = false;
   public query:any = {
     where:{ 
-      estado: ["activo", "verificando"]
     },
     sort: "createdAt DESC",
     page: 0
@@ -23,7 +22,7 @@ export class UsuariosComponent implements OnInit {
   notscrolly:boolean=true;
   notEmptyPost:boolean = true;
   tablet:any = {
-    header: ["Opciones","Nombre","Email","telefono","Ciudad","direccion","Registrado"],
+    header: ["Opciones","Identificacion","Nombre","Email","telefono","Ciudad","direccion","Registrado"],
     listRow: []
   };
   urlFront:string = window.location.origin;
@@ -32,7 +31,7 @@ export class UsuariosComponent implements OnInit {
   };
 
   constructor(
-    private _user: UsuariosService,
+    private _user: UserEnviosService,
     private _tools: ToolsService
   ) { }
 

@@ -23,7 +23,22 @@
                                 class="profile-img img-responsive center-block foto" />
                         </div>
                         <div class="d-flex justify-content-center row">
-                            <div class="col-12">
+                            <div>
+                                <button class="contenedor-btn-file">
+                                    <i class="fas fa-file"></i>
+                                    Subir Foto Perfil
+                                    <label for="btn-file"></label>
+                                    <input type="file" id="btn-file" (change)="datafiles($event)">
+                                </button>
+                                
+                                <!--<button class="contenedor-btn-file bordeado">
+                                    <i class="fas fa-file"></i>
+                                    Adjuntar archivo
+                                    <label for="btn-file"></label>
+                                    <input type="file" id="btn-file">
+                                </button>-->
+                            </div>
+                            <!--<div class="col-12">
                                 <input type="file" placeholder="Imagenes" (ngModelChange)="datafiles($event)"
                                     (blur)="datafiles($event)">
                             </div>
@@ -32,7 +47,7 @@
                                     Foto</button>
                                 <button type="button" class="btn btn-success" *ngIf="file.foto1[0]"
                                     [disabled]="disableFile" (click)="submitFile()">Subir Foto</button>
-                            </div>
+                            </div>-->
                         </div>
                         <div class="profile-label">
                             <span class="label label-danger"

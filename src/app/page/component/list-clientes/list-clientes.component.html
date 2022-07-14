@@ -3,7 +3,7 @@
     <div class="ng-tns-c14-12 ng-trigger ng-trigger-collapsedCard ng-star-inserted" style="overflow: hidden;">
         <div class="d-flex flex-row bd-highlight mb-3">
             <div class="p-2 bd-highlight">
-                <h5>LISTA DE USUARIO</h5>
+                <h5>LISTA DE CLEINTES</h5>
             </div>
         </div>
     </div>
@@ -12,7 +12,7 @@
             <div class="col-12">
                 <div class="d-flex bd-highlight">
                     <div class="p-2 w-100 bd-highlight">
-                        <label for="exampleInputEmail1">Buscar Usuario</label>
+                        <label for="exampleInputEmail1">Buscar Clientes</label>
                         <input type="text" class="form-control" [(ngModel)]="filtro.text">
                     </div>
                     <div class="p-2 flex-shrink-1 bd-highlight">
@@ -35,24 +35,22 @@
                             <tbody>
                                 <tr *ngFor="let item of tablet.listRow">
                                     <td>
-                                        <button type="button" class="btn btn-primary" (click)="verUser( item )">
-                                            <i class="fa fa-eye" aria-hidden="true"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-danger" (click)="updateUser( item )">
+                                        <!--<button type="button" class="btn btn-danger" (click)="updateUser( item )">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
-                                        </button>
+                                        </button>-->
                                     </td>
-                                    <td>{{ item.name }}</td>
+                                    <td>{{ item.Nidentificacion }}</td>
+                                    <td>{{ item.nombre }}</td>
                                     <td>
                                         {{ item.email }}
                                     </td>
                                     <td>
-                                        {{ item.celular }}
+                                        {{ item.Nwhatsaap }}
                                     </td>
                                     <td>
                                         {{ item.ciudad }}
                                     </td>
-                                    <td>{{ item.direccion }} - {{ item.departamento }}</td>
+                                    <td>{{ item.direccionRecogida }} - {{ item.barrio }}</td>
                                     <td>{{ item.createdAt | date: "medium" }}</td>
                                 </tr>
                             </tbody>

@@ -1,7 +1,7 @@
 .foto {
-    height: 10pc!important;
+    /*height: 10pc!important;
     max-width: 100%;
-    min-width: 95%;
+    min-width: 95%;*/
     max-height: 10pc;
     min-height: 9pc;
     border-radius: 80px;
@@ -36,4 +36,65 @@
     border-radius: 3px;
     background-clip: padding-box;
     padding: 15px;
+}
+
+
+.contenedor-btn-file input[type="file"] {
+    appearance: none;
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+    z-index: -1;
+}
+.contenedor-btn-file {
+    display: inline-block;
+    position: relative;
+    background-color: #186CC3;
+    color: #fff;
+    border: 0;
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, .15);
+    overflow: hidden;
+    transition: ease-out 120ms background-color;
+}
+.contenedor-btn-file:hover {
+    background-color: #16579B;
+}
+.contenedor-btn-file:active {
+    background-color: #114378;
+}
+.contenedor-btn-file > i {
+    margin-right: 15px;
+}
+
+.contenedor-btn-file label {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+}
+
+.contenedor-btn-file.bordeado {
+    background-color: #fff;
+    border: 2px solid #186CC3;
+    color: #186CC3;
+}
+.contenedor-btn-file.bordeado:hover {
+    background-color: #186CC3;
+    color: #fff;
+}
+
+.mensaje a {
+    color: inherit;
+    margin-right: .5rem;
+    display: inline-block;
+}
+.mensaje a:hover {
+    color: #309B76;
+    transform: scale(1.4)
 }

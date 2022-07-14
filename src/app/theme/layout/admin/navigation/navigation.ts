@@ -97,6 +97,14 @@ const NavigationItems = [
             url: '/dashboard/listusuarios',
             icon: 'feather icon-home'
           },
+          {
+            id: 'listClientes',
+            title: 'Clientes',
+            type: 'item',
+            disabled: false,
+            url: '/dashboard/listclientes',
+            icon: 'feather icon-home'
+          },
         ],
         icon: 'feather icon-home'
       },

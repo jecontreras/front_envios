@@ -69,6 +69,7 @@ export class FormUsuariosComponent implements OnInit {
       this.data = res;
       this.data.rol = this.data.rol.id;
       this.clone = _.clone( this.data );
+      this.data.ciudadDestino = this.data.ciudad
     });
   }
 
@@ -87,6 +88,7 @@ export class FormUsuariosComponent implements OnInit {
       ciudad: this.data.ciudad,
       codigoCiudad: this.data.codigoCiudad,
       direccion: this.data.direccion,
+      barrio: this.data.barrio,
       departamento: this.data.departamento,
       rol: this.data.rol
     };

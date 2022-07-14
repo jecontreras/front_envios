@@ -25,6 +25,7 @@ import { FormRetirosComponent } from './form/form-retiros/form-retiros.component
 import { ListRetirosComponent } from './component/list-retiros/list-retiros.component';
 import { UsuariosComponent } from './component/usuarios/usuarios.component';
 import { FormUsuariosComponent } from './form/form-usuarios/form-usuarios.component';
+import { ListClientesComponent } from './component/list-clientes/list-clientes.component';
 
 @NgModule({
   declarations: [ 
@@ -44,7 +45,8 @@ import { FormUsuariosComponent } from './form/form-usuarios/form-usuarios.compon
     FormRetirosComponent,
     ListRetirosComponent,
     UsuariosComponent,
-    FormUsuariosComponent
+    FormUsuariosComponent,
+    ListClientesComponent
   ],
   imports: [
     ComponentModule,

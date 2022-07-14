@@ -70,9 +70,9 @@ export class ToolsService {
   ProcessTime(text:any){
     let timerInterval
     Swal.fire({
-      title:  text.title || 'Auto close alert!',
-      html: 'I will close in <b></b> milliseconds.',
-      timer: text.tiempo || 3000,
+      title:  text.title || 'Cargando!',
+      html: 'Por favor espera unos minutos!!',
+      timer: text.tiempo || 5000,
       timerProgressBar: true,
       onBeforeOpen: () => {
         Swal.showLoading()

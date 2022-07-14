@@ -62,10 +62,12 @@ export class PerfilComponent implements OnInit {
   }
 
   async datafiles(ev: any) {
-    //console.log( ev, this.file );
+    console.log( ev, this.file );
     this.file.foto1 = [];
     try {
       this.file.foto1 = ev.target.files;
+      this.submitFile();
+      return false;
       if (this.file.foto1[0]) {
         if (this.data.type == "url") this.data.foto = await this._archivo.getBase64(this.file.foto1[0]);
         else {
@@ -86,7 +88,7 @@ export class PerfilComponent implements OnInit {
     return new Promise(resolve => {
       let form: any = new FormData();
       form.append('file', file);
-      this._tools.ProcessTime({});
+      this._tools.ProcessTime({ title: "Cargando subida de imagen"});
       this._archivo.create(form).subscribe((res: any) => {
         //console.log(form);
         this._tools.tooast({ title: "subido exitoso" });
