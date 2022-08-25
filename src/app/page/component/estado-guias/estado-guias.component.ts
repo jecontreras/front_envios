@@ -126,7 +126,7 @@ export class EstadoGuiasComponent implements OnInit {
    openView( data:any, vista:string = "urlRotulos" ){
      console.log(data, vista)
      let url:string;
-     if( data.transportadoraSelect == 'ENVIA'){
+     if( data.transportadoraSelect == 'ENVIA' || data.transportadoraSelect == 'TCC' ){
        if( vista == 'urlRotulos')  url = data.urlRotulos;
        if( vista == 'urlRelacionenvio')  url = data.urlRelacionenvio;
        window.open( url );

@@ -49,7 +49,7 @@ export class EstadoGuiasComponent implements OnInit {
         this.data.listEstadoSimple = res.simple[0].estado[0];
         this.data.listEstadoDetallado = _.orderBy( res.detallado[0].estado, ['codigo'], ['desc'] );
         this.data.estadosName = res.simple[0].estado[0].descripcion;
-      } catch (error) {}
+      } catch (error) { console.log("********", error )}
       try { this.data.estadoDetallado = res.simple[0].novedad[0].descripcion; } catch (error) { }
       console.log( this.data );
       if( !res.memosac ){
