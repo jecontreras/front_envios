@@ -94,9 +94,10 @@ export class ListRecogiaComponent implements OnInit {
      if( !alerta.value ) return false;
      let data = {
        id: item.id,
-       estado: 2,
+       estado: 1,
        selectEnvio: item.selectEnvio,
-       txtNum_OrdenSG: item.txtNum_OrdenSG
+       txtNum_OrdenSG: item.txtNum_OrdenSG,
+       plataforma: item.plataforma
      };
      item.estado = data.estado;
      this.btnDisabled = true;
