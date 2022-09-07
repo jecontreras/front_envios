@@ -183,7 +183,8 @@ export class EstadoGuiasComponent implements OnInit {
       estado: "ANULADA EN " + item.barrioDestinatario,
       nRemesa: item.nRemesa,
       state: 1,
-      transportadoraSelect: item.transportadoraSelect
+      transportadoraSelect: item.transportadoraSelect,
+      fechaDespacho: item.fechaDespacho
     };
     item.estadosName = data.estado;
     this.btnDisabled = true;

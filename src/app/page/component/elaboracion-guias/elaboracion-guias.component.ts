@@ -93,6 +93,7 @@ export class ElaboracionGuiasComponent implements OnInit {
   getCiudades(){
     this._ciudades.get( { where: { }, limit: 10000000 } ).subscribe( ( res:any ) => {
       this.listCiudades = res.data;
+      console.log( ( this.listCiudades.find(( row:any )=> row.code == this.data.ciudadOrigen ) ).name )
     });
   }
 
@@ -319,8 +320,8 @@ export class ElaboracionGuiasComponent implements OnInit {
 
   async generarGuia(){
     let destino = {
-      code: this.data.codeDestino || this.data.ciudadDestino.codigo,
-      name: this.data.ciudadDestino.nombre,
+      code: this.data.codeDestino || this.data.ciudadDestino.code,
+      name: this.data.ciudadDestino.name,
     };
     if( this.data.transportadoraSelect == 'ENVIA'){
       destino = {
@@ -369,6 +370,7 @@ export class ElaboracionGuiasComponent implements OnInit {
       telefonoDestinatario: Number( this.data.destinatarioTelfijo || this.data.destinatarioCelular),
       celularDestinatario: Number( this.data.destinatarioCelular ),
       ciudadDestinatario: /*11001000,*/ String( destino.code ),
+      drpCiudadDestino: /*11001000,*/ String( destino.name ),
       barrioDestinatario: this.data.destinatarioBarrio,
       totalPeso: Number( this.data.totalkilo ),
       totalPesovolumen: Number( this.data.pesoVolumen ),
@@ -416,8 +418,26 @@ export class ElaboracionGuiasComponent implements OnInit {
 
   }
 
-  creandoGuiaTcc( data:any  ){
+  creandoGuiaTcc( datable:any  ){
     return new Promise(resolve=>{
+      let data:any = {
+        drpCiudadOrigen: ( this.listCiudades.find(( row:any )=> row.code == this.data.ciudadOrigen ) ).name,
+        txtIdentificacionDe: this.data.identificacionRemitente,
+        txtTelefonoDe: this.data.remitenteFijo,
+        txtDireccionDe: this.data.remitenteDireccion,
+        txtPara: this.data.destinatarioNombre,
+        drpCiudadDestino: this.data.ciudadDestino.name,
+        txtTelefonoPara: this.data.destinatarioCelular,
+        txtDireccionPara: `${ this.data.destinatarioDireccion } ( ${ this.data.destinatarioBarrio } )`,
+        txtUnidades: 1, //this.data.totalUnidad,
+        txtPeso: this.data.totalkilo,
+        txtVolumen: this.data.pesoVolumen,
+        txtDeclarado: this.data.valorFactura,
+        txtValorRecaudo: this.data.valorRecaudar,
+        txtDice: this.data.contenido,
+        ... datable
+      };
+
       this._flete.fleteCrearTcc( data ).subscribe((res:any)=>{
         console.log( res );
         this.btnDisabled = false;
