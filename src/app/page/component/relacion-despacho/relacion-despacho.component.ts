@@ -19,8 +19,8 @@ export class RelacionDespachoComponent implements OnInit {
     where:{
       // estado: "GENERADA" 
       solicitudFecha:{
-        "<=": moment(  ),
-        ">=": moment(  ).add( -1, 'days'),
+        "<=": moment(  ).format("YYYY-MM-DD"),
+        ">=": ( moment(  ).add( -1, 'days') ).format("YYYY-MM-DD"),
       },
       state: 0
     }, 
@@ -70,6 +70,12 @@ export class RelacionDespachoComponent implements OnInit {
 
   filtroGet(){
     this.listDistribucion = [];
+    /*if( this.data.fecha1 && this.data.fecha2 ){
+      this.query.where.solicitudFecha = {
+        ">=": moment( this.data.fecha1 ).format("YYYY-MM-DD"),
+        "<=": moment( this.data.fecha2 ).format("YYYY-MM-DD"),
+      };
+    }else delete this.query.where.solicitudFecha;*/
     this.getRow();  
   }
 
@@ -78,7 +84,7 @@ export class RelacionDespachoComponent implements OnInit {
     
     if( this.data.plataforma == 'TODO' ) delete this.query.where.transportadoraSelect;
     else this.query.where.transportadoraSelect = this.data.plataforma;
-
+    console.log(this.query)
     this._flete.get( this.query ).subscribe( async ( res:any )=>{
       for( let row of res.data ){
         count++;

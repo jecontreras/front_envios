@@ -26,7 +26,7 @@ export class ListRecogiaComponent implements OnInit {
   notEmptyPost:boolean = true;
   dataUser:any = {};
   tablet:any = {
-    header: ["Opciones","Nombres","Telefono","Numero Cliente","Ciudad","Contiene","Numero Unidad","Total peso","Creado","Estado"],
+    header: ["Opciones","Transportador","Nombres","Telefono","Numero Cliente","Ciudad","Contiene","Numero Unidad","Total peso","Creado","Estado"],
     listRow: []
   };
   urlFront:string = window.location.origin;

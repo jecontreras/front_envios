@@ -55,6 +55,17 @@
                                             </button>
                                         </div>
                                     </td>
+                                    <td>
+                                        <div *ngIf="item.plataforma == 'envia'" >
+                                            <img src="https://aveonline.co/app/temas/imagen_transpo/084935-1-envia-094632-1-ENVIA.jpg" class="img">
+                                        </div>
+                                        <div *ngIf="item.plataforma == 'tcc'" >
+                                            <img src="https://aveonline.co/app/temas/imagen_transpo/104926-1-tcc.jpg" class="img">
+                                        </div>
+                                        <div *ngIf="item.plataforma == 'cordinadora'" >
+                                            <img src="./assets/imagenes/logoCordinadora.png" class="img">
+                                        </div>
+                                    </td>
                                     <td>{{ item.txtNombreApellidoC }}</td>
                                     <td>{{ item.TxtTel_Cliente }}</td>
                                     <td>{{ item.txtNum_Cliente }}</td>

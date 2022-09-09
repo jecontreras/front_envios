@@ -77,12 +77,6 @@ export class EstadoGuiasComponent implements OnInit {
 
   getFiltro(){
     this.notEmptyPost =  true;
-    if( this.filtro.fecha1 && this.filtro.fecha2 ){
-      this.query.where.createdAt = {
-        ">=": moment( this.filtro.fecha1 ),
-        "<=": moment( this.filtro.fecha2 )
-      };
-    }else delete this.query.where.users;
     if( this.filtro.user ) {
       this.query ={
         where: { 
@@ -104,6 +98,12 @@ export class EstadoGuiasComponent implements OnInit {
     }
     if( this.filtro.transportadoraSelect ) this.query.where.transportadoraSelect = this.filtro.transportadoraSelect;
     this.tablet.listRow = [];
+    if( this.filtro.fecha1 && this.filtro.fecha2 ){
+      this.query.where.createdAt = {
+        ">=": moment( this.filtro.fecha1 ).format("YYYY-MM-DD"),
+        "<=": moment( this.filtro.fecha2 ).format("YYYY-MM-DD"),
+      };
+    }else delete this.query.where.users;
     console.log( this.query )
     this.getRow();
   }
