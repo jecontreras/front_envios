@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 import * as moment from 'moment';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CiudadesService } from 'src/app/servicesComponents/ciudades.service';
+import { CIUDADGRUP } from 'src/app/JSON/ciudadtcc';
 
 @Component({
   selector: 'app-solicitud-recogida',
@@ -21,7 +22,9 @@ export class SolicitudRecogidaComponent implements OnInit {
     fecha_recogida: new Date()
   };
   listCiudades:any = DANEGROUP;
+  listCiudades2:any = CIUDADGRUP;
   keyword = 'name';
+  keyword2 = 'municipio';
   btnDisabled:boolean = false;
   dataUser:any = {};
   id:any;
@@ -52,6 +55,7 @@ export class SolicitudRecogidaComponent implements OnInit {
       this._tools.confirm( { title: "tener encuenta", confir:"continuar", detalle: "Por favor antes de continuar por favor comunicar con el servicio al cliente antes de solicitar una recogida +57 313 4453649"} );
     }
     this.getCiudades();
+    //console.log(this.listCiudades2)
   }
 
   getFlete(){
@@ -116,6 +120,7 @@ export class SolicitudRecogidaComponent implements OnInit {
     };
     data.drpCiudadTcc = this.data.drpCiudad.code;
     data.drpCiudadEnvia = this.data.drpCiudad.name;
+    data.drpDaneTcc = this.data.drpCiudad.codeDane;
     // console.log( data );
     this._recogias.createRecogia( data ).subscribe(( res:any )=>{
       this.btnDisabled = false;
@@ -132,6 +137,14 @@ export class SolicitudRecogidaComponent implements OnInit {
 
   limpiar(){
 
+  }
+  onChangeSearch( evt:any ){
+    console.log("*********", evt)
+    this.data.drpCiudad = {
+      code: evt.id,
+      name: evt.ciudad,
+      codeDane: evt.dane
+    };
   }
 
 }

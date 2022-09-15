@@ -175,23 +175,34 @@ export class EstadoGuiasComponent implements OnInit {
      },( error )=> { this._tools.tooast( { title: "Error en el servidor", icon:"error" } ); this.btnDisabled = false; } );
    }
 
-   async cancelar( item:any ){
+   async selectList( ){
     let alerta = await this._tools.confirm({title:"Eliminar", detalle:"Deseas Eliminar Dato", confir:"Si Eliminar"} );
     if( !alerta.value ) return false;
-    let data = {
-      id: item.id,
-      estado: "ANULADA EN " + item.barrioDestinatario,
-      nRemesa: item.nRemesa,
-      state: 1,
-      transportadoraSelect: item.transportadoraSelect,
-      fechaDespacho: item.fechaDespacho
-    };
-    item.estadosName = data.estado;
-    this.btnDisabled = true;
-     this._flete.fleteBorrar( data ).subscribe(( res:any )=>{
-       this._tools.tooast( { title: "Eliminado Guia exitoso" } );
-       this.btnDisabled = false;
-     },( error:any )=> { this._tools.tooast( { title: "Error de servidor", icon:"error" } ); this.btnDisabled = false; } );
+    for(let row of this.tablet.listRow ){
+      if( row.check ) {
+        this.cancelar( row );
+      }
+    }
+   }
+
+   async cancelar( item:any ){
+    return new Promise( resolve => {
+      let data = {
+        id: item.id,
+        estado: "ANULADA EN " + item.barrioDestinatario,
+        nRemesa: item.nRemesa,
+        state: 1,
+        transportadoraSelect: item.transportadoraSelect,
+        fechaDespacho: item.fechaDespacho
+      };
+      item.estadosName = data.estado;
+      this.btnDisabled = true;
+       this._flete.fleteBorrar( data ).subscribe(( res:any )=>{
+         this._tools.tooast( { title: "Eliminado Guia exitoso" } );
+         this.btnDisabled = false;
+         resolve( true );
+       },( error:any )=> { this._tools.tooast( { title: "Error de servidor", icon:"error" } ); this.btnDisabled = false; resolve( false ); } );
+    });
   }
 
 

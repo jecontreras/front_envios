@@ -92,7 +92,7 @@
                                                                             <tr>
                                                                                 <td valign="top">Ciudad de recoleccion:
                                                                                 </td>
-                                                                                <td valign="top">
+                                                                                <td valign="top" *ngIf="data.plataforma != 'tcc'">
                                                                                     <ng-autocomplete
                                                                                         [(ngModel)]="data.drpCiudad"
                                                                                         [data]="listCiudades"
@@ -107,7 +107,6 @@
 
                                                                                     <ng-template #itemTemplate let-item>
                                                                                         <div class="item">
-                                                                                            <!-- <img src="{{item.flag}}" height="25"> -->
                                                                                             <span
                                                                                                 [innerHTML]="item.city"></span>
                                                                                             &nbsp; | &nbsp;
@@ -121,18 +120,38 @@
                                                                                         <div [innerHTML]="notFound">
                                                                                         </div>
                                                                                     </ng-template>
-                                                                                    <!--<button type="button"
-                                                                                        class="btn btn-primary"
-                                                                                        *ngIf="data.plataforma == 'envia'"
-                                                                                        (click)="validarFecha()">Validar</button>-->
-                                                                                    <!-- <input autocomplete="off"
-                                                                                        class="textos" id="drpCiudad"
-                                                                                        [(ngModel)]="data.drpCiudad"
-                                                                                        (blur)="validarFecha()"
-                                                                                        name="drpCiudad"
-                                                                                        style="color: #6a6a6a; font-family: Tahoma; font-size: 11px; width: 200px;"
-                                                                                        tabindex="10" type="text"
-                                                                                        value="CUCUTA-NORTE DE SANTANDER" /> -->
+                                                                                </td>
+                                                                                <td valign="top" *ngIf="data.plataforma == 'tcc'">
+                                                                                    <ng-autocomplete
+                                                                                        [(ngModel)]="data.drpCiudad2"
+                                                                                        [data]="listCiudades2"
+                                                                                        [searchKeyword]="keyword2"
+                                                                                        placeHolder="Buscar Ciudad"
+                                                                                        autocomplete="off"
+                                                                                        historyIdentifier="listCiudades2"
+                                                                                        [itemTemplate]="itemTemplate"
+                                                                                        [notFoundTemplate]="notFoundTemplate"
+                                                                                        (selected)='onChangeSearch($event)'>
+                                                                                    </ng-autocomplete>
+
+                                                                                    <ng-template #itemTemplate let-item>
+                                                                                        <div class="item">
+                                                                                            <span
+                                                                                                [innerHTML]="item.municipio"></span>
+                                                                                            &nbsp; | &nbsp;
+                                                                                            <small>Ciudad:
+                                                                                                {{ item.ciudad }}</small>
+                                                                                            &nbsp; | &nbsp;
+                                                                                            <small>Departamento:
+                                                                                                {{ item.departamento }}</small>
+                                                                                        </div>
+                                                                                    </ng-template>
+
+                                                                                    <ng-template #notFoundTemplate
+                                                                                        let-notFound>
+                                                                                        <div [innerHTML]="notFound">
+                                                                                        </div>
+                                                                                    </ng-template>
                                                                                 </td>
                                                                             </tr>
                                                                         </tbody>
