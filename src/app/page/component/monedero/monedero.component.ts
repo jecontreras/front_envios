@@ -22,7 +22,7 @@ export class MonederoComponent implements OnInit {
     },
     sort: "createdAt DESC",
     page: 0,
-    limit: 100000
+    limit: 20
   };
   dataInfo:any = {
     valor: 0,
@@ -31,6 +31,11 @@ export class MonederoComponent implements OnInit {
   };
   dataUser:any = {};
   urlFront:string = window.location.origin;
+
+  public count: number = 0;
+  notscrolly:boolean=true;
+  notEmptyPost:boolean = true;
+  progreses:boolean = false;
 
   constructor(
     private _fletes: FleteService,
@@ -51,6 +56,14 @@ export class MonederoComponent implements OnInit {
     this.getFletes();
     this.getPuntosResumen();
   }
+  
+  onScroll(){
+    if (this.notscrolly && this.notEmptyPost) {
+       this.notscrolly = false;
+       this.querys.page++;
+       this.getFletes();
+     }
+   }
 
   getFletes(){
     this.querys.where.user = this.dataUser.id;

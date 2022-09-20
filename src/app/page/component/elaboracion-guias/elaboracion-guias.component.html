@@ -132,7 +132,7 @@
                 <input currencyMask [(ngModel)]="data.valorAsegurado" class="form-control form-control-sm" [options]="opcionCurrencys"/>
                 <!--<input type="number" class="form-control form-control-sm" [(ngModel)]="data.valorAsegurado">-->
             </div>
-            <div class="form-group col-xs-4 col-sm-3 col-4" *ngIf="data.selectEnvio == 'contraEntrega'">
+            <div class="form-group col-xs-4 col-sm-3 col-4 col-12" *ngIf="data.selectEnvio == 'contraEntrega'">
                 <label>Valor a recaudar: </label>
                 <input currencyMask [(ngModel)]="data.valorRecaudar" class="form-control form-control-sm" [options]="opcionCurrencys"/>
                 <!--<input type="number" class="form-control form-control-sm" [(ngModel)]="data.valorRecaudar">-->
@@ -255,31 +255,31 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group col-xs-4 col-sm-3 col-4">
+                <div class="form-group col-xs-4 col-sm-3 col-4 col-12">
                     <label>Nit / Identificacion*: </label>
                     <input type="number" class="form-control form-control-sm" [(ngModel)]="data.identificacionRemitente">
                 </div>
-                <div class="form-group col-xs-4 col-sm-3 col-4">
+                <div class="form-group col-xs-4 col-sm-3 col-4 col-12">
                     <label>Nombre Completo: </label>
                     <input type="text" class="form-control form-control-sm" [(ngModel)]="data.remitenteNombre">
                 </div>
-                <div class="form-group col-xs-4 col-sm-3 col-4">
+                <div class="form-group col-xs-4 col-sm-3 col-4 col-12">
                     <label>Direccion: </label>
                     <input type="text" class="form-control form-control-sm" [(ngModel)]="data.remitenteDireccion">
                 </div>
-                <div class="form-group col-xs-4 col-sm-3 col-4">
+                <div class="form-group col-xs-4 col-sm-3 col-4 col-12">
                     <label>Correo electronico: </label>
                     <input type="text" class="form-control form-control-sm" [(ngModel)]="data.remitenteCorreo">
                 </div>
-                <!--<div class="form-group col-xs-4 col-sm-3 col-4">
+                <!--<div class="form-group col-xs-4 col-sm-3 col-4 col-12">
                     <label>Telefono fijo: </label>
                     <input type="number" class="form-control form-control-sm" [(ngModel)]="data.remitenteFijo">
                 </div>-->
-                <div class="form-group col-xs-4 col-sm-3 col-4">
+                <div class="form-group col-xs-4 col-sm-3 col-4 col-12">
                     <label>Celular: </label>
                     <input type="number" class="form-control form-control-sm" [(ngModel)]="data.remitenteCelular">
                 </div>
-                <div class="form-group col-xs-4 col-sm-3 col-4">
+                <div class="form-group col-xs-4 col-sm-3 col-4 col-12">
                     <label>Barrio: </label>
                     <input type="text" class="form-control form-control-sm" [(ngModel)]="data.remitenteBarrio">
                 </div>
@@ -290,35 +290,35 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group col-xs-4 col-sm-3 col-4">
+                <div class="form-group col-xs-4 col-sm-3 col-4 col-12">
                     <label>Nit / Identificacion*: </label>
                     <input type="number" class="form-control form-control-sm" [(ngModel)]="data.destinatarioNitIdentificacion" (blur)="BuscarCliente()">
                 </div>
-                <div class="form-group col-xs-4 col-sm-3 col-4">
+                <div class="form-group col-xs-4 col-sm-3 col-4 col-12">
                     <label>Nombre Completo*: </label>
                     <input type="text" class="form-control form-control-sm" [(ngModel)]="data.destinatarioNombre">
                 </div>
-                <!--<div class="form-group col-xs-4 col-sm-3 col-4">
+                <!--<div class="form-group col-xs-4 col-sm-3 col-4 col-12">
                     <label>Fecha de expedicion: </label>
                     <input type="date" class="form-control form-control-sm" [(ngModel)]="data.destinatarioFechaExpedicion">
                 </div>-->
-                <div class="form-group col-xs-4 col-sm-3 col-4">
+                <div class="form-group col-xs-4 col-sm-3 col-4 col-12">
                     <label>Celular*: </label>
                     <input type="number" class="form-control form-control-sm" [(ngModel)]="data.destinatarioCelular">
                 </div>
-                <!--<div class="form-group col-xs-4 col-sm-3 col-4">
+                <!--<div class="form-group col-xs-4 col-sm-3 col-4 col-12">
                     <label>Teléfono fijo / celular: </label>
                     <input type="number" class="form-control form-control-sm" [(ngModel)]="data.destinatarioTelfijo">
                 </div>-->
-                <div class="form-group col-xs-4 col-sm-3 col-4">
+                <div class="form-group col-xs-4 col-sm-3 col-4 col-12">
                     <label>Barrio*: </label>
                     <input type="text" class="form-control form-control-sm" [(ngModel)]="data.destinatarioBarrio">
                 </div>
-                <!--<div class="form-group col-xs-4 col-sm-3 col-4">
+                <!--<div class="form-group col-xs-4 col-sm-3 col-4 col-12">
                     <label>Correo electronico: </label>
                     <input type="email" class="form-control form-control-sm" [(ngModel)]="data.destinatarioCorreo">
                 </div>-->
-                <div class="form-group col-xs-4 col-sm-3 col-4">
+                <div class="form-group col-xs-4 col-sm-3 col-4 col-12">
                     <label>Dirección*: </label>
                     <input type="text" class="form-control form-control-sm" [(ngModel)]="data.destinatarioDireccion">
                 </div>
@@ -330,35 +330,35 @@
                     </div>
                     <h4>5.INFORMACION ADICIONAL Y SERVICIOS COMPLEMENTARIOS.</h4>
                 </div>
-                <!--<div class="form-group col-xs-4 col-sm-3 col-4">
+                <!--<div class="form-group col-xs-4 col-sm-3 col-4 col-12">
                     <label>Vencimiento O.C: </label>
                     <input type="date" class="form-control form-control-sm" [(ngModel)]="data.vencimiento">
                 </div>-->
-                <!-- <div class="form-group col-xs-4 col-sm-3 col-4">
+                <!-- <div class="form-group col-xs-4 col-sm-3 col-4 col-12">
                     <label>Cita O.C: </label>
                     <input type="text" class="form-control form-control-sm" [(ngModel)]="data.cita">
                 </div>
-                <div class="form-group col-xs-4 col-sm-3 col-4">
+                <div class="form-group col-xs-4 col-sm-3 col-4 col-12">
                     <label>Código Cita: </label>
                     <input type="text" class="form-control form-control-sm" [(ngModel)]="data.codigoCita">
                 </div> -->
-                <!-- <div class="form-group col-xs-4 col-sm-3 col-4">
+                <!-- <div class="form-group col-xs-4 col-sm-3 col-4 col-12">
                     <label>Orden de compra: </label>
                     <input type="text" class="form-control form-control-sm" [(ngModel)]="data.ordenCompra">
                 </div> -->
-                <div class="form-group col-xs-4 col-sm-3 col-4">
+                <div class="form-group col-xs-4 col-sm-3 col-4 col-12">
                     <label>Referencia: </label>
                     <input type="text" class="form-control form-control-sm" [(ngModel)]="data.referencia">
                 </div>
-                <!-- <div class="form-group col-xs-4 col-sm-3 col-4">
+                <!-- <div class="form-group col-xs-4 col-sm-3 col-4 col-12">
                     <label>GANADOR(A) de: </label>
                     <input type="text" class="form-control form-control-sm" [(ngModel)]="data.ganadora">
                 </div> -->
-                <div class="form-group col-xs-4 col-sm-3 col-4">
+                <div class="form-group col-xs-4 col-sm-3 col-4 col-12">
                     <label>Observaciones adicionales: </label>
                     <input type="text" class="form-control form-control-sm" [(ngModel)]="data.observacionAdicional">
                 </div>
-                <div class="form-group col-xs-4 col-sm-3 col-4">
+                <div class="form-group col-xs-4 col-sm-3 col-4 col-12">
                     <label>Trasportadora Enviada: </label>
                     <input type="text" class="form-control form-control-sm" [(ngModel)]="data.transportadoraSelect" disabled>
                 </div>

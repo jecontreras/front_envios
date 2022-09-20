@@ -3,7 +3,10 @@
         <h5>Mis Ventas a Retirar</h5>
     </div>
     <div class="col-12 col-sm-8 shadow-lg p-3 mb-5 bg-white rounded">
-      <ul class="list-group list-group-flush scrols">
+      <ul class="list-group list-group-flush scrols"
+        infiniteScroll [infiniteScrollDistance]="3" [infiniteScrollThrottle]="50"
+        (scrolled)="onScroll()"
+      >
         <li class="list-group-item" *ngFor="let item of listOrdenes" [ngClass]="{'esCompletado': item.state == 2, 'esDevolucion': item.state == 3}">
           <div class="row">
               <div class="col-6 col-sm-3 col-md-4">
