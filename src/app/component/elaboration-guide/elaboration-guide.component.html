@@ -1,0 +1,390 @@
+<div class="card ng-trigger ng-trigger-cardRemove" animates="" animatesinitmode="show"
+    style="visibility: visible; opacity: 1;">
+    <div class="ng-tns-c14-12 ng-trigger ng-trigger-collapsedCard ng-star-inserted" style="overflow: hidden;">
+        <div class="d-flex flex-row bd-highlight mb-3">
+            <div class="p-2 bd-highlight">
+                <h5>ELABORACIÓN DE GUIA</h5>
+            </div>
+          </div>
+    </div>
+    <div class="content p-5">
+        <div class="row">
+            <div class="form-group col-12">
+                <div class="card text-white bg-primary  ">
+                    <div class="card-body">
+                        <h4 class="card-title text-white">1. TIPO DE ENVIO Y AGENTE</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-xs-3 col-sm-3 col-12">
+                <label>Tipo de envio y agente *</label>
+                <select class="form-control form-control-sm" [(ngModel)]="data.tipoEnvio" disabled>
+                    <option value="nacionales">Nacionales</option>
+                    <!-- <option value="internacionales">Internacionales</option> -->
+                </select>
+            </div>
+            <div class="form-group col-xs-3 col-sm-3 col-12">
+                <label>Seleccione Agente *</label>
+                <input type="text" class="form-control form-control-sm" [(ngModel)]="data.seleccionAgente" disabled>
+            </div>
+            <div class="form-group col-xs-3 col-sm-3 col-12">
+                <label>Pais Origen *</label>
+                <select class="form-control form-control-sm" [(ngModel)]="data.paisOrigen" disabled>
+                    <option value="colombia">Colombia</option>
+                </select>
+            </div>
+            <div class="form-group col-xs-3 col-sm-3 col-12">
+                <label>Ciudad Origen *</label>
+                <input type="text" class="form-control form-control-sm" [(ngModel)]="data.ciudadOrigenText" disabled>
+            </div>
+            <div class="form-group col-xs-3 col-sm-3 col-12">
+                <label>Pais Destino *</label>
+                <select class="form-control form-control-sm" [(ngModel)]="data.paisDestino" disabled>
+                    <option value="colombia">Colombia</option>
+                </select>
+            </div>
+            <div class="form-group col-xs-3 col-sm-3 col-12">
+                <label>Tipo de envio *</label>
+                <select class="form-control form-control-sm" [(ngModel)]="data.selectEnvio" (change)="blurTipo()">
+                    <option value="contraEntrega">Contra entrega</option>
+                    <option value="envioNormal">Envio Normal</option>
+                </select>
+            </div>
+            <!--<div class="form-group col-xs-3 col-sm-3 col-12">
+                <label>Tipo de Transportadora *</label>
+                <select class="form-control form-control-sm" [(ngModel)]="data.transportadora" (change)="blurPlat()">
+                    <option value="envia">Envia Ciudades</option>
+                    <option value="cordinadora">Cordinadora Ciudades</option>
+                </select>
+            </div>-->
+            <div class="form-group col-xs-5 col-sm-5 col-12" *ngIf="_dataConfig.vista == 'publico'">
+                <label>Ciudad Origen *</label>
+                <!-- <input type="text" class="form-control form-control-sm" [(ngModel)]="data.ciudadDestino"> -->
+                <ng-autocomplete [(ngModel)]="data.ciudadOrigen2" [data]="listCiudades" [searchKeyword]="keyword" placeHolder="Buscar Ciudad" autocomplete="off"
+                    historyIdentifier="listCiudades" [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate" (selected)='selectEvent($event)'>
+                </ng-autocomplete>
+
+                <ng-template #itemTemplate let-item>
+                    <div class="item">
+                        <!-- <img src="{{item.flag}}" height="25"> -->
+                        <span [innerHTML]="item.city"></span> &nbsp; | &nbsp;
+                        <small>Departamento: {{ item.state }}</small> &nbsp; | &nbsp;
+                        <small>--: {{ item.name }}</small>
+                    </div>
+                </ng-template>
+
+                <ng-template #notFoundTemplate let-notFound>
+                    <div [innerHTML]="notFound"></div>
+                </ng-template>
+            </div>
+            <div class="form-group col-xs-5 col-sm-5 col-12">
+                <label>Ciudad Destino *</label>
+                <!-- <input type="text" class="form-control form-control-sm" [(ngModel)]="data.ciudadDestino"> -->
+                <ng-autocomplete [(ngModel)]="data.ciudadDestino" [data]="listCiudades" [searchKeyword]="keyword" placeHolder="Buscar Ciudad" autocomplete="off"
+                    historyIdentifier="listCiudades" [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate">
+                </ng-autocomplete>
+
+                <ng-template #itemTemplate let-item>
+                    <div class="item">
+                        <!-- <img src="{{item.flag}}" height="25"> -->
+                        <span [innerHTML]="item.city"></span> &nbsp; | &nbsp;
+                        <small>Departamento: {{ item.state }}</small> &nbsp; | &nbsp;
+                        <small>--: {{ item.name }}</small>
+                    </div>
+                </ng-template>
+
+                <ng-template #notFoundTemplate let-notFound>
+                    <div [innerHTML]="notFound"></div>
+                </ng-template>
+            </div>
+            <div class="form-group col-12">
+                <div class="card text-white bg-primary  ">
+                    <div class="card-body">
+                        <h4 class="card-title text-white">2. DATOS DE LA MERCANCIA</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-xs-4 col-sm-4 col-12">
+                <label>Total Unid(s) *</label>
+                <input type="number" class="form-control form-control-sm" [(ngModel)]="data.totalUnidad">
+            </div>
+            <div class="form-group col-xs-4 col-sm-4 col-12">
+                <label>Total Kilo(s) *</label>
+                <input type="number" class="form-control form-control-sm" [(ngModel)]="data.totalkilo">
+            </div>
+            <div class="form-group col-12">
+                <h4>VOLUMEN (CMS)</h4>
+            </div>
+            <div class="form-group col-xs-4 col-sm-2 col-4">
+                <label>Alto *</label>
+                <input type="number" class="form-control form-control-sm" [(ngModel)]="data.volumenAlto">
+            </div>
+            <div class="form-group col-xs-4 col-sm-2 col-4">
+                <label>Ancho *</label>
+                <input type="number" class="form-control form-control-sm" [(ngModel)]="data.volumenAncho">
+            </div>
+            <div class="form-group col-xs-4 col-sm-2 col-4">
+                <label>Largo *</label>
+                <input type="number" class="form-control form-control-sm" [(ngModel)]="data.volumenLargo">
+            </div>
+            <div class="form-group col-xs-4 col-sm-2 col-4">
+                <label>Valor asegurado *</label>
+                <input currencyMask [(ngModel)]="data.valorAsegurado" class="form-control form-control-sm" [options]="opcionCurrencys"/>
+                <!--<input type="number" class="form-control form-control-sm" [(ngModel)]="data.valorAsegurado">-->
+            </div>
+            <div class="form-group col-xs-4 col-sm-3 col-4 col-12" *ngIf="data.selectEnvio == 'contraEntrega'">
+                <label>Valor a recaudar: </label>
+                <input currencyMask [(ngModel)]="data.valorRecaudar" class="form-control form-control-sm" [options]="opcionCurrencys"/>
+                <!--<input type="number" class="form-control form-control-sm" [(ngModel)]="data.valorRecaudar">-->
+            </div>
+            <div class="form-group col-xs-3 col-sm-3 col-12" *ngIf="data.selectEnvio == 'contraEntrega'">
+                <label>Quien paga el Envio *</label>
+                <select class="form-control form-control-sm" [(ngModel)]="data.pagaElEnvio">
+                    <option value="0">yo</option>
+                    <option value="1">cliente</option>
+                </select>
+            </div>
+            <div class="form-group col-xs-4 col-sm-4 col-4">
+                <label>Contenido *</label>
+                <input type="text" class="form-control form-control-sm" [(ngModel)]="data.contenido">
+            </div>
+            <!--<div class="form-group col-xs-4 col-sm-3 col-4">
+                <label>Numero de la Factura: </label>
+                <input type="text" class="form-control form-control-sm" [(ngModel)]="data.numeroFactura">
+            </div>-->
+            <!-- <div class="form-group col-xs-4 col-sm-3 col-4">
+                <label>Valor de la factura: </label>
+                <input type="number" class="form-control form-control-sm" [(ngModel)]="data.valorFactura">
+            </div> -->
+            <!--<div class="form-group col-xs-4 col-sm-3 col-4">
+                <label>Numero de bolsas: </label>
+                <input type="number" class="form-control form-control-sm" [(ngModel)]="data.numeroBolsa">
+            </div>-->
+            <!-- <div class="form-group col-xs-4 col-sm-3 col-4">
+                <input class="form-check-input" type="checkbox" [(ngModel)]="data.flete">
+                <label class="form-check-label" for="defaultCheck1">
+                    Flete
+                </label>
+            </div> -->
+            <!-- <div class="form-group col-xs-4 col-sm-3 col-4">
+                <input class="form-check-input" type="checkbox" [(ngModel)]="data.destinatarioCosto">
+                <label class="form-check-label" for="defaultCheck1">
+                    El Destinatario asume el costo del recaudo
+                </label>
+            </div> -->
+            <div class="form-group col-12">
+                <div class="d-flex flex-row-reverse bd-highlight">
+                    <div class="p-2 bd-highlight">
+                        <button type="button" class="btn btn-success" (click)="submitCotizar()" *ngIf="!data.id" [disabled]="btnDisabled">COTIZAR ENVIO</button>
+                    </div>
+                  </div>
+            </div>
+            <div class="form-group col-12">
+                <div class="card text-white bg-primary  ">
+                    <div class="card-body">
+                        <h4 class="card-title text-white">3. SELECCIONE LA TRASPORTADORA HACIENDO CLICK SOBRE EL LOGO O CUALQUIER PARTE DE LA FILA SELECCIONADA</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-12">
+                <div class="card-body ng-tns-c14-12 table-border-style ng-star-inserted">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th *ngFor="let item of tablet.header">{{ item }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of tablet.listRow" (click)="selectTrans( item )" class="mouse" [ngClass]="{check: item.check}">
+                                    <td>
+                                        <button type="button" class="btn btn-primary " (click)="crear( item )">
+                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <img [src]="item.imgTrasp" class="img">
+                                    </td>
+                                    <td>{{ item.origenDestino }}</td>
+                                    <td>{{ item.unida }}</td>
+                                    <td>{{ item.totalKilos }}</td>
+                                    <td>{{ item.kilosVol }}</td>
+                                    <!--<td>{{ item.valoracion }}</td>
+                                    <td>{{ item.tray }}</td>-->
+                                    <td>{{ item.flete }}</td>
+                                    <td>{{ item.fleteManejo }}</td>
+                                    <td>{{ item.fleteTotal }}</td>
+                                    <td>{{ item.total }}</td>
+                                    <td>{{ item.tiempoEstimado }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-12" *ngIf="progreses">
+                        <div class="d-flex justify-content-center row">
+                            <div class="spinner-grow text-primary " role="status"><span class="sr-only">Loading...</span></div>
+                            <div class="spinner-grow text-primary" role="status"><span class="sr-only">Loading...</span></div>
+                            <div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div>
+                            <div class="spinner-grow text-danger" role="status"><span class="sr-only">Loading...</span></div>
+                            <div class="spinner-grow text-warning" role="status"><span class="sr-only">Loading...</span></div>
+                            <div class="spinner-grow text-info" role="status"><span class="sr-only">Loading...</span></div>
+                            <div class="spinner-grow text-light" role="status"><span class="sr-only">Loading...</span></div>
+                            <div class="spinner-grow text-dark" role="status"><span class="sr-only">Loading...</span></div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="col-12" *ngIf="!progreses && tablet.listRow.length == 0">
+                        <div class="d-flex justify-content-center row">
+                            <div role="alert" class="alert alert-primary ">
+                                No Hay Datos Para Mostrar
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-12" *ngIf="errorCotisa">
+                        <div class="d-flex justify-content-center row">
+                            <h5 class="text-danger">{{ errorCotisa }}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="_dataConfig.vista == 'publico' && data.transportadoraSelect">
+                <div class="col">
+                    <div class="d-flex justify-content-center">
+                        <div>
+                            <button type="button" class="btn btn-success" (click)="loginDl()">Generar Guia</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="data.transportadoraSelect && _dataConfig.vista == 'login'">
+                <div class="form-group col-12">
+                    <div class="card text-white bg-primary  ">
+                        <div class="card-body">
+                            <h4 class="card-title text-white">4.DATOS DEL REMITENTE.</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-xs-4 col-sm-3 col-4 col-12">
+                    <label>Nit / Identificacion*: </label>
+                    <input type="number" class="form-control form-control-sm" [(ngModel)]="data.identificacionRemitente">
+                </div>
+                <div class="form-group col-xs-4 col-sm-3 col-4 col-12">
+                    <label>Nombre Completo: </label>
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="data.remitenteNombre">
+                </div>
+                <div class="form-group col-xs-4 col-sm-3 col-4 col-12">
+                    <label>Direccion: </label>
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="data.remitenteDireccion">
+                </div>
+                <div class="form-group col-xs-4 col-sm-3 col-4 col-12">
+                    <label>Correo electronico: </label>
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="data.remitenteCorreo">
+                </div>
+                <!--<div class="form-group col-xs-4 col-sm-3 col-4 col-12">
+                    <label>Telefono fijo: </label>
+                    <input type="number" class="form-control form-control-sm" [(ngModel)]="data.remitenteFijo">
+                </div>-->
+                <div class="form-group col-xs-4 col-sm-3 col-4 col-12">
+                    <label>Celular: </label>
+                    <input type="number" class="form-control form-control-sm" [(ngModel)]="data.remitenteCelular">
+                </div>
+                <div class="form-group col-xs-4 col-sm-3 col-4 col-12">
+                    <label>Barrio: </label>
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="data.remitenteBarrio">
+                </div>
+                <div class="form-group col-12">
+                    <div class="card text-white bg-primary  ">
+                        <div class="card-body">
+                            <h4 class="card-title text-white">5.DATOS DEL DESTINATARIO.</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-xs-4 col-sm-3 col-4 col-12">
+                    <label>Nit / Identificacion*: </label>
+                    <input type="number" class="form-control form-control-sm" [(ngModel)]="data.destinatarioNitIdentificacion" (blur)="BuscarCliente()">
+                </div>
+                <div class="form-group col-xs-4 col-sm-3 col-4 col-12">
+                    <label>Nombre Completo*: </label>
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="data.destinatarioNombre">
+                </div>
+                <!--<div class="form-group col-xs-4 col-sm-3 col-4 col-12">
+                    <label>Fecha de expedicion: </label>
+                    <input type="date" class="form-control form-control-sm" [(ngModel)]="data.destinatarioFechaExpedicion">
+                </div>-->
+                <div class="form-group col-xs-4 col-sm-3 col-4 col-12">
+                    <label>Celular*: </label>
+                    <input type="number" class="form-control form-control-sm" [(ngModel)]="data.destinatarioCelular">
+                </div>
+                <!--<div class="form-group col-xs-4 col-sm-3 col-4 col-12">
+                    <label>Teléfono fijo / celular: </label>
+                    <input type="number" class="form-control form-control-sm" [(ngModel)]="data.destinatarioTelfijo">
+                </div>-->
+                <div class="form-group col-xs-4 col-sm-3 col-4 col-12">
+                    <label>Barrio*: </label>
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="data.destinatarioBarrio">
+                </div>
+                <!--<div class="form-group col-xs-4 col-sm-3 col-4 col-12">
+                    <label>Correo electronico: </label>
+                    <input type="email" class="form-control form-control-sm" [(ngModel)]="data.destinatarioCorreo">
+                </div>-->
+                <div class="form-group col-xs-4 col-sm-3 col-4 col-12">
+                    <label>Dirección*: </label>
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="data.destinatarioDireccion">
+                </div>
+                <div class="form-group col-12">
+                    <div class="card text-white bg-primary  ">
+                        <div class="card-body">
+                            <h4 class="card-title text-white">5.INFORMACION ADICIONAL Y SERVICIOS COMPLEMENTARIOS.</h4>
+                        </div>
+                    </div>
+                    <h4>5.INFORMACION ADICIONAL Y SERVICIOS COMPLEMENTARIOS.</h4>
+                </div>
+                <!--<div class="form-group col-xs-4 col-sm-3 col-4 col-12">
+                    <label>Vencimiento O.C: </label>
+                    <input type="date" class="form-control form-control-sm" [(ngModel)]="data.vencimiento">
+                </div>-->
+                <!-- <div class="form-group col-xs-4 col-sm-3 col-4 col-12">
+                    <label>Cita O.C: </label>
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="data.cita">
+                </div>
+                <div class="form-group col-xs-4 col-sm-3 col-4 col-12">
+                    <label>Código Cita: </label>
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="data.codigoCita">
+                </div> -->
+                <!-- <div class="form-group col-xs-4 col-sm-3 col-4 col-12">
+                    <label>Orden de compra: </label>
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="data.ordenCompra">
+                </div> -->
+                <div class="form-group col-xs-4 col-sm-3 col-4 col-12">
+                    <label>Referencia: </label>
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="data.referencia">
+                </div>
+                <!-- <div class="form-group col-xs-4 col-sm-3 col-4 col-12">
+                    <label>GANADOR(A) de: </label>
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="data.ganadora">
+                </div> -->
+                <div class="form-group col-xs-4 col-sm-3 col-4 col-12">
+                    <label>Observaciones adicionales: </label>
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="data.observacionAdicional">
+                </div>
+                <div class="form-group col-xs-4 col-sm-3 col-4 col-12">
+                    <label>Trasportadora Enviada: </label>
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="data.transportadoraSelect" disabled>
+                </div>
+                <div class="form-group col-12" *ngIf="mensaje">
+                    <div class="d-flex justify-content-center">
+                        <h5 class="text-danger"> {{ mensaje }} </h5>
+                    </div>
+                </div>
+                <div class="form-group col-12">
+                    <div class="d-flex flex-row-reverse bd-highlight">
+                        <div class="p-2 bd-highlight">
+                            <button type="button" class="btn btn-danger" *ngIf="!data.id" [disabled]="btnDisabled" (click)="generarGuia()">GENERAR GUIA</button>
+                            <button type="button" class="btn btn-warning" [disabled]="btnDisabled" (click)="limpiar()">LIMPIAR</button>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -4,6 +4,7 @@ import { IndexComponent } from './component/index/index.component';
 import { TerminosComponent } from './component/terminos/terminos.component';
 import { ConfigurarPagosComponent } from './component/configurar-pagos/configurar-pagos.component';
 import { FormGuiaDetallesComponent } from './component/form-guia-detalles/form-guia-detalles.component';
+import { CotizarGuiaComponent } from './component/cotizar-guia/cotizar-guia.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,10 @@ const routes: Routes = [
   {
     path: "guiadetalles/:id",
     component: FormGuiaDetallesComponent 
+  },
+  {
+    path: "cotizar",
+    component: CotizarGuiaComponent
   },
 ];
 

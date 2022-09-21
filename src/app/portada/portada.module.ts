@@ -9,13 +9,15 @@ import { TerminosComponent } from './component/terminos/terminos.component';
 import { ConfigurarPagosComponent } from './component/configurar-pagos/configurar-pagos.component';
 import { FormGuiaDetallesComponent } from './component/form-guia-detalles/form-guia-detalles.component';
 import { ComponentModule } from '../component/component.module';
+import { CotizarGuiaComponent } from './component/cotizar-guia/cotizar-guia.component';
 
 @NgModule({
   declarations: [
     IndexComponent,
     TerminosComponent,
     ConfigurarPagosComponent,
-    FormGuiaDetallesComponent
+    FormGuiaDetallesComponent,
+    CotizarGuiaComponent
   ],
   imports: [
     CommonModule,

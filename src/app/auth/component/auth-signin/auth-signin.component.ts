@@ -3,7 +3,7 @@ import { UsuariosService } from 'src/app/servicesComponents/usuarios.service';
 import { ToolsService } from 'src/app/services/tools.service';
 import { STORAGES } from 'src/app/interfaces/sotarage';
 import { Store } from '@ngrx/store';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserAction } from 'src/app/redux/app.actions';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -16,13 +16,15 @@ export class AuthSigninComponent implements OnInit {
   
   data:any = {};
   btnDisabled:boolean = false;
-  
+  id:any;
+
   constructor(
     private _user: UsuariosService,
     private _tools: ToolsService,
     private _store: Store<STORAGES>,
     private _router: Router,
-    private _authSrvice: AuthService
+    private _authSrvice: AuthService,
+    private activate: ActivatedRoute,
   ) { 
     if (this._authSrvice.isLoggedIn()) {
       this._router.navigate(['/dashboard/elaboracionguias']);
@@ -30,6 +32,8 @@ export class AuthSigninComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.id = (this.activate.snapshot.paramMap.get('id'));
+    console.log( "***id", this.id )
   }
 
   Pruebas(){
@@ -66,6 +70,8 @@ export class AuthSigninComponent implements OnInit {
     let accion:any = new UserAction(res.data, 'post');
     this._store.dispatch(accion);
     this._router.navigate(['/dashboard/elaboracionguias']);
+
+    if( this.id == 1 ) window.close();
   }
 
 

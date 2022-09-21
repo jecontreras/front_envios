@@ -1,0 +1,24 @@
+img{
+    height: 9%;
+    width: 60px;
+}
+
+.item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    white-space: nowrap;
+    line-height: 45px;
+    height: 45px;
+    padding: 0 16px;
+    text-align: left;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  span {
+    margin-left: 5px;
+  }
+
+  .check{
+    background-color: rgb(190, 190, 190);
+  }
