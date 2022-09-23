@@ -71,7 +71,7 @@ export class AuthSigninComponent implements OnInit {
     this._store.dispatch(accion);
     this._router.navigate(['/dashboard/elaboracionguias']);
 
-    if( this.id == 1 ) window.close();
+    //if( this.id == 1 ) window.close();
   }
 
 

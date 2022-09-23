@@ -4,7 +4,12 @@ export interface STORAGES {
     usercabeza?: USERCABEZA;
     productoHistorial?: PRODUCTOHISTORIAL;
     buscador?: BUSCADOR;
+    dataGuide?: DATAGUIDE;
 };
+
+export interface DATAGUIDE{
+
+}
 
 export interface BUSCADOR{
 

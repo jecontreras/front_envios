@@ -175,6 +175,29 @@ export function appReducer(state: STORAGES = APP, action: _action.actions) {
         break;
       }
     }
+    case _action.DATAGUIDE: {
+      switch(action.opt) {
+        case 'post' :
+          if(!state.dataGuide) state.dataGuide = {};
+            state.dataGuide = action.payload;
+            return local_Storage(state);
+        break;
+        case 'put': {
+          state.dataGuide = action.payload;
+        }
+        return local_Storage(state);
+        break;
+        case 'delete': 
+          state.dataGuide = {};
+          return local_Storage(state);
+        break;
+        case 'drop': {
+          state.dataGuide = {};
+          return local_Storage(state);
+        }
+        break;
+      }
+    }
     default: return state;
   }
 }

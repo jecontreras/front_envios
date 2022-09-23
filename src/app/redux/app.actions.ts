@@ -6,6 +6,7 @@ export let USERCABEZA    = '[App] UserCabeza';
 export let PRODUCTOHISTORIAL = '[App] Productohistorial';
 export let BUSCADOR      = '[App] Buscador';
 export let SELECCIONCATEGORIA = '[App] SeleccionCategoria';
+export let DATAGUIDE = '[App] DataGuide';
 
 export class CartAction implements Action {
     readonly type = CART;
@@ -37,9 +38,15 @@ export class SeleccionCategoriaAction implements Action {
     constructor( public payload: object,  public opt: string){}
 }
 
+export class DataGuideAction implements Action {
+    readonly type = DATAGUIDE;
+    constructor( public payload: object,  public opt: string){}
+}
+
 export type actions = CartAction              |
                       UserAction              |
                       UserCabezaAction        |
                       ProductoHistorialAction |
                       BuscadorAction          |
-                      SeleccionCategoriaAction;
+                      SeleccionCategoriaAction|
+                      DataGuideAction         ;
