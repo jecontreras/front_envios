@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "tbl-styling.component.scss"
+    ],
+    "names": [],
+    "file": "tbl-styling.component.css"
+}

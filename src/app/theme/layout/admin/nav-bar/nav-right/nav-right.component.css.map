@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,WAAW,CAAA;EACP,SAAS,EAAE,IAAI;EACf,SAAS,EAAE,IAAI;EACf,UAAU,EAAE,IAAI;EAChB,UAAU,EAAE,IAAI;CACnB;;AAED,AAAA,YAAY,CAAA;EACR,WAAW,EAAE,GAAG;CACnB",
+    "sources": [
+        "nav-right.component.scss"
+    ],
+    "names": [],
+    "file": "nav-right.component.css"
+}

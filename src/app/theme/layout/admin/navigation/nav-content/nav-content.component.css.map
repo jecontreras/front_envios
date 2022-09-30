@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "nav-content.component.scss"
+    ],
+    "names": [],
+    "file": "nav-content.component.css"
+}

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "nav-collapse.component.scss"
+    ],
+    "names": [],
+    "file": "nav-collapse.component.css"
+}

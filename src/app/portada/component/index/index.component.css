@@ -1,0 +1,114 @@
+@charset "UTF-8";
+.fondo {
+  position: absolute;
+  top: 65px;
+  right: 10px;
+  left: 10px;
+  padding: 5px;
+  z-index: 999;
+}
+
+.alto {
+  height: 60px;
+}
+
+.img {
+  height: 567px;
+  width: 100%;
+}
+
+.logoFooter {
+  width: 33%;
+  border-radius: 17px;
+}
+
+.img1 {
+  background-image: url("/assets/portada/imagenes/foto6.jpg");
+}
+
+.img2 {
+  background-image: url("/assets/portada/imagenes/foto2.jpg");
+}
+
+.img3 {
+  background-image: url("/assets/portada/imagenes/foto3.jpg");
+}
+
+.img4 {
+  background-image: url("/assets/portada/imagenes/foto4.jpg");
+}
+
+.img5 {
+  background-image: url("/assets/portada/imagenes/foto5.jpg");
+}
+
+/* Importing Bootstrap SCSS file. */
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 320px) {
+  .textInf {
+    font-size: 11px !important;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 420px) {
+  .textInf {
+    font-size: 60px !important;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .textInf {
+    font-size: 40px !important;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .textInf {
+    font-size: 60px !important;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 768px) {
+  .textInf {
+    font-size: 86px !important;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 800px) {
+  .textInf {
+    font-size: 86px !important;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .textInf {
+    font-size: 50px !important;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .textInf {
+    font-size: 54px !important;
+  }
+}
+
+#scrols {
+  overflow: auto;
+  height: 845px;
+}
+
+#scrols::-webkit-scrollbar {
+  width: 8px;
+  /* Tamaño del scroll en vertical */
+  height: 8px;
+  /* Tamaño del scroll en horizontal */
+  display: none;
+  /* Ocultar scroll */
+}
+/*# sourceMappingURL=index.component.css.map */

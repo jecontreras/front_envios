@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "basic-carousel.component.scss"
+    ],
+    "names": [],
+    "file": "basic-carousel.component.css"
+}

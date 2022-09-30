@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "tbl-sizing.component.scss"
+    ],
+    "names": [],
+    "file": "tbl-sizing.component.css"
+}

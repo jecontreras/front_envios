@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "basic-typography.component.scss"
+    ],
+    "names": [],
+    "file": "basic-typography.component.css"
+}

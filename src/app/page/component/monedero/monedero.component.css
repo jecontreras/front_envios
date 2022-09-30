@@ -1,0 +1,17 @@
+.scrols {
+  height: 664px;
+  overflow: auto;
+}
+
+.esCompletado {
+  background: #adffcf;
+  color: white;
+  padding: 5px;
+}
+
+.esDevolucion {
+  background: #ffd4d4;
+  color: white;
+  padding: 5px;
+}
+/*# sourceMappingURL=monedero.component.css.map */

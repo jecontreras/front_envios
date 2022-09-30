@@ -1,0 +1,113 @@
+.foto {
+  /*height: 10pc!important;
+    max-width: 100%;
+    min-width: 95%;*/
+  max-height: 10pc;
+  min-height: 9pc;
+  border-radius: 80px;
+}
+
+#user-profile .profile-img {
+  border-radius: 50%;
+  background-clip: padding-box;
+  margin-bottom: 15px;
+}
+
+#user-profile .profile-stars {
+  color: #FABA03;
+  padding: 7px 0;
+  text-align: center;
+}
+
+#user-profile .profile-label {
+  text-align: center;
+  padding: 5px 0;
+}
+
+.label-danger, .fc-event.label-danger {
+  background-color: #f4786e;
+  padding: 5px;
+  color: white;
+}
+
+.main-box {
+  background: #FFFFFF;
+  -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+          box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+  margin-bottom: 16px;
+  border-radius: 3px;
+  background-clip: padding-box;
+  padding: 15px;
+}
+
+.contenedor-btn-file input[type="file"] {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+  z-index: -1;
+}
+
+.contenedor-btn-file {
+  display: inline-block;
+  position: relative;
+  background-color: #186CC3;
+  color: #fff;
+  border: 0;
+  padding: 12px 20px;
+  border-radius: 8px;
+  -webkit-box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  -webkit-transition: ease-out 120ms background-color;
+  transition: ease-out 120ms background-color;
+}
+
+.contenedor-btn-file:hover {
+  background-color: #16579B;
+}
+
+.contenedor-btn-file:active {
+  background-color: #114378;
+}
+
+.contenedor-btn-file > i {
+  margin-right: 15px;
+}
+
+.contenedor-btn-file label {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+.contenedor-btn-file.bordeado {
+  background-color: #fff;
+  border: 2px solid #186CC3;
+  color: #186CC3;
+}
+
+.contenedor-btn-file.bordeado:hover {
+  background-color: #186CC3;
+  color: #fff;
+}
+
+.mensaje a {
+  color: inherit;
+  margin-right: .5rem;
+  display: inline-block;
+}
+
+.mensaje a:hover {
+  color: #309B76;
+  -webkit-transform: scale(1.4);
+          transform: scale(1.4);
+}
+/*# sourceMappingURL=perfil.component.css.map */

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,YAAY,CAAA;EACR,UAAU,EAAE,OAAO;CACtB;;AACD,AAAA,YAAY,CAAA;EACR,UAAU,EAAE,OAAO;CACtB;;AACD,AAAA,WAAW,CAAA;EACP,UAAU,EAAE,OAAO;CACtB",
+    "sources": [
+        "list-retiros.component.scss"
+    ],
+    "names": [],
+    "file": "list-retiros.component.css"
+}

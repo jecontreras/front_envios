@@ -186,6 +186,7 @@ export class ElaborationGuideComponent implements OnInit {
         hiddenInputToUpdateATBuffer_CommonToolkitScripts: 1,
         txtGuia_a_Consultar: "",
         valorAsegurado: this.data.valorAsegurado, //number
+        ciudadDestino1: this.data.ciudadDestino1
       };
       this.btnDisabled = true;
       this.errorCotisa = "";

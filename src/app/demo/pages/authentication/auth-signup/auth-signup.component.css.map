@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "auth-signup.component.scss"
+    ],
+    "names": [],
+    "file": "auth-signup.component.css"
+}

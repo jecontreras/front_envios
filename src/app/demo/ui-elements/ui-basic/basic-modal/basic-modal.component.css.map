@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "basic-modal.component.scss"
+    ],
+    "names": [],
+    "file": "basic-modal.component.css"
+}

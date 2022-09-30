@@ -1,0 +1,22 @@
+.colorVerde {
+  background: green;
+  color: white;
+  padding: 5px;
+}
+
+.colorDanger {
+  background: red;
+  color: white;
+  padding: 5px;
+}
+
+.colorOrange {
+  background: orange;
+  color: white;
+  padding: 5px;
+}
+
+img {
+  height: 35px;
+}
+/*# sourceMappingURL=list-recogia.component.css.map */

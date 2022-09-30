@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "basic-collapse.component.scss"
+    ],
+    "names": [],
+    "file": "basic-collapse.component.css"
+}

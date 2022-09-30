@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,OAAO,CAAA;EACL,MAAM,EAAE,KAAK;EACb,QAAQ,EAAE,IAAI;CACf;;AACD,AAAA,aAAa,CAAA;EACX,UAAU,EAAE,OAAO;EACnB,KAAK,EAAE,KAAK;EACZ,OAAO,EAAE,GAAG;CACb;;AACD,AAAA,aAAa,CAAA;EACX,UAAU,EAAE,OAAO;EACnB,KAAK,EAAE,KAAK;EACZ,OAAO,EAAE,GAAG;CACb",
+    "sources": [
+        "monedero.component.scss"
+    ],
+    "names": [],
+    "file": "monedero.component.css"
+}

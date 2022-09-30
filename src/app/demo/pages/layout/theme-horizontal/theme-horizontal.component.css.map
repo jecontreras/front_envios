@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "theme-horizontal.component.scss"
+    ],
+    "names": [],
+    "file": "theme-horizontal.component.css"
+}

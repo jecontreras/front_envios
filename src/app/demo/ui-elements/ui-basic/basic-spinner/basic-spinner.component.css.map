@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "basic-spinner.component.scss"
+    ],
+    "names": [],
+    "file": "basic-spinner.component.css"
+}

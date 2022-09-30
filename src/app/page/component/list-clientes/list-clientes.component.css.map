@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "list-clientes.component.scss"
+    ],
+    "names": [],
+    "file": "list-clientes.component.css"
+}

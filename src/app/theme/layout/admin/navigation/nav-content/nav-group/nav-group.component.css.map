@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "nav-group.component.scss"
+    ],
+    "names": [],
+    "file": "nav-group.component.css"
+}

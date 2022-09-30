@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "common-content.component.scss"
+    ],
+    "names": [],
+    "file": "common-content.component.css"
+}

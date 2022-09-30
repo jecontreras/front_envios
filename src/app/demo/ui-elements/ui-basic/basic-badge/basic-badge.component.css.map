@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "basic-badge.component.scss"
+    ],
+    "names": [],
+    "file": "basic-badge.component.css"
+}

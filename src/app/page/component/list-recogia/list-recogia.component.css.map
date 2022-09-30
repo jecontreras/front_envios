@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,WAAW,CAAA;EACP,UAAU,EAAE,KAAK;EACjB,KAAK,EAAE,KAAK;EACZ,OAAO,EAAE,GAAG;CACf;;AAED,AAAA,YAAY,CAAA;EACR,UAAU,EAAE,GAAG;EACf,KAAK,EAAE,KAAK;EACZ,OAAO,EAAE,GAAG;CACf;;AAED,AAAA,YAAY,CAAA;EACR,UAAU,EAAE,MAAM;EAClB,KAAK,EAAE,KAAK;EACZ,OAAO,EAAE,GAAG;CACf;;AAED,AAAA,GAAG,CAAA;EACC,MAAM,EAAE,IACZ;CAAC",
+    "sources": [
+        "list-recogia.component.scss"
+    ],
+    "names": [],
+    "file": "list-recogia.component.css"
+}
