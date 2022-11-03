@@ -103,7 +103,7 @@ export class EstadoGuiasComponent implements OnInit {
         ">=": moment( this.filtro.fecha1 ).format("YYYY-MM-DD"),
         "<=": moment( this.filtro.fecha2 ).format("YYYY-MM-DD"),
       };
-    }else delete this.query.where.users;
+    }else delete this.query.where.createdAt;
     console.log( this.query )
     this.getRow();
   }
