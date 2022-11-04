@@ -37,10 +37,16 @@ export class FleteService {
   fleteCrearCordinadora( query:any ){
     return this._model.querys('fletes/grabardespachoCordinadora',query, 'post');
   }
+  fleteCrearInterRapidisimo( query:any ){
+    return this._model.querys('fletes/grabardespachoInterRapidisimo',query, 'post');
+  }
   fleteBorrar( query:any ){
     return this._model.querys('fletes/borrarflete',query, 'post');
   }
   fleteImprimir( query:any ){
     return this._model.querys('fletes/cordinadoraRotulo',query, 'post');
+  }
+  fleteImprimirInterRp( query:any ){
+    return this._model.querys('fletes/interrpRotulo',query, 'post');
   }
 }

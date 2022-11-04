@@ -142,6 +142,17 @@ export class EstadoGuiasComponent implements OnInit {
          this._tools.downloadPdf( res, 'cordinadora #'+ data.nRemesa  );
        });
      }
+     if( data.transportadoraSelect == 'INTERRAPIDISIMO'){
+      let datas:any = {
+         codigo_remision: data['nRemesa']
+      };
+      this._flete.fleteImprimirInterRp( datas ).subscribe(( res:any )=>{
+        res = res.data;
+        if( res == "Error") return false;
+
+        this._tools.downloadPdf( res, 'INTERRAPIDISIMO #'+ data.nRemesa  );
+      });
+    }
    }
 
    /*downloadPdf(base64String, fileName){

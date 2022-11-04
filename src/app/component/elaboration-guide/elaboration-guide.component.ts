@@ -451,6 +451,7 @@ export class ElaborationGuideComponent implements OnInit {
     this._tools.ProcessTime({ title: "Cargando por favor esperar", tiempo: 7000 });
     if (this.data.transportadoraSelect == "TCC") await this.creandoGuiaTcc(data);
     else if (this.data.transportadoraSelect == "CORDINADORA") await this.creandoCordinadora(data);
+    else if (this.data.transportadoraSelect == "INTERRAPIDISIMO") await this.creandoInterRapidisimo(data);
     else { await this.creandoGuiaEnvia(data); }
     this.crearCliente();
 
@@ -541,6 +542,36 @@ export class ElaborationGuideComponent implements OnInit {
         ...datable
       };
       this._flete.fleteCrearCordinadora(data).subscribe((res: any) => {
+        this.btnDisabled = false;
+        this.mensaje += `ver guia ->>  ${this.urlFront}/dashboard/estadoGuias`;
+        this._tools.tooast({ title: "Exitoso guia generada" });
+        if (res.data) this.data.id = res.data.id;
+        else this.data.id = res.id;
+        resolve(res);
+      }, (error) => { this._tools.tooast({ title: "Error en el servidor por favor reintenta!", icon: "error" }); console.error(error); this.btnDisabled = false; resolve(false); });
+    });
+  }
+
+  creandoInterRapidisimo(datable: any) {
+    return new Promise(resolve => {
+      let data: any = {
+        drpCiudadOrigen: (this.listCiudades.find((row: any) => row.code == this.data.ciudadOrigen)).name,
+        txtIdentificacionDe: this.data.identificacionRemitente,
+        txtTelefonoDe: this.data.remitenteFijo,
+        txtDireccionDe: this.data.remitenteDireccion,
+        txtPara: this.data.destinatarioNombre,
+        drpCiudadDestino: this.data.ciudadDestino.name,
+        txtTelefonoPara: this.data.destinatarioCelular,
+        txtDireccionPara: `${this.data.destinatarioDireccion} ( ${this.data.destinatarioBarrio} )`,
+        txtUnidades: 1, //this.data.totalUnidad,
+        txtPeso: this.data.totalkilo,
+        txtVolumen: this.data.pesoVolumen,
+        txtDeclarado: this.data.valorFactura,
+        txtValorRecaudo: this.data.valorRecaudar,
+        txtDice: this.data.contenido,
+        ...datable
+      };
+      this._flete.fleteCrearInterRapidisimo(data).subscribe((res: any) => {
         this.btnDisabled = false;
         this.mensaje += `ver guia ->>  ${this.urlFront}/dashboard/estadoGuias`;
         this._tools.tooast({ title: "Exitoso guia generada" });
