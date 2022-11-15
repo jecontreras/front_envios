@@ -84,8 +84,17 @@ export class RelacionDespachoComponent implements OnInit {
     
     if( this.data.plataforma == 'TODO' ) delete this.query.where.transportadoraSelect;
     else this.query.where.transportadoraSelect = this.data.plataforma;
-    console.log(this.query)
+    //console.log(this.query)
     this._flete.get( this.query ).subscribe( async ( res:any )=>{
+      //console.log("***", res)
+      this.total = {
+        unidad: 0,
+        peso: 0,
+        volumen: 0,
+        totalValorMercancia: 0,
+        flteTotal: 0,
+        cantidadItem: 0
+      };
       for( let row of res.data ){
         count++;
         row.count = count;

@@ -21,9 +21,9 @@
                 <h5>Cell: {{ item.celularDestinatario }}</h5>
               </div>
               <div class="col-6 col-sm-3 col-md-4">
-                <h5 class="text-warning">Valor a recaudar: {{ _tools.monedaChange( 3, 2, item.valorRecaudar ) }}</h5>
-                <h5 class="text-danger">Valor del Flete: {{ _tools.monedaChange( 3, 2, item.flteTotal ) }}</h5>
-                <h5 class="text-success">Tu dinero: {{ _tools.monedaChange( 3, 2, ( item.valorRecaudar - item.flteTotal ) ) }}</h5>
+                <h5 class="text-warning">Valor a recaudar: {{ _tools.monedaChange( 3, 2, ( item.valorRecaudar || 0 ) ) }}</h5>
+                <h5 class="text-danger">Valor del Flete: {{ _tools.monedaChange( 3, 2, ( item.flteTotal || 0 ) ) }}</h5>
+                <h5 class="text-success">Tu dinero: {{ _tools.monedaChange( 3, 2, ( ( ( item.valorRecaudar || 0 ) - ( item.flteTotal || 0 ) || 0 ) ) ) }}</h5>
               </div>
           </div>
         </li>
@@ -36,11 +36,11 @@
                     <div class="d-flex justify-content-center">
                         <div>
                           <h4 style="text-align: center;">Tu saldo actual ( sin cobrar los fletes )</h4>
-                          <h5 class="text-success" style="text-align: center;">{{ _tools.monedaChange( 3, 2, dataInfo.valor )  }}</h5>
+                          <h5 class="text-success" style="text-align: center;">{{ _tools.monedaChange( 3, 2, ( dataInfo.valor || 0 ) )  }}</h5>
                           <h4 style="text-align: center;">Saldo de Fletes ( Pendiente )</h4>
-                          <h5 class="text-danger" style="text-align: center;">{{ _tools.monedaChange( 3, 2, dataInfo.valorFlete )  }}</h5>
+                          <h5 class="text-danger" style="text-align: center;">{{ _tools.monedaChange( 3, 2, ( dataInfo.valorFlete || 0 ) )  }}</h5>
                           <h4 style="text-align: center;">Valor Disponibles</h4>
-                          <h5 class="text-success" style="text-align: center;">{{ _tools.monedaChange( 3, 2, dataInfo.valorDisponible )  }}</h5>
+                          <h5 class="text-success" style="text-align: center;">{{ _tools.monedaChange( 3, 2, ( dataInfo.valorDisponible || 0 ) )  }}</h5>
                         </div>
                     </div>
                 </div>
