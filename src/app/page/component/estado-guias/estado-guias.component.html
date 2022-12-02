@@ -78,6 +78,10 @@
                                                     <button type="button" (click)="openView( item, 'urlRotulos' )"
                                                         class="btn btn-primary">Rotulos</button>
                                                 </div>
+                                                <div>
+                                                    <button type="button" (click)="openView( item, 'url_terceros' )" *ngIf="item.transportadoraSelect == 'TCC'"
+                                                        class="btn btn-success">Relacion</button>
+                                                </div>
                                                 <div *ngIf="item.urlRelacionenvio">
                                                     <button type="button" (click)="openView( item, 'urlRelacionenvio' )"
                                                         class="btn btn-primary">Relacion</button>

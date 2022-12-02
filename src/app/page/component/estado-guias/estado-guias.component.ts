@@ -129,6 +129,7 @@ export class EstadoGuiasComponent implements OnInit {
      if( data.transportadoraSelect == 'ENVIA' || data.transportadoraSelect == 'TCC' ){
        if( vista == 'urlRotulos')  url = data.urlRotulos;
        if( vista == 'urlRelacionenvio')  url = data.urlRelacionenvio;
+       if( vista == 'url_terceros')  url = data.url_terceros;
        window.open( url );
      }
      if( data.transportadoraSelect == 'CORDINADORA'){
