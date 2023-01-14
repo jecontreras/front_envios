@@ -49,4 +49,7 @@ export class FleteService {
   fleteImprimirInterRp( query:any ){
     return this._model.querys('fletes/interrpRotulo',query, 'post');
   }
+  createFlete(query:any){
+    return this._model.querys('fletes/createFlete',query, 'post');
+  }
 }

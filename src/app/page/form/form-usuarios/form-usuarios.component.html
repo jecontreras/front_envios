@@ -23,7 +23,6 @@
         </div>
         <div class="form-group col-md-6 col-sm-4 col-lg-4 col-xs-4">
             <label for="exampleInputEmail1">Ciudad</label>
-            <!-- <input type="text" class="form-control form-control-sm" [(ngModel)]="data.ciudadDestino"> -->
             <ng-autocomplete [(ngModel)]="data.ciudadDestino" [data]="listCiudades" [searchKeyword]="keyword"
                 placeHolder="Buscar Ciudad" autocomplete="off" historyIdentifier="listCiudades"
                 [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate" (selected)="blurCiudad( $event )">
@@ -31,7 +30,6 @@
 
             <ng-template #itemTemplate let-item>
                 <div class="item">
-                    <!-- <img src="{{item.flag}}" height="25"> -->
                     <span [innerHTML]="item.city"></span> &nbsp; | &nbsp;
                     <small>Departamento: {{item.state}}</small>
                 </div>
@@ -57,6 +55,14 @@
             <label for="exampleInputEmail1">Rol</label>
             <select class="form-control form-control-sm" [(ngModel)]="data.rol">
                 <option type="text" *ngFor="let item of listRoles" [value]=item.id> {{ item.descripcion }}</option>
+            </select>
+        </div>
+        <div class="form-group col-md-6 col-sm-4 col-lg-4 col-xs-4">
+            <label for="exampleInputEmail1">Estado</label>
+            <select class="form-control form-control-sm" [(ngModel)]="data.estado">
+                <option type="text" value="inactivo">Inactivo</option>
+                <option type="text" value="activo">Activo</option>
+                <option type="text" value="verificando">Verificando</option>
             </select>
         </div>
     </div>
