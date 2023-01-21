@@ -34,6 +34,7 @@
                                                                                 <option value="envia">Envia</option>
                                                                                 <option value="cordinadora">Cordinadora</option>
                                                                                 <option value="tcc">TCC</option>
+                                                                                <option value="interrapidisimo">Inter Rapidisimo</option>
                                                                             </select>
                                                                         </div>
                                                                         <div class="form-group col-4"
@@ -123,7 +124,7 @@
                                                                                 </td>
                                                                                 <td valign="top" *ngIf="data.plataforma == 'tcc'">
                                                                                     <ng-autocomplete
-                                                                                        [(ngModel)]="data.drpCiudad2"
+                                                                                        [(ngModel)]="data.drpCiudad"
                                                                                         [data]="listCiudades2"
                                                                                         [searchKeyword]="keyword2"
                                                                                         placeHolder="Buscar Ciudad"
@@ -131,7 +132,7 @@
                                                                                         historyIdentifier="listCiudades2"
                                                                                         [itemTemplate]="itemTemplate"
                                                                                         [notFoundTemplate]="notFoundTemplate"
-                                                                                        (selected)='onChangeSearch($event)'>
+                                                                                        (change)="validarFecha()">
                                                                                     </ng-autocomplete>
 
                                                                                     <ng-template #itemTemplate let-item>

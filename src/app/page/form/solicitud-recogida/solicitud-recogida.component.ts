@@ -79,6 +79,7 @@ export class SolicitudRecogidaComponent implements OnInit {
     this.data = {
       txtNum_Cliente: this.dataUser.documento,
       txtNombreApellidoC: this.dataUser.name + " " + this.dataUser.lastname,
+      txtDir_Cliente: this.dataUser.direccion + " Barrio " + this.dataUser.barrio,
       txtHInicial: "08:00",
       txtHFinal: "14:00",
       txtFechaIni: `${ moment().format("dddd") }, ${ moment().format("DD/MM/YYYY") }`,
@@ -119,9 +120,12 @@ export class SolicitudRecogidaComponent implements OnInit {
       ...this.data
     };
     data.drpCiudadTcc = this.data.drpCiudad.code;
+    data.sionCiudadTcc = this.data.drpCiudad.id;
     data.drpCiudadEnvia = this.data.drpCiudad.name;
-    data.drpDaneTcc = this.data.drpCiudad.codeDane;
-    // console.log( data );
+    data.drpDaneTcc = this.data.drpCiudad.dane;
+    console.log( data );
+    this.btnDisabled = false;
+    //return false;
     this._recogias.createRecogia( data ).subscribe(( res:any )=>{
       this.btnDisabled = false;
       this._tools.tooast( { title: "Generado exitos" });
