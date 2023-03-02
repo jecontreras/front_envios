@@ -13,17 +13,18 @@ import { Store } from '@ngrx/store';
   styleUrls: ['./relacion-despacho.component.scss']
 })
 export class RelacionDespachoComponent implements OnInit {
-  
+
   listRow:any = [];
-  public query:any = { 
+  public query:any = {
     where:{
-      // estado: "GENERADA" 
-      solicitudFecha:{
+      // estado: "GENERADA"
+      /*solicitudFecha:{
         "<=": moment(  ).format("YYYY-MM-DD"),
         ">=": ( moment(  ).add( -1, 'days') ).format("YYYY-MM-DD"),
-      },
+      },*/
+      solicitudFecha: moment(  ).format("YYYY-MM-DD"),
       state: 0
-    }, 
+    },
     sort: "createdAt ASC",
     limit: -1,
     page: 0
@@ -54,7 +55,7 @@ export class RelacionDespachoComponent implements OnInit {
     private _flete: FleteService,
     public _tools: ToolsService,
     private _store: Store<STORAGES>
-  ) { 
+  ) {
     this._store.subscribe((store: any) => {
       store = store.name;
       if(!store) return false;
@@ -68,7 +69,7 @@ export class RelacionDespachoComponent implements OnInit {
     this.getRow();
   }
 
-  filtroGet(){
+  async filtroGet(){
     this.listDistribucion = [];
     /*if( this.data.fecha1 && this.data.fecha2 ){
       this.query.where.solicitudFecha = {
@@ -76,41 +77,46 @@ export class RelacionDespachoComponent implements OnInit {
         "<=": moment( this.data.fecha2 ).format("YYYY-MM-DD"),
       };
     }else delete this.query.where.solicitudFecha;*/
-    this.getRow();  
+    await this.getRow();
+
   }
 
   getRow(){
-    let count = 0;
-    
-    if( this.data.plataforma == 'TODO' ) delete this.query.where.transportadoraSelect;
-    else this.query.where.transportadoraSelect = this.data.plataforma;
-    //console.log(this.query)
-    this._flete.get( this.query ).subscribe( async ( res:any )=>{
-      //console.log("***", res)
-      this.total = {
-        unidad: 0,
-        peso: 0,
-        volumen: 0,
-        totalValorMercancia: 0,
-        flteTotal: 0,
-        cantidadItem: 0
-      };
-      for( let row of res.data ){
-        count++;
-        row.count = count;
-        row.ciudadDestinatarioText = row.drpCiudadDestino;
-        row.ciudadOrigenText = row.drpCiudadOrigen;
-        this.total.unidad+=row.unidadNegocio;
-        this.total.peso+=row.totalPeso;
-        this.total.volumen+=row.totalPesovolumen;
-        this.total.totalValorMercancia+=row.totalValorMercancia;
-        this.total.flteTotal+= row.flteTotal;
-        this.total.cantidadItem++;
-        await this.procesoDistribucion(row);
-      }
-      this.listRow = res.data;
-      if( Object.keys( this.listRow ).length == 0 ) this._tools.tooast( { title: "Lo sentimos no tienes guias disponibles"})
-    });
+    return new Promise(resolve =>{
+      let count = 0;
+
+      if( this.data.plataforma == 'TODO' ) delete this.query.where.transportadoraSelect;
+      else this.query.where.transportadoraSelect = this.data.plataforma;
+      //console.log(this.query)
+      this._flete.get( this.query ).subscribe( async ( res:any )=>{
+        //console.log("***", res)
+        this.total = {
+          unidad: 0,
+          peso: 0,
+          volumen: 0,
+          totalValorMercancia: 0,
+          flteTotal: 0,
+          cantidadItem: 0
+        };
+        for( let row of res.data ){
+          row.check = true;
+          count++;
+          row.count = count;
+          row.ciudadDestinatarioText = row.drpCiudadDestino;
+          row.ciudadOrigenText = row.drpCiudadOrigen;
+          this.total.unidad+=row.unidadNegocio;
+          this.total.peso+=row.totalPeso;
+          this.total.volumen+=row.totalPesovolumen;
+          this.total.totalValorMercancia+=row.totalValorMercancia;
+          this.total.flteTotal+= row.flteTotal;
+          this.total.cantidadItem++;
+          await this.procesoDistribucion(row);
+        }
+        this.listRow = res.data;
+        if( Object.keys( this.listRow ).length == 0 ) this._tools.tooast( { title: "Lo sentimos no tienes guias disponibles"})
+        resolve( true );
+      },()=>resolve(false) );
+    })
   }
 
   procesoDistribucion( row:any ){
@@ -118,7 +124,7 @@ export class RelacionDespachoComponent implements OnInit {
       let filtro:any = _.findIndex( this.listDistribucion, { 'name': row.ciudadDestinatarioText } );
       // console.log( "***",filtro )
       if( filtro == -1 ) {
-        this.listDistribucion.push( 
+        this.listDistribucion.push(
           {
             name: row.ciudadDestinatarioText,
             item: 1,
@@ -139,7 +145,21 @@ export class RelacionDespachoComponent implements OnInit {
   }
 
   openImprimir(){
-    window.print();
+    if( this.data.plataforma != 'INTERRAPIDISIMO') window.print();
+    if( this.data.plataforma == 'INTERRAPIDISIMO'){
+      let filter = this.listRow.filter(( item )=> item.check == true );
+      filter = _.map( filter, 'nRemesa');
+       this.getRelationship( filter );
+    }
   }
+
+  getRelationship(IdFletes){
+    this._flete.relationshipInter( { idFletes: IdFletes } ).subscribe( (res)=>{
+      if( res.data.arregloBytesPlanilla ) this._tools.downloadPdf( res.data.arregloBytesPlanilla, 'INTERRAPIDISIMO #'+ res.data.numeroPlanilla  );
+      else this._tools.tooast( { title: "Lo sentimos Problemas de generador de relacion de despacho" } );
+    })
+  }
+
+
 
 }
