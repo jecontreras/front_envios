@@ -9,5 +9,5 @@ export const environment = {
   urlSocket: "http://localhost:3000",
   url: "https://enviosrapidosapi.herokuapp.com",
   urlFront: "https://enviosrrapidoscom.web.app",
-  URLFILE: "https://backlocompro.herokuapp.com",
+  URLFILE: "https://lokomproaqui.herokuapp.com",
 };

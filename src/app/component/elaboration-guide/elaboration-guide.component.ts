@@ -449,10 +449,24 @@ export class ElaborationGuideComponent implements OnInit {
     };
     window.document.scrollingElement.scrollTop = 0
     this._tools.ProcessTime({ title: "Cargando por favor esperar", tiempo: 7000 });
-    if (this.data.transportadoraSelect == "TCC") await this.creandoGuiaTcc(data);
-    else if (this.data.transportadoraSelect == "CORDINADORA") await this.creandoCordinadora(data);
-    else if (this.data.transportadoraSelect == "INTERRAPIDISIMO") await this.creandoInterRapidisimo(data);
-    else { await this.creandoGuiaEnvia(data); }
+    if (this.data.transportadoraSelect == "TCC") data = await this.creandoGuiaTcc(data);
+    else if (this.data.transportadoraSelect == "CORDINADORA") data = await this.creandoCordinadora(data);
+    else if (this.data.transportadoraSelect == "INTERRAPIDISIMO") data = await this.creandoInterRapidisimo(data);
+    else data = await this.creandoGuiaEnvia(data);
+
+    this._flete.createFlete( data ).subscribe((res: any) => {
+      console.log(res);
+      this.btnDisabled = false;
+      try {
+        if (!res.id) { this.mensaje = res.data.msx; this._tools.tooast({ title: "Error al generar la guia", icon: "error" }); }
+        else {
+          this.mensaje = `ver guia ->>  ${this.urlFront}/dashboard/estadoGuias`;
+          this._tools.tooast({ title: "Exitoso guia generada" });
+          this.data.id = res.data.msx.id;
+        }
+      } catch (error) { }
+    }, (error) => { this._tools.tooast({ title: "Error en el servidor por favor reintenta!", icon: "error" }); console.error(error); this.btnDisabled = false;  });
+    
     this.crearCliente();
 
   }
@@ -476,7 +490,7 @@ export class ElaborationGuideComponent implements OnInit {
         txtDice: this.data.contenido,
         ...datable
       };
-
+      return resolve( data );
       this._flete.fleteCrearTcc(data).subscribe((res: any) => {
         console.log(res);
         this.btnDisabled = false;
@@ -512,6 +526,7 @@ export class ElaborationGuideComponent implements OnInit {
         txtDice: this.data.contenido,
         ...datable
       };
+      return resolve( data );
       this._flete.fleteCrearEnvia(data).subscribe((res: any) => {
         this.btnDisabled = false;
         this.mensaje += `ver guia ->>  ${this.urlFront}/dashboard/estadoGuias`;
@@ -541,6 +556,7 @@ export class ElaborationGuideComponent implements OnInit {
         txtDice: this.data.contenido,
         ...datable
       };
+      return resolve( data );
       this._flete.fleteCrearCordinadora(data).subscribe((res: any) => {
         this.btnDisabled = false;
         this.mensaje += `ver guia ->>  ${this.urlFront}/dashboard/estadoGuias`;
@@ -571,6 +587,7 @@ export class ElaborationGuideComponent implements OnInit {
         txtDice: this.data.contenido,
         ...datable
       };
+      return resolve( data );
       this._flete.fleteCrearInterRapidisimo(data).subscribe((res: any) => {
         this.btnDisabled = false;
         this.mensaje += `ver guia ->>  ${this.urlFront}/dashboard/estadoGuias`;
