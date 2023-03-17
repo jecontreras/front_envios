@@ -17,7 +17,7 @@ export class EstadoGuiasComponent implements OnInit {
   progreses:boolean = false;
   btnDisabled:boolean = false;
   public query:any = {
-    where:{ 
+    where:{
       state: { "!=": 1 }
     },
     sort: "createdAt DESC",
@@ -79,13 +79,13 @@ export class EstadoGuiasComponent implements OnInit {
     this.notEmptyPost =  true;
     if( this.filtro.user ) {
       this.query ={
-        where: { 
+        where: {
           users: _.deburr( ( this.filtro.user.toLowerCase() ) )
         }
       }
     }else{
       this.query = {
-        where:{ 
+        where:{
           state: { "!=": 1 }
         },
         sort: "createdAt DESC",

@@ -52,4 +52,7 @@ export class FleteService {
   createFlete(query:any){
     return this._model.querys('fletes/createFlete',query, 'post');
   }
+  relationshipInter(query:any){
+    return this._model.querys('fletes/relationshipInter',query, 'post');
+  }
 }

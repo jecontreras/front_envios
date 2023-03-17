@@ -142,6 +142,13 @@
                                         valign="top" width="28">
                                         <p align="center" class="MsoNormal"
                                             style="font-size: 12pt; margin: 0cm 0cm 0.0001pt; text-align: center;">
+                                            <span lang="EN-US" style="font-family: Arial; font-size: 7pt;">Check</span>
+                                        </p>
+                                    </td>
+                                    <td style="border-bottom: 0.5pt solid windowtext; border-image: initial; border-left: 0.5pt solid windowtext; border-right: 0.5pt solid windowtext; border-top: none; height: 3.5pt; padding: 0cm 3.5pt; width: 20.85pt;"
+                                        valign="top" width="28">
+                                        <p align="center" class="MsoNormal"
+                                            style="font-size: 12pt; margin: 0cm 0cm 0.0001pt; text-align: center;">
                                             <span lang="EN-US" style="font-family: Arial; font-size: 7pt;">#</span>
                                         </p>
                                     </td>
@@ -173,13 +180,6 @@
                                         <p align="center" class="MsoNormal"
                                             style="font-size: 12pt; margin: 0cm 0cm 0.0001pt; text-align: center;">
                                             <span style="font-family: Arial; font-size: 7pt;">CONTENIDO</span>
-                                        </p>
-                                    </td>
-                                    <td style="border-bottom: 0.5pt solid windowtext; border-left: none; border-right: 0.5pt solid windowtext; border-top: none; height: 3.5pt; padding: 0cm 3.5pt; width: 60.4pt;"
-                                        valign="top" width="81">
-                                        <p align="center" class="MsoNormal"
-                                            style="font-size: 12pt; margin: 0cm 0cm 0.0001pt; text-align: center;">
-                                            <span style="font-family: Arial; font-size: 7pt;">DOCUMENTO</span>
                                         </p>
                                     </td>
                                     <td style="border-bottom: 0.5pt solid windowtext; border-left: none; border-right: 0.5pt solid windowtext; border-top: none; height: 3.5pt; padding: 0cm 3.5pt;"
@@ -232,6 +232,10 @@
                                     </td>
                                 </tr>
                                 <tr *ngFor="let item of listRow; let idx=index">
+                                  <td style="border-bottom: 0.5pt solid windowtext; border-image: initial; border-left: 0.5pt solid windowtext; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 20.85pt;"
+                                    valign="top" width="81">
+                                    <input type="checkbox" [(ngModel)]="item.check" id="exampleCheck1">
+                                </td>
                                     <td style="border-bottom: 0.5pt solid windowtext; border-image: initial; border-left: 0.5pt solid windowtext; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 20.85pt;"
                                         valign="top" width="28">
                                         <p class="MsoNormal" style="font-size: 12pt; margin: 0cm 0cm 0.0001pt;">
@@ -263,14 +267,6 @@
                                         valign="top" width="73">
                                         <p class="MsoNormal" style="font-size: 12pt; margin: 0cm 0cm 0.0001pt;">
                                             <span style="font-family: Arial; font-size: 7pt;">{{ item.diceContener }}</span>
-                                        </p>
-                                    </td>
-                                    <td style="border-bottom: 0.5pt solid windowtext; border-left: none; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 60.4pt;"
-                                        valign="top" width="81">
-                                        <p class="MsoNormal" style="font-size: 12pt; margin: 0cm 0cm 0.0001pt;">
-                                            <span style="font-family: Arial; font-size: 7pt;">
-
-                                            </span>
                                         </p>
                                     </td>
                                     <td style="border-bottom: 0.5pt solid windowtext; border-left: none; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt;"

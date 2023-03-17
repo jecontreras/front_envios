@@ -65,7 +65,7 @@ export class ElaborationGuideComponent implements OnInit {
       try {
         if (store.dataGuide.totalkilo && this.vandera == true) this.rellenoCache(store);
       } catch (error) {
-        
+
       }
 
     });
@@ -190,7 +190,8 @@ export class ElaborationGuideComponent implements OnInit {
         hiddenInputToUpdateATBuffer_CommonToolkitScripts: 1,
         txtGuia_a_Consultar: "",
         valorAsegurado: this.data.valorAsegurado, //number
-        ciudadDestino1: this.data.ciudadDestino1
+        ciudadDestino1: this.data.ciudadDestino1,
+        user: this.dataUser.id
       };
       this.btnDisabled = true;
       this.errorCotisa = "";
@@ -466,7 +467,7 @@ export class ElaborationGuideComponent implements OnInit {
         }
       } catch (error) { }
     }, (error) => { this._tools.tooast({ title: "Error en el servidor por favor reintenta!", icon: "error" }); console.error(error); this.btnDisabled = false;  });
-    
+
     this.crearCliente();
 
   }

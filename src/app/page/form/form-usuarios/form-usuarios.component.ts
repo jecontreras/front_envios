@@ -15,7 +15,7 @@ import { CiudadesService } from 'src/app/servicesComponents/ciudades.service';
   styleUrls: ['./form-usuarios.component.scss']
 })
 export class FormUsuariosComponent implements OnInit {
-  
+
   data:any = {
     pais: "colombia"
   };
@@ -33,7 +33,7 @@ export class FormUsuariosComponent implements OnInit {
     private _rol: PerfilService,
     private _tools: ToolsService,
     private _ciudades: CiudadesService,
-  ) { 
+  ) {
     this._store.subscribe((store: any) => {
       store = store.name;
       if(!store) return false;
@@ -90,7 +90,8 @@ export class FormUsuariosComponent implements OnInit {
       direccion: this.data.direccion,
       barrio: this.data.barrio,
       departamento: this.data.departamento,
-      rol: this.data.rol
+      rol: this.data.rol,
+      ...this.data
     };
     this._user.update( data ).subscribe( ( res:any ) =>{
       this._tools.tooast( { title: "Actualizado tu perfil" } );
