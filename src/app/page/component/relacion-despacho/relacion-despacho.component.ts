@@ -71,12 +71,12 @@ export class RelacionDespachoComponent implements OnInit {
 
   async filtroGet(){
     this.listDistribucion = [];
-    /*if( this.data.fecha1 && this.data.fecha2 ){
+    if( this.data.fecha1 && this.data.fecha2 ){
       this.query.where.solicitudFecha = {
         ">=": moment( this.data.fecha1 ).format("YYYY-MM-DD"),
         "<=": moment( this.data.fecha2 ).format("YYYY-MM-DD"),
       };
-    }else delete this.query.where.solicitudFecha;*/
+    }else delete this.query.where.solicitudFecha;
     await this.getRow();
 
   }
