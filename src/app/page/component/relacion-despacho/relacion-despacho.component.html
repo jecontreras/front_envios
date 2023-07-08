@@ -4,16 +4,37 @@
         <div class="d-flex justify-content-between">
             <div></div>
             <div class="d-flex justify-content-center">
-                <div>
-                    <label>Tipo de Trasportadora*</label>
-                    <select class="form-control form-control-sm"
-                        [(ngModel)]="data.plataforma">
-                        <option value="TODO">TODOS</option>
-                        <option value="ENVIA">Envia</option>
-                        <option value="CORDINADORA">Cordinadora</option>
-                        <option value="TCC">Tcc</option>
-                        <option value="INTERRAPIDISIMO">Inter Rapidisimo</option>
-                    </select>
+                <div class="row">
+                    <div class="col-12">
+                        <label>Tipo de Trasportadora*</label>
+                        <select class="form-control form-control-sm"
+                            [(ngModel)]="data.plataforma">
+                            <option value="TODO">TODOS</option>
+                            <option value="ENVIA">Envia</option>
+                            <option value="CORDINADORA">Cordinadora</option>
+                            <option value="TCC">Tcc</option>
+                            <option value="INTERRAPIDISIMO">Inter Rapidisimo</option>
+                        </select>
+                    </div>
+                    <div class="col-12" *ngIf="rolName === 'admin'">
+                        <label>Buscar x Agente *</label>
+                        <ng-autocomplete [(ngModel)]="data.ciudadOrigen2" [data]="listUser" [searchKeyword]="keyword" placeHolder="Buscar Agentes" autocomplete="off"
+                            historyIdentifier="listUser" [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate" (selected)='selectEvent($event)'>
+                        </ng-autocomplete>
+
+                        <ng-template #itemTemplate let-item>
+                            <div class="item">
+                                <!-- <img src="{{item.flag}}" height="25"> -->
+                                <span [innerHTML]="item.username"></span> &nbsp; | &nbsp;
+                                <small>Email: {{ item.email }}</small> &nbsp; | &nbsp;
+                                <small>--: {{ item.lastname }}</small>
+                            </div>
+                        </ng-template>
+
+                        <ng-template #notFoundTemplate let-notFound>
+                            <div [innerHTML]="notFound"></div>
+                        </ng-template>
+                    </div>
                     <div class="col-12 col-sm-3">
                         <div class="d-flex flex-row bd-highlight mb-3">
                             <div class="p-2 bd-highlight">
@@ -31,6 +52,7 @@
                     <br>
                     &nbsp;&nbsp;
                     <button type="button" class="btn btn-primary" (click)="filtroGet()">BUSCAR</button>
+                    <button type="button" class="btn btn-warning" (click)="handleClean()">LIMPIAR</button>
                 </div>
             </div>
             <div>
@@ -142,7 +164,9 @@
                                         valign="top" width="28">
                                         <p align="center" class="MsoNormal"
                                             style="font-size: 12pt; margin: 0cm 0cm 0.0001pt; text-align: center;">
-                                            <span lang="EN-US" style="font-family: Arial; font-size: 7pt;">Check</span>
+                                            <span lang="EN-US" style="font-family: Arial; font-size: 7pt;">
+                                                <input type="checkbox" [(ngModel)]="data.check" (change)="handleCheck()" id="exampleCheck1">check
+                                            </span>
                                         </p>
                                     </td>
                                     <td style="border-bottom: 0.5pt solid windowtext; border-image: initial; border-left: 0.5pt solid windowtext; border-right: 0.5pt solid windowtext; border-top: none; height: 3.5pt; padding: 0cm 3.5pt; width: 20.85pt;"
@@ -313,10 +337,27 @@
                                     <td style="border-bottom: 0.5pt solid windowtext; border-left: none; border-right: 0.5pt solid windowtext; border-top: none; padding: 0cm 3.5pt; width: 194.5pt;"
                                         valign="top" width="259">
                                         <p class="MsoNormal" style="font-size: 12pt; margin: 0cm 0cm 0.0001pt;">
-                                            <img height="30"
+                                            <ngx-barcode [bc-value]="item.nRemesa" [bc-display-value]="true"></ngx-barcode>
+                                            <img style="
+                                                    width: 26%;
+                                                    height: 35px;
+                                                "   
                                                 src="http://200.69.100.66/files/jpg/{{ item.nRemesa }}.jpg" width="250" *ngIf="item.transportadoraSelect == 'ENVIA'"/>
-                                            <img height="30"
+                                            <img style="
+                                                    width: 26%;
+                                                    height: 35px;
+                                                "   
                                                 src="./assets/imagenes/logoCordinadora.png" width="250" *ngIf="item.transportadoraSelect == 'CORDINADORA'"/>
+                                            <img style="
+                                                    width: 26%;
+                                                    height: 35px;   
+                                                "   
+                                                src="./assets/imagenes/logoInter.png" width="250" *ngIf="item.transportadoraSelect == 'INTERRAPIDISIMO'"/>
+                                            <img style="
+                                                    width: 26%;
+                                                    height: 35px;   
+                                                "
+                                                src="./assets/imagenes/tcc.png" width="250" *ngIf="item.transportadoraSelect == 'TCC'"/>
 
                                         </p>
                                         <br />

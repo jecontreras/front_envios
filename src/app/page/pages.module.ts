@@ -26,6 +26,7 @@ import { ListRetirosComponent } from './component/list-retiros/list-retiros.comp
 import { UsuariosComponent } from './component/usuarios/usuarios.component';
 import { FormUsuariosComponent } from './form/form-usuarios/form-usuarios.component';
 import { ListClientesComponent } from './component/list-clientes/list-clientes.component';
+import { NgxBarcodeModule } from 'ngx-barcode';
 
 @NgModule({
   declarations: [ 
@@ -57,7 +58,8 @@ import { ListClientesComponent } from './component/list-clientes/list-clientes.c
     AngularEditorModule,
     NgxCurrencyModule,
     NgxDropzoneModule,
-    AutocompleteLibModule
+    AutocompleteLibModule,
+    NgxBarcodeModule
   ],
   bootstrap: [ PagesComponent ]
 })

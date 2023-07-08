@@ -6,6 +6,7 @@ import * as _ from 'lodash';
 import * as moment  from 'moment';
 import { STORAGES } from 'src/app/interfaces/sotarage';
 import { Store } from '@ngrx/store';
+import { UsuariosService } from 'src/app/servicesComponents/usuarios.service';
 
 @Component({
   selector: 'app-relacion-despacho',
@@ -30,7 +31,9 @@ export class RelacionDespachoComponent implements OnInit {
     page: 0
   };
   data:any = {
-    plataforma: "CORDINADORA"
+    plataforma: "INTERRAPIDISIMO",
+    fecha1: moment().add(-1,'day').format("DD/MM/YYYY"),
+    fecha2: moment().format("DD/MM/YYYY")
   };
   listCiudad:any = DANEGROUP;
   total:any = {
@@ -51,10 +54,14 @@ export class RelacionDespachoComponent implements OnInit {
   };
   dataUser:any = {};
   rolName:string = "";
+  listUser:any = [];
+  keyword = 'username';
+
   constructor(
     private _flete: FleteService,
     public _tools: ToolsService,
-    private _store: Store<STORAGES>
+    private _store: Store<STORAGES>,
+    private _user: UsuariosService
   ) {
     this._store.subscribe((store: any) => {
       store = store.name;
@@ -66,6 +73,29 @@ export class RelacionDespachoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getRow();
+    this.getAgente();
+  }
+
+  getAgente(){
+    this._user.get( { where: { }, limit: 100000 } ).subscribe(res=>{
+      this.listUser = res.data;
+    })
+  }
+
+  handleClean(){
+    delete this.query.where.user;
+    this.query.page = 0;
+    this.listRow = [];
+    if( this.rolName !== 'admin' ) this.query.where.user = this.dataUser.id;
+    this.getRow();
+  }
+
+  selectEvent(ev:any){
+    console.log("***", ev)
+    if( ev.id ) this.query.where.user = ev.id;
+    this.query.page = 0;
+    this.listRow = [];
     this.getRow();
   }
 
@@ -99,7 +129,7 @@ export class RelacionDespachoComponent implements OnInit {
           cantidadItem: 0
         };
         for( let row of res.data ){
-          row.check = true;
+          row.check = false;
           count++;
           row.count = count;
           row.ciudadDestinatarioText = row.drpCiudadDestino;
@@ -117,6 +147,10 @@ export class RelacionDespachoComponent implements OnInit {
         resolve( true );
       },()=>resolve(false) );
     })
+  }
+
+  handleCheck(){
+    for( let row of this.listRow ) row.check = this.data.check;
   }
 
   procesoDistribucion( row:any ){
