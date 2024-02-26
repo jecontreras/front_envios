@@ -456,10 +456,10 @@ export class ElaborationGuideComponent implements OnInit {
     else data = await this.creandoGuiaEnvia(data);
 
     this._flete.createFlete( data ).subscribe((res: any) => {
-      console.log(res);
+      //console.log(res);
       this.btnDisabled = false;
       try {
-        if (!res.id) { this.mensaje = res.data.msx; this._tools.tooast({ title: "Error al generar la guia", icon: "error" }); }
+        if (!res.data.id) { this.mensaje = res.data.msx; this._tools.tooast({ title: "Error al generar la guia", icon: "error" }); }
         else {
           this.mensaje = `ver guia ->>  ${this.urlFront}/dashboard/estadoGuias`;
           this._tools.tooast({ title: "Exitoso guia generada" });
