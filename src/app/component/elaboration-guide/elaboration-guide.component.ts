@@ -260,7 +260,7 @@ export class ElaborationGuideComponent implements OnInit {
     if (!res[6]) { /*this.errorCotisa = `No hay cubrimiento enesta direccion ${ this.data.ciudadDestino.state }`;*/ return false; }
     if (res[6]['Total'] == 0) { /*this.errorCotisa = `No hay cubrimiento enesta direccion ${ this.data.ciudadDestino.state }`;*/ return false; }
     this.tablet.listRow.push({
-      imgTrasp: "https://aveonline.co/app/temas/imagen_transpo/084935-1-envia-094632-1-ENVIA.jpg",
+      imgTrasp: "./assets/imagenes/envialogo.png",
       origenDestino: `${this.data.ciudadOrigenText} A ( ${destino.name})`,
       unida: this.data.totalUnidad,
       totalKilos: res[2]["Peso a Cobrar"],
