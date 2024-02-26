@@ -12,7 +12,7 @@ export const environment = {
   //url: "https://backpublihazclick.herokuapp.com",
   url: 'http://localhost:1337',
   urlFront: "http://localhost:4200",
-  URLFILE: "https://backlocompro.herokuapp.com",
+  URLFILE: "https://apilokomprojs-7681dc4951e1.herokuapp.com",
 };
 
 /*

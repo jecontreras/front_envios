@@ -467,10 +467,16 @@ export class ElaborationGuideComponent implements OnInit {
         }else {
           this.mensaje = `ver guia ->>  ${this.urlFront}/dashboard/estadoGuias`;
           this._tools.tooast({ title: "Exitoso guia generada" });
-          this.data.id = res.data.msx.id;
+          if( res.data ) this.data.id = res.data.msx.id;
+          else this.data.id = res.id;
         }
+<<<<<<< HEAD
       } catch (error) { }
     }, (error) => { this._tools.tooast({ title: "Error en el servidor, por favor reintenta!", icon: "error" }); console.error(error); this.btnDisabled = false;  });
+=======
+      } catch (error) { console.log("*****486", error ); }
+    }, (error) => { this._tools.tooast({ title: "Error en el servidor por favor reintenta!", icon: "error" }); console.error(error); this.btnDisabled = false;  });
+>>>>>>> 99b30c5ec98d32db7e62d2682de21b76c7e97914
 
     this.crearCliente();
 
