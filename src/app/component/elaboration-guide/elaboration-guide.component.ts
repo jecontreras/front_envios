@@ -260,7 +260,7 @@ export class ElaborationGuideComponent implements OnInit {
     if (!res[6]) { /*this.errorCotisa = `No hay cubrimiento enesta direccion ${ this.data.ciudadDestino.state }`;*/ return false; }
     if (res[6]['Total'] == 0) { /*this.errorCotisa = `No hay cubrimiento enesta direccion ${ this.data.ciudadDestino.state }`;*/ return false; }
     this.tablet.listRow.push({
-      imgTrasp: "https://aveonline.co/app/temas/imagen_transpo/084935-1-envia-094632-1-ENVIA.jpg",
+      imgTrasp: "./assets/imagenes/envialogo.png",
       origenDestino: `${this.data.ciudadOrigenText} A ( ${destino.name})`,
       unida: this.data.totalUnidad,
       totalKilos: res[2]["Peso a Cobrar"],
@@ -456,18 +456,24 @@ export class ElaborationGuideComponent implements OnInit {
     else data = await this.creandoGuiaEnvia(data);
 
     this._flete.createFlete( data ).subscribe((res: any) => {
-      console.log(res);
+      //console.log("generarGuia _flete.createFlete", res)
+      //console.log(res);
       this.btnDisabled = false;
       try {
-        if (!res.id) { this.mensaje = res.data.msx; this._tools.tooast({ title: "Error al generar la guia", icon: "error" }); }
-        else {
+        console.log("_flete.createFlete res.id", res.data.id)
+        if (!res.data.id) {
+          this.mensaje = res.data.msx;
+          this._tools.tooast({ title: "Error al generar la guia", icon: "error" });
+        }else {
+
           this.mensaje = `ver guia ->>  ${this.urlFront}/dashboard/estadoGuias`;
           this._tools.tooast({ title: "Exitoso guia generada" });
           if( res.data ) this.data.id = res.data.msx.id;
           else this.data.id = res.id;
         }
-      } catch (error) { console.log("*****486", error ); }
-    }, (error) => { this._tools.tooast({ title: "Error en el servidor por favor reintenta!", icon: "error" }); console.error(error); this.btnDisabled = false;  });
+      } catch (error) { }
+    }, (error) => { this._tools.tooast({ title: "Error en el servidor, por favor reintenta!", icon: "error" }); console.error(error); this.btnDisabled = false;  });
+
 
     this.crearCliente();
 
@@ -528,6 +534,7 @@ export class ElaborationGuideComponent implements OnInit {
         txtDice: this.data.contenido,
         ...datable
       };
+      console.log("creandoGuiaEnvia(",data.txtDireccionPara)
       return resolve( data );
       this._flete.fleteCrearEnvia(data).subscribe((res: any) => {
         this.btnDisabled = false;
@@ -549,7 +556,7 @@ export class ElaborationGuideComponent implements OnInit {
         txtPara: this.data.destinatarioNombre,
         drpCiudadDestino: this.data.ciudadDestino.name,
         txtTelefonoPara: this.data.destinatarioCelular,
-        txtDireccionPara: `${this.data.destinatarioDireccion} ( ${this.data.destinatarioBarrio} )`,
+        txtDireccionPara: `${this.data.destinatarioDireccion} ${this.data.destinatarioBarrio} `,
         txtUnidades: 1, //this.data.totalUnidad,
         txtPeso: this.data.totalkilo,
         txtVolumen: this.data.pesoVolumen,
