@@ -202,7 +202,7 @@ export class ElaborationGuideComponent implements OnInit {
         this.progreses = false;
         if (res.data == "Error parametros incompleto") { resolve( false ); return this._tools.tooast({ title: res.data, icon: "error" }); }
         this.armandoCotizacionTcc(res.data.tcc);
-        this.armandoCotizacionEnvia(res.data.envia);
+        this.armandoCotizacionEnvia(res.data.envia); console.log("res.data.envia", res.data.envia)
         this.armandoCotizacionCordinadora(res.data.cordinadora);
         this.armandoCotizacionInterRapidisimo(res.data.interrapdisimo);
         this.data.codeDestino = res.data.idCiudadDestino;

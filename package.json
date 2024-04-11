@@ -1,5 +1,5 @@
 {
-  "name": "next-v8.1.2-lite",
+  "name": "enviosrapidos",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -66,7 +66,6 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
-    "node-sass": "^4.12.0",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
