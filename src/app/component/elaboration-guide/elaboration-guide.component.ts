@@ -205,6 +205,7 @@ export class ElaborationGuideComponent implements OnInit {
         this.armandoCotizacionEnvia(res.data.envia); console.log("res.data.envia", res.data.envia)
         this.armandoCotizacionCordinadora(res.data.cordinadora);
         this.armandoCotizacionInterRapidisimo(res.data.interrapdisimo);
+        this.armandoCotizacionServientrega(res.data.servientrega);
         this.data.codeDestino = res.data.idCiudadDestino;
         console.log(this.data, res.data.idCiudadDestino);
         resolve( true );
@@ -345,6 +346,40 @@ export class ElaborationGuideComponent implements OnInit {
       totalSin: Number(res[6]['Total']),
       tiempoEstimado: res[1]['Dias'],
       trasportadora: "INTERRAPIDISIMO"
+    });
+  }
+
+  armandoCotizacionServientrega(res: any) {
+    let destino = {
+      code: this.data.ciudadDestino.codigo,
+      name: this.data.ciudadDestino.nombre,
+    };
+    if (this.data.transportadora == 'envia') {
+      destino = {
+        code: this.data.ciudadDestino.code,
+        name: this.data.ciudadDestino.name,
+      };
+    }
+    if (!res[6]) { /*this.errorCotisa = `No hay cubrimiento enesta direccion ${ this.data.ciudadDestino.state }`;*/ return false; }
+    if (res[6]['Total'] == 0) { /*this.errorCotisa = `No hay cubrimiento enesta direccion ${ this.data.ciudadDestino.state }`; */return false; }
+    this.tablet.listRow.push({
+      imgTrasp: "./assets/imagenes/servientrega.png",
+      origenDestino: `${this.data.ciudadOrigenText} A ( ${destino.name})`,
+      unida: this.data.totalUnidad,
+      totalKilos: res[2]["Peso a Cobrar"],
+      kilosVol: this.data.pesoVolumen,
+      valoracion: res[0]['Cubrimiento'],
+      tray: "mensajeria",
+      flete: this._tools.monedaChange(3, 2, (res[3]['Flete'] || 0)),
+      fleteSin: res[3]['Flete'],
+      fleteManejo: this._tools.monedaChange(3, 2, (res[5]['Otros'] || 0)),
+      fleteManejoSin: res[5]['Otros'],
+      fleteTotal: this._tools.monedaChange(3, 2, (res[4]['F.V.'] || 0)),
+      fleteTotalSin: res[4]['F.V.'],
+      total: this._tools.monedaChange(3, 2, (Number(res[6]['Total']) || 0)),
+      totalSin: Number(res[6]['Total']),
+      tiempoEstimado: res[1]['Dias'],
+      trasportadora: "SERVIENTREGA"
     });
   }
 

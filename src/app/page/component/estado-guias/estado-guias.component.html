@@ -44,6 +44,7 @@
                     <option value="SERVIENTREGA">Servientrega</option>
                     <option value="INTERRAPIDISIMO">Inter rapidisimo</option>
                     <option value="TCC">Tcc</option>
+                    <option value="SERVIENTREGA">Servientrega</option>
                 </select>
             </div>
             <div class="col-12 col-sm-2">
@@ -117,6 +118,9 @@
                                         <div *ngIf="item.transportadoraSelect == 'INTERRAPIDISIMO'">
                                             <img src="./assets/imagenes/logoInter.png" class="img" alt="Interrapidisimo">
                                         </div>
+                                        <div *ngIf="item.transportadoraSelect == 'SERVIENTREGA'">
+                                          <img src="./assets/imagenes/servientrega.png" class="img" alt="Servientrega">
+                                      </div>
                                     </td>
                                     <td>{{ item.seleccionAgente }}</td>
                                     <td>{{ item.kilosReales }}</td>

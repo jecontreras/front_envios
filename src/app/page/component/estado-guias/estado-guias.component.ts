@@ -153,7 +153,19 @@ export class EstadoGuiasComponent implements OnInit {
 
         this._tools.downloadPdf( res, 'INTERRAPIDISIMO #'+ data.nRemesa  );
       });
-    }
+      }
+      if( data.transportadoraSelect == 'SERVIENTREGA'){
+        if( data['pdf_guia']) return this._tools.downloadPdf( data['pdf_guia'], 'INTERRAPIDISIMO #'+ data.nRemesa  );
+        let datas:any = {
+           codigo_remision: data['nRemesa']
+        };
+        this._flete.fleteImprimirServientrega( datas ).subscribe(( res:any )=>{
+          res = res.data;
+          if( res === "Error" || res === 'base64Binary') return this._tools.presentToast( "Error en la descarga del pdf" );
+
+          this._tools.downloadPdf( res, 'INTERRAPIDISIMO #'+ data.nRemesa  );
+        });
+        }
    }
 
    /*downloadPdf(base64String, fileName){
