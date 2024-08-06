@@ -377,7 +377,7 @@
                 </div>
                 <div class="form-group col-12" *ngIf="mensaje">
                     <div class="d-flex justify-content-center">
-                        <h5 class="text-danger"> {{ mensaje }} </h5>
+                        <section class="text-danger" [innerHTML]="mensaje"></section>
                     </div>
                 </div>
                 <div class="form-group col-12">

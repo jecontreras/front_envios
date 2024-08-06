@@ -494,6 +494,7 @@ export class ElaborationGuideComponent implements OnInit {
       //console.log("generarGuia _flete.createFlete", res)
       //console.log(res);
       this.btnDisabled = false;
+      if( !res.data ) res.data = res;
       try {
         console.log("_flete.createFlete res.id", res.data.id)
         if (!res.data.id) {
@@ -501,7 +502,7 @@ export class ElaborationGuideComponent implements OnInit {
           this._tools.tooast({ title: "Error al generar la guia", icon: "error" });
         }else {
 
-          this.mensaje = `ver guia ->>  ${this.urlFront}/dashboard/estadoGuias`;
+          this.mensaje = `<h1>ver guia ->> </h1> <a href="${this.urlFront}/dashboard/estadoGuias" target="_blank"></a>`;
           this._tools.tooast({ title: "Exitoso guia generada" });
           if( res.data ) this.data.id = res.data.msx.id;
           else this.data.id = res.id;

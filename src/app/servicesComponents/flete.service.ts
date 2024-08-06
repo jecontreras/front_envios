@@ -58,4 +58,7 @@ export class FleteService {
   relationshipInter(query:any){
     return this._model.querys('fletes/relationshipInter',query, 'post');
   }
+  relationshipServientrega(query:any){
+    return this._model.querys('fletes/relationshipServientrega',query, 'post');
+  }
 }

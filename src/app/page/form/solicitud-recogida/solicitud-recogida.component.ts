@@ -115,24 +115,26 @@ export class SolicitudRecogidaComponent implements OnInit {
   }
 
   guardarBtn(){
-    this.btnDisabled = true;
     let data:any = {
       ...this.data
     };
+    if( this.btnDisabled === true ) return false;
     data.drpCiudadTcc = this.data.drpCiudad.code;
     data.sionCiudadTcc = this.data.drpCiudad.id;
     data.drpCiudadEnvia = this.data.drpCiudad.name;
     data.drpDaneTcc = this.data.drpCiudad.dane;
+    if( !data.drpCiudadEnvia ) return this._tools.tooast({ title:"Error no selecciono ninguna ciudad", icon: "error"});
+    this.btnDisabled = true;
     console.log( data );
-    this.btnDisabled = false;
-    //return false;
     this._recogias.createRecogia( data ).subscribe(( res:any )=>{
+      console.log("********130", res)
       this.btnDisabled = false;
+      if( !res.id ) return this._tools.tooast({icon: "error", title:"Error al crear la recogida"})
       this._tools.tooast( { title: "Generado exitos" });
       this.openWhatSapp();
       this.data = {};
       setTimeout(()=> this.Router.navigate( ["/dashboard/listrecogia"] ), 2000 );
-    },( error:any )=> { this._tools.tooast( { title: "Error"} ); this.btnDisabled = true; } );
+    },( error:any )=> { this._tools.tooast( { title: "Error", icon: "error"} ); this.btnDisabled = false; } );
   }
 
   openWhatSapp(){

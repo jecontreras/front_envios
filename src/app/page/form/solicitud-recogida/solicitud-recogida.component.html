@@ -35,7 +35,7 @@
                                                                                 <option value="cordinadora">Cordinadora</option>
                                                                                 <option value="tcc">TCC</option>
                                                                                 <option value="interrapidisimo">Inter Rapidisimo</option>
-                                                                                <option value="interrapidisimo">Servientrega</option>
+                                                                                <option value="servientrega">Servientrega</option>
                                                                             </select>
                                                                         </div>
                                                                         <div class="form-group col-4"
@@ -100,7 +100,7 @@
                                                                                         [data]="listCiudades"
                                                                                         [searchKeyword]="keyword"
                                                                                         placeHolder="Buscar Ciudad"
-                                                                                        autocomplete="off"
+                                                                                        autocomplete="disabled"
                                                                                         historyIdentifier="listCiudades"
                                                                                         [itemTemplate]="itemTemplate"
                                                                                         [notFoundTemplate]="notFoundTemplate"
@@ -243,6 +243,18 @@
                                                                 <td valign="top">&nbsp;</td>
                                                                 <td valign="top">&nbsp;</td>
                                                             </tr>
+                                                            <tr>
+                                                              <td valign="top">Id Recogida</td>
+                                                              <td valign="top">
+                                                                  <input class="textos" id="txtNum_Cliente"
+                                                                      [(ngModel)]="data.txtNum_OrdenSG"
+                                                                      name="txtNum_OrdenSG"
+                                                                      style="color: #6a6a6a; font-family: Tahoma; font-size: 11px;"
+                                                                      type="text" disabled />
+                                                              </td>
+                                                              <td valign="top">&nbsp;</td>
+                                                              <td valign="top">&nbsp;</td>
+                                                          </tr>
                                                             <!--<tr>
                                                                 <td>Nombre y apellido Remitente</td>
                                                                 <td colspan="3">

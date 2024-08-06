@@ -14,6 +14,7 @@
                             <option value="CORDINADORA">Cordinadora</option>
                             <option value="TCC">Tcc</option>
                             <option value="INTERRAPIDISIMO">Inter Rapidisimo</option>
+                            <option value="SERVIENTREGA">Servientrega</option>
                         </select>
                     </div>
                     <div class="col-12" *ngIf="rolName === 'admin'">
@@ -60,7 +61,7 @@
             </div>
           </div>
     </div>
-    <div class="content p-5">
+    <div class="content p-5" id="print">
         <div class="row">
             <div class="col-12">
                 <div class="d-flex justify-content-center">
@@ -341,21 +342,21 @@
                                             <img style="
                                                     width: 26%;
                                                     height: 35px;
-                                                "   
+                                                "
                                                 src="http://200.69.100.66/files/jpg/{{ item.nRemesa }}.jpg" width="250" *ngIf="item.transportadoraSelect == 'ENVIA'"/>
                                             <img style="
                                                     width: 26%;
                                                     height: 35px;
-                                                "   
+                                                "
                                                 src="./assets/imagenes/logoCordinadora.png" width="250" *ngIf="item.transportadoraSelect == 'CORDINADORA'"/>
                                             <img style="
                                                     width: 26%;
-                                                    height: 35px;   
-                                                "   
+                                                    height: 35px;
+                                                "
                                                 src="./assets/imagenes/logoInter.png" width="250" *ngIf="item.transportadoraSelect == 'INTERRAPIDISIMO'"/>
                                             <img style="
                                                     width: 26%;
-                                                    height: 35px;   
+                                                    height: 35px;
                                                 "
                                                 src="./assets/imagenes/tcc.png" width="250" *ngIf="item.transportadoraSelect == 'TCC'"/>
 

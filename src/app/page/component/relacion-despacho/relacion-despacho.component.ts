@@ -179,17 +179,29 @@ export class RelacionDespachoComponent implements OnInit {
   }
 
   openImprimir(){
-    if( this.data.plataforma != 'INTERRAPIDISIMO') window.print();
+    if( ( this.data.plataforma != 'INTERRAPIDISIMO' ) && ( this.data.plataforma != 'SERVIENTREGA' ) ) return this._tools.print();
     if( this.data.plataforma == 'INTERRAPIDISIMO'){
       let filter = this.listRow.filter(( item )=> item.check == true );
       filter = _.map( filter, 'nRemesa');
-       this.getRelationship( filter );
+       this.getRelationshipInter( filter );
+    }
+    if( this.data.plataforma == 'SERVIENTREGA'){
+      let filter = this.listRow.filter(( item )=> item.check == true );
+      filter = _.map( filter, 'nRemesa');
+       this.getRelationshipServientrega( filter );
     }
   }
 
-  getRelationship(IdFletes){
+  getRelationshipInter(IdFletes){
     this._flete.relationshipInter( { idFletes: IdFletes } ).subscribe( (res)=>{
       if( res.data.arregloBytesPlanilla ) this._tools.downloadPdf( res.data.arregloBytesPlanilla, 'INTERRAPIDISIMO #'+ res.data.numeroPlanilla  );
+      else this._tools.tooast( { title: "Lo sentimos Problemas de generador de relacion de despacho" } );
+    })
+  }
+
+  getRelationshipServientrega(IdFletes){
+    this._flete.relationshipInter( { idFletes: IdFletes } ).subscribe( (res)=>{
+      if( res.data.arregloBytesPlanilla ) this._tools.downloadPdf( res.data.arregloBytesPlanilla, 'SERVIENTREGA #'+ res.data.numeroPlanilla  );
       else this._tools.tooast( { title: "Lo sentimos Problemas de generador de relacion de despacho" } );
     })
   }
