@@ -118,7 +118,7 @@ const NavigationItems = [
             id: 'monedero',
             title: 'Tu billetera',
             type: 'item',
-            disabled: false,
+            disabled: true,
             url: '/dashboard/monedero',
             icon: 'feather icon-home'
           },
@@ -126,7 +126,7 @@ const NavigationItems = [
             id: 'listretiros',
             title: 'Lista de Retiros',
             type: 'item',
-            disabled: false,
+            disabled: true,
             url: '/dashboard/listretiros',
             icon: 'feather icon-home'
           },
