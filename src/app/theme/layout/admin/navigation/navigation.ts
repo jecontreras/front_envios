@@ -112,13 +112,13 @@ const NavigationItems = [
         id: 'billetera',
         title: 'Configuracion Pagos',
         type: 'collapse',
-        disabled: true,
+        disabled: false,
         children:[
           {
             id: 'monedero',
             title: 'Tu billetera',
             type: 'item',
-            disabled: true,
+            disabled: false,
             url: '/dashboard/monedero',
             icon: 'feather icon-home'
           },
@@ -126,7 +126,7 @@ const NavigationItems = [
             id: 'listretiros',
             title: 'Lista de Retiros',
             type: 'item',
-            disabled: true,
+            disabled: false,
             url: '/dashboard/listretiros',
             icon: 'feather icon-home'
           },
