@@ -21,7 +21,7 @@
     "@angular/platform-browser-dynamic": "~8.1.2",
     "@angular/router": "~8.1.2",
     "@kolkov/angular-editor": "^1.1.2",
-    "@ng-bootstrap/ng-bootstrap": "^4.2.1",
+    "@ng-bootstrap/ng-bootstrap": "^5.3.0",
     "@ngrx/store": "^9.2.0",
     "@ngrx/store-devtools": "^9.2.0",
     "@types/memory-cache": "^0.2.1",

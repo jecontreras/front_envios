@@ -50,7 +50,6 @@ export class EstadoGuiasComponent implements OnInit {
       if(!store) return false;
       this.dataUser = store.user || {};
       if( Object.keys( this.dataUser ).length > 0 ) this.rolName = this.dataUser.rol.nombre;
-      if( this.rolName !== 'admin' ) this.query.where.user = this.dataUser.id;
     });
   }
 
@@ -63,6 +62,7 @@ export class EstadoGuiasComponent implements OnInit {
   getRow(){
     this.progreses = true;
     if( this.tablet.listRow.length == 0 ) this.query.page = 0;
+    if( this.rolName !== 'admin' ) this.query.where.user = this.dataUser.id;
     this._flete.get( this.query ).subscribe(( res:any )=>{
       this.tablet.listRow = _.unionBy(this.tablet.listRow || [], res.data, 'id');
       this.count = res.count;

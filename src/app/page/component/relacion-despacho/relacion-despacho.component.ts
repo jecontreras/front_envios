@@ -7,6 +7,7 @@ import * as moment  from 'moment';
 import { STORAGES } from 'src/app/interfaces/sotarage';
 import { Store } from '@ngrx/store';
 import { UsuariosService } from 'src/app/servicesComponents/usuarios.service';
+import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-relacion-despacho',
