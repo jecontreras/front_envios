@@ -114,40 +114,43 @@ export class RelacionDespachoComponent implements OnInit {
 
   getRow(){
     return new Promise(resolve =>{
-      let count = 0;
-
       if( this.data.plataforma == 'TODO' ) delete this.query.where.transportadoraSelect;
       else this.query.where.transportadoraSelect = this.data.plataforma;
       //console.log(this.query)
       this._flete.get( this.query ).subscribe( async ( res:any )=>{
         //console.log("***", res)
-        this.total = {
-          unidad: 0,
-          peso: 0,
-          volumen: 0,
-          totalValorMercancia: 0,
-          flteTotal: 0,
-          cantidadItem: 0
-        };
-        for( let row of res.data ){
-          row.check = false;
-          count++;
-          row.count = count;
-          row.ciudadDestinatarioText = row.drpCiudadDestino;
-          row.ciudadOrigenText = row.drpCiudadOrigen;
-          this.total.unidad+=row.unidadNegocio;
-          this.total.peso+=row.totalPeso;
-          this.total.volumen+=row.totalPesovolumen;
-          this.total.totalValorMercancia+=row.totalValorMercancia;
-          this.total.flteTotal+= row.flteTotal;
-          this.total.cantidadItem++;
-          await this.procesoDistribucion(row);
-        }
+        await this.handleProcesSum( res.data );
         this.listRow = res.data;
         if( Object.keys( this.listRow ).length == 0 ) this._tools.tooast( { title: "Lo sentimos no tienes guias disponibles"})
         resolve( true );
       },()=>resolve(false) );
     })
+  }
+
+  async handleProcesSum( res ){
+    let count = 0;
+    this.total = {
+      unidad: 0,
+      peso: 0,
+      volumen: 0,
+      totalValorMercancia: 0,
+      flteTotal: 0,
+      cantidadItem: 0
+    };
+    for( let row of res ){
+      row.check = false;
+      count++;
+      row.count = count;
+      row.ciudadDestinatarioText = row.drpCiudadDestino;
+      row.ciudadOrigenText = row.drpCiudadOrigen;
+      this.total.unidad+=row.unidadNegocio;
+      this.total.peso+=row.totalPeso;
+      this.total.volumen+=row.totalPesovolumen;
+      this.total.totalValorMercancia+=row.totalValorMercancia;
+      this.total.flteTotal+= row.flteTotal;
+      this.total.cantidadItem++;
+      await this.procesoDistribucion(row);
+    }
   }
 
   handleCheck(){
@@ -180,7 +183,14 @@ export class RelacionDespachoComponent implements OnInit {
   }
 
   openImprimir(){
-    if( ( this.data.plataforma != 'INTERRAPIDISIMO' ) && ( this.data.plataforma != 'SERVIENTREGA' ) ) return this._tools.print();
+    if( ( this.data.plataforma != 'INTERRAPIDISIMO' ) && ( this.data.plataforma != 'SERVIENTREGA' ) ) {
+      this.listRow = this.listRow.filter(( item )=> item.check == true );
+      console.log("*******188", this.listRow.length )
+      this.listDistribucion = [];
+      this.handleProcesSum( this.listRow );
+      setTimeout(()=>this._tools.print(), 300 )
+      return true;
+    }
     if( this.data.plataforma == 'INTERRAPIDISIMO'){
       let filter = this.listRow.filter(( item )=> item.check == true );
       filter = _.map( filter, 'nRemesa');
