@@ -114,14 +114,14 @@ const NavigationItems = [
         type: 'collapse',
         disabled: false,
         children:[
-          {
+          /*{
             id: 'monedero',
             title: 'Tu billetera',
             type: 'item',
             disabled: false,
             url: '/dashboard/monedero',
             icon: 'feather icon-home'
-          },
+          },*/
           {
             id: 'listretiros',
             title: 'Lista de Retiros',
